@@ -1,0 +1,8 @@
+15:04:43 INFO  : Launching XSCT server: xsct -n  -interactive /home/jacksoncd/solver-acceleration/temp_xsdb_launch_script.tcl
+15:04:45 INFO  : Registering command handlers for Vitis TCF services
+15:04:46 INFO  : Platform repository initialization has completed.
+15:04:48 INFO  : XSCT server has started successfully.
+15:04:48 INFO  : plnx-install-location is set to ''
+15:04:48 INFO  : Successfully done setting XSCT server connection channel  
+15:04:48 INFO  : Successfully done query RDI_DATADIR 
+15:04:48 INFO  : Successfully done setting workspace for the tool. 

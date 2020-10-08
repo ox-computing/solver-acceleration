@@ -1,0 +1,4 @@
+timestamp=[2020-10-08 15:04:43], mode=WORKBENCH_START, duration=0:00:03.910, duration_ms=3910, data={}
+timestamp=[2020-10-08 15:04:45], mode=WORKBENCH_UI_INIT, duration=0:00:02.304, duration_ms=2304, data={editors_count=0, platform_editors_count=0, projects_count=0, platform_projects_count=0, active_platform_editor=false, projects=}
+timestamp=[2020-10-08 15:04:46], mode=PLATFORM_REPOSITORY_INIT, duration=0:00:02.578, duration_ms=2578, data={}
+timestamp=[2020-10-08 15:05:08], mode=APP_CREATION, duration=0:00:01.204, duration_ms=1204, data={name=Test, project_type=datacenter, os=NA, processor=null, runtime=OpenCL, platform=xilinx_u50_gen3x16_xdma_201920_3, application_type=application}
