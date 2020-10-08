@@ -6,7 +6,7 @@
 	<item value="false" key="sdx.is.shared.library"/>
 	<item value="false" key="sdx.is.system.root"/>
 	<item value="OpenCL" key="sdx.runtime"/>
-	<item value="Test" key="sdx.project.name"/>
+	<item value="VectorAddition" key="sdx.project.name"/>
 	<item value="linux" key="sdx.os"/>
 	<item value="config0_0" key="sdx.system.configuration"/>
 </section>

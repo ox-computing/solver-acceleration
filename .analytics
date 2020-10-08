@@ -2,3 +2,19 @@ timestamp=[2020-10-08 15:04:43], mode=WORKBENCH_START, duration=0:00:03.910, dur
 timestamp=[2020-10-08 15:04:45], mode=WORKBENCH_UI_INIT, duration=0:00:02.304, duration_ms=2304, data={editors_count=0, platform_editors_count=0, projects_count=0, platform_projects_count=0, active_platform_editor=false, projects=}
 timestamp=[2020-10-08 15:04:46], mode=PLATFORM_REPOSITORY_INIT, duration=0:00:02.578, duration_ms=2578, data={}
 timestamp=[2020-10-08 15:05:08], mode=APP_CREATION, duration=0:00:01.204, duration_ms=1204, data={name=Test, project_type=datacenter, os=NA, processor=null, runtime=OpenCL, platform=xilinx_u50_gen3x16_xdma_201920_3, application_type=application}
+timestamp=[2020-10-08 15:14:28], mode=WORKBENCH_START, duration=0:00:03.829, duration_ms=3829, data={}
+timestamp=[2020-10-08 15:14:31], mode=PLATFORM_REPOSITORY_INIT, duration=0:00:02.214, duration_ms=2214, data={}
+timestamp=[2020-10-08 15:14:33], mode=WORKBENCH_UI_INIT, duration=0:00:04.247, duration_ms=4247, data={editors_count=0, platform_editors_count=0, projects_count=3, platform_projects_count=0, active_platform_editor=false, projects=RemoteSystemsTempFiles,Test,Test_system}
+timestamp=[2020-10-08 15:15:12], mode=BUILD, duration=0:00:00.039, duration_ms=39, data={name=Test, configuration=Emulation-SW, clean_build=true}
+timestamp=[2020-10-08 15:15:17], mode=BUILD, duration=0:00:05.168, duration_ms=5168, data={name=Test, configuration=Emulation-SW, clean_build=false}
+timestamp=[2020-10-08 15:15:23], mode=BUILD, duration=0:00:00.418, duration_ms=418, data={name=Test, configuration=Emulation-SW, clean_build=false}
+timestamp=[2020-10-08 15:15:23], mode=BUILD, duration=0:00:00.418, duration_ms=418, data={name=Test_system, configuration=Emulation-SW, clean_build=false}
+timestamp=[2020-10-08 15:26:58], mode=APP_CREATION, duration=0:00:00.633, duration_ms=633, data={name=VectorAddition, project_type=datacenter, os=NA, processor=null, runtime=OpenCL, platform=xilinx_u50_gen3x16_xdma_201920_3, application_type=application}
+timestamp=[2020-10-08 15:32:12], mode=BUILD, duration=0:00:00.004, duration_ms=4, data={name=VectorAddition, configuration=Emulation-SW, clean_build=true}
+timestamp=[2020-10-08 15:33:27], mode=BUILD, duration=0:01:15.594, duration_ms=75594, data={name=VectorAddition, configuration=Emulation-SW, clean_build=false}
+timestamp=[2020-10-08 15:33:58], mode=BUILD, duration=0:00:00.003, duration_ms=3, data={name=VectorAddition, configuration=Emulation-HW, clean_build=true}
+timestamp=[2020-10-08 15:41:50], mode=BUILD, duration=0:07:52.460, duration_ms=472460, data={name=VectorAddition, configuration=Emulation-HW, clean_build=false}
+timestamp=[2020-10-08 15:41:53], mode=BUILD, duration=0:00:02.383, duration_ms=2383, data={name=VectorAddition_system, configuration=Emulation-HW, clean_build=false}
+timestamp=[2020-10-08 15:42:35], mode=BUILD, duration=0:00:00.003, duration_ms=3, data={name=VectorAddition, configuration=Hardware, clean_build=true}
+timestamp=[2020-10-08 16:32:34], mode=BUILD, duration=0:49:58.926, duration_ms=2998926, data={name=VectorAddition, configuration=Hardware, clean_build=false}
+timestamp=[2020-10-08 16:32:50], mode=BUILD, duration=0:00:15.809, duration_ms=15809, data={name=VectorAddition_system, configuration=Hardware, clean_build=false}
