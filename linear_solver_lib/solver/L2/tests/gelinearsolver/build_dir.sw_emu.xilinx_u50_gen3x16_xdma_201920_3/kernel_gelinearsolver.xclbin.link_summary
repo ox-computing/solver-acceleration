@@ -9,10 +9,10 @@
 <ENTRY>
 {
  "type": "ET_CmdStep",
- "dateTimestamp": "Fri Oct 16 14:28:25 2020",
- "timestampMillis": "1602854905829",
+ "dateTimestamp": "Fri Oct 16 14:35:45 2020",
+ "timestampMillis": "1602855345205",
  "buildStep": {
-  "cmdId": "32b12a5f-2ad4-470e-88dd-ee7c5449ba7e",
+  "cmdId": "0c1d4345-ab1b-42b8-b3df-39df2a65e3e4",
   "name": "v++",
   "logFile": "/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/tests/gelinearsolver/build_dir.sw_emu.xilinx_u50_gen3x16_xdma_201920_3/link/link.steps.log",
   "commandLine": "/tools/Xilinx/Vitis/2020.1/bin/unwrapped/lnx64.o/v++  --xp \"vivado_prop:run.__KERNEL__.{STEPS.SYNTH_DESIGN.ARGS.MORE OPTIONS}={-directive sdx_optimization_effort_high}\" --xp vivado_prop:run.impl_1.STEPS.PHYS_OPT_DESIGN.IS_ENABLED=true --xp \"misc:report=type report_timing_summary name impl_report_timing_summary_route_design_summary steps {route_design} runs {impl_1} options {-max_paths 10}\" --xp \"misc:report=type report_timing_summary name impl_report_timing_summary_post_route_phys_opt_design_summary steps {post_route_phys_opt_design} runs {impl_1} options {-max_paths 10}\" -t sw_emu --platform /opt/xilinx/platforms/xilinx_u50_gen3x16_xdma_201920_3/xilinx_u50_gen3x16_xdma_201920_3.xpfm --save-temps --config conn_u50.ini -I/home/jacksoncd/solver-acceleration/linear_solver_lib/solver//L2/tests/gelinearsolver -I/home/jacksoncd/solver-acceleration/linear_solver_lib/solver//L2/include -I/home/jacksoncd/solver-acceleration/linear_solver_lib/solver//ext --temp_dir build_dir.sw_emu.xilinx_u50_gen3x16_xdma_201920_3 --report_dir /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/tests/gelinearsolver/reports/_build.sw_emu.xilinx_u50_gen3x16_xdma_201920_3/kernel_gelinearsolver -l --optimize 2 --jobs 8 -obuild_dir.sw_emu.xilinx_u50_gen3x16_xdma_201920_3/kernel_gelinearsolver.xclbin _x_temp.sw_emu.xilinx_u50_gen3x16_xdma_201920_3/kernel_gelinearsolver_0.xo ",
@@ -52,10 +52,10 @@
 <ENTRY>
 {
  "type": "ET_Status",
- "dateTimestamp": "Fri Oct 16 14:28:25 2020",
- "timestampMillis": "1602854905829",
+ "dateTimestamp": "Fri Oct 16 14:35:45 2020",
+ "timestampMillis": "1602855345206",
  "status": {
-  "cmdId": "32b12a5f-2ad4-470e-88dd-ee7c5449ba7e",
+  "cmdId": "0c1d4345-ab1b-42b8-b3df-39df2a65e3e4",
   "state": "CS_RUNNING"
  }
 }
@@ -63,8 +63,8 @@
 <ENTRY>
 {
  "type": "ET_FlowMetaData",
- "dateTimestamp": "Fri Oct 16 14:28:39 2020",
- "timestampMillis": "1602854919232",
+ "dateTimestamp": "Fri Oct 16 14:35:58 2020",
+ "timestampMillis": "1602855358605",
  "buildSummary": {
   "hardwarePlatform": "xilinx_u50_gen3x16_xdma_201920_3.xpfm",
   "hardwareDsa": "hw.xsa",
@@ -107,10 +107,10 @@
 <ENTRY>
 {
  "type": "ET_SubCmdStep",
- "dateTimestamp": "Fri Oct 16 14:28:39 2020",
- "timestampMillis": "1602854919236",
+ "dateTimestamp": "Fri Oct 16 14:35:58 2020",
+ "timestampMillis": "1602855358609",
  "buildStep": {
-  "cmdId": "838e64ab-e2dc-4388-8940-4779bcd8fe32",
+  "cmdId": "5e6b8ea4-7ba3-4d60-8a7c-7498ac50447a",
   "name": "regiongen",
   "logFile": "/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/tests/gelinearsolver/build_dir.sw_emu.xilinx_u50_gen3x16_xdma_201920_3/link/int/kernel_gelinearsolver_regiongen.log",
   "commandLine": "/tools/Xilinx/Vitis/2020.1/bin/../runtime/bin/regiongen_new -v -m /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/tests/gelinearsolver/build_dir.sw_emu.xilinx_u50_gen3x16_xdma_201920_3/link/int/kernel_gelinearsolver.xml -t alg -o xcl_top",
@@ -131,10 +131,10 @@
 <ENTRY>
 {
  "type": "ET_Status",
- "dateTimestamp": "Fri Oct 16 14:28:39 2020",
- "timestampMillis": "1602854919236",
+ "dateTimestamp": "Fri Oct 16 14:35:58 2020",
+ "timestampMillis": "1602855358609",
  "status": {
-  "cmdId": "838e64ab-e2dc-4388-8940-4779bcd8fe32",
+  "cmdId": "5e6b8ea4-7ba3-4d60-8a7c-7498ac50447a",
   "state": "CS_RUNNING"
  }
 }
@@ -142,10 +142,10 @@
 <ENTRY>
 {
  "type": "ET_Status",
- "dateTimestamp": "Fri Oct 16 14:28:40 2020",
- "timestampMillis": "1602854920383",
+ "dateTimestamp": "Fri Oct 16 14:35:59 2020",
+ "timestampMillis": "1602855359755",
  "status": {
-  "cmdId": "838e64ab-e2dc-4388-8940-4779bcd8fe32",
+  "cmdId": "5e6b8ea4-7ba3-4d60-8a7c-7498ac50447a",
   "state": "CS_PASSED"
  }
 }
@@ -153,10 +153,10 @@
 <ENTRY>
 {
  "type": "ET_SubCmdStep",
- "dateTimestamp": "Fri Oct 16 14:28:40 2020",
- "timestampMillis": "1602854920385",
+ "dateTimestamp": "Fri Oct 16 14:35:59 2020",
+ "timestampMillis": "1602855359757",
  "buildStep": {
-  "cmdId": "daab61af-64c8-44c8-b438-196145c20ca6",
+  "cmdId": "39f28649-f57e-4f1c-b473-a625d41536ea",
   "name": "gcc",
   "logFile": "/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/tests/gelinearsolver/build_dir.sw_emu.xilinx_u50_gen3x16_xdma_201920_3/link/int/kernel_gelinearsolver_0/kernel_gelinearsolver_0_kernel_gcc.log",
   "commandLine": "/tools/Xilinx/Vivado/2020.1/tps/lnx64/gcc-6.2.0/bin/gcc -I . -I /tools/Xilinx/Vitis/2020.1/bin/../include -I /tools/Xilinx/Vitis/2020.1/bin/../lnx64/tools/auto_cc/include -I /tools/Xilinx/Vitis/2020.1/bin/../common/technology/autopilot/opencl -I /tools/Xilinx/Vitis/2020.1/bin/../common/technology/autopilot/opencl -I /usr/include/x86_64-linux-gnu -std=c++11 -I /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/tests/gelinearsolver -I /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include -I /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/ext -I /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/tests/gelinearsolver -fPIC -g -c -DHLS_STREAM_THREAD_SAFE -MD -MT obj/kernel_gelinearsolver.o -MP -MF obj/kernel_gelinearsolver.Cd /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/tests/gelinearsolver/build_dir.sw_emu.xilinx_u50_gen3x16_xdma_201920_3/link/int/xo/kernel_gelinearsolver_0/kernel_gelinearsolver_0/cpu_sources/kernel_gelinearsolver.cpp -o obj/kernel_gelinearsolver.o",
@@ -204,10 +204,10 @@
 <ENTRY>
 {
  "type": "ET_Status",
- "dateTimestamp": "Fri Oct 16 14:28:40 2020",
- "timestampMillis": "1602854920386",
+ "dateTimestamp": "Fri Oct 16 14:35:59 2020",
+ "timestampMillis": "1602855359757",
  "status": {
-  "cmdId": "daab61af-64c8-44c8-b438-196145c20ca6",
+  "cmdId": "39f28649-f57e-4f1c-b473-a625d41536ea",
   "state": "CS_RUNNING"
  }
 }
@@ -215,10 +215,10 @@
 <ENTRY>
 {
  "type": "ET_Status",
- "dateTimestamp": "Fri Oct 16 14:28:44 2020",
- "timestampMillis": "1602854924559",
+ "dateTimestamp": "Fri Oct 16 14:36:03 2020",
+ "timestampMillis": "1602855363935",
  "status": {
-  "cmdId": "daab61af-64c8-44c8-b438-196145c20ca6",
+  "cmdId": "39f28649-f57e-4f1c-b473-a625d41536ea",
   "state": "CS_PASSED"
  }
 }
@@ -226,10 +226,10 @@
 <ENTRY>
 {
  "type": "ET_SubCmdStep",
- "dateTimestamp": "Fri Oct 16 14:28:44 2020",
- "timestampMillis": "1602854924560",
+ "dateTimestamp": "Fri Oct 16 14:36:03 2020",
+ "timestampMillis": "1602855363936",
  "buildStep": {
-  "cmdId": "b452b87a-a0af-482d-85ea-8fe8e185de6b",
+  "cmdId": "c012c4fd-8d87-47ec-bbd2-d09b6a3c7b6b",
   "name": "ar",
   "logFile": "/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/tests/gelinearsolver/build_dir.sw_emu.xilinx_u50_gen3x16_xdma_201920_3/link/int/kernel_gelinearsolver_0/kernel_gelinearsolver_0_ar.log",
   "commandLine": "/tools/Xilinx/Vivado/2020.1/tps/lnx64/binutils-2.26/bin/ar -cr /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/tests/gelinearsolver/build_dir.sw_emu.xilinx_u50_gen3x16_xdma_201920_3/link/int/kernel_gelinearsolver_0/kernel_gelinearsolver_0.csim_cu.a /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/tests/gelinearsolver/build_dir.sw_emu.xilinx_u50_gen3x16_xdma_201920_3/link/int/kernel_gelinearsolver_0/obj/kernel_gelinearsolver.o",
@@ -246,10 +246,10 @@
 <ENTRY>
 {
  "type": "ET_Status",
- "dateTimestamp": "Fri Oct 16 14:28:44 2020",
- "timestampMillis": "1602854924560",
+ "dateTimestamp": "Fri Oct 16 14:36:03 2020",
+ "timestampMillis": "1602855363936",
  "status": {
-  "cmdId": "b452b87a-a0af-482d-85ea-8fe8e185de6b",
+  "cmdId": "c012c4fd-8d87-47ec-bbd2-d09b6a3c7b6b",
   "state": "CS_RUNNING"
  }
 }
@@ -257,10 +257,10 @@
 <ENTRY>
 {
  "type": "ET_Status",
- "dateTimestamp": "Fri Oct 16 14:28:44 2020",
- "timestampMillis": "1602854924564",
+ "dateTimestamp": "Fri Oct 16 14:36:03 2020",
+ "timestampMillis": "1602855363940",
  "status": {
-  "cmdId": "b452b87a-a0af-482d-85ea-8fe8e185de6b",
+  "cmdId": "c012c4fd-8d87-47ec-bbd2-d09b6a3c7b6b",
   "state": "CS_PASSED"
  }
 }
@@ -268,10 +268,10 @@
 <ENTRY>
 {
  "type": "ET_SubCmdStep",
- "dateTimestamp": "Fri Oct 16 14:28:44 2020",
- "timestampMillis": "1602854924565",
+ "dateTimestamp": "Fri Oct 16 14:36:03 2020",
+ "timestampMillis": "1602855363940",
  "buildStep": {
-  "cmdId": "57c46979-30d1-4626-a926-d1bd443e8f2a",
+  "cmdId": "c4200a99-b8b5-4667-990e-1128d2318460",
   "name": "g++",
   "logFile": "/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/tests/gelinearsolver/build_dir.sw_emu.xilinx_u50_gen3x16_xdma_201920_3/link/int/kernel_gelinearsolver_xcl_top_gpp.log",
   "commandLine": "/usr/bin/env PATH=/usr/bin:/bin g++ -I . -I /tools/Xilinx/Vitis/2020.1/bin/../include -I /tools/Xilinx/Vitis/2020.1/bin/../common/technology/autopilot/opencl -I /tools/Xilinx/Vitis/2020.1/bin/../common/technology/autopilot/opencl -I /tools/Xilinx/Vitis/2020.1/bin/../data/emulation/include -I /tools/Xilinx/Vitis/2020.1/bin/../lnx64/tools/auto_cc/include -fPIC -g -DHLS_STREAM_THREAD_SAFE -std=c++11 -fpermissive -c -MD -MT obj/xcl_top.o -MP -MF obj/xcl_top.CXXd xcl_top.cpp -o obj/xcl_top.o",
@@ -314,10 +314,10 @@
 <ENTRY>
 {
  "type": "ET_Status",
- "dateTimestamp": "Fri Oct 16 14:28:44 2020",
- "timestampMillis": "1602854924566",
+ "dateTimestamp": "Fri Oct 16 14:36:03 2020",
+ "timestampMillis": "1602855363941",
  "status": {
-  "cmdId": "57c46979-30d1-4626-a926-d1bd443e8f2a",
+  "cmdId": "c4200a99-b8b5-4667-990e-1128d2318460",
   "state": "CS_RUNNING"
  }
 }
@@ -325,10 +325,10 @@
 <ENTRY>
 {
  "type": "ET_Status",
- "dateTimestamp": "Fri Oct 16 14:28:45 2020",
- "timestampMillis": "1602854925433",
+ "dateTimestamp": "Fri Oct 16 14:36:04 2020",
+ "timestampMillis": "1602855364801",
  "status": {
-  "cmdId": "57c46979-30d1-4626-a926-d1bd443e8f2a",
+  "cmdId": "c4200a99-b8b5-4667-990e-1128d2318460",
   "state": "CS_PASSED"
  }
 }
@@ -336,10 +336,10 @@
 <ENTRY>
 {
  "type": "ET_SubCmdStep",
- "dateTimestamp": "Fri Oct 16 14:28:45 2020",
- "timestampMillis": "1602854925434",
+ "dateTimestamp": "Fri Oct 16 14:36:04 2020",
+ "timestampMillis": "1602855364801",
  "buildStep": {
-  "cmdId": "a8014469-a0f9-4efd-88ff-f5565c353a9e",
+  "cmdId": "01a366ec-06f8-44d8-962c-f3ea4083556e",
   "name": "g++",
   "logFile": "/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/tests/gelinearsolver/build_dir.sw_emu.xilinx_u50_gen3x16_xdma_201920_3/link/int/kernel_gelinearsolver_top_gpp.log",
   "commandLine": "/usr/bin/env PATH=/usr/bin:/bin g++ -fPIC -DHLS_STREAM_THREAD_SAFE -std=c++11 -Wall -shared -Wl,--whole-archive,-soname,kernel_gelinearsolver.so -o kernel_gelinearsolver.so kernel_gelinearsolver_0/kernel_gelinearsolver_0.csim_cu.a obj/xcl_top.o -Wl,--no-whole-archive -Wl,--as-needed -L /tools/Xilinx/Vitis/2020.1/bin/../lib/lnx64.o -lhlsmathsim -L /tools/Xilinx/Vitis/2020.1/bin/../lnx64/tools/fpo_v7_0 -lgmp -lmpfr -lIp_floating_point_v7_0_bitacc_cmodel -Wl,-rpath,/tools/Xilinx/Vitis/2020.1/bin/../lnx64/tools/fpo_v7_0 -L /tools/Xilinx/Vitis/2020.1/bin/../lnx64/tools/fft_v9_1 -lIp_xfft_v9_1_bitacc_cmodel -L /tools/Xilinx/Vitis/2020.1/bin/../lnx64/tools/fir_v7_0 -lgmp -lIp_fir_compiler_v7_2_bitacc_cmodel -L /tools/Xilinx/Vitis/2020.1/bin/../lnx64/lib/csim -lhlsmc++-GCC46",
@@ -386,10 +386,10 @@
 <ENTRY>
 {
  "type": "ET_Status",
- "dateTimestamp": "Fri Oct 16 14:28:45 2020",
- "timestampMillis": "1602854925434",
+ "dateTimestamp": "Fri Oct 16 14:36:04 2020",
+ "timestampMillis": "1602855364802",
  "status": {
-  "cmdId": "a8014469-a0f9-4efd-88ff-f5565c353a9e",
+  "cmdId": "01a366ec-06f8-44d8-962c-f3ea4083556e",
   "state": "CS_RUNNING"
  }
 }
@@ -397,10 +397,10 @@
 <ENTRY>
 {
  "type": "ET_Status",
- "dateTimestamp": "Fri Oct 16 14:28:45 2020",
- "timestampMillis": "1602854925498",
+ "dateTimestamp": "Fri Oct 16 14:36:04 2020",
+ "timestampMillis": "1602855364865",
  "status": {
-  "cmdId": "a8014469-a0f9-4efd-88ff-f5565c353a9e",
+  "cmdId": "01a366ec-06f8-44d8-962c-f3ea4083556e",
   "state": "CS_PASSED"
  }
 }
@@ -408,8 +408,8 @@
 <ENTRY>
 {
  "type": "ET_Report",
- "dateTimestamp": "Fri Oct 16 14:28:45 2020",
- "timestampMillis": "1602854925499",
+ "dateTimestamp": "Fri Oct 16 14:36:04 2020",
+ "timestampMillis": "1602855364866",
  "report": {
   "path": "/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/tests/gelinearsolver/build_dir.sw_emu.xilinx_u50_gen3x16_xdma_201920_3/link/int/kernel_gelinearsolver_xml.rtd",
   "name": "",
@@ -421,10 +421,10 @@
 <ENTRY>
 {
  "type": "ET_SubCmdStep",
- "dateTimestamp": "Fri Oct 16 14:28:45 2020",
- "timestampMillis": "1602854925500",
+ "dateTimestamp": "Fri Oct 16 14:36:04 2020",
+ "timestampMillis": "1602855364868",
  "buildStep": {
-  "cmdId": "66fb57d6-3fbe-4f26-aba3-d963c4395dd4",
+  "cmdId": "2cbac8d9-3e3f-4da1-93a5-547b9df710fa",
   "name": "xclbinutil",
   "logFile": "/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/tests/gelinearsolver/build_dir.sw_emu.xilinx_u50_gen3x16_xdma_201920_3/link/int/kernel_gelinearsolver_xclbinutil.log",
   "commandLine": "/tools/Xilinx/Vitis/2020.1/bin/xclbinutil --add-section BITSTREAM:RAW:/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/tests/gelinearsolver/build_dir.sw_emu.xilinx_u50_gen3x16_xdma_201920_3/link/int/kernel_gelinearsolver.so --force --target sw_emu --add-section CLOCK_FREQ_TOPOLOGY:JSON:/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/tests/gelinearsolver/build_dir.sw_emu.xilinx_u50_gen3x16_xdma_201920_3/link/int/kernel_gelinearsolver_xml.rtd --add-section BUILD_METADATA:JSON:/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/tests/gelinearsolver/build_dir.sw_emu.xilinx_u50_gen3x16_xdma_201920_3/link/int/kernel_gelinearsolver_build.rtd --add-section EMBEDDED_METADATA:RAW:/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/tests/gelinearsolver/build_dir.sw_emu.xilinx_u50_gen3x16_xdma_201920_3/link/int/kernel_gelinearsolver.xml --output /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/tests/gelinearsolver/build_dir.sw_emu.xilinx_u50_gen3x16_xdma_201920_3/kernel_gelinearsolver.xclbin",
@@ -451,10 +451,10 @@
 <ENTRY>
 {
  "type": "ET_Status",
- "dateTimestamp": "Fri Oct 16 14:28:45 2020",
- "timestampMillis": "1602854925501",
+ "dateTimestamp": "Fri Oct 16 14:36:04 2020",
+ "timestampMillis": "1602855364868",
  "status": {
-  "cmdId": "66fb57d6-3fbe-4f26-aba3-d963c4395dd4",
+  "cmdId": "2cbac8d9-3e3f-4da1-93a5-547b9df710fa",
   "state": "CS_RUNNING"
  }
 }
@@ -462,10 +462,10 @@
 <ENTRY>
 {
  "type": "ET_Status",
- "dateTimestamp": "Fri Oct 16 14:28:45 2020",
- "timestampMillis": "1602854925598",
+ "dateTimestamp": "Fri Oct 16 14:36:04 2020",
+ "timestampMillis": "1602855364967",
  "status": {
-  "cmdId": "66fb57d6-3fbe-4f26-aba3-d963c4395dd4",
+  "cmdId": "2cbac8d9-3e3f-4da1-93a5-547b9df710fa",
   "state": "CS_PASSED"
  }
 }
@@ -473,10 +473,10 @@
 <ENTRY>
 {
  "type": "ET_SubCmdStep",
- "dateTimestamp": "Fri Oct 16 14:28:45 2020",
- "timestampMillis": "1602854925599",
+ "dateTimestamp": "Fri Oct 16 14:36:04 2020",
+ "timestampMillis": "1602855364968",
  "buildStep": {
-  "cmdId": "794232bf-3576-41ca-8f9a-102005084039",
+  "cmdId": "70eaf4ab-508a-490c-ae7d-94064338e217",
   "name": "xclbinutil",
   "logFile": "/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/tests/gelinearsolver/build_dir.sw_emu.xilinx_u50_gen3x16_xdma_201920_3/kernel_gelinearsolver.xclbin.info",
   "commandLine": "/tools/Xilinx/Vitis/2020.1/bin/xclbinutil --quiet --info --input /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/tests/gelinearsolver/build_dir.sw_emu.xilinx_u50_gen3x16_xdma_201920_3/kernel_gelinearsolver.xclbin",
@@ -494,10 +494,10 @@
 <ENTRY>
 {
  "type": "ET_Status",
- "dateTimestamp": "Fri Oct 16 14:28:45 2020",
- "timestampMillis": "1602854925600",
+ "dateTimestamp": "Fri Oct 16 14:36:04 2020",
+ "timestampMillis": "1602855364969",
  "status": {
-  "cmdId": "794232bf-3576-41ca-8f9a-102005084039",
+  "cmdId": "70eaf4ab-508a-490c-ae7d-94064338e217",
   "state": "CS_RUNNING"
  }
 }
@@ -505,10 +505,10 @@
 <ENTRY>
 {
  "type": "ET_Status",
- "dateTimestamp": "Fri Oct 16 14:28:45 2020",
- "timestampMillis": "1602854925704",
+ "dateTimestamp": "Fri Oct 16 14:36:05 2020",
+ "timestampMillis": "1602855365071",
  "status": {
-  "cmdId": "794232bf-3576-41ca-8f9a-102005084039",
+  "cmdId": "70eaf4ab-508a-490c-ae7d-94064338e217",
   "state": "CS_PASSED"
  }
 }
@@ -516,8 +516,8 @@
 <ENTRY>
 {
  "type": "ET_Report",
- "dateTimestamp": "Fri Oct 16 14:28:45 2020",
- "timestampMillis": "1602854925820",
+ "dateTimestamp": "Fri Oct 16 14:36:05 2020",
+ "timestampMillis": "1602855365190",
  "report": {
   "path": "/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/tests/gelinearsolver/reports/_build.sw_emu.xilinx_u50_gen3x16_xdma_201920_3/kernel_gelinearsolver/link/v++_link_kernel_gelinearsolver_guidance.html",
   "name": "",
@@ -529,8 +529,8 @@
 <ENTRY>
 {
  "type": "ET_Report",
- "dateTimestamp": "Fri Oct 16 14:28:45 2020",
- "timestampMillis": "1602854925821",
+ "dateTimestamp": "Fri Oct 16 14:36:05 2020",
+ "timestampMillis": "1602855365191",
  "report": {
   "path": "/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/tests/gelinearsolver/build_dir.sw_emu.xilinx_u50_gen3x16_xdma_201920_3/v++_link_kernel_gelinearsolver_guidance.pb",
   "name": "",
@@ -542,8 +542,8 @@
 <ENTRY>
 {
  "type": "ET_Report",
- "dateTimestamp": "Fri Oct 16 14:28:45 2020",
- "timestampMillis": "1602854925822",
+ "dateTimestamp": "Fri Oct 16 14:36:05 2020",
+ "timestampMillis": "1602855365192",
  "report": {
   "path": "/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/tests/gelinearsolver/build_dir.sw_emu.xilinx_u50_gen3x16_xdma_201920_3/logs/optraceViewer.html",
   "name": "",
@@ -555,10 +555,10 @@
 <ENTRY>
 {
  "type": "ET_Status",
- "dateTimestamp": "Fri Oct 16 14:28:45 2020",
- "timestampMillis": "1602854925822",
+ "dateTimestamp": "Fri Oct 16 14:36:05 2020",
+ "timestampMillis": "1602855365192",
  "status": {
-  "cmdId": "32b12a5f-2ad4-470e-88dd-ee7c5449ba7e",
+  "cmdId": "0c1d4345-ab1b-42b8-b3df-39df2a65e3e4",
   "state": "CS_PASSED"
  }
 }
