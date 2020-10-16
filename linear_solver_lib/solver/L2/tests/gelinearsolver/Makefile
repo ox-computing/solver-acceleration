@@ -56,7 +56,7 @@ XFLIB_DIR = $(XF_PROJ_ROOT)
 TARGET ?= sw_emu
 HOST_ARCH := x86
 SYSROOT := ${SYSROOT}
-DEVICE ?= xilinx_u200_xdma_201830_2
+DEVICE ?= xilinx_u50_gen3x16_xdma_201920_3
 
 include ./utils.mk
 
@@ -114,6 +114,10 @@ CXXFLAGS += -DUSE_DDR
 else ifneq (,$(shell echo $(XPLATFORM) | awk '/u200/'))
 # U200
 VPP_FLAGS += --config conn_u200.ini
+CXXFLAGS += -DUSE_DDR
+else ifneq (,$(shell echo $(XPLATFORM) | awk '/u50/'))
+# U50
+VPP_FLAGS += --config conn_u50.ini
 CXXFLAGS += -DUSE_DDR
 else ifneq (,$(XPLATFORM))
 $(warning Unsupported platform $(XPLATFORM))
