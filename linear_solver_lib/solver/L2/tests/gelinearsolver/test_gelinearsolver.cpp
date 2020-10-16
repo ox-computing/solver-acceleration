@@ -97,6 +97,7 @@ int main(int argc, const char* argv[]) {
         seed = std::stoi(num_str);
     }
     int NB = 2;
+    
 
     // dataAM = dataAN is valid only for symmetric matrix
     dataAM = (dataAM > dataAN) ? dataAN : dataAM;

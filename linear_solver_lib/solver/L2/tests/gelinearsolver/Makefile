@@ -58,6 +58,11 @@ HOST_ARCH := x86
 SYSROOT := ${SYSROOT}
 DEVICE ?= xilinx_u50_gen3x16_xdma_201920_3
 
+RUNS ?= 1
+ROW_SIZE ?= 4
+COLUMN_SIZE += 4
+SEED ?= 12
+
 include ./utils.mk
 
 XDEVICE := $(call device2xsa, $(DEVICE))
@@ -98,7 +103,6 @@ HOST_ARGS :=  -xclbin $(BUILD_DIR)/kernel_gelinearsolver.xclbin
 ifneq ($(HOST_ARCH), x86)
 	LDFLAGS += --sysroot=$(SYSROOT)
 endif
-
 ############################## Setting up Kernel Variables ##############################
 # Kernel compiler global settings
 VPP_FLAGS += -t $(TARGET) --platform $(XPLATFORM) --save-temps
@@ -177,7 +181,7 @@ endif
 ifeq ($(TARGET),$(filter $(TARGET),sw_emu hw_emu))
 ifeq ($(HOST_ARCH), x86)
 	$(CP) $(EMCONFIG_DIR)/emconfig.json .
-	XCL_EMULATION_MODE=$(TARGET) ./$(EXE_FILE) $(HOST_ARGS) 
+	XCL_EMULATION_MODE=$(TARGET) ./$(EXE_FILE) $(HOST_ARGS) -runs $(RUNS) -M $(ROW_SIZE) -N $(COLUMN_SIZE) -seed $(SEED)
 else
 	mkdir -p $(EMU_DIR)
 	$(CP) $(XILINX_VITIS)/data/emulation/unified $(EMU_DIR)
