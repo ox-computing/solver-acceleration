@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="kernel_gelinearsolver_0" dir="">
+  <FileSets>
+    <FileSet Name="kernel_kernel_gelinearsolver_0" Type="DesignSrcs">
+      <File Path="/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/tests/gelinearsolver/kernel_gelinearsolver.cpp"/>
+      <Config/>
+    </FileSet>
+  </FileSets>
+  <Runs/>
+</project>
