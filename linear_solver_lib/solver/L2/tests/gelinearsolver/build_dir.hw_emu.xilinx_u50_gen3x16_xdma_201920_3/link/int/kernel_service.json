@@ -1,0 +1,14 @@
+{
+ "kernels": [],
+ "computeUnits": [
+  {
+   "id": "",
+   "kernelName": "kernel_gelinearsolver_0",
+   "cuName": "kernel_gelinearsolver_0_1",
+   "baseAddress": "",
+   "instancePath": "/emu_wrapper/emu_i/kernel_gelinearsolver_0_1",
+   "slr": []
+  }
+ ]
+}
+

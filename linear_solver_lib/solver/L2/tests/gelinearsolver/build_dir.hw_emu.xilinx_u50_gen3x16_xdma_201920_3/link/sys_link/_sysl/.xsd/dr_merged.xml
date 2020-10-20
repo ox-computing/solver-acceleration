@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xd:component xmlns:xd="http://www.xilinx.com/xd" xd:vendor="xilinx.com" xd:library="xd" xd:name="dr" xd:version="1.00" xd:type="design">
+  <xd:repository>
+    <xd:file xd:name="xd_ip_db.xml"/>
+  </xd:repository>
+  <xd:instance xd:componentVdr="xilinx.com" xd:componentLib="xd" xd:componentVer="201920.1" xd:componentType="platform" xd:name="xilinx_u50_xdma_201920_1" xd:componentRef="xilinx_u50_xdma_201920_1">
+    <xd:parameter xd:name="NUM_SI" xd:value="1" xd:instanceRef="interconnect_axilite_user_slr0"/>
+    <xd:parameter xd:name="NUM_MI" xd:value="2" xd:instanceRef="interconnect_axilite_user_slr0"/>
+    <xd:parameter xd:name="M01_HAS_REGSLICE" xd:value="1" xd:instanceRef="interconnect_axilite_user_slr0"/>
+    <xd:parameter xd:name="NUM_SI" xd:value="1" xd:instanceRef="interconnect_axilite_user_slr1"/>
+    <xd:parameter xd:name="NUM_MI" xd:value="2" xd:instanceRef="interconnect_axilite_user_slr1"/>
+  </xd:instance>
+  <xd:instance xd:componentVdr="xilinx.com" xd:componentLib="hls" xd:componentVer="1.0" xd:componentType="accelerator" xd:name="kernel_gelinearsolver_0_1" xd:componentRef="kernel_gelinearsolver_0"/>
+  <xd:connection>
+    <xd:busInterface xd:name="interconnect_axilite_user_slr0_M01_AXI" xd:instanceRef="xilinx_u50_xdma_201920_1" xd:componentRef="axi_interconnect"/>
+    <xd:busInterface xd:name="s_axi_control" xd:instanceRef="kernel_gelinearsolver_0_1"/>
+  </xd:connection>
+  <xd:connection>
+    <xd:busInterface xd:name="m_axi_gmem0" xd:instanceRef="kernel_gelinearsolver_0_1"/>
+    <xd:busInterface xd:name="hmss_0" xd:instanceRef="xilinx_u50_xdma_201920_1" xd:memssSegments="HBM_MEM00" xd:componentRef="hbm_memory_subsystem"/>
+  </xd:connection>
+  <xd:connection>
+    <xd:port xd:name="kernel_clk_clk" xd:instanceRef="xilinx_u50_xdma_201920_1"/>
+    <xd:port xd:name="interconnect_axilite_user_slr0_M01_ACLK" xd:instanceRef="xilinx_u50_xdma_201920_1"/>
+    <xd:port xd:name="ap_clk" xd:instanceRef="kernel_gelinearsolver_0_1"/>
+  </xd:connection>
+  <xd:connection>
+    <xd:port xd:name="expanded_region_resets_slr0/psreset_gate_pr_kernel_interconnect_aresetn" xd:instanceRef="xilinx_u50_xdma_201920_1"/>
+    <xd:port xd:name="interconnect_axilite_user_slr0_M01_ARESETN" xd:instanceRef="xilinx_u50_xdma_201920_1"/>
+  </xd:connection>
+  <xd:connection>
+    <xd:port xd:name="expanded_region_resets_slr0/psreset_gate_pr_kernel_peripheral_aresetn" xd:instanceRef="xilinx_u50_xdma_201920_1"/>
+    <xd:port xd:name="ap_rst_n" xd:instanceRef="kernel_gelinearsolver_0_1"/>
+  </xd:connection>
+</xd:component>

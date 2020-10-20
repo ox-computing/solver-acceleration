@@ -1,0 +1,1 @@
+PLRAM_MEM00 {size 128K data_width 128 peak_memory_bandwidth 4577 slr SLR0 max_masters 15} PLRAM_MEM01 {size 128K data_width 128 peak_memory_bandwidth 4577 slr SLR0 max_masters 15} PLRAM_MEM02 {size 128K data_width 128 peak_memory_bandwidth 4577 slr SLR1 max_masters 15} PLRAM_MEM03 {size 128K data_width 128 peak_memory_bandwidth 4577 slr SLR1 max_masters 15}

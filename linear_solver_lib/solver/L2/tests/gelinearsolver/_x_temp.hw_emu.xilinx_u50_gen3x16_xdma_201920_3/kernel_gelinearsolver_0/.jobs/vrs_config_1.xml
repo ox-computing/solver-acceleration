@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<Runs Version="1" Minor="0">
+	<Run Id="kernel_gelinearsolver_0" LaunchDir="/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/tests/gelinearsolver/_x_temp.hw_emu.xilinx_u50_gen3x16_xdma_201920_3/kernel_gelinearsolver_0/kernel_gelinearsolver_0" FlowId="Build_IP" FromStepId="vitis_hls" ToStepId="vitis_hls"/>
+</Runs>
+

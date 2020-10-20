@@ -1,0 +1,4783 @@
+{
+   "resources" : [
+      {
+         "count" : "1344",
+         "type" : "BRAM"
+      },
+      {
+         "count" : "5952",
+         "type" : "DSP"
+      },
+      {
+         "count" : "871680",
+         "type" : "LUT"
+      },
+      {
+         "count" : "1743360",
+         "type" : "FF"
+      }
+   ],
+   "validSlrs" : [
+      "SLR0",
+      "SLR1"
+   ],
+   "designIntent" : {
+      "dataCenter" : {
+         "explicit" : "false",
+         "value" : "false"
+      },
+      "serverManaged" : {
+         "explicit" : "false",
+         "value" : "false"
+      },
+      "embedded" : {
+         "explicit" : "false",
+         "value" : "false"
+      },
+      "externalHost" : {
+         "explicit" : "false",
+         "value" : "false"
+      }
+   },
+   "files" : [
+      {
+         "name" : "emu/emu.xml",
+         "type" : "EMU_XML"
+      },
+      {
+         "name" : "tcl_hooks/preopt.tcl",
+         "type" : "PRE_OPT_TCL"
+      },
+      {
+         "name" : "tcl_hooks/postopt.tcl",
+         "type" : "POST_OPT_TCL"
+      },
+      {
+         "name" : "tcl_hooks/postroute.tcl",
+         "type" : "POST_ROUTE_TCL"
+      },
+      {
+         "name" : "tcl_hooks/prelink.tcl",
+         "type" : "PRE_SYS_LINK_TCL"
+      },
+      {
+         "name" : "tcl_hooks/postlink.tcl",
+         "type" : "POST_SYS_LINK_TCL"
+      },
+      {
+         "processingOrder" : "NORMAL",
+         "name" : "tcl_hooks/impl.xdc",
+         "type" : "SYNTH_CONSTRS",
+         "usedIn" : "implementation"
+      },
+      {
+         "name" : "hw_bb_locked.dcp",
+         "type" : "BB_LOCKED_IMPL_DCP"
+      },
+      {
+         "name" : "hw.hpfm",
+         "type" : "HPFM"
+      },
+      {
+         "name" : "bd/ulp.bd",
+         "type" : "DR_BD"
+      },
+      {
+         "name" : "iprepo",
+         "type" : "IP_REPO_PATH"
+      },
+      {
+         "name" : "ipcache",
+         "type" : "IP_CACHE_DIR"
+      },
+      {
+         "name" : "board",
+         "type" : "BOARD_REPO_PATH"
+      },
+      {
+         "name" : "ext_metadata.json",
+         "type" : "EXT_META_JSON"
+      }
+   ],
+   "validAcceleratorBinaryContentValues" : "dcp,bitstream",
+   "hostInterface" : "pcie",
+   "versionMinor" : "3",
+   "versionMajor" : "201920",
+   "ddrCount" : "1",
+   "boardId" : "u50",
+   "defaultClockId" : "0",
+   "acceleratorBinaryContent" : "bitstream",
+   "softwareEmulation" : "true",
+   "uniqueName" : "xilinx:u50:gen3x16_xdma:201920.3",
+   "usesPR" : "true",
+   "defaultClockFrequency" : "300.000000",
+   "generatedTimestamp" : "Wed Feb 19 10:53:31 2020",
+   "name" : "gen3x16_xdma",
+   "hardwareEmulation" : "false",
+   "defaultClockName" : "PL 0",
+   "devices" : [
+      {
+         "core" : {
+            "numComputeUnits" : "60",
+            "name" : "OCL_REGION_0",
+            "availableResources" : {
+               "pBlocks" : [
+                  {
+                     "resources" : [
+                        {
+                           "value" : 0,
+                           "name" : "SLR0_DUMMY"
+                        }
+                     ],
+                     "validSlrs" : [
+                        "SLR0"
+                     ],
+                     "name" : "PBLOCK_SLR0"
+                  },
+                  {
+                     "resources" : [
+                        {
+                           "value" : 0,
+                           "name" : "SLR1_DUMMY"
+                        }
+                     ],
+                     "validSlrs" : [
+                        "SLR1"
+                     ],
+                     "name" : "PBLOCK_SLR1"
+                  },
+                  {
+                     "resources" : [
+                        {
+                           "value" : 0,
+                           "name" : "TOP_DUMMY"
+                        }
+                     ],
+                     "name" : "PBLOCK_TOP"
+                  }
+               ]
+            },
+            "instPath" : "level0_i/ulp",
+            "type" : "clc_region",
+            "drBDName" : "ulp.bd"
+         },
+         "name" : "fpga0",
+         "type" : "8",
+         "fpgaPart" : "virtexuplusHBM:xcu50:fsvh2104:-2:e",
+         "scalableSystemClocks" : [
+            {
+               "frequency" : "450000000",
+               "name" : "hbm_aclk"
+            }
+         ]
+      }
+   ],
+   "fpgaDevice" : "xcu50",
+   "numComputeUnits" : "60",
+   "generatedVersion" : "2019.2",
+   "memoryType" : "hbm",
+   "dcpFunctionStripped" : "false",
+   "cpuClockNames" : [
+      "CPU"
+   ],
+   "unifiedPlatform" : "true",
+   "platformState" : "impl",
+   "hostArchitecture" : "x86_64",
+   "fpgaPart" : "virtexuplusHBM",
+   "defaultOutputType" : "xclbin",
+   "acceleratorBinaryFormat" : "xclbin2",
+   "interfaces" : [
+      {
+         "name" : "PCIe",
+         "id" : "int1",
+         "type" : "gen3x16"
+      }
+   ],
+   "generatedName" : "Vivado",
+   "ipParameters" : [
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "compRef" : "axi_interconnect",
+         "value" : "number(count($designComponent/xd:connection/xd:busInterface[@xd:instanceRef=$instance and starts-with(@xd:name,'SLR0/interconnect_axilite_user_S') and starts-with(substring(@xd:name, string-length(@xd:name)-3, 4),'_AXI')])+1)",
+         "name" : "NUM_SI",
+         "valid" : "'true'"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "compRef" : "axi_interconnect",
+         "value" : "number(count($designComponent/xd:connection/xd:busInterface[@xd:instanceRef=$instance and starts-with(@xd:name,'SLR0/interconnect_axilite_user_M') and starts-with(substring(@xd:name, string-length(@xd:name)-3, 4),'_AXI')])+1)",
+         "name" : "NUM_MI",
+         "valid" : "'true'"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "compRef" : "axi_interconnect",
+         "value" : "1",
+         "name" : "M01_HAS_REGSLICE",
+         "valid" : "count($designComponent/xd:connection/xd:busInterface[@xd:instanceRef=$instance and @xd:name='SLR0/interconnect_axilite_user_M01_AXI'])>0"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "compRef" : "axi_interconnect",
+         "value" : "1",
+         "name" : "M02_HAS_REGSLICE",
+         "valid" : "count($designComponent/xd:connection/xd:busInterface[@xd:instanceRef=$instance and @xd:name='SLR0/interconnect_axilite_user_M02_AXI'])>0"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "compRef" : "axi_interconnect",
+         "value" : "1",
+         "name" : "M03_HAS_REGSLICE",
+         "valid" : "count($designComponent/xd:connection/xd:busInterface[@xd:instanceRef=$instance and @xd:name='SLR0/interconnect_axilite_user_M03_AXI'])>0"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "compRef" : "axi_interconnect",
+         "value" : "1",
+         "name" : "M04_HAS_REGSLICE",
+         "valid" : "count($designComponent/xd:connection/xd:busInterface[@xd:instanceRef=$instance and @xd:name='SLR0/interconnect_axilite_user_M04_AXI'])>0"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "compRef" : "axi_interconnect",
+         "value" : "1",
+         "name" : "M05_HAS_REGSLICE",
+         "valid" : "count($designComponent/xd:connection/xd:busInterface[@xd:instanceRef=$instance and @xd:name='SLR0/interconnect_axilite_user_M05_AXI'])>0"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "compRef" : "axi_interconnect",
+         "value" : "1",
+         "name" : "M06_HAS_REGSLICE",
+         "valid" : "count($designComponent/xd:connection/xd:busInterface[@xd:instanceRef=$instance and @xd:name='SLR0/interconnect_axilite_user_M06_AXI'])>0"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "compRef" : "axi_interconnect",
+         "value" : "1",
+         "name" : "M07_HAS_REGSLICE",
+         "valid" : "count($designComponent/xd:connection/xd:busInterface[@xd:instanceRef=$instance and @xd:name='SLR0/interconnect_axilite_user_M07_AXI'])>0"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "compRef" : "axi_interconnect",
+         "value" : "1",
+         "name" : "M08_HAS_REGSLICE",
+         "valid" : "count($designComponent/xd:connection/xd:busInterface[@xd:instanceRef=$instance and @xd:name='SLR0/interconnect_axilite_user_M08_AXI'])>0"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "compRef" : "axi_interconnect",
+         "value" : "1",
+         "name" : "M09_HAS_REGSLICE",
+         "valid" : "count($designComponent/xd:connection/xd:busInterface[@xd:instanceRef=$instance and @xd:name='SLR0/interconnect_axilite_user_M09_AXI'])>0"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "compRef" : "axi_interconnect",
+         "value" : "1",
+         "name" : "M10_HAS_REGSLICE",
+         "valid" : "count($designComponent/xd:connection/xd:busInterface[@xd:instanceRef=$instance and @xd:name='SLR0/interconnect_axilite_user_M10_AXI'])>0"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "compRef" : "axi_interconnect",
+         "value" : "1",
+         "name" : "M11_HAS_REGSLICE",
+         "valid" : "count($designComponent/xd:connection/xd:busInterface[@xd:instanceRef=$instance and @xd:name='SLR0/interconnect_axilite_user_M11_AXI'])>0"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "compRef" : "axi_interconnect",
+         "value" : "1",
+         "name" : "M12_HAS_REGSLICE",
+         "valid" : "count($designComponent/xd:connection/xd:busInterface[@xd:instanceRef=$instance and @xd:name='SLR0/interconnect_axilite_user_M12_AXI'])>0"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "compRef" : "axi_interconnect",
+         "value" : "1",
+         "name" : "M13_HAS_REGSLICE",
+         "valid" : "count($designComponent/xd:connection/xd:busInterface[@xd:instanceRef=$instance and @xd:name='SLR0/interconnect_axilite_user_M13_AXI'])>0"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "compRef" : "axi_interconnect",
+         "value" : "1",
+         "name" : "M14_HAS_REGSLICE",
+         "valid" : "count($designComponent/xd:connection/xd:busInterface[@xd:instanceRef=$instance and @xd:name='SLR0/interconnect_axilite_user_M14_AXI'])>0"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "compRef" : "axi_interconnect",
+         "value" : "1",
+         "name" : "M15_HAS_REGSLICE",
+         "valid" : "count($designComponent/xd:connection/xd:busInterface[@xd:instanceRef=$instance and @xd:name='SLR0/interconnect_axilite_user_M15_AXI'])>0"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "compRef" : "axi_interconnect",
+         "value" : "1",
+         "name" : "M16_HAS_REGSLICE",
+         "valid" : "count($designComponent/xd:connection/xd:busInterface[@xd:instanceRef=$instance and @xd:name='SLR0/interconnect_axilite_user_M16_AXI'])>0"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "compRef" : "axi_interconnect",
+         "value" : "1",
+         "name" : "M17_HAS_REGSLICE",
+         "valid" : "count($designComponent/xd:connection/xd:busInterface[@xd:instanceRef=$instance and @xd:name='SLR0/interconnect_axilite_user_M17_AXI'])>0"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "compRef" : "axi_interconnect",
+         "value" : "1",
+         "name" : "M18_HAS_REGSLICE",
+         "valid" : "count($designComponent/xd:connection/xd:busInterface[@xd:instanceRef=$instance and @xd:name='SLR0/interconnect_axilite_user_M18_AXI'])>0"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "compRef" : "axi_interconnect",
+         "value" : "1",
+         "name" : "M19_HAS_REGSLICE",
+         "valid" : "count($designComponent/xd:connection/xd:busInterface[@xd:instanceRef=$instance and @xd:name='SLR0/interconnect_axilite_user_M19_AXI'])>0"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "compRef" : "axi_interconnect",
+         "value" : "1",
+         "name" : "M20_HAS_REGSLICE",
+         "valid" : "count($designComponent/xd:connection/xd:busInterface[@xd:instanceRef=$instance and @xd:name='SLR0/interconnect_axilite_user_M20_AXI'])>0"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "compRef" : "axi_interconnect",
+         "value" : "1",
+         "name" : "M21_HAS_REGSLICE",
+         "valid" : "count($designComponent/xd:connection/xd:busInterface[@xd:instanceRef=$instance and @xd:name='SLR0/interconnect_axilite_user_M21_AXI'])>0"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "compRef" : "axi_interconnect",
+         "value" : "1",
+         "name" : "M22_HAS_REGSLICE",
+         "valid" : "count($designComponent/xd:connection/xd:busInterface[@xd:instanceRef=$instance and @xd:name='SLR0/interconnect_axilite_user_M22_AXI'])>0"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "compRef" : "axi_interconnect",
+         "value" : "1",
+         "name" : "M23_HAS_REGSLICE",
+         "valid" : "count($designComponent/xd:connection/xd:busInterface[@xd:instanceRef=$instance and @xd:name='SLR0/interconnect_axilite_user_M23_AXI'])>0"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "compRef" : "axi_interconnect",
+         "value" : "1",
+         "name" : "M24_HAS_REGSLICE",
+         "valid" : "count($designComponent/xd:connection/xd:busInterface[@xd:instanceRef=$instance and @xd:name='SLR0/interconnect_axilite_user_M24_AXI'])>0"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "compRef" : "axi_interconnect",
+         "value" : "1",
+         "name" : "M25_HAS_REGSLICE",
+         "valid" : "count($designComponent/xd:connection/xd:busInterface[@xd:instanceRef=$instance and @xd:name='SLR0/interconnect_axilite_user_M25_AXI'])>0"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "compRef" : "axi_interconnect",
+         "value" : "1",
+         "name" : "M26_HAS_REGSLICE",
+         "valid" : "count($designComponent/xd:connection/xd:busInterface[@xd:instanceRef=$instance and @xd:name='SLR0/interconnect_axilite_user_M26_AXI'])>0"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "compRef" : "axi_interconnect",
+         "value" : "1",
+         "name" : "M27_HAS_REGSLICE",
+         "valid" : "count($designComponent/xd:connection/xd:busInterface[@xd:instanceRef=$instance and @xd:name='SLR0/interconnect_axilite_user_M27_AXI'])>0"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "compRef" : "axi_interconnect",
+         "value" : "1",
+         "name" : "M28_HAS_REGSLICE",
+         "valid" : "count($designComponent/xd:connection/xd:busInterface[@xd:instanceRef=$instance and @xd:name='SLR0/interconnect_axilite_user_M28_AXI'])>0"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "compRef" : "axi_interconnect",
+         "value" : "1",
+         "name" : "M29_HAS_REGSLICE",
+         "valid" : "count($designComponent/xd:connection/xd:busInterface[@xd:instanceRef=$instance and @xd:name='SLR0/interconnect_axilite_user_M29_AXI'])>0"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "compRef" : "axi_interconnect",
+         "value" : "1",
+         "name" : "M30_HAS_REGSLICE",
+         "valid" : "count($designComponent/xd:connection/xd:busInterface[@xd:instanceRef=$instance and @xd:name='SLR0/interconnect_axilite_user_M30_AXI'])>0"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "compRef" : "axi_interconnect",
+         "value" : "number(count($designComponent/xd:connection/xd:busInterface[@xd:instanceRef=$instance and starts-with(@xd:name,'SLR1/interconnect_axilite_user_S') and starts-with(substring(@xd:name, string-length(@xd:name)-3, 4),'_AXI')])+1)",
+         "name" : "NUM_SI",
+         "valid" : "'true'"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "compRef" : "axi_interconnect",
+         "value" : "number(count($designComponent/xd:connection/xd:busInterface[@xd:instanceRef=$instance and starts-with(@xd:name,'SLR1/interconnect_axilite_user_M') and starts-with(substring(@xd:name, string-length(@xd:name)-3, 4),'_AXI')])+1)",
+         "name" : "NUM_MI",
+         "valid" : "'true'"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "compRef" : "axi_interconnect",
+         "value" : "1",
+         "name" : "M01_HAS_REGSLICE",
+         "valid" : "count($designComponent/xd:connection/xd:busInterface[@xd:instanceRef=$instance and @xd:name='SLR1/interconnect_axilite_user_M01_AXI'])>0"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "compRef" : "axi_interconnect",
+         "value" : "1",
+         "name" : "M02_HAS_REGSLICE",
+         "valid" : "count($designComponent/xd:connection/xd:busInterface[@xd:instanceRef=$instance and @xd:name='SLR1/interconnect_axilite_user_M02_AXI'])>0"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "compRef" : "axi_interconnect",
+         "value" : "1",
+         "name" : "M03_HAS_REGSLICE",
+         "valid" : "count($designComponent/xd:connection/xd:busInterface[@xd:instanceRef=$instance and @xd:name='SLR1/interconnect_axilite_user_M03_AXI'])>0"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "compRef" : "axi_interconnect",
+         "value" : "1",
+         "name" : "M04_HAS_REGSLICE",
+         "valid" : "count($designComponent/xd:connection/xd:busInterface[@xd:instanceRef=$instance and @xd:name='SLR1/interconnect_axilite_user_M04_AXI'])>0"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "compRef" : "axi_interconnect",
+         "value" : "1",
+         "name" : "M05_HAS_REGSLICE",
+         "valid" : "count($designComponent/xd:connection/xd:busInterface[@xd:instanceRef=$instance and @xd:name='SLR1/interconnect_axilite_user_M05_AXI'])>0"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "compRef" : "axi_interconnect",
+         "value" : "1",
+         "name" : "M06_HAS_REGSLICE",
+         "valid" : "count($designComponent/xd:connection/xd:busInterface[@xd:instanceRef=$instance and @xd:name='SLR1/interconnect_axilite_user_M06_AXI'])>0"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "compRef" : "axi_interconnect",
+         "value" : "1",
+         "name" : "M07_HAS_REGSLICE",
+         "valid" : "count($designComponent/xd:connection/xd:busInterface[@xd:instanceRef=$instance and @xd:name='SLR1/interconnect_axilite_user_M07_AXI'])>0"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "compRef" : "axi_interconnect",
+         "value" : "1",
+         "name" : "M08_HAS_REGSLICE",
+         "valid" : "count($designComponent/xd:connection/xd:busInterface[@xd:instanceRef=$instance and @xd:name='SLR1/interconnect_axilite_user_M08_AXI'])>0"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "compRef" : "axi_interconnect",
+         "value" : "1",
+         "name" : "M09_HAS_REGSLICE",
+         "valid" : "count($designComponent/xd:connection/xd:busInterface[@xd:instanceRef=$instance and @xd:name='SLR1/interconnect_axilite_user_M09_AXI'])>0"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "compRef" : "axi_interconnect",
+         "value" : "1",
+         "name" : "M10_HAS_REGSLICE",
+         "valid" : "count($designComponent/xd:connection/xd:busInterface[@xd:instanceRef=$instance and @xd:name='SLR1/interconnect_axilite_user_M10_AXI'])>0"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "compRef" : "axi_interconnect",
+         "value" : "1",
+         "name" : "M11_HAS_REGSLICE",
+         "valid" : "count($designComponent/xd:connection/xd:busInterface[@xd:instanceRef=$instance and @xd:name='SLR1/interconnect_axilite_user_M11_AXI'])>0"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "compRef" : "axi_interconnect",
+         "value" : "1",
+         "name" : "M12_HAS_REGSLICE",
+         "valid" : "count($designComponent/xd:connection/xd:busInterface[@xd:instanceRef=$instance and @xd:name='SLR1/interconnect_axilite_user_M12_AXI'])>0"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "compRef" : "axi_interconnect",
+         "value" : "1",
+         "name" : "M13_HAS_REGSLICE",
+         "valid" : "count($designComponent/xd:connection/xd:busInterface[@xd:instanceRef=$instance and @xd:name='SLR1/interconnect_axilite_user_M13_AXI'])>0"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "compRef" : "axi_interconnect",
+         "value" : "1",
+         "name" : "M14_HAS_REGSLICE",
+         "valid" : "count($designComponent/xd:connection/xd:busInterface[@xd:instanceRef=$instance and @xd:name='SLR1/interconnect_axilite_user_M14_AXI'])>0"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "compRef" : "axi_interconnect",
+         "value" : "1",
+         "name" : "M15_HAS_REGSLICE",
+         "valid" : "count($designComponent/xd:connection/xd:busInterface[@xd:instanceRef=$instance and @xd:name='SLR1/interconnect_axilite_user_M15_AXI'])>0"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "compRef" : "axi_interconnect",
+         "value" : "1",
+         "name" : "M16_HAS_REGSLICE",
+         "valid" : "count($designComponent/xd:connection/xd:busInterface[@xd:instanceRef=$instance and @xd:name='SLR1/interconnect_axilite_user_M16_AXI'])>0"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "compRef" : "axi_interconnect",
+         "value" : "1",
+         "name" : "M17_HAS_REGSLICE",
+         "valid" : "count($designComponent/xd:connection/xd:busInterface[@xd:instanceRef=$instance and @xd:name='SLR1/interconnect_axilite_user_M17_AXI'])>0"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "compRef" : "axi_interconnect",
+         "value" : "1",
+         "name" : "M18_HAS_REGSLICE",
+         "valid" : "count($designComponent/xd:connection/xd:busInterface[@xd:instanceRef=$instance and @xd:name='SLR1/interconnect_axilite_user_M18_AXI'])>0"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "compRef" : "axi_interconnect",
+         "value" : "1",
+         "name" : "M19_HAS_REGSLICE",
+         "valid" : "count($designComponent/xd:connection/xd:busInterface[@xd:instanceRef=$instance and @xd:name='SLR1/interconnect_axilite_user_M19_AXI'])>0"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "compRef" : "axi_interconnect",
+         "value" : "1",
+         "name" : "M20_HAS_REGSLICE",
+         "valid" : "count($designComponent/xd:connection/xd:busInterface[@xd:instanceRef=$instance and @xd:name='SLR1/interconnect_axilite_user_M20_AXI'])>0"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "compRef" : "axi_interconnect",
+         "value" : "1",
+         "name" : "M21_HAS_REGSLICE",
+         "valid" : "count($designComponent/xd:connection/xd:busInterface[@xd:instanceRef=$instance and @xd:name='SLR1/interconnect_axilite_user_M21_AXI'])>0"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "compRef" : "axi_interconnect",
+         "value" : "1",
+         "name" : "M22_HAS_REGSLICE",
+         "valid" : "count($designComponent/xd:connection/xd:busInterface[@xd:instanceRef=$instance and @xd:name='SLR1/interconnect_axilite_user_M22_AXI'])>0"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "compRef" : "axi_interconnect",
+         "value" : "1",
+         "name" : "M23_HAS_REGSLICE",
+         "valid" : "count($designComponent/xd:connection/xd:busInterface[@xd:instanceRef=$instance and @xd:name='SLR1/interconnect_axilite_user_M23_AXI'])>0"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "compRef" : "axi_interconnect",
+         "value" : "1",
+         "name" : "M24_HAS_REGSLICE",
+         "valid" : "count($designComponent/xd:connection/xd:busInterface[@xd:instanceRef=$instance and @xd:name='SLR1/interconnect_axilite_user_M24_AXI'])>0"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "compRef" : "axi_interconnect",
+         "value" : "1",
+         "name" : "M25_HAS_REGSLICE",
+         "valid" : "count($designComponent/xd:connection/xd:busInterface[@xd:instanceRef=$instance and @xd:name='SLR1/interconnect_axilite_user_M25_AXI'])>0"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "compRef" : "axi_interconnect",
+         "value" : "1",
+         "name" : "M26_HAS_REGSLICE",
+         "valid" : "count($designComponent/xd:connection/xd:busInterface[@xd:instanceRef=$instance and @xd:name='SLR1/interconnect_axilite_user_M26_AXI'])>0"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "compRef" : "axi_interconnect",
+         "value" : "1",
+         "name" : "M27_HAS_REGSLICE",
+         "valid" : "count($designComponent/xd:connection/xd:busInterface[@xd:instanceRef=$instance and @xd:name='SLR1/interconnect_axilite_user_M27_AXI'])>0"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "compRef" : "axi_interconnect",
+         "value" : "1",
+         "name" : "M28_HAS_REGSLICE",
+         "valid" : "count($designComponent/xd:connection/xd:busInterface[@xd:instanceRef=$instance and @xd:name='SLR1/interconnect_axilite_user_M28_AXI'])>0"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "compRef" : "axi_interconnect",
+         "value" : "1",
+         "name" : "M29_HAS_REGSLICE",
+         "valid" : "count($designComponent/xd:connection/xd:busInterface[@xd:instanceRef=$instance and @xd:name='SLR1/interconnect_axilite_user_M29_AXI'])>0"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "compRef" : "axi_interconnect",
+         "value" : "1",
+         "name" : "M30_HAS_REGSLICE",
+         "valid" : "count($designComponent/xd:connection/xd:busInterface[@xd:instanceRef=$instance and @xd:name='SLR1/interconnect_axilite_user_M30_AXI'])>0"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "compRef" : "axi_interconnect",
+         "value" : "1",
+         "name" : "M31_HAS_REGSLICE",
+         "valid" : "count($designComponent/xd:connection/xd:busInterface[@xd:instanceRef=$instance and @xd:name='SLR1/interconnect_axilite_user_M31_AXI'])>0"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "compRef" : "axi_interconnect",
+         "value" : "1",
+         "name" : "M32_HAS_REGSLICE",
+         "valid" : "count($designComponent/xd:connection/xd:busInterface[@xd:instanceRef=$instance and @xd:name='SLR1/interconnect_axilite_user_M32_AXI'])>0"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "compRef" : "axi_interconnect",
+         "value" : "1",
+         "name" : "M33_HAS_REGSLICE",
+         "valid" : "count($designComponent/xd:connection/xd:busInterface[@xd:instanceRef=$instance and @xd:name='SLR1/interconnect_axilite_user_M33_AXI'])>0"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "compRef" : "axi_interconnect",
+         "value" : "1",
+         "name" : "M34_HAS_REGSLICE",
+         "valid" : "count($designComponent/xd:connection/xd:busInterface[@xd:instanceRef=$instance and @xd:name='SLR1/interconnect_axilite_user_M34_AXI'])>0"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "compRef" : "axi_interconnect",
+         "value" : "1",
+         "name" : "M35_HAS_REGSLICE",
+         "valid" : "count($designComponent/xd:connection/xd:busInterface[@xd:instanceRef=$instance and @xd:name='SLR1/interconnect_axilite_user_M35_AXI'])>0"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "compRef" : "axi_interconnect",
+         "value" : "1",
+         "name" : "M36_HAS_REGSLICE",
+         "valid" : "count($designComponent/xd:connection/xd:busInterface[@xd:instanceRef=$instance and @xd:name='SLR1/interconnect_axilite_user_M36_AXI'])>0"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "compRef" : "axi_interconnect",
+         "value" : "1",
+         "name" : "M37_HAS_REGSLICE",
+         "valid" : "count($designComponent/xd:connection/xd:busInterface[@xd:instanceRef=$instance and @xd:name='SLR1/interconnect_axilite_user_M37_AXI'])>0"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "compRef" : "axi_interconnect",
+         "value" : "1",
+         "name" : "M38_HAS_REGSLICE",
+         "valid" : "count($designComponent/xd:connection/xd:busInterface[@xd:instanceRef=$instance and @xd:name='SLR1/interconnect_axilite_user_M38_AXI'])>0"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "compRef" : "axi_interconnect",
+         "value" : "1",
+         "name" : "M39_HAS_REGSLICE",
+         "valid" : "count($designComponent/xd:connection/xd:busInterface[@xd:instanceRef=$instance and @xd:name='SLR1/interconnect_axilite_user_M39_AXI'])>0"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "compRef" : "axi_interconnect",
+         "value" : "1",
+         "name" : "M40_HAS_REGSLICE",
+         "valid" : "count($designComponent/xd:connection/xd:busInterface[@xd:instanceRef=$instance and @xd:name='SLR1/interconnect_axilite_user_M40_AXI'])>0"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "compRef" : "axi_interconnect",
+         "value" : "1",
+         "name" : "M41_HAS_REGSLICE",
+         "valid" : "count($designComponent/xd:connection/xd:busInterface[@xd:instanceRef=$instance and @xd:name='SLR1/interconnect_axilite_user_M41_AXI'])>0"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "compRef" : "axi_interconnect",
+         "value" : "1",
+         "name" : "M42_HAS_REGSLICE",
+         "valid" : "count($designComponent/xd:connection/xd:busInterface[@xd:instanceRef=$instance and @xd:name='SLR1/interconnect_axilite_user_M42_AXI'])>0"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "compRef" : "axi_interconnect",
+         "value" : "1",
+         "name" : "M43_HAS_REGSLICE",
+         "valid" : "count($designComponent/xd:connection/xd:busInterface[@xd:instanceRef=$instance and @xd:name='SLR1/interconnect_axilite_user_M43_AXI'])>0"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "compRef" : "axi_interconnect",
+         "value" : "1",
+         "name" : "M44_HAS_REGSLICE",
+         "valid" : "count($designComponent/xd:connection/xd:busInterface[@xd:instanceRef=$instance and @xd:name='SLR1/interconnect_axilite_user_M44_AXI'])>0"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "compRef" : "axi_interconnect",
+         "value" : "1",
+         "name" : "M45_HAS_REGSLICE",
+         "valid" : "count($designComponent/xd:connection/xd:busInterface[@xd:instanceRef=$instance and @xd:name='SLR1/interconnect_axilite_user_M45_AXI'])>0"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "compRef" : "axi_interconnect",
+         "value" : "1",
+         "name" : "M46_HAS_REGSLICE",
+         "valid" : "count($designComponent/xd:connection/xd:busInterface[@xd:instanceRef=$instance and @xd:name='SLR1/interconnect_axilite_user_M46_AXI'])>0"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "compRef" : "axi_interconnect",
+         "value" : "1",
+         "name" : "M47_HAS_REGSLICE",
+         "valid" : "count($designComponent/xd:connection/xd:busInterface[@xd:instanceRef=$instance and @xd:name='SLR1/interconnect_axilite_user_M47_AXI'])>0"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "compRef" : "axi_interconnect",
+         "value" : "1",
+         "name" : "M48_HAS_REGSLICE",
+         "valid" : "count($designComponent/xd:connection/xd:busInterface[@xd:instanceRef=$instance and @xd:name='SLR1/interconnect_axilite_user_M48_AXI'])>0"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "compRef" : "axi_interconnect",
+         "value" : "1",
+         "name" : "M49_HAS_REGSLICE",
+         "valid" : "count($designComponent/xd:connection/xd:busInterface[@xd:instanceRef=$instance and @xd:name='SLR1/interconnect_axilite_user_M49_AXI'])>0"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "compRef" : "axi_interconnect",
+         "value" : "1",
+         "name" : "M50_HAS_REGSLICE",
+         "valid" : "count($designComponent/xd:connection/xd:busInterface[@xd:instanceRef=$instance and @xd:name='SLR1/interconnect_axilite_user_M50_AXI'])>0"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "compRef" : "axi_interconnect",
+         "value" : "1",
+         "name" : "M51_HAS_REGSLICE",
+         "valid" : "count($designComponent/xd:connection/xd:busInterface[@xd:instanceRef=$instance and @xd:name='SLR1/interconnect_axilite_user_M51_AXI'])>0"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "compRef" : "axi_interconnect",
+         "value" : "1",
+         "name" : "M52_HAS_REGSLICE",
+         "valid" : "count($designComponent/xd:connection/xd:busInterface[@xd:instanceRef=$instance and @xd:name='SLR1/interconnect_axilite_user_M52_AXI'])>0"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "compRef" : "axi_interconnect",
+         "value" : "1",
+         "name" : "M53_HAS_REGSLICE",
+         "valid" : "count($designComponent/xd:connection/xd:busInterface[@xd:instanceRef=$instance and @xd:name='SLR1/interconnect_axilite_user_M53_AXI'])>0"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "compRef" : "axi_interconnect",
+         "value" : "1",
+         "name" : "M54_HAS_REGSLICE",
+         "valid" : "count($designComponent/xd:connection/xd:busInterface[@xd:instanceRef=$instance and @xd:name='SLR1/interconnect_axilite_user_M54_AXI'])>0"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "compRef" : "axi_interconnect",
+         "value" : "1",
+         "name" : "M55_HAS_REGSLICE",
+         "valid" : "count($designComponent/xd:connection/xd:busInterface[@xd:instanceRef=$instance and @xd:name='SLR1/interconnect_axilite_user_M55_AXI'])>0"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "compRef" : "axi_interconnect",
+         "value" : "1",
+         "name" : "M56_HAS_REGSLICE",
+         "valid" : "count($designComponent/xd:connection/xd:busInterface[@xd:instanceRef=$instance and @xd:name='SLR1/interconnect_axilite_user_M56_AXI'])>0"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "compRef" : "axi_interconnect",
+         "value" : "1",
+         "name" : "M57_HAS_REGSLICE",
+         "valid" : "count($designComponent/xd:connection/xd:busInterface[@xd:instanceRef=$instance and @xd:name='SLR1/interconnect_axilite_user_M57_AXI'])>0"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "compRef" : "axi_interconnect",
+         "value" : "1",
+         "name" : "M58_HAS_REGSLICE",
+         "valid" : "count($designComponent/xd:connection/xd:busInterface[@xd:instanceRef=$instance and @xd:name='SLR1/interconnect_axilite_user_M58_AXI'])>0"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "compRef" : "axi_interconnect",
+         "value" : "1",
+         "name" : "M59_HAS_REGSLICE",
+         "valid" : "count($designComponent/xd:connection/xd:busInterface[@xd:instanceRef=$instance and @xd:name='SLR1/interconnect_axilite_user_M59_AXI'])>0"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "compRef" : "axi_interconnect",
+         "value" : "1",
+         "name" : "M60_HAS_REGSLICE",
+         "valid" : "count($designComponent/xd:connection/xd:busInterface[@xd:instanceRef=$instance and @xd:name='SLR1/interconnect_axilite_user_M60_AXI'])>0"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "compRef" : "axi_interconnect",
+         "value" : "1",
+         "name" : "M61_HAS_REGSLICE",
+         "valid" : "count($designComponent/xd:connection/xd:busInterface[@xd:instanceRef=$instance and @xd:name='SLR1/interconnect_axilite_user_M61_AXI'])>0"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "compRef" : "axi_interconnect",
+         "value" : "1",
+         "name" : "M62_HAS_REGSLICE",
+         "valid" : "count($designComponent/xd:connection/xd:busInterface[@xd:instanceRef=$instance and @xd:name='SLR1/interconnect_axilite_user_M62_AXI'])>0"
+      }
+   ],
+   "memories" : [
+      {
+         "lowAddress" : "0",
+         "name" : "mem0",
+         "type" : "hbm",
+         "highAddress" : "0",
+         "size" : "8GB"
+      }
+   ],
+   "expandablePlatform" : "true",
+   "memorySize" : "8 GB",
+   "designIpInstances" : [
+      {
+         "vlnv" : "xilinx.com:ip:sdx_memory_subsystem:1.0",
+         "configuration" : {
+            "C_HIGHADDR" : "0x20141FFFF",
+            "NUM_CLKS" : "2",
+            "NUM_SI" : "2",
+            "EDK_IPTYPE" : "PERIPHERAL",
+            "Component_Name" : "ulp_memory_subsystem_0",
+            "ADVANCED_PROPERTIES" : "resource_access_constraints {S00_AXI { PLRAM_MEM00 PLRAM_MEM01 } S01_AXI {PLRAM_MEM02 PLRAM_MEM03 }}  resource_map_replication { S00_AXI {} S01_AXI {}} plram_specifications {  { SIZE 128K AXI_DATA_WIDTH 128 SLR_ASSIGNMENT SLR0 }  { SIZE 128K AXI_DATA_WIDTH 128 SLR_ASSIGNMENT SLR0 }  { SIZE 128K AXI_DATA_WIDTH 128 SLR_ASSIGNMENT SLR1 }  { SIZE 128K AXI_DATA_WIDTH 128 SLR_ASSIGNMENT SLR1 } }",
+            "C_BASEADDR" : "0x201400000"
+         },
+         "instance" : "memory_subsystem"
+      },
+      {
+         "vlnv" : "xilinx.com:ip:hbm_memory_subsystem:1.0",
+         "configuration" : {
+            "S13_MEM" : "HBM_MEM00 HBM_MEM01 HBM_MEM02 HBM_MEM03 HBM_MEM04 HBM_MEM05 HBM_MEM06 HBM_MEM07 HBM_MEM08 HBM_MEM09 HBM_MEM10 HBM_MEM11 HBM_MEM12 HBM_MEM13 HBM_MEM14 HBM_MEM15 HBM_MEM16 HBM_MEM17 HBM_MEM18 HBM_MEM19 HBM_MEM20 HBM_MEM21 HBM_MEM22 HBM_MEM23 HBM_MEM24 HBM_MEM25 HBM_MEM26 HBM_MEM27 HBM_MEM28 HBM_MEM29 HBM_MEM30 HBM_MEM31",
+            "S19_RA" : "0",
+            "S21_RA" : "0",
+            "S14_SLR" : "SLR0",
+            "C_HIGHADDR" : "0x1FFFFFFFF",
+            "S11_WT" : "1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1",
+            "S28_RA" : "0",
+            "S07_MEM" : "HBM_MEM00 HBM_MEM01 HBM_MEM02 HBM_MEM03 HBM_MEM04 HBM_MEM05 HBM_MEM06 HBM_MEM07 HBM_MEM08 HBM_MEM09 HBM_MEM10 HBM_MEM11 HBM_MEM12 HBM_MEM13 HBM_MEM14 HBM_MEM15 HBM_MEM16 HBM_MEM17 HBM_MEM18 HBM_MEM19 HBM_MEM20 HBM_MEM21 HBM_MEM22 HBM_MEM23 HBM_MEM24 HBM_MEM25 HBM_MEM26 HBM_MEM27 HBM_MEM28 HBM_MEM29 HBM_MEM30 HBM_MEM31",
+            "S04_RA" : "0",
+            "S31_WT" : "1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1",
+            "EDK_IPTYPE" : "PERIPHERAL",
+            "S13_SLR" : "SLR0",
+            "S05_MEM" : "HBM_MEM00 HBM_MEM01 HBM_MEM02 HBM_MEM03 HBM_MEM04 HBM_MEM05 HBM_MEM06 HBM_MEM07 HBM_MEM08 HBM_MEM09 HBM_MEM10 HBM_MEM11 HBM_MEM12 HBM_MEM13 HBM_MEM14 HBM_MEM15 HBM_MEM16 HBM_MEM17 HBM_MEM18 HBM_MEM19 HBM_MEM20 HBM_MEM21 HBM_MEM22 HBM_MEM23 HBM_MEM24 HBM_MEM25 HBM_MEM26 HBM_MEM27 HBM_MEM28 HBM_MEM29 HBM_MEM30 HBM_MEM31",
+            "S30_WT" : "1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1",
+            "S07_WT" : "1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1",
+            "S20_MEM" : "HBM_MEM00 HBM_MEM01 HBM_MEM02 HBM_MEM03 HBM_MEM04 HBM_MEM05 HBM_MEM06 HBM_MEM07 HBM_MEM08 HBM_MEM09 HBM_MEM10 HBM_MEM11 HBM_MEM12 HBM_MEM13 HBM_MEM14 HBM_MEM15 HBM_MEM16 HBM_MEM17 HBM_MEM18 HBM_MEM19 HBM_MEM20 HBM_MEM21 HBM_MEM22 HBM_MEM23 HBM_MEM24 HBM_MEM25 HBM_MEM26 HBM_MEM27 HBM_MEM28 HBM_MEM29 HBM_MEM30 HBM_MEM31",
+            "S11_SLR" : "SLR0",
+            "S29_WT" : "1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1",
+            "S20_SLR" : "SLR0",
+            "S31_MEM" : "HBM_MEM00 HBM_MEM01 HBM_MEM02 HBM_MEM03 HBM_MEM04 HBM_MEM05 HBM_MEM06 HBM_MEM07 HBM_MEM08 HBM_MEM09 HBM_MEM10 HBM_MEM11 HBM_MEM12 HBM_MEM13 HBM_MEM14 HBM_MEM15 HBM_MEM16 HBM_MEM17 HBM_MEM18 HBM_MEM19 HBM_MEM20 HBM_MEM21 HBM_MEM22 HBM_MEM23 HBM_MEM24 HBM_MEM25 HBM_MEM26 HBM_MEM27 HBM_MEM28 HBM_MEM29 HBM_MEM30 HBM_MEM31",
+            "S16_WT" : "1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1",
+            "SIM_EN" : "false",
+            "S21_SLR" : "SLR0",
+            "ECC_EN" : "true",
+            "S24_RA" : "0",
+            "S06_RA" : "0",
+            "S18_SLR" : "SLR0",
+            "S32_RA" : "0",
+            "S02_MEM" : "HBM_MEM00 HBM_MEM01 HBM_MEM02 HBM_MEM03 HBM_MEM04 HBM_MEM05 HBM_MEM06 HBM_MEM07 HBM_MEM08 HBM_MEM09 HBM_MEM10 HBM_MEM11 HBM_MEM12 HBM_MEM13 HBM_MEM14 HBM_MEM15 HBM_MEM16 HBM_MEM17 HBM_MEM18 HBM_MEM19 HBM_MEM20 HBM_MEM21 HBM_MEM22 HBM_MEM23 HBM_MEM24 HBM_MEM25 HBM_MEM26 HBM_MEM27 HBM_MEM28 HBM_MEM29 HBM_MEM30 HBM_MEM31",
+            "S26_MEM" : "HBM_MEM00 HBM_MEM01 HBM_MEM02 HBM_MEM03 HBM_MEM04 HBM_MEM05 HBM_MEM06 HBM_MEM07 HBM_MEM08 HBM_MEM09 HBM_MEM10 HBM_MEM11 HBM_MEM12 HBM_MEM13 HBM_MEM14 HBM_MEM15 HBM_MEM16 HBM_MEM17 HBM_MEM18 HBM_MEM19 HBM_MEM20 HBM_MEM21 HBM_MEM22 HBM_MEM23 HBM_MEM24 HBM_MEM25 HBM_MEM26 HBM_MEM27 HBM_MEM28 HBM_MEM29 HBM_MEM30 HBM_MEM31",
+            "S20_RA" : "0",
+            "S05_WT" : "1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1",
+            "S04_SLR" : "SLR0",
+            "S12_MEM" : "HBM_MEM00 HBM_MEM01 HBM_MEM02 HBM_MEM03 HBM_MEM04 HBM_MEM05 HBM_MEM06 HBM_MEM07 HBM_MEM08 HBM_MEM09 HBM_MEM10 HBM_MEM11 HBM_MEM12 HBM_MEM13 HBM_MEM14 HBM_MEM15 HBM_MEM16 HBM_MEM17 HBM_MEM18 HBM_MEM19 HBM_MEM20 HBM_MEM21 HBM_MEM22 HBM_MEM23 HBM_MEM24 HBM_MEM25 HBM_MEM26 HBM_MEM27 HBM_MEM28 HBM_MEM29 HBM_MEM30 HBM_MEM31",
+            "S30_RA" : "0",
+            "S13_WT" : "1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1",
+            "S17_WT" : "1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1",
+            "ECC_SCRUB_EN" : "true",
+            "S06_WT" : "1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1",
+            "S15_MEM" : "HBM_MEM00 HBM_MEM01 HBM_MEM02 HBM_MEM03 HBM_MEM04 HBM_MEM05 HBM_MEM06 HBM_MEM07 HBM_MEM08 HBM_MEM09 HBM_MEM10 HBM_MEM11 HBM_MEM12 HBM_MEM13 HBM_MEM14 HBM_MEM15 HBM_MEM16 HBM_MEM17 HBM_MEM18 HBM_MEM19 HBM_MEM20 HBM_MEM21 HBM_MEM22 HBM_MEM23 HBM_MEM24 HBM_MEM25 HBM_MEM26 HBM_MEM27 HBM_MEM28 HBM_MEM29 HBM_MEM30 HBM_MEM31",
+            "S29_SLR" : "SLR0",
+            "S08_RA" : "0",
+            "S22_MEM" : "HBM_MEM00 HBM_MEM01 HBM_MEM02 HBM_MEM03 HBM_MEM04 HBM_MEM05 HBM_MEM06 HBM_MEM07 HBM_MEM08 HBM_MEM09 HBM_MEM10 HBM_MEM11 HBM_MEM12 HBM_MEM13 HBM_MEM14 HBM_MEM15 HBM_MEM16 HBM_MEM17 HBM_MEM18 HBM_MEM19 HBM_MEM20 HBM_MEM21 HBM_MEM22 HBM_MEM23 HBM_MEM24 HBM_MEM25 HBM_MEM26 HBM_MEM27 HBM_MEM28 HBM_MEM29 HBM_MEM30 HBM_MEM31",
+            "S25_WT" : "1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1",
+            "S21_MEM" : "HBM_MEM00 HBM_MEM01 HBM_MEM02 HBM_MEM03 HBM_MEM04 HBM_MEM05 HBM_MEM06 HBM_MEM07 HBM_MEM08 HBM_MEM09 HBM_MEM10 HBM_MEM11 HBM_MEM12 HBM_MEM13 HBM_MEM14 HBM_MEM15 HBM_MEM16 HBM_MEM17 HBM_MEM18 HBM_MEM19 HBM_MEM20 HBM_MEM21 HBM_MEM22 HBM_MEM23 HBM_MEM24 HBM_MEM25 HBM_MEM26 HBM_MEM27 HBM_MEM28 HBM_MEM29 HBM_MEM30 HBM_MEM31",
+            "S19_MEM" : "HBM_MEM00 HBM_MEM01 HBM_MEM02 HBM_MEM03 HBM_MEM04 HBM_MEM05 HBM_MEM06 HBM_MEM07 HBM_MEM08 HBM_MEM09 HBM_MEM10 HBM_MEM11 HBM_MEM12 HBM_MEM13 HBM_MEM14 HBM_MEM15 HBM_MEM16 HBM_MEM17 HBM_MEM18 HBM_MEM19 HBM_MEM20 HBM_MEM21 HBM_MEM22 HBM_MEM23 HBM_MEM24 HBM_MEM25 HBM_MEM26 HBM_MEM27 HBM_MEM28 HBM_MEM29 HBM_MEM30 HBM_MEM31",
+            "S10_RA" : "0",
+            "S00_MEM" : "HBM_MEM00 HBM_MEM01 HBM_MEM02 HBM_MEM03 HBM_MEM04 HBM_MEM05 HBM_MEM06 HBM_MEM07 HBM_MEM08 HBM_MEM09 HBM_MEM10 HBM_MEM11 HBM_MEM12 HBM_MEM13 HBM_MEM14 HBM_MEM15 HBM_MEM16 HBM_MEM17 HBM_MEM18 HBM_MEM19 HBM_MEM20 HBM_MEM21 HBM_MEM22 HBM_MEM23 HBM_MEM24 HBM_MEM25 HBM_MEM26 HBM_MEM27 HBM_MEM28 HBM_MEM29 HBM_MEM30 HBM_MEM31",
+            "S25_SLR" : "SLR0",
+            "S08_SLR" : "SLR0",
+            "S31_RA" : "0",
+            "S01_MEM" : "HBM_MEM00 HBM_MEM01 HBM_MEM02 HBM_MEM03 HBM_MEM04 HBM_MEM05 HBM_MEM06 HBM_MEM07 HBM_MEM08 HBM_MEM09 HBM_MEM10 HBM_MEM11 HBM_MEM12 HBM_MEM13 HBM_MEM14 HBM_MEM15 HBM_MEM16 HBM_MEM17 HBM_MEM18 HBM_MEM19 HBM_MEM20 HBM_MEM21 HBM_MEM22 HBM_MEM23 HBM_MEM24 HBM_MEM25 HBM_MEM26 HBM_MEM27 HBM_MEM28 HBM_MEM29 HBM_MEM30 HBM_MEM31",
+            "S23_RA" : "0",
+            "S09_WT" : "1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1",
+            "S03_MEM" : "HBM_MEM00 HBM_MEM01 HBM_MEM02 HBM_MEM03 HBM_MEM04 HBM_MEM05 HBM_MEM06 HBM_MEM07 HBM_MEM08 HBM_MEM09 HBM_MEM10 HBM_MEM11 HBM_MEM12 HBM_MEM13 HBM_MEM14 HBM_MEM15 HBM_MEM16 HBM_MEM17 HBM_MEM18 HBM_MEM19 HBM_MEM20 HBM_MEM21 HBM_MEM22 HBM_MEM23 HBM_MEM24 HBM_MEM25 HBM_MEM26 HBM_MEM27 HBM_MEM28 HBM_MEM29 HBM_MEM30 HBM_MEM31",
+            "S08_WT" : "1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1",
+            "S22_RA" : "0",
+            "S16_RA" : "0",
+            "S01_WT" : "1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1",
+            "ADVANCED_PROPERTIES" : "NULL NULL HBM_PORT_PROHIBIT {S30_AXI S31_AXI} HBM_STAGED_CALIBRATION true",
+            "S32_WT" : "1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1",
+            "NUM_SI_CLKS" : "1",
+            "S32_SLR" : "SLR0",
+            "S00_WT" : "1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1",
+            "S16_SLR" : "SLR0",
+            "NUM_SI" : "1",
+            "S09_RA" : "0",
+            "S21_WT" : "1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1",
+            "S03_SLR" : "SLR0",
+            "S26_WT" : "1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1",
+            "S17_RA" : "0",
+            "S22_WT" : "1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1",
+            "S18_MEM" : "HBM_MEM00 HBM_MEM01 HBM_MEM02 HBM_MEM03 HBM_MEM04 HBM_MEM05 HBM_MEM06 HBM_MEM07 HBM_MEM08 HBM_MEM09 HBM_MEM10 HBM_MEM11 HBM_MEM12 HBM_MEM13 HBM_MEM14 HBM_MEM15 HBM_MEM16 HBM_MEM17 HBM_MEM18 HBM_MEM19 HBM_MEM20 HBM_MEM21 HBM_MEM22 HBM_MEM23 HBM_MEM24 HBM_MEM25 HBM_MEM26 HBM_MEM27 HBM_MEM28 HBM_MEM29 HBM_MEM30 HBM_MEM31",
+            "S04_WT" : "1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1",
+            "S05_SLR" : "SLR0",
+            "S06_MEM" : "HBM_MEM00 HBM_MEM01 HBM_MEM02 HBM_MEM03 HBM_MEM04 HBM_MEM05 HBM_MEM06 HBM_MEM07 HBM_MEM08 HBM_MEM09 HBM_MEM10 HBM_MEM11 HBM_MEM12 HBM_MEM13 HBM_MEM14 HBM_MEM15 HBM_MEM16 HBM_MEM17 HBM_MEM18 HBM_MEM19 HBM_MEM20 HBM_MEM21 HBM_MEM22 HBM_MEM23 HBM_MEM24 HBM_MEM25 HBM_MEM26 HBM_MEM27 HBM_MEM28 HBM_MEM29 HBM_MEM30 HBM_MEM31",
+            "Component_Name" : "ulp_hmss_0_0",
+            "DISABLE_HBM_REF_CLK_BUFG" : "true",
+            "C_BASEADDR" : "0x1F0000000",
+            "S27_MEM" : "HBM_MEM00 HBM_MEM01 HBM_MEM02 HBM_MEM03 HBM_MEM04 HBM_MEM05 HBM_MEM06 HBM_MEM07 HBM_MEM08 HBM_MEM09 HBM_MEM10 HBM_MEM11 HBM_MEM12 HBM_MEM13 HBM_MEM14 HBM_MEM15 HBM_MEM16 HBM_MEM17 HBM_MEM18 HBM_MEM19 HBM_MEM20 HBM_MEM21 HBM_MEM22 HBM_MEM23 HBM_MEM24 HBM_MEM25 HBM_MEM26 HBM_MEM27 HBM_MEM28 HBM_MEM29 HBM_MEM30 HBM_MEM31",
+            "S20_WT" : "1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1",
+            "S17_MEM" : "HBM_MEM00 HBM_MEM01 HBM_MEM02 HBM_MEM03 HBM_MEM04 HBM_MEM05 HBM_MEM06 HBM_MEM07 HBM_MEM08 HBM_MEM09 HBM_MEM10 HBM_MEM11 HBM_MEM12 HBM_MEM13 HBM_MEM14 HBM_MEM15 HBM_MEM16 HBM_MEM17 HBM_MEM18 HBM_MEM19 HBM_MEM20 HBM_MEM21 HBM_MEM22 HBM_MEM23 HBM_MEM24 HBM_MEM25 HBM_MEM26 HBM_MEM27 HBM_MEM28 HBM_MEM29 HBM_MEM30 HBM_MEM31",
+            "S11_MEM" : "HBM_MEM00 HBM_MEM01 HBM_MEM02 HBM_MEM03 HBM_MEM04 HBM_MEM05 HBM_MEM06 HBM_MEM07 HBM_MEM08 HBM_MEM09 HBM_MEM10 HBM_MEM11 HBM_MEM12 HBM_MEM13 HBM_MEM14 HBM_MEM15 HBM_MEM16 HBM_MEM17 HBM_MEM18 HBM_MEM19 HBM_MEM20 HBM_MEM21 HBM_MEM22 HBM_MEM23 HBM_MEM24 HBM_MEM25 HBM_MEM26 HBM_MEM27 HBM_MEM28 HBM_MEM29 HBM_MEM30 HBM_MEM31",
+            "S14_WT" : "1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1",
+            "S00_DATA_WIDTH" : "512",
+            "S24_SLR" : "SLR0",
+            "S12_SLR" : "SLR0",
+            "S03_WT" : "1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1",
+            "S14_MEM" : "HBM_MEM00 HBM_MEM01 HBM_MEM02 HBM_MEM03 HBM_MEM04 HBM_MEM05 HBM_MEM06 HBM_MEM07 HBM_MEM08 HBM_MEM09 HBM_MEM10 HBM_MEM11 HBM_MEM12 HBM_MEM13 HBM_MEM14 HBM_MEM15 HBM_MEM16 HBM_MEM17 HBM_MEM18 HBM_MEM19 HBM_MEM20 HBM_MEM21 HBM_MEM22 HBM_MEM23 HBM_MEM24 HBM_MEM25 HBM_MEM26 HBM_MEM27 HBM_MEM28 HBM_MEM29 HBM_MEM30 HBM_MEM31",
+            "S27_RA" : "0",
+            "S04_MEM" : "HBM_MEM00 HBM_MEM01 HBM_MEM02 HBM_MEM03 HBM_MEM04 HBM_MEM05 HBM_MEM06 HBM_MEM07 HBM_MEM08 HBM_MEM09 HBM_MEM10 HBM_MEM11 HBM_MEM12 HBM_MEM13 HBM_MEM14 HBM_MEM15 HBM_MEM16 HBM_MEM17 HBM_MEM18 HBM_MEM19 HBM_MEM20 HBM_MEM21 HBM_MEM22 HBM_MEM23 HBM_MEM24 HBM_MEM25 HBM_MEM26 HBM_MEM27 HBM_MEM28 HBM_MEM29 HBM_MEM30 HBM_MEM31",
+            "S25_RA" : "0",
+            "S18_RA" : "0",
+            "S02_RA" : "0",
+            "S26_RA" : "0",
+            "S24_MEM" : "HBM_MEM00 HBM_MEM01 HBM_MEM02 HBM_MEM03 HBM_MEM04 HBM_MEM05 HBM_MEM06 HBM_MEM07 HBM_MEM08 HBM_MEM09 HBM_MEM10 HBM_MEM11 HBM_MEM12 HBM_MEM13 HBM_MEM14 HBM_MEM15 HBM_MEM16 HBM_MEM17 HBM_MEM18 HBM_MEM19 HBM_MEM20 HBM_MEM21 HBM_MEM22 HBM_MEM23 HBM_MEM24 HBM_MEM25 HBM_MEM26 HBM_MEM27 HBM_MEM28 HBM_MEM29 HBM_MEM30 HBM_MEM31",
+            "S10_SLR" : "SLR0",
+            "S12_RA" : "0",
+            "S12_WT" : "1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1",
+            "S05_RA" : "0",
+            "S10_WT" : "1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1",
+            "S27_SLR" : "SLR0",
+            "S22_SLR" : "SLR0",
+            "S10_MEM" : "HBM_MEM00 HBM_MEM01 HBM_MEM02 HBM_MEM03 HBM_MEM04 HBM_MEM05 HBM_MEM06 HBM_MEM07 HBM_MEM08 HBM_MEM09 HBM_MEM10 HBM_MEM11 HBM_MEM12 HBM_MEM13 HBM_MEM14 HBM_MEM15 HBM_MEM16 HBM_MEM17 HBM_MEM18 HBM_MEM19 HBM_MEM20 HBM_MEM21 HBM_MEM22 HBM_MEM23 HBM_MEM24 HBM_MEM25 HBM_MEM26 HBM_MEM27 HBM_MEM28 HBM_MEM29 HBM_MEM30 HBM_MEM31",
+            "NUM_SI_ARESETN" : "1",
+            "S15_RA" : "0",
+            "S16_MEM" : "HBM_MEM00 HBM_MEM01 HBM_MEM02 HBM_MEM03 HBM_MEM04 HBM_MEM05 HBM_MEM06 HBM_MEM07 HBM_MEM08 HBM_MEM09 HBM_MEM10 HBM_MEM11 HBM_MEM12 HBM_MEM13 HBM_MEM14 HBM_MEM15 HBM_MEM16 HBM_MEM17 HBM_MEM18 HBM_MEM19 HBM_MEM20 HBM_MEM21 HBM_MEM22 HBM_MEM23 HBM_MEM24 HBM_MEM25 HBM_MEM26 HBM_MEM27 HBM_MEM28 HBM_MEM29 HBM_MEM30 HBM_MEM31",
+            "S02_SLR" : "SLR0",
+            "S15_SLR" : "SLR0",
+            "S27_WT" : "1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1",
+            "S29_RA" : "0",
+            "S23_MEM" : "HBM_MEM00 HBM_MEM01 HBM_MEM02 HBM_MEM03 HBM_MEM04 HBM_MEM05 HBM_MEM06 HBM_MEM07 HBM_MEM08 HBM_MEM09 HBM_MEM10 HBM_MEM11 HBM_MEM12 HBM_MEM13 HBM_MEM14 HBM_MEM15 HBM_MEM16 HBM_MEM17 HBM_MEM18 HBM_MEM19 HBM_MEM20 HBM_MEM21 HBM_MEM22 HBM_MEM23 HBM_MEM24 HBM_MEM25 HBM_MEM26 HBM_MEM27 HBM_MEM28 HBM_MEM29 HBM_MEM30 HBM_MEM31",
+            "S00_SLR" : "SLR0",
+            "S14_RA" : "0",
+            "S31_SLR" : "SLR0",
+            "S30_SLR" : "SLR0",
+            "S07_SLR" : "SLR0",
+            "S17_SLR" : "SLR0",
+            "S30_MEM" : "HBM_MEM00 HBM_MEM01 HBM_MEM02 HBM_MEM03 HBM_MEM04 HBM_MEM05 HBM_MEM06 HBM_MEM07 HBM_MEM08 HBM_MEM09 HBM_MEM10 HBM_MEM11 HBM_MEM12 HBM_MEM13 HBM_MEM14 HBM_MEM15 HBM_MEM16 HBM_MEM17 HBM_MEM18 HBM_MEM19 HBM_MEM20 HBM_MEM21 HBM_MEM22 HBM_MEM23 HBM_MEM24 HBM_MEM25 HBM_MEM26 HBM_MEM27 HBM_MEM28 HBM_MEM29 HBM_MEM30 HBM_MEM31",
+            "S29_MEM" : "HBM_MEM00 HBM_MEM01 HBM_MEM02 HBM_MEM03 HBM_MEM04 HBM_MEM05 HBM_MEM06 HBM_MEM07 HBM_MEM08 HBM_MEM09 HBM_MEM10 HBM_MEM11 HBM_MEM12 HBM_MEM13 HBM_MEM14 HBM_MEM15 HBM_MEM16 HBM_MEM17 HBM_MEM18 HBM_MEM19 HBM_MEM20 HBM_MEM21 HBM_MEM22 HBM_MEM23 HBM_MEM24 HBM_MEM25 HBM_MEM26 HBM_MEM27 HBM_MEM28 HBM_MEM29 HBM_MEM30 HBM_MEM31",
+            "S03_RA" : "0",
+            "S23_WT" : "1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1",
+            "S08_MEM" : "HBM_MEM00 HBM_MEM01 HBM_MEM02 HBM_MEM03 HBM_MEM04 HBM_MEM05 HBM_MEM06 HBM_MEM07 HBM_MEM08 HBM_MEM09 HBM_MEM10 HBM_MEM11 HBM_MEM12 HBM_MEM13 HBM_MEM14 HBM_MEM15 HBM_MEM16 HBM_MEM17 HBM_MEM18 HBM_MEM19 HBM_MEM20 HBM_MEM21 HBM_MEM22 HBM_MEM23 HBM_MEM24 HBM_MEM25 HBM_MEM26 HBM_MEM27 HBM_MEM28 HBM_MEM29 HBM_MEM30 HBM_MEM31",
+            "S07_RA" : "0",
+            "S09_SLR" : "SLR0",
+            "S01_RA" : "0",
+            "S18_WT" : "1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1",
+            "S28_MEM" : "HBM_MEM00 HBM_MEM01 HBM_MEM02 HBM_MEM03 HBM_MEM04 HBM_MEM05 HBM_MEM06 HBM_MEM07 HBM_MEM08 HBM_MEM09 HBM_MEM10 HBM_MEM11 HBM_MEM12 HBM_MEM13 HBM_MEM14 HBM_MEM15 HBM_MEM16 HBM_MEM17 HBM_MEM18 HBM_MEM19 HBM_MEM20 HBM_MEM21 HBM_MEM22 HBM_MEM23 HBM_MEM24 HBM_MEM25 HBM_MEM26 HBM_MEM27 HBM_MEM28 HBM_MEM29 HBM_MEM30 HBM_MEM31",
+            "S00_RA" : "0",
+            "S11_RA" : "0",
+            "S26_SLR" : "SLR0",
+            "S23_SLR" : "SLR0",
+            "S15_WT" : "1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1",
+            "S32_MEM" : "HBM_MEM00 HBM_MEM01 HBM_MEM02 HBM_MEM03 HBM_MEM04 HBM_MEM05 HBM_MEM06 HBM_MEM07 HBM_MEM08 HBM_MEM09 HBM_MEM10 HBM_MEM11 HBM_MEM12 HBM_MEM13 HBM_MEM14 HBM_MEM15 HBM_MEM16 HBM_MEM17 HBM_MEM18 HBM_MEM19 HBM_MEM20 HBM_MEM21 HBM_MEM22 HBM_MEM23 HBM_MEM24 HBM_MEM25 HBM_MEM26 HBM_MEM27 HBM_MEM28 HBM_MEM29 HBM_MEM30 HBM_MEM31",
+            "S24_WT" : "1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1",
+            "S28_WT" : "1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1",
+            "S01_SLR" : "SLR0",
+            "S06_SLR" : "SLR0",
+            "S19_WT" : "1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1",
+            "S02_WT" : "1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1",
+            "S19_SLR" : "SLR0",
+            "S28_SLR" : "SLR0",
+            "S09_MEM" : "HBM_MEM00 HBM_MEM01 HBM_MEM02 HBM_MEM03 HBM_MEM04 HBM_MEM05 HBM_MEM06 HBM_MEM07 HBM_MEM08 HBM_MEM09 HBM_MEM10 HBM_MEM11 HBM_MEM12 HBM_MEM13 HBM_MEM14 HBM_MEM15 HBM_MEM16 HBM_MEM17 HBM_MEM18 HBM_MEM19 HBM_MEM20 HBM_MEM21 HBM_MEM22 HBM_MEM23 HBM_MEM24 HBM_MEM25 HBM_MEM26 HBM_MEM27 HBM_MEM28 HBM_MEM29 HBM_MEM30 HBM_MEM31",
+            "S13_RA" : "0",
+            "S25_MEM" : "HBM_MEM00 HBM_MEM01 HBM_MEM02 HBM_MEM03 HBM_MEM04 HBM_MEM05 HBM_MEM06 HBM_MEM07 HBM_MEM08 HBM_MEM09 HBM_MEM10 HBM_MEM11 HBM_MEM12 HBM_MEM13 HBM_MEM14 HBM_MEM15 HBM_MEM16 HBM_MEM17 HBM_MEM18 HBM_MEM19 HBM_MEM20 HBM_MEM21 HBM_MEM22 HBM_MEM23 HBM_MEM24 HBM_MEM25 HBM_MEM26 HBM_MEM27 HBM_MEM28 HBM_MEM29 HBM_MEM30 HBM_MEM31"
+         },
+         "instance" : "hmss_0"
+      }
+   ],
+   "busInterfaces" : [
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "clockRef" : "SLR0/interconnect_axilite_user_M01_ACLK",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "SLR0/interconnect_axilite_user_M01_AXI",
+         "interfaceRef" : "M01_AXI",
+         "dataWidth" : "32",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "aximm",
+         "memPort" : "M_AXI_GP",
+         "spTag" : "GP"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "clockRef" : "SLR0/interconnect_axilite_user_M02_ACLK",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "SLR0/interconnect_axilite_user_M02_AXI",
+         "interfaceRef" : "M02_AXI",
+         "dataWidth" : "32",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "aximm",
+         "memPort" : "M_AXI_GP",
+         "spTag" : "GP"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "clockRef" : "SLR0/interconnect_axilite_user_M03_ACLK",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "SLR0/interconnect_axilite_user_M03_AXI",
+         "interfaceRef" : "M03_AXI",
+         "dataWidth" : "32",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "aximm",
+         "memPort" : "M_AXI_GP",
+         "spTag" : "GP"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "clockRef" : "SLR0/interconnect_axilite_user_M04_ACLK",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "SLR0/interconnect_axilite_user_M04_AXI",
+         "interfaceRef" : "M04_AXI",
+         "dataWidth" : "32",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "aximm",
+         "memPort" : "M_AXI_GP",
+         "spTag" : "GP"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "clockRef" : "SLR0/interconnect_axilite_user_M05_ACLK",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "SLR0/interconnect_axilite_user_M05_AXI",
+         "interfaceRef" : "M05_AXI",
+         "dataWidth" : "32",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "aximm",
+         "memPort" : "M_AXI_GP",
+         "spTag" : "GP"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "clockRef" : "SLR0/interconnect_axilite_user_M06_ACLK",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "SLR0/interconnect_axilite_user_M06_AXI",
+         "interfaceRef" : "M06_AXI",
+         "dataWidth" : "32",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "aximm",
+         "memPort" : "M_AXI_GP",
+         "spTag" : "GP"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "clockRef" : "SLR0/interconnect_axilite_user_M07_ACLK",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "SLR0/interconnect_axilite_user_M07_AXI",
+         "interfaceRef" : "M07_AXI",
+         "dataWidth" : "32",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "aximm",
+         "memPort" : "M_AXI_GP",
+         "spTag" : "GP"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "clockRef" : "SLR0/interconnect_axilite_user_M08_ACLK",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "SLR0/interconnect_axilite_user_M08_AXI",
+         "interfaceRef" : "M08_AXI",
+         "dataWidth" : "32",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "aximm",
+         "memPort" : "M_AXI_GP",
+         "spTag" : "GP"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "clockRef" : "SLR0/interconnect_axilite_user_M09_ACLK",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "SLR0/interconnect_axilite_user_M09_AXI",
+         "interfaceRef" : "M09_AXI",
+         "dataWidth" : "32",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "aximm",
+         "memPort" : "M_AXI_GP",
+         "spTag" : "GP"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "clockRef" : "SLR0/interconnect_axilite_user_M10_ACLK",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "SLR0/interconnect_axilite_user_M10_AXI",
+         "interfaceRef" : "M10_AXI",
+         "dataWidth" : "32",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "aximm",
+         "memPort" : "M_AXI_GP",
+         "spTag" : "GP"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "clockRef" : "SLR0/interconnect_axilite_user_M11_ACLK",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "SLR0/interconnect_axilite_user_M11_AXI",
+         "interfaceRef" : "M11_AXI",
+         "dataWidth" : "32",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "aximm",
+         "memPort" : "M_AXI_GP",
+         "spTag" : "GP"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "clockRef" : "SLR0/interconnect_axilite_user_M12_ACLK",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "SLR0/interconnect_axilite_user_M12_AXI",
+         "interfaceRef" : "M12_AXI",
+         "dataWidth" : "32",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "aximm",
+         "memPort" : "M_AXI_GP",
+         "spTag" : "GP"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "clockRef" : "SLR0/interconnect_axilite_user_M13_ACLK",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "SLR0/interconnect_axilite_user_M13_AXI",
+         "interfaceRef" : "M13_AXI",
+         "dataWidth" : "32",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "aximm",
+         "memPort" : "M_AXI_GP",
+         "spTag" : "GP"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "clockRef" : "SLR0/interconnect_axilite_user_M14_ACLK",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "SLR0/interconnect_axilite_user_M14_AXI",
+         "interfaceRef" : "M14_AXI",
+         "dataWidth" : "32",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "aximm",
+         "memPort" : "M_AXI_GP",
+         "spTag" : "GP"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "clockRef" : "SLR0/interconnect_axilite_user_M15_ACLK",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "SLR0/interconnect_axilite_user_M15_AXI",
+         "interfaceRef" : "M15_AXI",
+         "dataWidth" : "32",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "aximm",
+         "memPort" : "M_AXI_GP",
+         "spTag" : "GP"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "clockRef" : "SLR0/interconnect_axilite_user_M16_ACLK",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "SLR0/interconnect_axilite_user_M16_AXI",
+         "interfaceRef" : "M16_AXI",
+         "dataWidth" : "32",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "aximm",
+         "memPort" : "M_AXI_GP",
+         "spTag" : "GP"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "clockRef" : "SLR0/interconnect_axilite_user_M17_ACLK",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "SLR0/interconnect_axilite_user_M17_AXI",
+         "interfaceRef" : "M17_AXI",
+         "dataWidth" : "32",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "aximm",
+         "memPort" : "M_AXI_GP",
+         "spTag" : "GP"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "clockRef" : "SLR0/interconnect_axilite_user_M18_ACLK",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "SLR0/interconnect_axilite_user_M18_AXI",
+         "interfaceRef" : "M18_AXI",
+         "dataWidth" : "32",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "aximm",
+         "memPort" : "M_AXI_GP",
+         "spTag" : "GP"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "clockRef" : "SLR0/interconnect_axilite_user_M19_ACLK",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "SLR0/interconnect_axilite_user_M19_AXI",
+         "interfaceRef" : "M19_AXI",
+         "dataWidth" : "32",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "aximm",
+         "memPort" : "M_AXI_GP",
+         "spTag" : "GP"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "clockRef" : "SLR0/interconnect_axilite_user_M20_ACLK",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "SLR0/interconnect_axilite_user_M20_AXI",
+         "interfaceRef" : "M20_AXI",
+         "dataWidth" : "32",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "aximm",
+         "memPort" : "M_AXI_GP",
+         "spTag" : "GP"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "clockRef" : "SLR0/interconnect_axilite_user_M21_ACLK",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "SLR0/interconnect_axilite_user_M21_AXI",
+         "interfaceRef" : "M21_AXI",
+         "dataWidth" : "32",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "aximm",
+         "memPort" : "M_AXI_GP",
+         "spTag" : "GP"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "clockRef" : "SLR0/interconnect_axilite_user_M22_ACLK",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "SLR0/interconnect_axilite_user_M22_AXI",
+         "interfaceRef" : "M22_AXI",
+         "dataWidth" : "32",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "aximm",
+         "memPort" : "M_AXI_GP",
+         "spTag" : "GP"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "clockRef" : "SLR0/interconnect_axilite_user_M23_ACLK",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "SLR0/interconnect_axilite_user_M23_AXI",
+         "interfaceRef" : "M23_AXI",
+         "dataWidth" : "32",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "aximm",
+         "memPort" : "M_AXI_GP",
+         "spTag" : "GP"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "clockRef" : "SLR0/interconnect_axilite_user_M24_ACLK",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "SLR0/interconnect_axilite_user_M24_AXI",
+         "interfaceRef" : "M24_AXI",
+         "dataWidth" : "32",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "aximm",
+         "memPort" : "M_AXI_GP",
+         "spTag" : "GP"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "clockRef" : "SLR0/interconnect_axilite_user_M25_ACLK",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "SLR0/interconnect_axilite_user_M25_AXI",
+         "interfaceRef" : "M25_AXI",
+         "dataWidth" : "32",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "aximm",
+         "memPort" : "M_AXI_GP",
+         "spTag" : "GP"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "clockRef" : "SLR0/interconnect_axilite_user_M26_ACLK",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "SLR0/interconnect_axilite_user_M26_AXI",
+         "interfaceRef" : "M26_AXI",
+         "dataWidth" : "32",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "aximm",
+         "memPort" : "M_AXI_GP",
+         "spTag" : "GP"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "clockRef" : "SLR0/interconnect_axilite_user_M27_ACLK",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "SLR0/interconnect_axilite_user_M27_AXI",
+         "interfaceRef" : "M27_AXI",
+         "dataWidth" : "32",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "aximm",
+         "memPort" : "M_AXI_GP",
+         "spTag" : "GP"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "clockRef" : "SLR0/interconnect_axilite_user_M28_ACLK",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "SLR0/interconnect_axilite_user_M28_AXI",
+         "interfaceRef" : "M28_AXI",
+         "dataWidth" : "32",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "aximm",
+         "memPort" : "M_AXI_GP",
+         "spTag" : "GP"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "clockRef" : "SLR0/interconnect_axilite_user_M29_ACLK",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "SLR0/interconnect_axilite_user_M29_AXI",
+         "interfaceRef" : "M29_AXI",
+         "dataWidth" : "32",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "aximm",
+         "memPort" : "M_AXI_GP",
+         "spTag" : "GP"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "clockRef" : "SLR0/interconnect_axilite_user_M30_ACLK",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "SLR0/interconnect_axilite_user_M30_AXI",
+         "interfaceRef" : "M30_AXI",
+         "dataWidth" : "32",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "aximm",
+         "memPort" : "M_AXI_GP",
+         "spTag" : "GP"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M01_ACLK",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "SLR1/interconnect_axilite_user_M01_AXI",
+         "interfaceRef" : "M01_AXI",
+         "dataWidth" : "32",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "aximm",
+         "memPort" : "M_AXI_GP",
+         "spTag" : "GP"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M02_ACLK",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "SLR1/interconnect_axilite_user_M02_AXI",
+         "interfaceRef" : "M02_AXI",
+         "dataWidth" : "32",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "aximm",
+         "memPort" : "M_AXI_GP",
+         "spTag" : "GP"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M03_ACLK",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "SLR1/interconnect_axilite_user_M03_AXI",
+         "interfaceRef" : "M03_AXI",
+         "dataWidth" : "32",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "aximm",
+         "memPort" : "M_AXI_GP",
+         "spTag" : "GP"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M04_ACLK",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "SLR1/interconnect_axilite_user_M04_AXI",
+         "interfaceRef" : "M04_AXI",
+         "dataWidth" : "32",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "aximm",
+         "memPort" : "M_AXI_GP",
+         "spTag" : "GP"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M05_ACLK",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "SLR1/interconnect_axilite_user_M05_AXI",
+         "interfaceRef" : "M05_AXI",
+         "dataWidth" : "32",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "aximm",
+         "memPort" : "M_AXI_GP",
+         "spTag" : "GP"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M06_ACLK",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "SLR1/interconnect_axilite_user_M06_AXI",
+         "interfaceRef" : "M06_AXI",
+         "dataWidth" : "32",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "aximm",
+         "memPort" : "M_AXI_GP",
+         "spTag" : "GP"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M07_ACLK",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "SLR1/interconnect_axilite_user_M07_AXI",
+         "interfaceRef" : "M07_AXI",
+         "dataWidth" : "32",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "aximm",
+         "memPort" : "M_AXI_GP",
+         "spTag" : "GP"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M08_ACLK",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "SLR1/interconnect_axilite_user_M08_AXI",
+         "interfaceRef" : "M08_AXI",
+         "dataWidth" : "32",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "aximm",
+         "memPort" : "M_AXI_GP",
+         "spTag" : "GP"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M09_ACLK",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "SLR1/interconnect_axilite_user_M09_AXI",
+         "interfaceRef" : "M09_AXI",
+         "dataWidth" : "32",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "aximm",
+         "memPort" : "M_AXI_GP",
+         "spTag" : "GP"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M10_ACLK",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "SLR1/interconnect_axilite_user_M10_AXI",
+         "interfaceRef" : "M10_AXI",
+         "dataWidth" : "32",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "aximm",
+         "memPort" : "M_AXI_GP",
+         "spTag" : "GP"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M11_ACLK",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "SLR1/interconnect_axilite_user_M11_AXI",
+         "interfaceRef" : "M11_AXI",
+         "dataWidth" : "32",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "aximm",
+         "memPort" : "M_AXI_GP",
+         "spTag" : "GP"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M12_ACLK",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "SLR1/interconnect_axilite_user_M12_AXI",
+         "interfaceRef" : "M12_AXI",
+         "dataWidth" : "32",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "aximm",
+         "memPort" : "M_AXI_GP",
+         "spTag" : "GP"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M13_ACLK",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "SLR1/interconnect_axilite_user_M13_AXI",
+         "interfaceRef" : "M13_AXI",
+         "dataWidth" : "32",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "aximm",
+         "memPort" : "M_AXI_GP",
+         "spTag" : "GP"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M14_ACLK",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "SLR1/interconnect_axilite_user_M14_AXI",
+         "interfaceRef" : "M14_AXI",
+         "dataWidth" : "32",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "aximm",
+         "memPort" : "M_AXI_GP",
+         "spTag" : "GP"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M15_ACLK",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "SLR1/interconnect_axilite_user_M15_AXI",
+         "interfaceRef" : "M15_AXI",
+         "dataWidth" : "32",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "aximm",
+         "memPort" : "M_AXI_GP",
+         "spTag" : "GP"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M16_ACLK",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "SLR1/interconnect_axilite_user_M16_AXI",
+         "interfaceRef" : "M16_AXI",
+         "dataWidth" : "32",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "aximm",
+         "memPort" : "M_AXI_GP",
+         "spTag" : "GP"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M17_ACLK",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "SLR1/interconnect_axilite_user_M17_AXI",
+         "interfaceRef" : "M17_AXI",
+         "dataWidth" : "32",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "aximm",
+         "memPort" : "M_AXI_GP",
+         "spTag" : "GP"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M18_ACLK",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "SLR1/interconnect_axilite_user_M18_AXI",
+         "interfaceRef" : "M18_AXI",
+         "dataWidth" : "32",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "aximm",
+         "memPort" : "M_AXI_GP",
+         "spTag" : "GP"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M19_ACLK",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "SLR1/interconnect_axilite_user_M19_AXI",
+         "interfaceRef" : "M19_AXI",
+         "dataWidth" : "32",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "aximm",
+         "memPort" : "M_AXI_GP",
+         "spTag" : "GP"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M20_ACLK",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "SLR1/interconnect_axilite_user_M20_AXI",
+         "interfaceRef" : "M20_AXI",
+         "dataWidth" : "32",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "aximm",
+         "memPort" : "M_AXI_GP",
+         "spTag" : "GP"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M21_ACLK",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "SLR1/interconnect_axilite_user_M21_AXI",
+         "interfaceRef" : "M21_AXI",
+         "dataWidth" : "32",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "aximm",
+         "memPort" : "M_AXI_GP",
+         "spTag" : "GP"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M22_ACLK",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "SLR1/interconnect_axilite_user_M22_AXI",
+         "interfaceRef" : "M22_AXI",
+         "dataWidth" : "32",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "aximm",
+         "memPort" : "M_AXI_GP",
+         "spTag" : "GP"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M23_ACLK",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "SLR1/interconnect_axilite_user_M23_AXI",
+         "interfaceRef" : "M23_AXI",
+         "dataWidth" : "32",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "aximm",
+         "memPort" : "M_AXI_GP",
+         "spTag" : "GP"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M24_ACLK",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "SLR1/interconnect_axilite_user_M24_AXI",
+         "interfaceRef" : "M24_AXI",
+         "dataWidth" : "32",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "aximm",
+         "memPort" : "M_AXI_GP",
+         "spTag" : "GP"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M25_ACLK",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "SLR1/interconnect_axilite_user_M25_AXI",
+         "interfaceRef" : "M25_AXI",
+         "dataWidth" : "32",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "aximm",
+         "memPort" : "M_AXI_GP",
+         "spTag" : "GP"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M26_ACLK",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "SLR1/interconnect_axilite_user_M26_AXI",
+         "interfaceRef" : "M26_AXI",
+         "dataWidth" : "32",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "aximm",
+         "memPort" : "M_AXI_GP",
+         "spTag" : "GP"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M27_ACLK",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "SLR1/interconnect_axilite_user_M27_AXI",
+         "interfaceRef" : "M27_AXI",
+         "dataWidth" : "32",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "aximm",
+         "memPort" : "M_AXI_GP",
+         "spTag" : "GP"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M28_ACLK",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "SLR1/interconnect_axilite_user_M28_AXI",
+         "interfaceRef" : "M28_AXI",
+         "dataWidth" : "32",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "aximm",
+         "memPort" : "M_AXI_GP",
+         "spTag" : "GP"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M29_ACLK",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "SLR1/interconnect_axilite_user_M29_AXI",
+         "interfaceRef" : "M29_AXI",
+         "dataWidth" : "32",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "aximm",
+         "memPort" : "M_AXI_GP",
+         "spTag" : "GP"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M30_ACLK",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "SLR1/interconnect_axilite_user_M30_AXI",
+         "interfaceRef" : "M30_AXI",
+         "dataWidth" : "32",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "aximm",
+         "memPort" : "M_AXI_GP",
+         "spTag" : "GP"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M31_ACLK",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "SLR1/interconnect_axilite_user_M31_AXI",
+         "interfaceRef" : "M31_AXI",
+         "dataWidth" : "32",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "aximm",
+         "memPort" : "M_AXI_GP",
+         "spTag" : "GP"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M32_ACLK",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "SLR1/interconnect_axilite_user_M32_AXI",
+         "interfaceRef" : "M32_AXI",
+         "dataWidth" : "32",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "aximm",
+         "memPort" : "M_AXI_GP",
+         "spTag" : "GP"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M33_ACLK",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "SLR1/interconnect_axilite_user_M33_AXI",
+         "interfaceRef" : "M33_AXI",
+         "dataWidth" : "32",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "aximm",
+         "memPort" : "M_AXI_GP",
+         "spTag" : "GP"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M34_ACLK",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "SLR1/interconnect_axilite_user_M34_AXI",
+         "interfaceRef" : "M34_AXI",
+         "dataWidth" : "32",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "aximm",
+         "memPort" : "M_AXI_GP",
+         "spTag" : "GP"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M35_ACLK",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "SLR1/interconnect_axilite_user_M35_AXI",
+         "interfaceRef" : "M35_AXI",
+         "dataWidth" : "32",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "aximm",
+         "memPort" : "M_AXI_GP",
+         "spTag" : "GP"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M36_ACLK",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "SLR1/interconnect_axilite_user_M36_AXI",
+         "interfaceRef" : "M36_AXI",
+         "dataWidth" : "32",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "aximm",
+         "memPort" : "M_AXI_GP",
+         "spTag" : "GP"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M37_ACLK",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "SLR1/interconnect_axilite_user_M37_AXI",
+         "interfaceRef" : "M37_AXI",
+         "dataWidth" : "32",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "aximm",
+         "memPort" : "M_AXI_GP",
+         "spTag" : "GP"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M38_ACLK",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "SLR1/interconnect_axilite_user_M38_AXI",
+         "interfaceRef" : "M38_AXI",
+         "dataWidth" : "32",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "aximm",
+         "memPort" : "M_AXI_GP",
+         "spTag" : "GP"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M39_ACLK",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "SLR1/interconnect_axilite_user_M39_AXI",
+         "interfaceRef" : "M39_AXI",
+         "dataWidth" : "32",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "aximm",
+         "memPort" : "M_AXI_GP",
+         "spTag" : "GP"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M40_ACLK",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "SLR1/interconnect_axilite_user_M40_AXI",
+         "interfaceRef" : "M40_AXI",
+         "dataWidth" : "32",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "aximm",
+         "memPort" : "M_AXI_GP",
+         "spTag" : "GP"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M41_ACLK",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "SLR1/interconnect_axilite_user_M41_AXI",
+         "interfaceRef" : "M41_AXI",
+         "dataWidth" : "32",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "aximm",
+         "memPort" : "M_AXI_GP",
+         "spTag" : "GP"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M42_ACLK",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "SLR1/interconnect_axilite_user_M42_AXI",
+         "interfaceRef" : "M42_AXI",
+         "dataWidth" : "32",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "aximm",
+         "memPort" : "M_AXI_GP",
+         "spTag" : "GP"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M43_ACLK",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "SLR1/interconnect_axilite_user_M43_AXI",
+         "interfaceRef" : "M43_AXI",
+         "dataWidth" : "32",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "aximm",
+         "memPort" : "M_AXI_GP",
+         "spTag" : "GP"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M44_ACLK",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "SLR1/interconnect_axilite_user_M44_AXI",
+         "interfaceRef" : "M44_AXI",
+         "dataWidth" : "32",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "aximm",
+         "memPort" : "M_AXI_GP",
+         "spTag" : "GP"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M45_ACLK",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "SLR1/interconnect_axilite_user_M45_AXI",
+         "interfaceRef" : "M45_AXI",
+         "dataWidth" : "32",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "aximm",
+         "memPort" : "M_AXI_GP",
+         "spTag" : "GP"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M46_ACLK",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "SLR1/interconnect_axilite_user_M46_AXI",
+         "interfaceRef" : "M46_AXI",
+         "dataWidth" : "32",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "aximm",
+         "memPort" : "M_AXI_GP",
+         "spTag" : "GP"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M47_ACLK",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "SLR1/interconnect_axilite_user_M47_AXI",
+         "interfaceRef" : "M47_AXI",
+         "dataWidth" : "32",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "aximm",
+         "memPort" : "M_AXI_GP",
+         "spTag" : "GP"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M48_ACLK",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "SLR1/interconnect_axilite_user_M48_AXI",
+         "interfaceRef" : "M48_AXI",
+         "dataWidth" : "32",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "aximm",
+         "memPort" : "M_AXI_GP",
+         "spTag" : "GP"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M49_ACLK",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "SLR1/interconnect_axilite_user_M49_AXI",
+         "interfaceRef" : "M49_AXI",
+         "dataWidth" : "32",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "aximm",
+         "memPort" : "M_AXI_GP",
+         "spTag" : "GP"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M50_ACLK",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "SLR1/interconnect_axilite_user_M50_AXI",
+         "interfaceRef" : "M50_AXI",
+         "dataWidth" : "32",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "aximm",
+         "memPort" : "M_AXI_GP",
+         "spTag" : "GP"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M51_ACLK",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "SLR1/interconnect_axilite_user_M51_AXI",
+         "interfaceRef" : "M51_AXI",
+         "dataWidth" : "32",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "aximm",
+         "memPort" : "M_AXI_GP",
+         "spTag" : "GP"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M52_ACLK",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "SLR1/interconnect_axilite_user_M52_AXI",
+         "interfaceRef" : "M52_AXI",
+         "dataWidth" : "32",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "aximm",
+         "memPort" : "M_AXI_GP",
+         "spTag" : "GP"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M53_ACLK",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "SLR1/interconnect_axilite_user_M53_AXI",
+         "interfaceRef" : "M53_AXI",
+         "dataWidth" : "32",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "aximm",
+         "memPort" : "M_AXI_GP",
+         "spTag" : "GP"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M54_ACLK",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "SLR1/interconnect_axilite_user_M54_AXI",
+         "interfaceRef" : "M54_AXI",
+         "dataWidth" : "32",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "aximm",
+         "memPort" : "M_AXI_GP",
+         "spTag" : "GP"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M55_ACLK",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "SLR1/interconnect_axilite_user_M55_AXI",
+         "interfaceRef" : "M55_AXI",
+         "dataWidth" : "32",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "aximm",
+         "memPort" : "M_AXI_GP",
+         "spTag" : "GP"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M56_ACLK",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "SLR1/interconnect_axilite_user_M56_AXI",
+         "interfaceRef" : "M56_AXI",
+         "dataWidth" : "32",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "aximm",
+         "memPort" : "M_AXI_GP",
+         "spTag" : "GP"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M57_ACLK",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "SLR1/interconnect_axilite_user_M57_AXI",
+         "interfaceRef" : "M57_AXI",
+         "dataWidth" : "32",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "aximm",
+         "memPort" : "M_AXI_GP",
+         "spTag" : "GP"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M58_ACLK",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "SLR1/interconnect_axilite_user_M58_AXI",
+         "interfaceRef" : "M58_AXI",
+         "dataWidth" : "32",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "aximm",
+         "memPort" : "M_AXI_GP",
+         "spTag" : "GP"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M59_ACLK",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "SLR1/interconnect_axilite_user_M59_AXI",
+         "interfaceRef" : "M59_AXI",
+         "dataWidth" : "32",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "aximm",
+         "memPort" : "M_AXI_GP",
+         "spTag" : "GP"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M60_ACLK",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "SLR1/interconnect_axilite_user_M60_AXI",
+         "interfaceRef" : "M60_AXI",
+         "dataWidth" : "32",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "aximm",
+         "memPort" : "M_AXI_GP",
+         "spTag" : "GP"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M61_ACLK",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "SLR1/interconnect_axilite_user_M61_AXI",
+         "interfaceRef" : "M61_AXI",
+         "dataWidth" : "32",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "aximm",
+         "memPort" : "M_AXI_GP",
+         "spTag" : "GP"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M62_ACLK",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "SLR1/interconnect_axilite_user_M62_AXI",
+         "interfaceRef" : "M62_AXI",
+         "dataWidth" : "32",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "aximm",
+         "memPort" : "M_AXI_GP",
+         "spTag" : "GP"
+      },
+      {
+         "instRef" : "hmss_0",
+         "clockRef" : "__UNKNOWN__",
+         "numIdBits" : "0",
+         "mode" : "slave",
+         "name" : "hmss_0",
+         "dataWidth" : "256",
+         "compRef" : "hbm_memory_subsystem",
+         "typeRef" : "aximm",
+         "addressSegments" : [
+            {
+               "index" : "0",
+               "slr" : "SLR0",
+               "maxMasters" : "30",
+               "auto" : "preferred",
+               "baseName" : "HBM_MEM00",
+               "memoryInstance" : "hmss_0"
+            },
+            {
+               "index" : "1",
+               "slr" : "SLR0",
+               "maxMasters" : "30",
+               "auto" : "true",
+               "baseName" : "HBM_MEM01",
+               "memoryInstance" : "hmss_0"
+            },
+            {
+               "index" : "2",
+               "slr" : "SLR0",
+               "maxMasters" : "30",
+               "auto" : "true",
+               "baseName" : "HBM_MEM02",
+               "memoryInstance" : "hmss_0"
+            },
+            {
+               "index" : "3",
+               "slr" : "SLR0",
+               "maxMasters" : "30",
+               "auto" : "true",
+               "baseName" : "HBM_MEM03",
+               "memoryInstance" : "hmss_0"
+            },
+            {
+               "index" : "4",
+               "slr" : "SLR0",
+               "maxMasters" : "30",
+               "auto" : "true",
+               "baseName" : "HBM_MEM04",
+               "memoryInstance" : "hmss_0"
+            },
+            {
+               "index" : "5",
+               "slr" : "SLR0",
+               "maxMasters" : "30",
+               "auto" : "true",
+               "baseName" : "HBM_MEM05",
+               "memoryInstance" : "hmss_0"
+            },
+            {
+               "index" : "6",
+               "slr" : "SLR0",
+               "maxMasters" : "30",
+               "auto" : "true",
+               "baseName" : "HBM_MEM06",
+               "memoryInstance" : "hmss_0"
+            },
+            {
+               "index" : "7",
+               "slr" : "SLR0",
+               "maxMasters" : "30",
+               "auto" : "true",
+               "baseName" : "HBM_MEM07",
+               "memoryInstance" : "hmss_0"
+            },
+            {
+               "index" : "8",
+               "slr" : "SLR0",
+               "maxMasters" : "30",
+               "auto" : "true",
+               "baseName" : "HBM_MEM08",
+               "memoryInstance" : "hmss_0"
+            },
+            {
+               "index" : "9",
+               "slr" : "SLR0",
+               "maxMasters" : "30",
+               "auto" : "true",
+               "baseName" : "HBM_MEM09",
+               "memoryInstance" : "hmss_0"
+            },
+            {
+               "index" : "10",
+               "slr" : "SLR0",
+               "maxMasters" : "30",
+               "auto" : "true",
+               "baseName" : "HBM_MEM10",
+               "memoryInstance" : "hmss_0"
+            },
+            {
+               "index" : "11",
+               "slr" : "SLR0",
+               "maxMasters" : "30",
+               "auto" : "true",
+               "baseName" : "HBM_MEM11",
+               "memoryInstance" : "hmss_0"
+            },
+            {
+               "index" : "12",
+               "slr" : "SLR0",
+               "maxMasters" : "30",
+               "auto" : "true",
+               "baseName" : "HBM_MEM12",
+               "memoryInstance" : "hmss_0"
+            },
+            {
+               "index" : "13",
+               "slr" : "SLR0",
+               "maxMasters" : "30",
+               "auto" : "true",
+               "baseName" : "HBM_MEM13",
+               "memoryInstance" : "hmss_0"
+            },
+            {
+               "index" : "14",
+               "slr" : "SLR0",
+               "maxMasters" : "30",
+               "auto" : "true",
+               "baseName" : "HBM_MEM14",
+               "memoryInstance" : "hmss_0"
+            },
+            {
+               "index" : "15",
+               "slr" : "SLR0",
+               "maxMasters" : "30",
+               "auto" : "true",
+               "baseName" : "HBM_MEM15",
+               "memoryInstance" : "hmss_0"
+            },
+            {
+               "index" : "16",
+               "slr" : "SLR0",
+               "maxMasters" : "30",
+               "auto" : "true",
+               "baseName" : "HBM_MEM16",
+               "memoryInstance" : "hmss_0"
+            },
+            {
+               "index" : "17",
+               "slr" : "SLR0",
+               "maxMasters" : "30",
+               "auto" : "true",
+               "baseName" : "HBM_MEM17",
+               "memoryInstance" : "hmss_0"
+            },
+            {
+               "index" : "18",
+               "slr" : "SLR0",
+               "maxMasters" : "30",
+               "auto" : "true",
+               "baseName" : "HBM_MEM18",
+               "memoryInstance" : "hmss_0"
+            },
+            {
+               "index" : "19",
+               "slr" : "SLR0",
+               "maxMasters" : "30",
+               "auto" : "true",
+               "baseName" : "HBM_MEM19",
+               "memoryInstance" : "hmss_0"
+            },
+            {
+               "index" : "20",
+               "slr" : "SLR0",
+               "maxMasters" : "30",
+               "auto" : "true",
+               "baseName" : "HBM_MEM20",
+               "memoryInstance" : "hmss_0"
+            },
+            {
+               "index" : "21",
+               "slr" : "SLR0",
+               "maxMasters" : "30",
+               "auto" : "true",
+               "baseName" : "HBM_MEM21",
+               "memoryInstance" : "hmss_0"
+            },
+            {
+               "index" : "22",
+               "slr" : "SLR0",
+               "maxMasters" : "30",
+               "auto" : "true",
+               "baseName" : "HBM_MEM22",
+               "memoryInstance" : "hmss_0"
+            },
+            {
+               "index" : "23",
+               "slr" : "SLR0",
+               "maxMasters" : "30",
+               "auto" : "true",
+               "baseName" : "HBM_MEM23",
+               "memoryInstance" : "hmss_0"
+            },
+            {
+               "index" : "24",
+               "slr" : "SLR0",
+               "maxMasters" : "30",
+               "auto" : "true",
+               "baseName" : "HBM_MEM24",
+               "memoryInstance" : "hmss_0"
+            },
+            {
+               "index" : "25",
+               "slr" : "SLR0",
+               "maxMasters" : "30",
+               "auto" : "true",
+               "baseName" : "HBM_MEM25",
+               "memoryInstance" : "hmss_0"
+            },
+            {
+               "index" : "26",
+               "slr" : "SLR0",
+               "maxMasters" : "30",
+               "auto" : "true",
+               "baseName" : "HBM_MEM26",
+               "memoryInstance" : "hmss_0"
+            },
+            {
+               "index" : "27",
+               "slr" : "SLR0",
+               "maxMasters" : "30",
+               "auto" : "true",
+               "baseName" : "HBM_MEM27",
+               "memoryInstance" : "hmss_0"
+            },
+            {
+               "index" : "28",
+               "slr" : "SLR0",
+               "maxMasters" : "30",
+               "auto" : "true",
+               "baseName" : "HBM_MEM28",
+               "memoryInstance" : "hmss_0"
+            },
+            {
+               "index" : "29",
+               "slr" : "SLR0",
+               "maxMasters" : "30",
+               "auto" : "true",
+               "baseName" : "HBM_MEM29",
+               "memoryInstance" : "hmss_0"
+            },
+            {
+               "index" : "30",
+               "slr" : "SLR0",
+               "maxMasters" : "30",
+               "auto" : "true",
+               "baseName" : "HBM_MEM30",
+               "memoryInstance" : "hmss_0"
+            },
+            {
+               "index" : "31",
+               "slr" : "SLR0",
+               "maxMasters" : "30",
+               "auto" : "true",
+               "baseName" : "HBM_MEM31",
+               "memoryInstance" : "hmss_0"
+            }
+         ],
+         "spTag" : "HBM",
+         "memPort" : "memss"
+      },
+      {
+         "instRef" : "memory_subsystem",
+         "clockRef" : "__UNKNOWN__",
+         "numIdBits" : "0",
+         "mode" : "slave",
+         "name" : "memory_subsystem",
+         "dataWidth" : "128",
+         "compRef" : "sdx_memory_subsystem",
+         "typeRef" : "aximm",
+         "addressSegments" : [
+            {
+               "index" : "0",
+               "slr" : "SLR0",
+               "maxMasters" : "15",
+               "auto" : "true",
+               "baseName" : "PLRAM_MEM00",
+               "memoryInstance" : "memory_subsystem"
+            },
+            {
+               "index" : "1",
+               "slr" : "SLR0",
+               "maxMasters" : "15",
+               "auto" : "true",
+               "baseName" : "PLRAM_MEM01",
+               "memoryInstance" : "memory_subsystem"
+            },
+            {
+               "index" : "2",
+               "slr" : "SLR1",
+               "maxMasters" : "15",
+               "auto" : "true",
+               "baseName" : "PLRAM_MEM02",
+               "memoryInstance" : "memory_subsystem"
+            },
+            {
+               "index" : "3",
+               "slr" : "SLR1",
+               "maxMasters" : "15",
+               "auto" : "true",
+               "baseName" : "PLRAM_MEM03",
+               "memoryInstance" : "memory_subsystem"
+            }
+         ],
+         "spTag" : "PLRAM",
+         "memPort" : "memss"
+      },
+      {
+         "instRef" : "_bd_top",
+         "dataWidth" : "0",
+         "numIdBits" : "0",
+         "compRef" : "_bd_top",
+         "typeRef" : "clock",
+         "mode" : "master",
+         "name" : "_bd_top_blp_s_aclk_ctrl_00",
+         "interfaceRef" : "blp_s_aclk_ctrl_00"
+      },
+      {
+         "instRef" : "_bd_top",
+         "dataWidth" : "0",
+         "numIdBits" : "0",
+         "compRef" : "_bd_top",
+         "typeRef" : "clock",
+         "mode" : "master",
+         "name" : "_bd_top_clk_kernel2_in",
+         "interfaceRef" : "clk_kernel2_in"
+      },
+      {
+         "instRef" : "_bd_top",
+         "dataWidth" : "0",
+         "numIdBits" : "0",
+         "compRef" : "_bd_top",
+         "typeRef" : "clock",
+         "mode" : "master",
+         "name" : "_bd_top_clk_kernel_in",
+         "interfaceRef" : "clk_kernel_in"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "dataWidth" : "0",
+         "numIdBits" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "clock",
+         "mode" : "slave",
+         "name" : "SLR0/interconnect_axilite_user_M01_ACLK",
+         "interfaceRef" : "M01_ACLK"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "dataWidth" : "0",
+         "numIdBits" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "clock",
+         "mode" : "slave",
+         "name" : "SLR0/interconnect_axilite_user_M02_ACLK",
+         "interfaceRef" : "M02_ACLK"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "dataWidth" : "0",
+         "numIdBits" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "clock",
+         "mode" : "slave",
+         "name" : "SLR0/interconnect_axilite_user_M03_ACLK",
+         "interfaceRef" : "M03_ACLK"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "dataWidth" : "0",
+         "numIdBits" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "clock",
+         "mode" : "slave",
+         "name" : "SLR0/interconnect_axilite_user_M04_ACLK",
+         "interfaceRef" : "M04_ACLK"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "dataWidth" : "0",
+         "numIdBits" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "clock",
+         "mode" : "slave",
+         "name" : "SLR0/interconnect_axilite_user_M05_ACLK",
+         "interfaceRef" : "M05_ACLK"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "dataWidth" : "0",
+         "numIdBits" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "clock",
+         "mode" : "slave",
+         "name" : "SLR0/interconnect_axilite_user_M06_ACLK",
+         "interfaceRef" : "M06_ACLK"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "dataWidth" : "0",
+         "numIdBits" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "clock",
+         "mode" : "slave",
+         "name" : "SLR0/interconnect_axilite_user_M07_ACLK",
+         "interfaceRef" : "M07_ACLK"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "dataWidth" : "0",
+         "numIdBits" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "clock",
+         "mode" : "slave",
+         "name" : "SLR0/interconnect_axilite_user_M08_ACLK",
+         "interfaceRef" : "M08_ACLK"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "dataWidth" : "0",
+         "numIdBits" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "clock",
+         "mode" : "slave",
+         "name" : "SLR0/interconnect_axilite_user_M09_ACLK",
+         "interfaceRef" : "M09_ACLK"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "dataWidth" : "0",
+         "numIdBits" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "clock",
+         "mode" : "slave",
+         "name" : "SLR0/interconnect_axilite_user_M10_ACLK",
+         "interfaceRef" : "M10_ACLK"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "dataWidth" : "0",
+         "numIdBits" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "clock",
+         "mode" : "slave",
+         "name" : "SLR0/interconnect_axilite_user_M11_ACLK",
+         "interfaceRef" : "M11_ACLK"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "dataWidth" : "0",
+         "numIdBits" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "clock",
+         "mode" : "slave",
+         "name" : "SLR0/interconnect_axilite_user_M12_ACLK",
+         "interfaceRef" : "M12_ACLK"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "dataWidth" : "0",
+         "numIdBits" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "clock",
+         "mode" : "slave",
+         "name" : "SLR0/interconnect_axilite_user_M13_ACLK",
+         "interfaceRef" : "M13_ACLK"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "dataWidth" : "0",
+         "numIdBits" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "clock",
+         "mode" : "slave",
+         "name" : "SLR0/interconnect_axilite_user_M14_ACLK",
+         "interfaceRef" : "M14_ACLK"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "dataWidth" : "0",
+         "numIdBits" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "clock",
+         "mode" : "slave",
+         "name" : "SLR0/interconnect_axilite_user_M15_ACLK",
+         "interfaceRef" : "M15_ACLK"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "dataWidth" : "0",
+         "numIdBits" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "clock",
+         "mode" : "slave",
+         "name" : "SLR0/interconnect_axilite_user_M16_ACLK",
+         "interfaceRef" : "M16_ACLK"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "dataWidth" : "0",
+         "numIdBits" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "clock",
+         "mode" : "slave",
+         "name" : "SLR0/interconnect_axilite_user_M17_ACLK",
+         "interfaceRef" : "M17_ACLK"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "dataWidth" : "0",
+         "numIdBits" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "clock",
+         "mode" : "slave",
+         "name" : "SLR0/interconnect_axilite_user_M18_ACLK",
+         "interfaceRef" : "M18_ACLK"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "dataWidth" : "0",
+         "numIdBits" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "clock",
+         "mode" : "slave",
+         "name" : "SLR0/interconnect_axilite_user_M19_ACLK",
+         "interfaceRef" : "M19_ACLK"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "dataWidth" : "0",
+         "numIdBits" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "clock",
+         "mode" : "slave",
+         "name" : "SLR0/interconnect_axilite_user_M20_ACLK",
+         "interfaceRef" : "M20_ACLK"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "dataWidth" : "0",
+         "numIdBits" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "clock",
+         "mode" : "slave",
+         "name" : "SLR0/interconnect_axilite_user_M21_ACLK",
+         "interfaceRef" : "M21_ACLK"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "dataWidth" : "0",
+         "numIdBits" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "clock",
+         "mode" : "slave",
+         "name" : "SLR0/interconnect_axilite_user_M22_ACLK",
+         "interfaceRef" : "M22_ACLK"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "dataWidth" : "0",
+         "numIdBits" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "clock",
+         "mode" : "slave",
+         "name" : "SLR0/interconnect_axilite_user_M23_ACLK",
+         "interfaceRef" : "M23_ACLK"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "dataWidth" : "0",
+         "numIdBits" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "clock",
+         "mode" : "slave",
+         "name" : "SLR0/interconnect_axilite_user_M24_ACLK",
+         "interfaceRef" : "M24_ACLK"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "dataWidth" : "0",
+         "numIdBits" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "clock",
+         "mode" : "slave",
+         "name" : "SLR0/interconnect_axilite_user_M25_ACLK",
+         "interfaceRef" : "M25_ACLK"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "dataWidth" : "0",
+         "numIdBits" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "clock",
+         "mode" : "slave",
+         "name" : "SLR0/interconnect_axilite_user_M26_ACLK",
+         "interfaceRef" : "M26_ACLK"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "dataWidth" : "0",
+         "numIdBits" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "clock",
+         "mode" : "slave",
+         "name" : "SLR0/interconnect_axilite_user_M27_ACLK",
+         "interfaceRef" : "M27_ACLK"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "dataWidth" : "0",
+         "numIdBits" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "clock",
+         "mode" : "slave",
+         "name" : "SLR0/interconnect_axilite_user_M28_ACLK",
+         "interfaceRef" : "M28_ACLK"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "dataWidth" : "0",
+         "numIdBits" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "clock",
+         "mode" : "slave",
+         "name" : "SLR0/interconnect_axilite_user_M29_ACLK",
+         "interfaceRef" : "M29_ACLK"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "dataWidth" : "0",
+         "numIdBits" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "clock",
+         "mode" : "slave",
+         "name" : "SLR0/interconnect_axilite_user_M30_ACLK",
+         "interfaceRef" : "M30_ACLK"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "dataWidth" : "0",
+         "numIdBits" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "clock",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M01_ACLK",
+         "interfaceRef" : "M01_ACLK"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "dataWidth" : "0",
+         "numIdBits" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "clock",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M02_ACLK",
+         "interfaceRef" : "M02_ACLK"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "dataWidth" : "0",
+         "numIdBits" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "clock",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M03_ACLK",
+         "interfaceRef" : "M03_ACLK"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "dataWidth" : "0",
+         "numIdBits" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "clock",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M04_ACLK",
+         "interfaceRef" : "M04_ACLK"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "dataWidth" : "0",
+         "numIdBits" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "clock",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M05_ACLK",
+         "interfaceRef" : "M05_ACLK"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "dataWidth" : "0",
+         "numIdBits" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "clock",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M06_ACLK",
+         "interfaceRef" : "M06_ACLK"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "dataWidth" : "0",
+         "numIdBits" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "clock",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M07_ACLK",
+         "interfaceRef" : "M07_ACLK"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "dataWidth" : "0",
+         "numIdBits" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "clock",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M08_ACLK",
+         "interfaceRef" : "M08_ACLK"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "dataWidth" : "0",
+         "numIdBits" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "clock",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M09_ACLK",
+         "interfaceRef" : "M09_ACLK"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "dataWidth" : "0",
+         "numIdBits" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "clock",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M10_ACLK",
+         "interfaceRef" : "M10_ACLK"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "dataWidth" : "0",
+         "numIdBits" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "clock",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M11_ACLK",
+         "interfaceRef" : "M11_ACLK"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "dataWidth" : "0",
+         "numIdBits" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "clock",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M12_ACLK",
+         "interfaceRef" : "M12_ACLK"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "dataWidth" : "0",
+         "numIdBits" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "clock",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M13_ACLK",
+         "interfaceRef" : "M13_ACLK"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "dataWidth" : "0",
+         "numIdBits" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "clock",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M14_ACLK",
+         "interfaceRef" : "M14_ACLK"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "dataWidth" : "0",
+         "numIdBits" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "clock",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M15_ACLK",
+         "interfaceRef" : "M15_ACLK"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "dataWidth" : "0",
+         "numIdBits" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "clock",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M16_ACLK",
+         "interfaceRef" : "M16_ACLK"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "dataWidth" : "0",
+         "numIdBits" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "clock",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M17_ACLK",
+         "interfaceRef" : "M17_ACLK"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "dataWidth" : "0",
+         "numIdBits" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "clock",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M18_ACLK",
+         "interfaceRef" : "M18_ACLK"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "dataWidth" : "0",
+         "numIdBits" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "clock",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M19_ACLK",
+         "interfaceRef" : "M19_ACLK"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "dataWidth" : "0",
+         "numIdBits" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "clock",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M20_ACLK",
+         "interfaceRef" : "M20_ACLK"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "dataWidth" : "0",
+         "numIdBits" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "clock",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M21_ACLK",
+         "interfaceRef" : "M21_ACLK"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "dataWidth" : "0",
+         "numIdBits" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "clock",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M22_ACLK",
+         "interfaceRef" : "M22_ACLK"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "dataWidth" : "0",
+         "numIdBits" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "clock",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M23_ACLK",
+         "interfaceRef" : "M23_ACLK"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "dataWidth" : "0",
+         "numIdBits" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "clock",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M24_ACLK",
+         "interfaceRef" : "M24_ACLK"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "dataWidth" : "0",
+         "numIdBits" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "clock",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M25_ACLK",
+         "interfaceRef" : "M25_ACLK"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "dataWidth" : "0",
+         "numIdBits" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "clock",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M26_ACLK",
+         "interfaceRef" : "M26_ACLK"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "dataWidth" : "0",
+         "numIdBits" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "clock",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M27_ACLK",
+         "interfaceRef" : "M27_ACLK"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "dataWidth" : "0",
+         "numIdBits" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "clock",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M28_ACLK",
+         "interfaceRef" : "M28_ACLK"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "dataWidth" : "0",
+         "numIdBits" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "clock",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M29_ACLK",
+         "interfaceRef" : "M29_ACLK"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "dataWidth" : "0",
+         "numIdBits" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "clock",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M30_ACLK",
+         "interfaceRef" : "M30_ACLK"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "dataWidth" : "0",
+         "numIdBits" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "clock",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M31_ACLK",
+         "interfaceRef" : "M31_ACLK"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "dataWidth" : "0",
+         "numIdBits" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "clock",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M32_ACLK",
+         "interfaceRef" : "M32_ACLK"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "dataWidth" : "0",
+         "numIdBits" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "clock",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M33_ACLK",
+         "interfaceRef" : "M33_ACLK"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "dataWidth" : "0",
+         "numIdBits" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "clock",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M34_ACLK",
+         "interfaceRef" : "M34_ACLK"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "dataWidth" : "0",
+         "numIdBits" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "clock",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M35_ACLK",
+         "interfaceRef" : "M35_ACLK"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "dataWidth" : "0",
+         "numIdBits" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "clock",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M36_ACLK",
+         "interfaceRef" : "M36_ACLK"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "dataWidth" : "0",
+         "numIdBits" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "clock",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M37_ACLK",
+         "interfaceRef" : "M37_ACLK"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "dataWidth" : "0",
+         "numIdBits" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "clock",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M38_ACLK",
+         "interfaceRef" : "M38_ACLK"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "dataWidth" : "0",
+         "numIdBits" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "clock",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M39_ACLK",
+         "interfaceRef" : "M39_ACLK"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "dataWidth" : "0",
+         "numIdBits" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "clock",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M40_ACLK",
+         "interfaceRef" : "M40_ACLK"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "dataWidth" : "0",
+         "numIdBits" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "clock",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M41_ACLK",
+         "interfaceRef" : "M41_ACLK"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "dataWidth" : "0",
+         "numIdBits" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "clock",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M42_ACLK",
+         "interfaceRef" : "M42_ACLK"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "dataWidth" : "0",
+         "numIdBits" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "clock",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M43_ACLK",
+         "interfaceRef" : "M43_ACLK"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "dataWidth" : "0",
+         "numIdBits" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "clock",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M44_ACLK",
+         "interfaceRef" : "M44_ACLK"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "dataWidth" : "0",
+         "numIdBits" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "clock",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M45_ACLK",
+         "interfaceRef" : "M45_ACLK"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "dataWidth" : "0",
+         "numIdBits" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "clock",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M46_ACLK",
+         "interfaceRef" : "M46_ACLK"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "dataWidth" : "0",
+         "numIdBits" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "clock",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M47_ACLK",
+         "interfaceRef" : "M47_ACLK"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "dataWidth" : "0",
+         "numIdBits" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "clock",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M48_ACLK",
+         "interfaceRef" : "M48_ACLK"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "dataWidth" : "0",
+         "numIdBits" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "clock",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M49_ACLK",
+         "interfaceRef" : "M49_ACLK"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "dataWidth" : "0",
+         "numIdBits" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "clock",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M50_ACLK",
+         "interfaceRef" : "M50_ACLK"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "dataWidth" : "0",
+         "numIdBits" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "clock",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M51_ACLK",
+         "interfaceRef" : "M51_ACLK"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "dataWidth" : "0",
+         "numIdBits" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "clock",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M52_ACLK",
+         "interfaceRef" : "M52_ACLK"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "dataWidth" : "0",
+         "numIdBits" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "clock",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M53_ACLK",
+         "interfaceRef" : "M53_ACLK"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "dataWidth" : "0",
+         "numIdBits" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "clock",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M54_ACLK",
+         "interfaceRef" : "M54_ACLK"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "dataWidth" : "0",
+         "numIdBits" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "clock",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M55_ACLK",
+         "interfaceRef" : "M55_ACLK"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "dataWidth" : "0",
+         "numIdBits" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "clock",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M56_ACLK",
+         "interfaceRef" : "M56_ACLK"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "dataWidth" : "0",
+         "numIdBits" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "clock",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M57_ACLK",
+         "interfaceRef" : "M57_ACLK"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "dataWidth" : "0",
+         "numIdBits" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "clock",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M58_ACLK",
+         "interfaceRef" : "M58_ACLK"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "dataWidth" : "0",
+         "numIdBits" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "clock",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M59_ACLK",
+         "interfaceRef" : "M59_ACLK"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "dataWidth" : "0",
+         "numIdBits" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "clock",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M60_ACLK",
+         "interfaceRef" : "M60_ACLK"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "dataWidth" : "0",
+         "numIdBits" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "clock",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M61_ACLK",
+         "interfaceRef" : "M61_ACLK"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "dataWidth" : "0",
+         "numIdBits" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "clock",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M62_ACLK",
+         "interfaceRef" : "M62_ACLK"
+      },
+      {
+         "instRef" : "proc_sys_reset_ctrl_slr0",
+         "clockRef" : "_bd_top_blp_s_aclk_ctrl_00",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "proc_sys_reset_ctrl_slr0_peripheral_reset",
+         "interfaceRef" : "peripheral_reset",
+         "dataWidth" : "0",
+         "compRef" : "proc_sys_reset",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "proc_sys_reset_ctrl_slr0",
+         "clockRef" : "_bd_top_blp_s_aclk_ctrl_00",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "proc_sys_reset_ctrl_slr0_interconnect_aresetn",
+         "interfaceRef" : "interconnect_aresetn",
+         "dataWidth" : "0",
+         "compRef" : "proc_sys_reset",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "proc_sys_reset_ctrl_slr0",
+         "clockRef" : "_bd_top_blp_s_aclk_ctrl_00",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "proc_sys_reset_ctrl_slr0_peripheral_aresetn",
+         "interfaceRef" : "peripheral_aresetn",
+         "dataWidth" : "0",
+         "compRef" : "proc_sys_reset",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "proc_sys_reset_ctrl_slr1",
+         "clockRef" : "_bd_top_blp_s_aclk_ctrl_00",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "proc_sys_reset_ctrl_slr1_peripheral_reset",
+         "interfaceRef" : "peripheral_reset",
+         "dataWidth" : "0",
+         "compRef" : "proc_sys_reset",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "proc_sys_reset_ctrl_slr1",
+         "clockRef" : "_bd_top_blp_s_aclk_ctrl_00",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "proc_sys_reset_ctrl_slr1_interconnect_aresetn",
+         "interfaceRef" : "interconnect_aresetn",
+         "dataWidth" : "0",
+         "compRef" : "proc_sys_reset",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "proc_sys_reset_ctrl_slr1",
+         "clockRef" : "_bd_top_blp_s_aclk_ctrl_00",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "proc_sys_reset_ctrl_slr1_peripheral_aresetn",
+         "interfaceRef" : "peripheral_aresetn",
+         "dataWidth" : "0",
+         "compRef" : "proc_sys_reset",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "proc_sys_reset_kernel2_slr0",
+         "clockRef" : "_bd_top_clk_kernel2_in",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "proc_sys_reset_kernel2_slr0_peripheral_reset",
+         "interfaceRef" : "peripheral_reset",
+         "dataWidth" : "0",
+         "compRef" : "proc_sys_reset",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "proc_sys_reset_kernel2_slr0",
+         "clockRef" : "_bd_top_clk_kernel2_in",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "proc_sys_reset_kernel2_slr0_interconnect_aresetn",
+         "interfaceRef" : "interconnect_aresetn",
+         "dataWidth" : "0",
+         "compRef" : "proc_sys_reset",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "proc_sys_reset_kernel2_slr0",
+         "clockRef" : "_bd_top_clk_kernel2_in",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "proc_sys_reset_kernel2_slr0_peripheral_aresetn",
+         "interfaceRef" : "peripheral_aresetn",
+         "dataWidth" : "0",
+         "compRef" : "proc_sys_reset",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "proc_sys_reset_kernel2_slr1",
+         "clockRef" : "_bd_top_clk_kernel2_in",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "proc_sys_reset_kernel2_slr1_peripheral_reset",
+         "interfaceRef" : "peripheral_reset",
+         "dataWidth" : "0",
+         "compRef" : "proc_sys_reset",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "proc_sys_reset_kernel2_slr1",
+         "clockRef" : "_bd_top_clk_kernel2_in",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "proc_sys_reset_kernel2_slr1_interconnect_aresetn",
+         "interfaceRef" : "interconnect_aresetn",
+         "dataWidth" : "0",
+         "compRef" : "proc_sys_reset",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "proc_sys_reset_kernel2_slr1",
+         "clockRef" : "_bd_top_clk_kernel2_in",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "proc_sys_reset_kernel2_slr1_peripheral_aresetn",
+         "interfaceRef" : "peripheral_aresetn",
+         "dataWidth" : "0",
+         "compRef" : "proc_sys_reset",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "proc_sys_reset_kernel_slr0",
+         "clockRef" : "_bd_top_clk_kernel_in",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "proc_sys_reset_kernel_slr0_peripheral_reset",
+         "interfaceRef" : "peripheral_reset",
+         "dataWidth" : "0",
+         "compRef" : "proc_sys_reset",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "proc_sys_reset_kernel_slr0",
+         "clockRef" : "_bd_top_clk_kernel_in",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "proc_sys_reset_kernel_slr0_interconnect_aresetn",
+         "interfaceRef" : "interconnect_aresetn",
+         "dataWidth" : "0",
+         "compRef" : "proc_sys_reset",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "proc_sys_reset_kernel_slr0",
+         "clockRef" : "_bd_top_clk_kernel_in",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "proc_sys_reset_kernel_slr0_peripheral_aresetn",
+         "interfaceRef" : "peripheral_aresetn",
+         "dataWidth" : "0",
+         "compRef" : "proc_sys_reset",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "proc_sys_reset_kernel_slr1",
+         "clockRef" : "_bd_top_clk_kernel_in",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "proc_sys_reset_kernel_slr1_peripheral_reset",
+         "interfaceRef" : "peripheral_reset",
+         "dataWidth" : "0",
+         "compRef" : "proc_sys_reset",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "proc_sys_reset_kernel_slr1",
+         "clockRef" : "_bd_top_clk_kernel_in",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "proc_sys_reset_kernel_slr1_interconnect_aresetn",
+         "interfaceRef" : "interconnect_aresetn",
+         "dataWidth" : "0",
+         "compRef" : "proc_sys_reset",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "proc_sys_reset_kernel_slr1",
+         "clockRef" : "_bd_top_clk_kernel_in",
+         "numIdBits" : "0",
+         "mode" : "master",
+         "name" : "proc_sys_reset_kernel_slr1_peripheral_aresetn",
+         "interfaceRef" : "peripheral_aresetn",
+         "dataWidth" : "0",
+         "compRef" : "proc_sys_reset",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "clockRef" : "SLR0/interconnect_axilite_user_M01_ACLK",
+         "numIdBits" : "0",
+         "mode" : "slave",
+         "name" : "SLR0/interconnect_axilite_user_M01_ARESETN",
+         "interfaceRef" : "M01_ARESETN",
+         "dataWidth" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "clockRef" : "SLR0/interconnect_axilite_user_M02_ACLK",
+         "numIdBits" : "0",
+         "mode" : "slave",
+         "name" : "SLR0/interconnect_axilite_user_M02_ARESETN",
+         "interfaceRef" : "M02_ARESETN",
+         "dataWidth" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "clockRef" : "SLR0/interconnect_axilite_user_M03_ACLK",
+         "numIdBits" : "0",
+         "mode" : "slave",
+         "name" : "SLR0/interconnect_axilite_user_M03_ARESETN",
+         "interfaceRef" : "M03_ARESETN",
+         "dataWidth" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "clockRef" : "SLR0/interconnect_axilite_user_M04_ACLK",
+         "numIdBits" : "0",
+         "mode" : "slave",
+         "name" : "SLR0/interconnect_axilite_user_M04_ARESETN",
+         "interfaceRef" : "M04_ARESETN",
+         "dataWidth" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "clockRef" : "SLR0/interconnect_axilite_user_M05_ACLK",
+         "numIdBits" : "0",
+         "mode" : "slave",
+         "name" : "SLR0/interconnect_axilite_user_M05_ARESETN",
+         "interfaceRef" : "M05_ARESETN",
+         "dataWidth" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "clockRef" : "SLR0/interconnect_axilite_user_M06_ACLK",
+         "numIdBits" : "0",
+         "mode" : "slave",
+         "name" : "SLR0/interconnect_axilite_user_M06_ARESETN",
+         "interfaceRef" : "M06_ARESETN",
+         "dataWidth" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "clockRef" : "SLR0/interconnect_axilite_user_M07_ACLK",
+         "numIdBits" : "0",
+         "mode" : "slave",
+         "name" : "SLR0/interconnect_axilite_user_M07_ARESETN",
+         "interfaceRef" : "M07_ARESETN",
+         "dataWidth" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "clockRef" : "SLR0/interconnect_axilite_user_M08_ACLK",
+         "numIdBits" : "0",
+         "mode" : "slave",
+         "name" : "SLR0/interconnect_axilite_user_M08_ARESETN",
+         "interfaceRef" : "M08_ARESETN",
+         "dataWidth" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "clockRef" : "SLR0/interconnect_axilite_user_M09_ACLK",
+         "numIdBits" : "0",
+         "mode" : "slave",
+         "name" : "SLR0/interconnect_axilite_user_M09_ARESETN",
+         "interfaceRef" : "M09_ARESETN",
+         "dataWidth" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "clockRef" : "SLR0/interconnect_axilite_user_M10_ACLK",
+         "numIdBits" : "0",
+         "mode" : "slave",
+         "name" : "SLR0/interconnect_axilite_user_M10_ARESETN",
+         "interfaceRef" : "M10_ARESETN",
+         "dataWidth" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "clockRef" : "SLR0/interconnect_axilite_user_M11_ACLK",
+         "numIdBits" : "0",
+         "mode" : "slave",
+         "name" : "SLR0/interconnect_axilite_user_M11_ARESETN",
+         "interfaceRef" : "M11_ARESETN",
+         "dataWidth" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "clockRef" : "SLR0/interconnect_axilite_user_M12_ACLK",
+         "numIdBits" : "0",
+         "mode" : "slave",
+         "name" : "SLR0/interconnect_axilite_user_M12_ARESETN",
+         "interfaceRef" : "M12_ARESETN",
+         "dataWidth" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "clockRef" : "SLR0/interconnect_axilite_user_M13_ACLK",
+         "numIdBits" : "0",
+         "mode" : "slave",
+         "name" : "SLR0/interconnect_axilite_user_M13_ARESETN",
+         "interfaceRef" : "M13_ARESETN",
+         "dataWidth" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "clockRef" : "SLR0/interconnect_axilite_user_M14_ACLK",
+         "numIdBits" : "0",
+         "mode" : "slave",
+         "name" : "SLR0/interconnect_axilite_user_M14_ARESETN",
+         "interfaceRef" : "M14_ARESETN",
+         "dataWidth" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "clockRef" : "SLR0/interconnect_axilite_user_M15_ACLK",
+         "numIdBits" : "0",
+         "mode" : "slave",
+         "name" : "SLR0/interconnect_axilite_user_M15_ARESETN",
+         "interfaceRef" : "M15_ARESETN",
+         "dataWidth" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "clockRef" : "SLR0/interconnect_axilite_user_M16_ACLK",
+         "numIdBits" : "0",
+         "mode" : "slave",
+         "name" : "SLR0/interconnect_axilite_user_M16_ARESETN",
+         "interfaceRef" : "M16_ARESETN",
+         "dataWidth" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "clockRef" : "SLR0/interconnect_axilite_user_M17_ACLK",
+         "numIdBits" : "0",
+         "mode" : "slave",
+         "name" : "SLR0/interconnect_axilite_user_M17_ARESETN",
+         "interfaceRef" : "M17_ARESETN",
+         "dataWidth" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "clockRef" : "SLR0/interconnect_axilite_user_M18_ACLK",
+         "numIdBits" : "0",
+         "mode" : "slave",
+         "name" : "SLR0/interconnect_axilite_user_M18_ARESETN",
+         "interfaceRef" : "M18_ARESETN",
+         "dataWidth" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "clockRef" : "SLR0/interconnect_axilite_user_M19_ACLK",
+         "numIdBits" : "0",
+         "mode" : "slave",
+         "name" : "SLR0/interconnect_axilite_user_M19_ARESETN",
+         "interfaceRef" : "M19_ARESETN",
+         "dataWidth" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "clockRef" : "SLR0/interconnect_axilite_user_M20_ACLK",
+         "numIdBits" : "0",
+         "mode" : "slave",
+         "name" : "SLR0/interconnect_axilite_user_M20_ARESETN",
+         "interfaceRef" : "M20_ARESETN",
+         "dataWidth" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "clockRef" : "SLR0/interconnect_axilite_user_M21_ACLK",
+         "numIdBits" : "0",
+         "mode" : "slave",
+         "name" : "SLR0/interconnect_axilite_user_M21_ARESETN",
+         "interfaceRef" : "M21_ARESETN",
+         "dataWidth" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "clockRef" : "SLR0/interconnect_axilite_user_M22_ACLK",
+         "numIdBits" : "0",
+         "mode" : "slave",
+         "name" : "SLR0/interconnect_axilite_user_M22_ARESETN",
+         "interfaceRef" : "M22_ARESETN",
+         "dataWidth" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "clockRef" : "SLR0/interconnect_axilite_user_M23_ACLK",
+         "numIdBits" : "0",
+         "mode" : "slave",
+         "name" : "SLR0/interconnect_axilite_user_M23_ARESETN",
+         "interfaceRef" : "M23_ARESETN",
+         "dataWidth" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "clockRef" : "SLR0/interconnect_axilite_user_M24_ACLK",
+         "numIdBits" : "0",
+         "mode" : "slave",
+         "name" : "SLR0/interconnect_axilite_user_M24_ARESETN",
+         "interfaceRef" : "M24_ARESETN",
+         "dataWidth" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "clockRef" : "SLR0/interconnect_axilite_user_M25_ACLK",
+         "numIdBits" : "0",
+         "mode" : "slave",
+         "name" : "SLR0/interconnect_axilite_user_M25_ARESETN",
+         "interfaceRef" : "M25_ARESETN",
+         "dataWidth" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "clockRef" : "SLR0/interconnect_axilite_user_M26_ACLK",
+         "numIdBits" : "0",
+         "mode" : "slave",
+         "name" : "SLR0/interconnect_axilite_user_M26_ARESETN",
+         "interfaceRef" : "M26_ARESETN",
+         "dataWidth" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "clockRef" : "SLR0/interconnect_axilite_user_M27_ACLK",
+         "numIdBits" : "0",
+         "mode" : "slave",
+         "name" : "SLR0/interconnect_axilite_user_M27_ARESETN",
+         "interfaceRef" : "M27_ARESETN",
+         "dataWidth" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "clockRef" : "SLR0/interconnect_axilite_user_M28_ACLK",
+         "numIdBits" : "0",
+         "mode" : "slave",
+         "name" : "SLR0/interconnect_axilite_user_M28_ARESETN",
+         "interfaceRef" : "M28_ARESETN",
+         "dataWidth" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "clockRef" : "SLR0/interconnect_axilite_user_M29_ACLK",
+         "numIdBits" : "0",
+         "mode" : "slave",
+         "name" : "SLR0/interconnect_axilite_user_M29_ARESETN",
+         "interfaceRef" : "M29_ARESETN",
+         "dataWidth" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "SLR0/interconnect_axilite_user",
+         "clockRef" : "SLR0/interconnect_axilite_user_M30_ACLK",
+         "numIdBits" : "0",
+         "mode" : "slave",
+         "name" : "SLR0/interconnect_axilite_user_M30_ARESETN",
+         "interfaceRef" : "M30_ARESETN",
+         "dataWidth" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M01_ACLK",
+         "numIdBits" : "0",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M01_ARESETN",
+         "interfaceRef" : "M01_ARESETN",
+         "dataWidth" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M02_ACLK",
+         "numIdBits" : "0",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M02_ARESETN",
+         "interfaceRef" : "M02_ARESETN",
+         "dataWidth" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M03_ACLK",
+         "numIdBits" : "0",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M03_ARESETN",
+         "interfaceRef" : "M03_ARESETN",
+         "dataWidth" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M04_ACLK",
+         "numIdBits" : "0",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M04_ARESETN",
+         "interfaceRef" : "M04_ARESETN",
+         "dataWidth" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M05_ACLK",
+         "numIdBits" : "0",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M05_ARESETN",
+         "interfaceRef" : "M05_ARESETN",
+         "dataWidth" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M06_ACLK",
+         "numIdBits" : "0",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M06_ARESETN",
+         "interfaceRef" : "M06_ARESETN",
+         "dataWidth" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M07_ACLK",
+         "numIdBits" : "0",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M07_ARESETN",
+         "interfaceRef" : "M07_ARESETN",
+         "dataWidth" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M08_ACLK",
+         "numIdBits" : "0",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M08_ARESETN",
+         "interfaceRef" : "M08_ARESETN",
+         "dataWidth" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M09_ACLK",
+         "numIdBits" : "0",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M09_ARESETN",
+         "interfaceRef" : "M09_ARESETN",
+         "dataWidth" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M10_ACLK",
+         "numIdBits" : "0",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M10_ARESETN",
+         "interfaceRef" : "M10_ARESETN",
+         "dataWidth" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M11_ACLK",
+         "numIdBits" : "0",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M11_ARESETN",
+         "interfaceRef" : "M11_ARESETN",
+         "dataWidth" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M12_ACLK",
+         "numIdBits" : "0",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M12_ARESETN",
+         "interfaceRef" : "M12_ARESETN",
+         "dataWidth" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M13_ACLK",
+         "numIdBits" : "0",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M13_ARESETN",
+         "interfaceRef" : "M13_ARESETN",
+         "dataWidth" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M14_ACLK",
+         "numIdBits" : "0",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M14_ARESETN",
+         "interfaceRef" : "M14_ARESETN",
+         "dataWidth" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M15_ACLK",
+         "numIdBits" : "0",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M15_ARESETN",
+         "interfaceRef" : "M15_ARESETN",
+         "dataWidth" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M16_ACLK",
+         "numIdBits" : "0",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M16_ARESETN",
+         "interfaceRef" : "M16_ARESETN",
+         "dataWidth" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M17_ACLK",
+         "numIdBits" : "0",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M17_ARESETN",
+         "interfaceRef" : "M17_ARESETN",
+         "dataWidth" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M18_ACLK",
+         "numIdBits" : "0",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M18_ARESETN",
+         "interfaceRef" : "M18_ARESETN",
+         "dataWidth" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M19_ACLK",
+         "numIdBits" : "0",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M19_ARESETN",
+         "interfaceRef" : "M19_ARESETN",
+         "dataWidth" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M20_ACLK",
+         "numIdBits" : "0",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M20_ARESETN",
+         "interfaceRef" : "M20_ARESETN",
+         "dataWidth" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M21_ACLK",
+         "numIdBits" : "0",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M21_ARESETN",
+         "interfaceRef" : "M21_ARESETN",
+         "dataWidth" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M22_ACLK",
+         "numIdBits" : "0",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M22_ARESETN",
+         "interfaceRef" : "M22_ARESETN",
+         "dataWidth" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M23_ACLK",
+         "numIdBits" : "0",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M23_ARESETN",
+         "interfaceRef" : "M23_ARESETN",
+         "dataWidth" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M24_ACLK",
+         "numIdBits" : "0",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M24_ARESETN",
+         "interfaceRef" : "M24_ARESETN",
+         "dataWidth" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M25_ACLK",
+         "numIdBits" : "0",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M25_ARESETN",
+         "interfaceRef" : "M25_ARESETN",
+         "dataWidth" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M26_ACLK",
+         "numIdBits" : "0",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M26_ARESETN",
+         "interfaceRef" : "M26_ARESETN",
+         "dataWidth" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M27_ACLK",
+         "numIdBits" : "0",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M27_ARESETN",
+         "interfaceRef" : "M27_ARESETN",
+         "dataWidth" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M28_ACLK",
+         "numIdBits" : "0",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M28_ARESETN",
+         "interfaceRef" : "M28_ARESETN",
+         "dataWidth" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M29_ACLK",
+         "numIdBits" : "0",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M29_ARESETN",
+         "interfaceRef" : "M29_ARESETN",
+         "dataWidth" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M30_ACLK",
+         "numIdBits" : "0",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M30_ARESETN",
+         "interfaceRef" : "M30_ARESETN",
+         "dataWidth" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M31_ACLK",
+         "numIdBits" : "0",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M31_ARESETN",
+         "interfaceRef" : "M31_ARESETN",
+         "dataWidth" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M32_ACLK",
+         "numIdBits" : "0",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M32_ARESETN",
+         "interfaceRef" : "M32_ARESETN",
+         "dataWidth" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M33_ACLK",
+         "numIdBits" : "0",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M33_ARESETN",
+         "interfaceRef" : "M33_ARESETN",
+         "dataWidth" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M34_ACLK",
+         "numIdBits" : "0",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M34_ARESETN",
+         "interfaceRef" : "M34_ARESETN",
+         "dataWidth" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M35_ACLK",
+         "numIdBits" : "0",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M35_ARESETN",
+         "interfaceRef" : "M35_ARESETN",
+         "dataWidth" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M36_ACLK",
+         "numIdBits" : "0",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M36_ARESETN",
+         "interfaceRef" : "M36_ARESETN",
+         "dataWidth" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M37_ACLK",
+         "numIdBits" : "0",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M37_ARESETN",
+         "interfaceRef" : "M37_ARESETN",
+         "dataWidth" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M38_ACLK",
+         "numIdBits" : "0",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M38_ARESETN",
+         "interfaceRef" : "M38_ARESETN",
+         "dataWidth" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M39_ACLK",
+         "numIdBits" : "0",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M39_ARESETN",
+         "interfaceRef" : "M39_ARESETN",
+         "dataWidth" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M40_ACLK",
+         "numIdBits" : "0",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M40_ARESETN",
+         "interfaceRef" : "M40_ARESETN",
+         "dataWidth" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M41_ACLK",
+         "numIdBits" : "0",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M41_ARESETN",
+         "interfaceRef" : "M41_ARESETN",
+         "dataWidth" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M42_ACLK",
+         "numIdBits" : "0",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M42_ARESETN",
+         "interfaceRef" : "M42_ARESETN",
+         "dataWidth" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M43_ACLK",
+         "numIdBits" : "0",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M43_ARESETN",
+         "interfaceRef" : "M43_ARESETN",
+         "dataWidth" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M44_ACLK",
+         "numIdBits" : "0",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M44_ARESETN",
+         "interfaceRef" : "M44_ARESETN",
+         "dataWidth" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M45_ACLK",
+         "numIdBits" : "0",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M45_ARESETN",
+         "interfaceRef" : "M45_ARESETN",
+         "dataWidth" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M46_ACLK",
+         "numIdBits" : "0",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M46_ARESETN",
+         "interfaceRef" : "M46_ARESETN",
+         "dataWidth" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M47_ACLK",
+         "numIdBits" : "0",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M47_ARESETN",
+         "interfaceRef" : "M47_ARESETN",
+         "dataWidth" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M48_ACLK",
+         "numIdBits" : "0",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M48_ARESETN",
+         "interfaceRef" : "M48_ARESETN",
+         "dataWidth" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M49_ACLK",
+         "numIdBits" : "0",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M49_ARESETN",
+         "interfaceRef" : "M49_ARESETN",
+         "dataWidth" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M50_ACLK",
+         "numIdBits" : "0",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M50_ARESETN",
+         "interfaceRef" : "M50_ARESETN",
+         "dataWidth" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M51_ACLK",
+         "numIdBits" : "0",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M51_ARESETN",
+         "interfaceRef" : "M51_ARESETN",
+         "dataWidth" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M52_ACLK",
+         "numIdBits" : "0",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M52_ARESETN",
+         "interfaceRef" : "M52_ARESETN",
+         "dataWidth" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M53_ACLK",
+         "numIdBits" : "0",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M53_ARESETN",
+         "interfaceRef" : "M53_ARESETN",
+         "dataWidth" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M54_ACLK",
+         "numIdBits" : "0",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M54_ARESETN",
+         "interfaceRef" : "M54_ARESETN",
+         "dataWidth" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M55_ACLK",
+         "numIdBits" : "0",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M55_ARESETN",
+         "interfaceRef" : "M55_ARESETN",
+         "dataWidth" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M56_ACLK",
+         "numIdBits" : "0",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M56_ARESETN",
+         "interfaceRef" : "M56_ARESETN",
+         "dataWidth" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M57_ACLK",
+         "numIdBits" : "0",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M57_ARESETN",
+         "interfaceRef" : "M57_ARESETN",
+         "dataWidth" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M58_ACLK",
+         "numIdBits" : "0",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M58_ARESETN",
+         "interfaceRef" : "M58_ARESETN",
+         "dataWidth" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M59_ACLK",
+         "numIdBits" : "0",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M59_ARESETN",
+         "interfaceRef" : "M59_ARESETN",
+         "dataWidth" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M60_ACLK",
+         "numIdBits" : "0",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M60_ARESETN",
+         "interfaceRef" : "M60_ARESETN",
+         "dataWidth" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M61_ACLK",
+         "numIdBits" : "0",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M61_ARESETN",
+         "interfaceRef" : "M61_ARESETN",
+         "dataWidth" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "reset"
+      },
+      {
+         "instRef" : "SLR1/interconnect_axilite_user",
+         "clockRef" : "SLR1/interconnect_axilite_user_M62_ACLK",
+         "numIdBits" : "0",
+         "mode" : "slave",
+         "name" : "SLR1/interconnect_axilite_user_M62_ARESETN",
+         "interfaceRef" : "M62_ARESETN",
+         "dataWidth" : "0",
+         "compRef" : "axi_interconnect",
+         "typeRef" : "reset"
+      }
+   ],
+   "dcpEncrypted" : "false",
+   "board" : {
+      "boardPart" : "xilinx.com:au50:part0:1.0",
+      "name" : "xilinx.com:au50:1.0",
+      "part" : "xcu50-fsvh2104-2-e",
+      "imageFileHdpi" : "au50_image.jpg",
+      "vendor" : "xilinx.com"
+   },
+   "busInterfaceMaxDataWidth" : "256",
+   "topModuleName" : "ulp_wrapper",
+   "systemClocks" : [
+      {
+         "instRef" : "/",
+         "origName" : "CPU",
+         "period" : "1000.000000",
+         "status" : "reserved",
+         "name" : "CPU",
+         "default" : "false",
+         "frequency" : "1",
+         "id" : "-1"
+      },
+      {
+         "instRef" : "_bd_top",
+         "origName" : "_bd_top_blp_s_aclk_ctrl_00",
+         "period" : "20.000000",
+         "status" : "fixed",
+         "name" : "PL 2",
+         "default" : "false",
+         "frequency" : "50.000000",
+         "compRef" : "_bd_top",
+         "id" : "2",
+         "normalizedPeriod" : ".020000"
+      },
+      {
+         "instRef" : "_bd_top",
+         "origName" : "_bd_top_clk_kernel2_in",
+         "period" : "2.000000",
+         "status" : "scalable",
+         "name" : "PL 1",
+         "default" : "false",
+         "frequency" : "500.000000",
+         "compRef" : "_bd_top",
+         "id" : "1",
+         "normalizedPeriod" : ".002000"
+      },
+      {
+         "instRef" : "_bd_top",
+         "origName" : "_bd_top_clk_kernel_in",
+         "period" : "3.333333",
+         "status" : "scalable",
+         "name" : "PL 0",
+         "default" : "true",
+         "frequency" : "300.000000",
+         "compRef" : "_bd_top",
+         "id" : "0",
+         "normalizedPeriod" : ".003333"
+      }
+   ],
+   "generatedChangeList" : "2708876",
+   "vendor" : "xilinx",
+   "prettyName" : "U50 (gen3x16_xdma)"
+}

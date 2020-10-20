@@ -1,0 +1,190 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  --include "../../../../prj.srcs/sources_1/bd/emu/ipshared/ec67/hdl" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_ddr0_ui_clk_0/sim/emu_ddr0_ui_clk_0.v" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_kernel2_clk_0/sim/emu_kernel2_clk_0.v" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_kernel_clk_0/sim/emu_kernel_clk_0.v" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_dma_pcie_clk_0/sim/emu_dma_pcie_clk_0.v" \
+"../../../../prj.srcs/sources_1/bd/emu/ipshared/e4e0/hdl/verilog/CuDmaController_mbkb.v" \
+"../../../../prj.srcs/sources_1/bd/emu/ipshared/e4e0/hdl/verilog/CuDmaController_CQDma_m_axi.v" \
+"../../../../prj.srcs/sources_1/bd/emu/ipshared/e4e0/hdl/verilog/CuDmaController_CUDma_m_axi.v" \
+"../../../../prj.srcs/sources_1/bd/emu/ipshared/e4e0/hdl/verilog/CuDmaController.v" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_CuDmaController_0_0/sim/emu_CuDmaController_0_0.v" \
+"../../../../prj.srcs/sources_1/bd/emu/ipshared/8d9d/hdl/verilog/cuisr_a_m_axi.v" \
+"../../../../prj.srcs/sources_1/bd/emu/ipshared/8d9d/hdl/verilog/cuisr.v" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_cuisr_0_0/sim/emu_cuisr_0_0.v" \
+"../../../../prj.ip_user_files/bd/emu/ipshared/4292/src/embedded_scheduler_hw.v" \
+"../../../../prj.ip_user_files/bd/emu/ipshared/4292/src/CuDmaController.v" \
+"../../../../prj.ip_user_files/bd/emu/ipshared/4292/src/iob_static.v" \
+
+sv xil_defaultlib  --include "../../../../prj.srcs/sources_1/bd/emu/ipshared/ec67/hdl" \
+"../../../../prj.ip_user_files/bd/emu/ipshared/4292/src/isr_irq_handler.sv" \
+
+verilog xil_defaultlib  --include "../../../../prj.srcs/sources_1/bd/emu/ipshared/ec67/hdl" \
+"../../../../prj.ip_user_files/bd/emu/ipshared/4292/src/freq_counter.v" \
+"../../../../prj.ip_user_files/bd/emu/ipshared/4292/src/CuISR.v" \
+"../../../../prj.ip_user_files/bd/emu/ipshared/4292/src/irq_handler.v" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_embedded_scheduler_hw_0_0/sim/emu_embedded_scheduler_hw_0_0.v" \
+
+sv xil_defaultlib  --include "../../../../prj.srcs/sources_1/bd/emu/ipshared/ec67/hdl" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_sim_embedded_scheduler_sw_0_0/sim/emu_sim_embedded_scheduler_sw_0_0_stub.sv" \
+
+verilog xil_defaultlib  --include "../../../../prj.srcs/sources_1/bd/emu/ipshared/ec67/hdl" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_xlconcat_0_0/sim/emu_xlconcat_0_0.v" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_xlconstant_0_0/sim/emu_xlconstant_0_0.v" \
+
+sv xil_defaultlib  --include "../../../../prj.srcs/sources_1/bd/emu/ipshared/ec67/hdl" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_sim_xdma_0_0/sim/emu_sim_xdma_0_0_stub.sv" \
+
+verilog xil_defaultlib  --include "../../../../prj.srcs/sources_1/bd/emu/ipshared/ec67/hdl" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_kernel2_clk_1/sim/emu_kernel2_clk_1.v" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_kernel_clk_1/sim/emu_kernel_clk_1.v" \
+
+sv xil_defaultlib  --include "../../../../prj.srcs/sources_1/bd/emu/ipshared/ec67/hdl" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_xtlm_simple_intercon_0_0/sim/emu_xtlm_simple_intercon_0_0_stub.sv" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_memory_subsystem_0/bd_0/ip/ip_0/sim/bd_3a93_xtlm_simple_intercon_0_0_stub.sv" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_memory_subsystem_0/bd_0/ip/ip_1/sim/bd_3a93_plram_0_0_stub.sv" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_memory_subsystem_0/bd_0/ip/ip_2/sim/bd_3a93_plram_1_0_stub.sv" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_memory_subsystem_0/bd_0/ip/ip_3/sim/bd_3a93_plram_2_0_stub.sv" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_memory_subsystem_0/bd_0/ip/ip_4/sim/bd_3a93_plram_3_0_stub.sv" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_memory_subsystem_0/sim/emu_memory_subsystem_0_stub.sv" \
+
+verilog xil_defaultlib  --include "../../../../prj.srcs/sources_1/bd/emu/ipshared/ec67/hdl" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_hbm_clk_0/sim/emu_hbm_clk_0.v" \
+
+sv xil_defaultlib  --include "../../../../prj.srcs/sources_1/bd/emu/ipshared/ec67/hdl" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_hmss_0_0/bd_0/ip/ip_0/sim/bd_9678_xtlm_intercon_host_0_stub.sv" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_hmss_0_0/bd_0/ip/ip_1/sim/bd_9678_xtlm_intercon_kernel_0_stub.sv" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_hmss_0_0/bd_0/ip/ip_2/sim/bd_9678_hbm_ram0_0_stub.sv" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_hmss_0_0/bd_0/ip/ip_3/sim/bd_9678_xtlm_intercon_hbm0_0_stub.sv" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_hmss_0_0/bd_0/ip/ip_4/sim/bd_9678_hbm_ram1_0_stub.sv" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_hmss_0_0/bd_0/ip/ip_5/sim/bd_9678_xtlm_intercon_hbm1_0_stub.sv" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_hmss_0_0/bd_0/ip/ip_6/sim/bd_9678_hbm_ram2_0_stub.sv" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_hmss_0_0/bd_0/ip/ip_7/sim/bd_9678_xtlm_intercon_hbm2_0_stub.sv" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_hmss_0_0/bd_0/ip/ip_8/sim/bd_9678_hbm_ram3_0_stub.sv" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_hmss_0_0/bd_0/ip/ip_9/sim/bd_9678_xtlm_intercon_hbm3_0_stub.sv" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_hmss_0_0/bd_0/ip/ip_10/sim/bd_9678_hbm_ram4_0_stub.sv" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_hmss_0_0/bd_0/ip/ip_11/sim/bd_9678_xtlm_intercon_hbm4_0_stub.sv" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_hmss_0_0/bd_0/ip/ip_12/sim/bd_9678_hbm_ram5_0_stub.sv" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_hmss_0_0/bd_0/ip/ip_13/sim/bd_9678_xtlm_intercon_hbm5_0_stub.sv" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_hmss_0_0/bd_0/ip/ip_14/sim/bd_9678_hbm_ram6_0_stub.sv" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_hmss_0_0/bd_0/ip/ip_15/sim/bd_9678_xtlm_intercon_hbm6_0_stub.sv" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_hmss_0_0/bd_0/ip/ip_16/sim/bd_9678_hbm_ram7_0_stub.sv" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_hmss_0_0/bd_0/ip/ip_17/sim/bd_9678_xtlm_intercon_hbm7_0_stub.sv" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_hmss_0_0/bd_0/ip/ip_18/sim/bd_9678_hbm_ram8_0_stub.sv" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_hmss_0_0/bd_0/ip/ip_19/sim/bd_9678_xtlm_intercon_hbm8_0_stub.sv" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_hmss_0_0/bd_0/ip/ip_20/sim/bd_9678_hbm_ram9_0_stub.sv" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_hmss_0_0/bd_0/ip/ip_21/sim/bd_9678_xtlm_intercon_hbm9_0_stub.sv" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_hmss_0_0/bd_0/ip/ip_22/sim/bd_9678_hbm_ram10_0_stub.sv" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_hmss_0_0/bd_0/ip/ip_23/sim/bd_9678_xtlm_intercon_hbm10_0_stub.sv" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_hmss_0_0/bd_0/ip/ip_24/sim/bd_9678_hbm_ram11_0_stub.sv" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_hmss_0_0/bd_0/ip/ip_25/sim/bd_9678_xtlm_intercon_hbm11_0_stub.sv" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_hmss_0_0/bd_0/ip/ip_26/sim/bd_9678_hbm_ram12_0_stub.sv" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_hmss_0_0/bd_0/ip/ip_27/sim/bd_9678_xtlm_intercon_hbm12_0_stub.sv" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_hmss_0_0/bd_0/ip/ip_28/sim/bd_9678_hbm_ram13_0_stub.sv" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_hmss_0_0/bd_0/ip/ip_29/sim/bd_9678_xtlm_intercon_hbm13_0_stub.sv" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_hmss_0_0/bd_0/ip/ip_30/sim/bd_9678_hbm_ram14_0_stub.sv" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_hmss_0_0/bd_0/ip/ip_31/sim/bd_9678_xtlm_intercon_hbm14_0_stub.sv" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_hmss_0_0/bd_0/ip/ip_32/sim/bd_9678_hbm_ram15_0_stub.sv" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_hmss_0_0/bd_0/ip/ip_33/sim/bd_9678_xtlm_intercon_hbm15_0_stub.sv" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_hmss_0_0/bd_0/ip/ip_34/sim/bd_9678_hbm_ram16_0_stub.sv" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_hmss_0_0/bd_0/ip/ip_35/sim/bd_9678_xtlm_intercon_hbm16_0_stub.sv" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_hmss_0_0/bd_0/ip/ip_36/sim/bd_9678_hbm_ram17_0_stub.sv" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_hmss_0_0/bd_0/ip/ip_37/sim/bd_9678_xtlm_intercon_hbm17_0_stub.sv" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_hmss_0_0/bd_0/ip/ip_38/sim/bd_9678_hbm_ram18_0_stub.sv" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_hmss_0_0/bd_0/ip/ip_39/sim/bd_9678_xtlm_intercon_hbm18_0_stub.sv" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_hmss_0_0/bd_0/ip/ip_40/sim/bd_9678_hbm_ram19_0_stub.sv" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_hmss_0_0/bd_0/ip/ip_41/sim/bd_9678_xtlm_intercon_hbm19_0_stub.sv" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_hmss_0_0/bd_0/ip/ip_42/sim/bd_9678_hbm_ram20_0_stub.sv" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_hmss_0_0/bd_0/ip/ip_43/sim/bd_9678_xtlm_intercon_hbm20_0_stub.sv" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_hmss_0_0/bd_0/ip/ip_44/sim/bd_9678_hbm_ram21_0_stub.sv" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_hmss_0_0/bd_0/ip/ip_45/sim/bd_9678_xtlm_intercon_hbm21_0_stub.sv" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_hmss_0_0/bd_0/ip/ip_46/sim/bd_9678_hbm_ram22_0_stub.sv" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_hmss_0_0/bd_0/ip/ip_47/sim/bd_9678_xtlm_intercon_hbm22_0_stub.sv" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_hmss_0_0/bd_0/ip/ip_48/sim/bd_9678_hbm_ram23_0_stub.sv" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_hmss_0_0/bd_0/ip/ip_49/sim/bd_9678_xtlm_intercon_hbm23_0_stub.sv" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_hmss_0_0/bd_0/ip/ip_50/sim/bd_9678_hbm_ram24_0_stub.sv" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_hmss_0_0/bd_0/ip/ip_51/sim/bd_9678_xtlm_intercon_hbm24_0_stub.sv" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_hmss_0_0/bd_0/ip/ip_52/sim/bd_9678_hbm_ram25_0_stub.sv" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_hmss_0_0/bd_0/ip/ip_53/sim/bd_9678_xtlm_intercon_hbm25_0_stub.sv" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_hmss_0_0/bd_0/ip/ip_54/sim/bd_9678_hbm_ram26_0_stub.sv" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_hmss_0_0/bd_0/ip/ip_55/sim/bd_9678_xtlm_intercon_hbm26_0_stub.sv" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_hmss_0_0/bd_0/ip/ip_56/sim/bd_9678_hbm_ram27_0_stub.sv" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_hmss_0_0/bd_0/ip/ip_57/sim/bd_9678_xtlm_intercon_hbm27_0_stub.sv" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_hmss_0_0/bd_0/ip/ip_58/sim/bd_9678_hbm_ram28_0_stub.sv" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_hmss_0_0/bd_0/ip/ip_59/sim/bd_9678_xtlm_intercon_hbm28_0_stub.sv" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_hmss_0_0/bd_0/ip/ip_60/sim/bd_9678_hbm_ram29_0_stub.sv" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_hmss_0_0/bd_0/ip/ip_61/sim/bd_9678_xtlm_intercon_hbm29_0_stub.sv" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_hmss_0_0/bd_0/ip/ip_62/sim/bd_9678_hbm_ram30_0_stub.sv" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_hmss_0_0/bd_0/ip/ip_63/sim/bd_9678_xtlm_intercon_hbm30_0_stub.sv" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_hmss_0_0/bd_0/ip/ip_64/sim/bd_9678_hbm_ram31_0_stub.sv" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_hmss_0_0/bd_0/ip/ip_65/sim/bd_9678_xtlm_intercon_hbm31_0_stub.sv" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_hmss_0_0/bd_0/ip/ip_66/sim/bd_9678_ctrl_stub_0_stub.sv" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_hmss_0_0/sim/emu_hmss_0_0_stub.sv" \
+
+verilog xil_defaultlib  --include "../../../../prj.srcs/sources_1/bd/emu/ipshared/ec67/hdl" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_xlconcat_interrupt_0/sim/emu_xlconcat_interrupt_0.v" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_xlconcat_interrupt_0_0/sim/emu_xlconcat_interrupt_0_0.v" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_xlconcat_interrupt_1_0/sim/emu_xlconcat_interrupt_1_0.v" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_xlconcat_interrupt_2_0/sim/emu_xlconcat_interrupt_2_0.v" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_xlconcat_interrupt_3_0/sim/emu_xlconcat_interrupt_3_0.v" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_xlconstant_gnd_0/sim/emu_xlconstant_gnd_0.v" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_xbar_3/sim/emu_xbar_3.v" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_xbar_4/sim/emu_xbar_4.v" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_xbar_5/sim/emu_xbar_5.v" \
+"../../../../prj.srcs/sources_1/bd/emu/ipshared/cbd1/hdl/verilog/kernel_gelinearsolver_0_control_s_axi.v" \
+"../../../../prj.srcs/sources_1/bd/emu/ipshared/cbd1/hdl/verilog/kernel_gelinearsolver_0_dcmp_64ns_64ns_1_2_no_dsp_1.v" \
+"../../../../prj.srcs/sources_1/bd/emu/ipshared/cbd1/hdl/verilog/kernel_gelinearsolver_0_ddiv_64ns_64ns_64_31_no_dsp_1.v" \
+"../../../../prj.srcs/sources_1/bd/emu/ipshared/cbd1/hdl/verilog/kernel_gelinearsolver_0_dmul_64ns_64ns_64_8_max_dsp_1.v" \
+"../../../../prj.srcs/sources_1/bd/emu/ipshared/cbd1/hdl/verilog/kernel_gelinearsolver_0_dsub_64ns_64ns_64_8_full_dsp_1.v" \
+"../../../../prj.srcs/sources_1/bd/emu/ipshared/cbd1/hdl/verilog/kernel_gelinearsolver_0_gelinearsolver_double_4_2_s.v" \
+"../../../../prj.srcs/sources_1/bd/emu/ipshared/cbd1/hdl/verilog/kernel_gelinearsolver_0_gelinearsolver_double_4_2_s_buf_i.v" \
+"../../../../prj.srcs/sources_1/bd/emu/ipshared/cbd1/hdl/verilog/kernel_gelinearsolver_0_gelinearsolver_double_4_2_s_matA_1.v" \
+"../../../../prj.srcs/sources_1/bd/emu/ipshared/cbd1/hdl/verilog/kernel_gelinearsolver_0_getrf_core_double_2_4_2_s.v" \
+"../../../../prj.srcs/sources_1/bd/emu/ipshared/cbd1/hdl/verilog/kernel_gelinearsolver_0_getrf_core_double_2_4_2_s_rows_0.v" \
+"../../../../prj.srcs/sources_1/bd/emu/ipshared/cbd1/hdl/verilog/kernel_gelinearsolver_0_gmem0_m_axi.v" \
+"../../../../prj.srcs/sources_1/bd/emu/ipshared/cbd1/hdl/verilog/kernel_gelinearsolver_0_mul_31ns_32ns_61_2_1.v" \
+"../../../../prj.srcs/sources_1/bd/emu/ipshared/cbd1/hdl/verilog/kernel_gelinearsolver_0_mul_32ns_32ns_64_2_1.v" \
+"../../../../prj.srcs/sources_1/bd/emu/ipshared/cbd1/hdl/verilog/kernel_gelinearsolver_0_mul_32s_32s_32_2_1.v" \
+"../../../../prj.srcs/sources_1/bd/emu/ipshared/cbd1/hdl/verilog/kernel_gelinearsolver_0_mux_42_32_1_1.v" \
+"../../../../prj.srcs/sources_1/bd/emu/ipshared/cbd1/hdl/verilog/kernel_gelinearsolver_0_mux_42_64_1_1.v" \
+"../../../../prj.srcs/sources_1/bd/emu/ipshared/cbd1/hdl/verilog/kernel_gelinearsolver_0_trisolver_L_double_4_2_s.v" \
+"../../../../prj.srcs/sources_1/bd/emu/ipshared/cbd1/hdl/verilog/kernel_gelinearsolver_0_trisolver_U_double_4_2_s.v" \
+"../../../../prj.srcs/sources_1/bd/emu/ipshared/cbd1/hdl/verilog/kernel_gelinearsolver_0_udiv_32ns_32ns_2_36_1.v" \
+"../../../../prj.srcs/sources_1/bd/emu/ipshared/cbd1/hdl/verilog/kernel_gelinearsolver_0_urem_32ns_32ns_3_36_1.v" \
+"../../../../prj.srcs/sources_1/bd/emu/ipshared/cbd1/hdl/verilog/kernel_gelinearsolver_0.v" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_xbar_8/sim/emu_xbar_8.v" \
+
+sv xil_defaultlib  --include "../../../../prj.srcs/sources_1/bd/emu/ipshared/ec67/hdl" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_dpa_hub_0/sim/emu_dpa_hub_0_stub.sv" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_dpa_mon0_0/sim/emu_dpa_mon0_0_stub.sv" \
+
+verilog xil_defaultlib  --include "../../../../prj.srcs/sources_1/bd/emu/ipshared/ec67/hdl" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_xbar_9/sim/emu_xbar_9.v" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_auto_pc_0/sim/emu_auto_pc_0.v" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_auto_pc_1/sim/emu_auto_pc_1.v" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_auto_pc_2/sim/emu_auto_pc_2.v" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_auto_pc_3/sim/emu_auto_pc_3.v" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_auto_pc_4/sim/emu_auto_pc_4.v" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_m01_regslice_5/sim/emu_m01_regslice_5.v" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_s00_regslice_0/sim/emu_s00_regslice_0.v" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_auto_pc_5/sim/emu_auto_pc_5.v" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_m00_regslice_0/sim/emu_m00_regslice_0.v" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_auto_cc_0/sim/emu_auto_cc_0.v" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_m01_regslice_7/sim/emu_m01_regslice_7.v" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_auto_cc_1/sim/emu_auto_cc_1.v" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_m01_regslice_6/sim/emu_m01_regslice_6.v" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_auto_cc_2/sim/emu_auto_cc_2.v" \
+"../../../../prj.ip_user_files/bd/emu/ip/emu_auto_pc_6/sim/emu_auto_pc_6.v" \
+
+sv xil_defaultlib  --include "../../../../prj.srcs/sources_1/bd/emu/ipshared/ec67/hdl" \
+"../../../../prj.ip_user_files/bd/emu/sim/emu_sci_stub.sv" \
+
+verilog xil_defaultlib  --include "../../../../prj.srcs/sources_1/bd/emu/ipshared/ec67/hdl" \
+"../../../../prj.ip_user_files/bd/emu/sim/emu.v" \
+"../../../../prj.srcs/sources_1/bd/emu/hdl/emu_wrapper.v" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort

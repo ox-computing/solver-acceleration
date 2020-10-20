@@ -1,0 +1,55 @@
+<profile>
+
+<section name = "Vitis HLS Report for 'gelinearsolver_double_4_2_s'" level="0">
+<item name = "Date">Tue Oct 20 15:08:54 2020
+</item>
+<item name = "Version">2020.1 (Build 2902540 on Wed May 27 20:16:15 MDT 2020)</item>
+<item name = "Project">kernel_gelinearsolver_0</item>
+<item name = "Solution">solution (Vitis Kernel Flow Target)</item>
+<item name = "Product family">virtexuplus</item>
+<item name = "Target device">xcu50-fsvh2104-2-e</item>
+</section>
+
+<section name = "Performance Estimates" level="0">
+<item name = "Timing">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="4">Clock, Target, Estimated, Uncertainty</keys>
+<column name="ap_clk">3.33 ns, 2.496 ns, 0.90 ns</column>
+</table>
+</item>
+</section>
+</item>
+<item name = "Latency">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="8">, min, max, min, max, min, max, Type</keys>
+<column name="">?, ?, ?, ?, ?, ?, none</column>
+</table>
+</item>
+<item name = "Detail">
+<section name = "" level="1">
+<item name = "Instance"><table name="" hasTotal="0">
+<keys size="9">Instance, Module, min, max, min, max, min, max, Type</keys>
+<column name="grp_getrf_core_double_2_4_2_s_fu_570">getrf_core_double_2_4_2_s, ?, ?, ?, ?, ?, ?, none</column>
+<column name="grp_trisolver_U_double_4_2_s_fu_588">trisolver_U_double_4_2_s, ?, ?, ?, ?, ?, ?, none</column>
+<column name="grp_trisolver_L_double_4_2_s_fu_602">trisolver_L_double_4_2_s, ?, ?, ?, ?, ?, ?, none</column>
+</table>
+</item>
+<item name = "Loop"><table name="" hasTotal="0">
+<keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
+<column name="- VITIS_LOOP_152_1">?, ?, ?, -, -, 2, no</column>
+<column name=" + Loop_read_VITIS_LOOP_155_2">75, ?, 76, 2, 1, 1 ~ ?, yes</column>
+<column name=" + VITIS_LOOP_75_1">1, ?, 1, 1, 1, 1 ~ ?, yes</column>
+<column name=" + VITIS_LOOP_113_1">1, ?, 2, 1, 1, 1 ~ ?, yes</column>
+<column name=" + VITIS_LOOP_87_1_VITIS_LOOP_88_2">4, 4, 2, 1, 1, 4, yes</column>
+<column name=" + VITIS_LOOP_100_3">4, 4, 1, 1, 1, 4, yes</column>
+<column name=" + VITIS_LOOP_168_3">?, ?, 71, 1, 1, ?, yes</column>
+</table>
+</item>
+</section>
+</item>
+</section>
+</item>
+</section>
+</profile>

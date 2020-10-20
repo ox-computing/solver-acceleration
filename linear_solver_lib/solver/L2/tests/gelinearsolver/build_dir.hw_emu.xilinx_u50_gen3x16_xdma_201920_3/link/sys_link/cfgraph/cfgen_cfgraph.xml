@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<cf:model cf:cpu="x86" cf:partition="0" cf:prefix="p_0_" cf:name="dr" xd:type="design" xmlns:xd="http://www.xilinx.com/xd" xmlns:cf="http://www.xilinx.com/connections">
+  <cf:block cf:name="hwblk_kernel_gelinearsolver_0">
+    <cf:port cf:name="s_axi_control" cf:portType="stream" cf:direction="in"/>
+    <cf:port cf:name="na" cf:portType="stream" cf:direction="in"/>
+    <cf:port cf:name="dataA" cf:portType="stream" cf:direction="in"/>
+    <cf:port cf:name="dataB" cf:portType="stream" cf:direction="in"/>
+  </cf:block>
+  <cf:block cf:name="swblk_kernel_gelinearsolver_0">
+    <cf:port cf:name="s_axi_control" cf:portType="stream" cf:direction="out"/>
+    <cf:port cf:name="na" cf:portType="stream" cf:direction="out"/>
+    <cf:port cf:name="dataA" cf:portType="stream" cf:direction="out"/>
+    <cf:port cf:name="dataB" cf:portType="stream" cf:direction="out"/>
+  </cf:block>
+  <cf:comp cf:name="xilinx_u50_xdma_201920_1" xd:componentRef="xilinx_u50_xdma_201920_1" xd:clockId="0"/>
+  <cf:comp cf:name="kernel_gelinearsolver_0_1" xd:componentRef="kernel_gelinearsolver_0" xd:clockId="0"/>
+  <cf:instance cf:name="hwinst_kernel_gelinearsolver_0_1" cf:blockName="hwblk_kernel_gelinearsolver_0" cf:compName="kernel_gelinearsolver_0_1">
+    <cf:portMap cf:blockPort="s_axi_control" cf:compPort="s_axi_control" xd:register="0x0"/>
+    <cf:portMap cf:blockPort="na" cf:compPort="s_axi_control" xd:register="0x10"/>
+    <cf:portMap cf:blockPort="dataA" cf:compPort="m_axi_gmem0" cf:ctrlPort="s_axi_control" xd:register="0x18"/>
+    <cf:portMap cf:blockPort="dataB" cf:compPort="m_axi_gmem0" cf:ctrlPort="s_axi_control" xd:register="0x24"/>
+  </cf:instance>
+  <cf:instance cf:name="swinst_kernel_gelinearsolver_0_1" cf:blockName="swblk_kernel_gelinearsolver_0" cf:compName="xilinx_u50_xdma_201920_1">
+    <cf:portMap cf:blockPort="s_axi_control" cf:compPort="interconnect_axilite_user_slr0_M01_AXI"/>
+    <cf:portMap cf:blockPort="na" cf:compPort="interconnect_axilite_user_slr0_M01_AXI"/>
+    <cf:portMap cf:blockPort="dataA" cf:compPort="hmss_0" cf:ctrlPort="interconnect_axilite_user_slr0_M01_AXI" cf:sptag="HBM[0]"/>
+    <cf:portMap cf:blockPort="dataB" cf:compPort="hmss_0" cf:ctrlPort="interconnect_axilite_user_slr0_M01_AXI" cf:sptag="HBM[0]"/>
+  </cf:instance>
+  <cf:connection cf:srcInst="swinst_kernel_gelinearsolver_0_1" cf:srcPort="s_axi_control" cf:dstInst="hwinst_kernel_gelinearsolver_0_1" cf:dstPort="s_axi_control">
+    <cf:dataMover cf:compName="xilinx_u50_xdma_201920_1" cf:softwareLib="axi_lite"/>
+  </cf:connection>
+  <cf:connection cf:srcInst="swinst_kernel_gelinearsolver_0_1" cf:srcPort="na" cf:dstInst="hwinst_kernel_gelinearsolver_0_1" cf:dstPort="na">
+    <cf:dataMover cf:compName="xilinx_u50_xdma_201920_1" cf:softwareLib="axi_lite"/>
+  </cf:connection>
+  <cf:connection cf:srcInst="swinst_kernel_gelinearsolver_0_1" cf:srcPort="dataA" cf:dstInst="hwinst_kernel_gelinearsolver_0_1" cf:dstPort="dataA">
+    <cf:dataMover cf:compName="kernel_gelinearsolver_0_1" cf:softwareLib="zero_copy"/>
+  </cf:connection>
+  <cf:connection cf:srcInst="swinst_kernel_gelinearsolver_0_1" cf:srcPort="dataB" cf:dstInst="hwinst_kernel_gelinearsolver_0_1" cf:dstPort="dataB">
+    <cf:dataMover cf:compName="kernel_gelinearsolver_0_1" cf:softwareLib="zero_copy"/>
+  </cf:connection>
+</cf:model>

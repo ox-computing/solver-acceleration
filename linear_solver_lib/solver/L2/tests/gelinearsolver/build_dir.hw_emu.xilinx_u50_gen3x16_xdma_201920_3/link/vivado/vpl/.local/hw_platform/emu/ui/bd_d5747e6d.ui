@@ -1,0 +1,42 @@
+{
+   "ActiveEmotionalView":"Default View",
+   "Default View_ScaleFactor":"0.204372",
+   "Default View_TopLeft":"-2310,-798",
+   "ExpandedHierarchyInLayout":"",
+   "guistr":"# # String gsaved with Nlview 7.0.21  2019-05-29 bk=1.5064 VDI=41 GEI=36 GUI=JA:9.0 TLS
+#  -string -flagsOSRD
+preplace inst static_region -pg 1 -lvl 1 -x 240 -y 570 -defaultsOSRD
+preplace inst interconnect_axilite_user_slr0 -pg 1 -lvl 1 -x 240 -y -280 -defaultsOSRD
+preplace inst interconnect_axilite_user_slr1 -pg 1 -lvl 1 -x 240 -y -40 -defaultsOSRD
+preplace inst kernel2_clk -pg 1 -lvl 1 -x 240 -y -590 -defaultsOSRD
+preplace inst kernel_clk -pg 1 -lvl 1 -x 240 -y -710 -defaultsOSRD
+preplace inst expanded_region_resets_slr0 -pg 1 -lvl 2 -x 680 -y -690 -defaultsOSRD
+preplace inst expanded_region_resets_slr1 -pg 1 -lvl 2 -x 680 -y -540 -defaultsOSRD
+preplace inst axi_gpio_null_slr0 -pg 1 -lvl 1 -x 240 -y -460 -defaultsOSRD
+preplace inst axi_gpio_null_slr1 -pg 1 -lvl 1 -x 240 -y 160 -defaultsOSRD
+preplace inst xtlm_simple_intercon_0 -pg 1 -lvl 1 -x 240 -y 340 -defaultsOSRD
+preplace inst memory_subsystem -pg 1 -lvl 2 -x 680 -y -400 -defaultsOSRD
+preplace inst hbm_clk -pg 1 -lvl 1 -x 240 -y 960 -defaultsOSRD
+preplace inst hmss_0 -pg 1 -lvl 2 -x 680 -y 580 -defaultsOSRD
+preplace inst interrupt_concat -pg 1 -lvl 3 -x 1040 -y -720 -defaultsOSRD
+preplace netloc ext_reset_in_0_1 1 1 1 410 -700n
+preplace netloc ext_reset_in_2_1 1 1 1 470 -660n
+preplace netloc slowest_sync_clk_0_1 1 1 1 480 -720n
+preplace netloc slowest_sync_clk_2_1 1 1 1 430 -680n
+preplace netloc ext_reset_in_1_1 1 0 2 20 740 480
+preplace netloc slowest_sync_clk_1_1 1 0 2 10 750 470
+preplace netloc hbm_aclk_net 1 1 1 490 540n
+preplace netloc hbm_aresetn_net 1 1 1 500 560n
+preplace netloc irq_cu_1 1 0 4 40 760 NJ 760 NJ 760 1210
+preplace netloc xtlm_simple_intercon_0_M_AXI_1_AXI 1 1 1 460 -420n
+preplace netloc hmss_s00_axi 1 1 1 450 330n
+preplace netloc connect_ctrl_slr1_to_slr0 1 0 2 70 690 410
+preplace netloc connect_to_es_cu_M_AXI 1 0 2 80 700 400
+preplace netloc static_region_data_M_AXI_0 1 0 2 60 730 420
+preplace netloc interconnect_axilite_0_M00_AXI 1 0 2 30 710 440
+preplace netloc interconnect_axilite_1_M00_AXI 1 0 2 50 720 430
+levelinfo -pg 1 -10 240 680 1040 1230
+pagesize -pg 1 -db -bbox -sgen -10 -780 1230 1030
+"
+}
+

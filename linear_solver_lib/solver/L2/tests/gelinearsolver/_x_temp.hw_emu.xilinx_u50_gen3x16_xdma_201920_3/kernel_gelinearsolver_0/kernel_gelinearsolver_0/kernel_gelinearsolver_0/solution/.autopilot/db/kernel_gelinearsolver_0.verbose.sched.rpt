@@ -1,0 +1,137 @@
+
+
+================================================================
+== Vitis HLS Report for 'kernel_gelinearsolver_0'
+================================================================
+* Date:           Tue Oct 20 15:08:55 2020
+
+* Version:        2020.1 (Build 2902540 on Wed May 27 20:16:15 MDT 2020)
+* Project:        kernel_gelinearsolver_0
+* Solution:       solution (Vitis Kernel Flow Target)
+* Product family: virtexuplus
+* Target device:  xcu50-fsvh2104-2-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  | 3.33 ns | 2.496 ns |   0.90 ns  |
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+---------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+    |   min   |   max   |    min   |    max   | min | max |   Type  |
+    +---------+---------+----------+----------+-----+-----+---------+
+    |        ?|        ?|         ?|         ?|    ?|    ?|   none  |
+    +---------+---------+----------+----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        N/A
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 1
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 3
+* Pipeline : 0
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 2 
+2 --> 3 
+3 --> 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 1.00>
+ST_1 : Operation 4 [1/1] (1.00ns)   --->   "%dataB_read = read i64 @_ssdm_op_Read.s_axilite.i64, i64 %dataB" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/tests/gelinearsolver/kernel_gelinearsolver.cpp:22]   --->   Operation 4 'read' 'dataB_read' <Predicate = true> <Delay = 1.00> <CoreInst = "s_axilite">   --->   Core 56 's_axilite' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write'>
+ST_1 : Operation 5 [1/1] (1.00ns)   --->   "%dataA_read = read i64 @_ssdm_op_Read.s_axilite.i64, i64 %dataA" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/tests/gelinearsolver/kernel_gelinearsolver.cpp:22]   --->   Operation 5 'read' 'dataA_read' <Predicate = true> <Delay = 1.00> <CoreInst = "s_axilite">   --->   Core 56 's_axilite' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write'>
+ST_1 : Operation 6 [1/1] (1.00ns)   --->   "%na_read = read i32 @_ssdm_op_Read.ap_none.i32, i32 %na" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/tests/gelinearsolver/kernel_gelinearsolver.cpp:22]   --->   Operation 6 'read' 'na_read' <Predicate = true> <Delay = 1.00> <CoreInst = "s_axilite">   --->   Core 56 's_axilite' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write'>
+
+State 2 <SV = 1> <Delay = 2.29>
+ST_2 : Operation 7 [2/2] (2.29ns)   --->   "%call_ln35 = call void @gelinearsolver<double, 4, 2>, i64 %gmem0, i32 %na_read, i64 %dataA_read, i64 %dataB_read, i64 %matA_1, i64 %matA_0, i64 %matB_1_0, i64 %matB_1_1, i64 %matB_0_0, i64 %matB_0_1" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/tests/gelinearsolver/kernel_gelinearsolver.cpp:35]   --->   Operation 7 'call' 'call_ln35' <Predicate = true> <Delay = 2.29> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 3 <SV = 2> <Delay = 0.00>
+ST_3 : Operation 8 [1/1] (0.00ns)   --->   "%spectopmodule_ln0 = spectopmodule void @_ssdm_op_SpecTopModule, void @empty_19"   --->   Operation 8 'spectopmodule' 'spectopmodule_ln0' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 9 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32, void @empty_13, i32, i32, void @empty, i32, i32, void @empty, void @empty, void @empty, i32, i32, i32, i32, void @empty, void @empty"   --->   Operation 9 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 10 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i64 %gmem0, void @empty_22, i32, i32, void @empty, i32, i32, void @empty, void @empty, void @empty, i32, i32, i32, i32, void @empty, void @empty"   --->   Operation 10 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 11 [1/1] (0.00ns)   --->   "%specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i64 %gmem0"   --->   Operation 11 'specbitsmap' 'specbitsmap_ln0' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 12 [1/1] (0.00ns)   --->   "%specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i32 %na"   --->   Operation 12 'specbitsmap' 'specbitsmap_ln0' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 13 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %na, void @empty_0, i32, i32, void @empty, i32, i32, void @empty_1, void @empty_2, void @empty, i32, i32, i32, i32, void @empty, void @empty"   --->   Operation 13 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 14 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %na, void @empty_3, i32, i32, void @empty, i32, i32, void @empty, void @empty, void @empty, i32, i32, i32, i32, void @empty, void @empty"   --->   Operation 14 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 15 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i64 %dataA, void @empty_0, i32, i32, void @empty, i32, i32, void @empty_1, void @empty_10, void @empty, i32, i32, i32, i32, void @empty, void @empty_8"   --->   Operation 15 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 16 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i64 %dataA, void @empty_11, i32, i32, void @empty, i32, i32, void @empty, void @empty, void @empty, i32, i32, i32, i32, void @empty, void @empty_8"   --->   Operation 16 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 17 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i64 %dataB, void @empty_0, i32, i32, void @empty, i32, i32, void @empty_1, void @empty_14, void @empty, i32, i32, i32, i32, void @empty, void @empty_8"   --->   Operation 17 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 18 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i64 %dataB, void @empty_11, i32, i32, void @empty, i32, i32, void @empty, void @empty, void @empty, i32, i32, i32, i32, void @empty, void @empty_8"   --->   Operation 18 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 19 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32, void @empty_0, i32, i32, void @empty, i32, i32, void @empty_1, void @empty, void @empty, i32, i32, i32, i32, void @empty, void @empty"   --->   Operation 19 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 20 [1/2] (0.00ns)   --->   "%call_ln35 = call void @gelinearsolver<double, 4, 2>, i64 %gmem0, i32 %na_read, i64 %dataA_read, i64 %dataB_read, i64 %matA_1, i64 %matA_0, i64 %matB_1_0, i64 %matB_1_1, i64 %matB_0_0, i64 %matB_0_1" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/tests/gelinearsolver/kernel_gelinearsolver.cpp:35]   --->   Operation 20 'call' 'call_ln35' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_3 : Operation 21 [1/1] (0.00ns)   --->   "%ret_ln36 = ret" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/tests/gelinearsolver/kernel_gelinearsolver.cpp:36]   --->   Operation 21 'ret' 'ret_ln36' <Predicate = true> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 3.33ns, clock uncertainty: 0.9ns.
+
+ <State 1>: 1ns
+The critical path consists of the following:
+	s_axi read on port 'dataB' (/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/tests/gelinearsolver/kernel_gelinearsolver.cpp:22) [25]  (1 ns)
+
+ <State 2>: 2.29ns
+The critical path consists of the following:
+	'call' operation ('call_ln35', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/tests/gelinearsolver/kernel_gelinearsolver.cpp:35) to 'gelinearsolver<double, 4, 2>' [28]  (2.29 ns)
+
+ <State 3>: 0ns
+The critical path consists of the following:
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

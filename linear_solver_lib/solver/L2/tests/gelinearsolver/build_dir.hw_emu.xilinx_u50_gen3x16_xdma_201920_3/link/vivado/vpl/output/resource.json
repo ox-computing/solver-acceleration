@@ -1,0 +1,28 @@
+{
+    "Available Resources": [
+        {
+            "pblock": "PBLOCK_SLR0",
+            "resources": [
+                {
+                    "SLR0_DUMMY": "0"
+                }
+            ]
+        },
+        {
+            "pblock": "PBLOCK_SLR1",
+            "resources": [
+                {
+                    "SLR1_DUMMY": "0"
+                }
+            ]
+        },
+        {
+            "pblock": "PBLOCK_TOP",
+            "resources": [
+                {
+                    "TOP_DUMMY": "0"
+                }
+            ]
+        }
+    ]
+}

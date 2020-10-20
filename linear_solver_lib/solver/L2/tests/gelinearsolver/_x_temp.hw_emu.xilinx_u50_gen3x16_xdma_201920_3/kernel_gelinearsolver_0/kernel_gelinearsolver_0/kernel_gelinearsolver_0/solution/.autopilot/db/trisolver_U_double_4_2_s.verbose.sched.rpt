@@ -1,0 +1,1133 @@
+
+
+================================================================
+== Vitis HLS Report for 'trisolver_U_double_4_2_s'
+================================================================
+* Date:           Tue Oct 20 15:08:53 2020
+
+* Version:        2020.1 (Build 2902540 on Wed May 27 20:16:15 MDT 2020)
+* Project:        kernel_gelinearsolver_0
+* Solution:       solution (Vitis Kernel Flow Target)
+* Product family: virtexuplus
+* Target device:  xcu50-fsvh2104-2-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  | 3.33 ns | 2.354 ns |   0.90 ns  |
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+---------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+    |   min   |   max   |    min   |    max   | min | max |   Type  |
+    +---------+---------+----------+----------+-----+-----+---------+
+    |        ?|        ?|         ?|         ?|    ?|    ?|   none  |
+    +---------+---------+----------+----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +-------------+---------+---------+----------+-----------+-----------+------+----------+
+        |             |  Latency (cycles) | Iteration|  Initiation Interval  | Trip |          |
+        |  Loop Name  |   min   |   max   |  Latency |  achieved |   target  | Count| Pipelined|
+        +-------------+---------+---------+----------+-----------+-----------+------+----------+
+        |- Loop_row   |        ?|        ?|         ?|          -|          -|     ?|    no    |
+        | + Loop_col  |        ?|        ?|        22|          2|          1|     ?|    yes   |
+        +-------------+---------+---------+----------+-----------+-----------+------+----------+
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
++ Individual pipeline summary: 
+  * Pipeline-0: initiation interval (II) = 2, depth = 22
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 95
+* Pipeline : 1
+  Pipeline-0 : II = 2, D = 22, States = { 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 }
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 2 
+2 --> 3 
+3 --> 4 
+4 --> 5 
+5 --> 6 
+6 --> 7 
+7 --> 8 
+8 --> 9 
+9 --> 10 
+10 --> 11 
+11 --> 12 
+12 --> 13 
+13 --> 14 
+14 --> 15 
+15 --> 16 
+16 --> 17 
+17 --> 18 
+18 --> 19 
+19 --> 20 
+20 --> 21 
+21 --> 22 
+22 --> 23 
+23 --> 24 
+24 --> 25 
+25 --> 26 
+26 --> 27 
+27 --> 28 
+28 --> 29 
+29 --> 30 
+30 --> 31 
+31 --> 32 
+32 --> 33 
+33 --> 34 
+34 --> 35 
+35 --> 36 
+36 --> 37 
+37 --> 38 
+38 --> 60 39 
+39 --> 40 
+40 --> 41 
+41 --> 42 
+42 --> 43 
+43 --> 44 
+44 --> 45 
+45 --> 46 
+46 --> 47 
+47 --> 48 
+48 --> 49 
+49 --> 50 
+50 --> 51 
+51 --> 52 
+52 --> 53 
+53 --> 54 
+54 --> 55 
+55 --> 56 
+56 --> 57 
+57 --> 58 
+58 --> 59 
+59 --> 38 
+60 --> 61 
+61 --> 62 
+62 --> 63 
+63 --> 64 
+64 --> 65 
+65 --> 66 
+66 --> 67 
+67 --> 68 
+68 --> 69 
+69 --> 70 
+70 --> 71 
+71 --> 72 
+72 --> 73 
+73 --> 74 
+74 --> 75 
+75 --> 76 
+76 --> 77 
+77 --> 78 
+78 --> 79 
+79 --> 80 
+80 --> 81 
+81 --> 82 
+82 --> 83 
+83 --> 84 
+84 --> 85 
+85 --> 86 
+86 --> 87 
+87 --> 88 
+88 --> 89 
+89 --> 90 
+90 --> 91 
+91 --> 92 
+92 --> 93 
+93 --> 94 
+94 --> 95 
+95 --> 37 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 1.85>
+ST_1 : Operation 96 [1/1] (0.00ns)   --->   "%n_read = read i32 @_ssdm_op_Read.ap_auto.i32, i32 %n"   --->   Operation 96 'read' 'n_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 97 [1/1] (0.00ns)   --->   "%empty = trunc i32 %n_read"   --->   Operation 97 'trunc' 'empty' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 98 [1/1] (0.00ns)   --->   "%trunc_ln56 = trunc i32 %n_read" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56]   --->   Operation 98 'trunc' 'trunc_ln56' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 99 [1/1] (0.88ns)   --->   "%add_ln56 = add i32, i32 %n_read" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56]   --->   Operation 99 'add' 'add_ln56' <Predicate = true> <Delay = 0.88> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.14> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 100 [1/1] (0.57ns)   --->   "%add_ln56_1 = add i3, i3 %empty" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56]   --->   Operation 100 'add' 'add_ln56_1' <Predicate = true> <Delay = 0.57> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.14> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 101 [1/1] (0.00ns)   --->   "%trunc_ln56_1 = trunc i32 %add_ln56" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56]   --->   Operation 101 'trunc' 'trunc_ln56_1' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 102 [1/1] (0.00ns)   --->   "%tmp_1 = bitselect i1 @_ssdm_op_BitSelect.i1.i32.i32, i32 %add_ln56, i32" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56]   --->   Operation 102 'bitselect' 'tmp_1' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 103 [1/1] (0.57ns)   --->   "%sub_ln56 = sub i3, i3 %empty" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56]   --->   Operation 103 'sub' 'sub_ln56' <Predicate = true> <Delay = 0.57> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.14> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 104 [1/1] (0.00ns)   --->   "%trunc_ln56_4 = partselect i2 @_ssdm_op_PartSelect.i2.i3.i32.i32, i3 %sub_ln56, i32, i32" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56]   --->   Operation 104 'partselect' 'trunc_ln56_4' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 105 [1/1] (0.43ns)   --->   "%sub_ln56_1 = sub i2, i2 %trunc_ln56_4" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56]   --->   Operation 105 'sub' 'sub_ln56_1' <Predicate = true> <Delay = 0.43> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.14> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 106 [1/1] (0.00ns)   --->   "%trunc_ln56_5 = partselect i2 @_ssdm_op_PartSelect.i2.i3.i32.i32, i3 %add_ln56_1, i32, i32" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56]   --->   Operation 106 'partselect' 'trunc_ln56_5' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 107 [1/1] (0.27ns)   --->   "%select_ln56 = select i1 %tmp_1, i2 %sub_ln56_1, i2 %trunc_ln56_5" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56]   --->   Operation 107 'select' 'select_ln56' <Predicate = true> <Delay = 0.27> <CoreInst = "Sel">   --->   Core 11 'Sel' <Latency = 0> <II = 1> <Delay = 0.41> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_1 : Operation 108 [1/1] (0.00ns)   --->   "%trunc_ln56_2 = trunc i2 %select_ln56" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56]   --->   Operation 108 'trunc' 'trunc_ln56_2' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 109 [1/1] (0.00ns)   --->   "%tmp_3_cast = bitconcatenate i3 @_ssdm_op_BitConcatenate.i3.i1.i2, i1 %trunc_ln56_2, i2" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56]   --->   Operation 109 'bitconcatenate' 'tmp_3_cast' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 110 [1/1] (0.00ns)   --->   "%trunc_ln56_3 = trunc i32 %add_ln56" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56]   --->   Operation 110 'trunc' 'trunc_ln56_3' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 111 [1/1] (0.57ns)   --->   "%add_ln56_3 = add i3 %trunc_ln56_3, i3 %tmp_3_cast" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56]   --->   Operation 111 'add' 'add_ln56_3' <Predicate = true> <Delay = 0.57> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.14> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+
+State 2 <SV = 1> <Delay = 1.15>
+ST_2 : Operation 112 [1/1] (0.00ns)   --->   "%zext_ln56_1 = zext i3 %add_ln56_3" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56]   --->   Operation 112 'zext' 'zext_ln56_1' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 113 [1/1] (0.00ns)   --->   "%matA_0_addr = getelementptr i64 %matA_0, i64, i64 %zext_ln56_1" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56]   --->   Operation 113 'getelementptr' 'matA_0_addr' <Predicate = (!trunc_ln56_1)> <Delay = 0.00>
+ST_2 : Operation 114 [1/1] (0.00ns)   --->   "%matA_1_addr = getelementptr i64 %matA_1, i64, i64 %zext_ln56_1" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56]   --->   Operation 114 'getelementptr' 'matA_1_addr' <Predicate = (trunc_ln56_1)> <Delay = 0.00>
+ST_2 : Operation 115 [3/3] (1.15ns)   --->   "%matA_1_load = load i3 %matA_1_addr" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56]   --->   Operation 115 'load' 'matA_1_load' <Predicate = (trunc_ln56_1)> <Delay = 1.15> <CoreInst = "XPM_MEMORY_Ultra">   --->   Core 69 'XPM_MEMORY_Ultra' <Latency = 2> <II = 1> <Delay = 1.15> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 8> <RAM>
+ST_2 : Operation 116 [3/3] (1.15ns)   --->   "%matA_0_load = load i3 %matA_0_addr" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56]   --->   Operation 116 'load' 'matA_0_load' <Predicate = (!trunc_ln56_1)> <Delay = 1.15> <CoreInst = "XPM_MEMORY_Ultra">   --->   Core 69 'XPM_MEMORY_Ultra' <Latency = 2> <II = 1> <Delay = 1.15> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 8> <RAM>
+
+State 3 <SV = 2> <Delay = 1.15>
+ST_3 : Operation 117 [1/1] (0.00ns)   --->   "%tmp_2 = bitconcatenate i2 @_ssdm_op_BitConcatenate.i2.i1.i1, i1 %trunc_ln56_1, i1" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56]   --->   Operation 117 'bitconcatenate' 'tmp_2' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 118 [1/1] (0.43ns)   --->   "%add_ln56_2 = add i2 %select_ln56, i2 %tmp_2" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56]   --->   Operation 118 'add' 'add_ln56_2' <Predicate = true> <Delay = 0.43> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.14> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 119 [1/1] (0.00ns)   --->   "%zext_ln56 = zext i2 %add_ln56_2" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56]   --->   Operation 119 'zext' 'zext_ln56' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 120 [1/1] (0.00ns)   --->   "%dataB_addr = getelementptr i64 %dataB, i64, i64 %zext_ln56" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56]   --->   Operation 120 'getelementptr' 'dataB_addr' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 121 [2/2] (0.59ns)   --->   "%dataB_load = load i2 %dataB_addr" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56]   --->   Operation 121 'load' 'dataB_load' <Predicate = true> <Delay = 0.59> <CoreInst = "RAM">   --->   Core 23 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_3 : Operation 122 [2/3] (1.15ns)   --->   "%matA_1_load = load i3 %matA_1_addr" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56]   --->   Operation 122 'load' 'matA_1_load' <Predicate = (trunc_ln56_1)> <Delay = 1.15> <CoreInst = "XPM_MEMORY_Ultra">   --->   Core 69 'XPM_MEMORY_Ultra' <Latency = 2> <II = 1> <Delay = 1.15> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 8> <RAM>
+ST_3 : Operation 123 [2/3] (1.15ns)   --->   "%matA_0_load = load i3 %matA_0_addr" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56]   --->   Operation 123 'load' 'matA_0_load' <Predicate = (!trunc_ln56_1)> <Delay = 1.15> <CoreInst = "XPM_MEMORY_Ultra">   --->   Core 69 'XPM_MEMORY_Ultra' <Latency = 2> <II = 1> <Delay = 1.15> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 8> <RAM>
+
+State 4 <SV = 3> <Delay = 1.56>
+ST_4 : Operation 124 [1/2] (0.59ns)   --->   "%dataB_load = load i2 %dataB_addr" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56]   --->   Operation 124 'load' 'dataB_load' <Predicate = true> <Delay = 0.59> <CoreInst = "RAM">   --->   Core 23 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_4 : Operation 125 [1/3] (1.15ns)   --->   "%matA_1_load = load i3 %matA_1_addr" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56]   --->   Operation 125 'load' 'matA_1_load' <Predicate = (trunc_ln56_1)> <Delay = 1.15> <CoreInst = "XPM_MEMORY_Ultra">   --->   Core 69 'XPM_MEMORY_Ultra' <Latency = 2> <II = 1> <Delay = 1.15> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 8> <RAM>
+ST_4 : Operation 126 [1/3] (1.15ns)   --->   "%matA_0_load = load i3 %matA_0_addr" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56]   --->   Operation 126 'load' 'matA_0_load' <Predicate = (!trunc_ln56_1)> <Delay = 1.15> <CoreInst = "XPM_MEMORY_Ultra">   --->   Core 69 'XPM_MEMORY_Ultra' <Latency = 2> <II = 1> <Delay = 1.15> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 8> <RAM>
+ST_4 : Operation 127 [1/1] (0.41ns)   --->   "%select_ln56_1 = select i1 %trunc_ln56_1, i64 %matA_1_load, i64 %matA_0_load" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56]   --->   Operation 127 'select' 'select_ln56_1' <Predicate = true> <Delay = 0.41> <CoreInst = "Sel">   --->   Core 11 'Sel' <Latency = 0> <II = 1> <Delay = 0.41> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+
+State 5 <SV = 4> <Delay = 2.35>
+ST_5 : Operation 128 [31/31] (2.35ns)   --->   "%div = ddiv i64 %dataB_load, i64 %select_ln56_1" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56]   --->   Operation 128 'ddiv' 'div' <Predicate = true> <Delay = 2.35> <CoreInst = "DDiv">   --->   Core 95 'DDiv' <Latency = 30> <II = 1> <Delay = 2.35> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 6 <SV = 5> <Delay = 2.35>
+ST_6 : Operation 129 [30/31] (2.35ns)   --->   "%div = ddiv i64 %dataB_load, i64 %select_ln56_1" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56]   --->   Operation 129 'ddiv' 'div' <Predicate = true> <Delay = 2.35> <CoreInst = "DDiv">   --->   Core 95 'DDiv' <Latency = 30> <II = 1> <Delay = 2.35> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 7 <SV = 6> <Delay = 2.35>
+ST_7 : Operation 130 [29/31] (2.35ns)   --->   "%div = ddiv i64 %dataB_load, i64 %select_ln56_1" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56]   --->   Operation 130 'ddiv' 'div' <Predicate = true> <Delay = 2.35> <CoreInst = "DDiv">   --->   Core 95 'DDiv' <Latency = 30> <II = 1> <Delay = 2.35> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 8 <SV = 7> <Delay = 2.35>
+ST_8 : Operation 131 [28/31] (2.35ns)   --->   "%div = ddiv i64 %dataB_load, i64 %select_ln56_1" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56]   --->   Operation 131 'ddiv' 'div' <Predicate = true> <Delay = 2.35> <CoreInst = "DDiv">   --->   Core 95 'DDiv' <Latency = 30> <II = 1> <Delay = 2.35> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 9 <SV = 8> <Delay = 2.35>
+ST_9 : Operation 132 [27/31] (2.35ns)   --->   "%div = ddiv i64 %dataB_load, i64 %select_ln56_1" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56]   --->   Operation 132 'ddiv' 'div' <Predicate = true> <Delay = 2.35> <CoreInst = "DDiv">   --->   Core 95 'DDiv' <Latency = 30> <II = 1> <Delay = 2.35> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 10 <SV = 9> <Delay = 2.35>
+ST_10 : Operation 133 [26/31] (2.35ns)   --->   "%div = ddiv i64 %dataB_load, i64 %select_ln56_1" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56]   --->   Operation 133 'ddiv' 'div' <Predicate = true> <Delay = 2.35> <CoreInst = "DDiv">   --->   Core 95 'DDiv' <Latency = 30> <II = 1> <Delay = 2.35> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 11 <SV = 10> <Delay = 2.35>
+ST_11 : Operation 134 [25/31] (2.35ns)   --->   "%div = ddiv i64 %dataB_load, i64 %select_ln56_1" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56]   --->   Operation 134 'ddiv' 'div' <Predicate = true> <Delay = 2.35> <CoreInst = "DDiv">   --->   Core 95 'DDiv' <Latency = 30> <II = 1> <Delay = 2.35> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 12 <SV = 11> <Delay = 2.35>
+ST_12 : Operation 135 [24/31] (2.35ns)   --->   "%div = ddiv i64 %dataB_load, i64 %select_ln56_1" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56]   --->   Operation 135 'ddiv' 'div' <Predicate = true> <Delay = 2.35> <CoreInst = "DDiv">   --->   Core 95 'DDiv' <Latency = 30> <II = 1> <Delay = 2.35> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 13 <SV = 12> <Delay = 2.35>
+ST_13 : Operation 136 [23/31] (2.35ns)   --->   "%div = ddiv i64 %dataB_load, i64 %select_ln56_1" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56]   --->   Operation 136 'ddiv' 'div' <Predicate = true> <Delay = 2.35> <CoreInst = "DDiv">   --->   Core 95 'DDiv' <Latency = 30> <II = 1> <Delay = 2.35> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 14 <SV = 13> <Delay = 2.35>
+ST_14 : Operation 137 [22/31] (2.35ns)   --->   "%div = ddiv i64 %dataB_load, i64 %select_ln56_1" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56]   --->   Operation 137 'ddiv' 'div' <Predicate = true> <Delay = 2.35> <CoreInst = "DDiv">   --->   Core 95 'DDiv' <Latency = 30> <II = 1> <Delay = 2.35> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 15 <SV = 14> <Delay = 2.35>
+ST_15 : Operation 138 [21/31] (2.35ns)   --->   "%div = ddiv i64 %dataB_load, i64 %select_ln56_1" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56]   --->   Operation 138 'ddiv' 'div' <Predicate = true> <Delay = 2.35> <CoreInst = "DDiv">   --->   Core 95 'DDiv' <Latency = 30> <II = 1> <Delay = 2.35> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 16 <SV = 15> <Delay = 2.35>
+ST_16 : Operation 139 [20/31] (2.35ns)   --->   "%div = ddiv i64 %dataB_load, i64 %select_ln56_1" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56]   --->   Operation 139 'ddiv' 'div' <Predicate = true> <Delay = 2.35> <CoreInst = "DDiv">   --->   Core 95 'DDiv' <Latency = 30> <II = 1> <Delay = 2.35> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 17 <SV = 16> <Delay = 2.35>
+ST_17 : Operation 140 [19/31] (2.35ns)   --->   "%div = ddiv i64 %dataB_load, i64 %select_ln56_1" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56]   --->   Operation 140 'ddiv' 'div' <Predicate = true> <Delay = 2.35> <CoreInst = "DDiv">   --->   Core 95 'DDiv' <Latency = 30> <II = 1> <Delay = 2.35> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 18 <SV = 17> <Delay = 2.35>
+ST_18 : Operation 141 [18/31] (2.35ns)   --->   "%div = ddiv i64 %dataB_load, i64 %select_ln56_1" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56]   --->   Operation 141 'ddiv' 'div' <Predicate = true> <Delay = 2.35> <CoreInst = "DDiv">   --->   Core 95 'DDiv' <Latency = 30> <II = 1> <Delay = 2.35> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 19 <SV = 18> <Delay = 2.35>
+ST_19 : Operation 142 [17/31] (2.35ns)   --->   "%div = ddiv i64 %dataB_load, i64 %select_ln56_1" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56]   --->   Operation 142 'ddiv' 'div' <Predicate = true> <Delay = 2.35> <CoreInst = "DDiv">   --->   Core 95 'DDiv' <Latency = 30> <II = 1> <Delay = 2.35> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 20 <SV = 19> <Delay = 2.35>
+ST_20 : Operation 143 [16/31] (2.35ns)   --->   "%div = ddiv i64 %dataB_load, i64 %select_ln56_1" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56]   --->   Operation 143 'ddiv' 'div' <Predicate = true> <Delay = 2.35> <CoreInst = "DDiv">   --->   Core 95 'DDiv' <Latency = 30> <II = 1> <Delay = 2.35> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 21 <SV = 20> <Delay = 2.35>
+ST_21 : Operation 144 [15/31] (2.35ns)   --->   "%div = ddiv i64 %dataB_load, i64 %select_ln56_1" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56]   --->   Operation 144 'ddiv' 'div' <Predicate = true> <Delay = 2.35> <CoreInst = "DDiv">   --->   Core 95 'DDiv' <Latency = 30> <II = 1> <Delay = 2.35> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 22 <SV = 21> <Delay = 2.35>
+ST_22 : Operation 145 [14/31] (2.35ns)   --->   "%div = ddiv i64 %dataB_load, i64 %select_ln56_1" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56]   --->   Operation 145 'ddiv' 'div' <Predicate = true> <Delay = 2.35> <CoreInst = "DDiv">   --->   Core 95 'DDiv' <Latency = 30> <II = 1> <Delay = 2.35> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 23 <SV = 22> <Delay = 2.35>
+ST_23 : Operation 146 [13/31] (2.35ns)   --->   "%div = ddiv i64 %dataB_load, i64 %select_ln56_1" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56]   --->   Operation 146 'ddiv' 'div' <Predicate = true> <Delay = 2.35> <CoreInst = "DDiv">   --->   Core 95 'DDiv' <Latency = 30> <II = 1> <Delay = 2.35> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 24 <SV = 23> <Delay = 2.35>
+ST_24 : Operation 147 [12/31] (2.35ns)   --->   "%div = ddiv i64 %dataB_load, i64 %select_ln56_1" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56]   --->   Operation 147 'ddiv' 'div' <Predicate = true> <Delay = 2.35> <CoreInst = "DDiv">   --->   Core 95 'DDiv' <Latency = 30> <II = 1> <Delay = 2.35> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 25 <SV = 24> <Delay = 2.35>
+ST_25 : Operation 148 [11/31] (2.35ns)   --->   "%div = ddiv i64 %dataB_load, i64 %select_ln56_1" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56]   --->   Operation 148 'ddiv' 'div' <Predicate = true> <Delay = 2.35> <CoreInst = "DDiv">   --->   Core 95 'DDiv' <Latency = 30> <II = 1> <Delay = 2.35> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 26 <SV = 25> <Delay = 2.35>
+ST_26 : Operation 149 [10/31] (2.35ns)   --->   "%div = ddiv i64 %dataB_load, i64 %select_ln56_1" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56]   --->   Operation 149 'ddiv' 'div' <Predicate = true> <Delay = 2.35> <CoreInst = "DDiv">   --->   Core 95 'DDiv' <Latency = 30> <II = 1> <Delay = 2.35> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 27 <SV = 26> <Delay = 2.35>
+ST_27 : Operation 150 [9/31] (2.35ns)   --->   "%div = ddiv i64 %dataB_load, i64 %select_ln56_1" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56]   --->   Operation 150 'ddiv' 'div' <Predicate = true> <Delay = 2.35> <CoreInst = "DDiv">   --->   Core 95 'DDiv' <Latency = 30> <II = 1> <Delay = 2.35> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 28 <SV = 27> <Delay = 2.35>
+ST_28 : Operation 151 [8/31] (2.35ns)   --->   "%div = ddiv i64 %dataB_load, i64 %select_ln56_1" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56]   --->   Operation 151 'ddiv' 'div' <Predicate = true> <Delay = 2.35> <CoreInst = "DDiv">   --->   Core 95 'DDiv' <Latency = 30> <II = 1> <Delay = 2.35> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 29 <SV = 28> <Delay = 2.35>
+ST_29 : Operation 152 [7/31] (2.35ns)   --->   "%div = ddiv i64 %dataB_load, i64 %select_ln56_1" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56]   --->   Operation 152 'ddiv' 'div' <Predicate = true> <Delay = 2.35> <CoreInst = "DDiv">   --->   Core 95 'DDiv' <Latency = 30> <II = 1> <Delay = 2.35> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 30 <SV = 29> <Delay = 2.35>
+ST_30 : Operation 153 [6/31] (2.35ns)   --->   "%div = ddiv i64 %dataB_load, i64 %select_ln56_1" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56]   --->   Operation 153 'ddiv' 'div' <Predicate = true> <Delay = 2.35> <CoreInst = "DDiv">   --->   Core 95 'DDiv' <Latency = 30> <II = 1> <Delay = 2.35> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 31 <SV = 30> <Delay = 2.35>
+ST_31 : Operation 154 [5/31] (2.35ns)   --->   "%div = ddiv i64 %dataB_load, i64 %select_ln56_1" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56]   --->   Operation 154 'ddiv' 'div' <Predicate = true> <Delay = 2.35> <CoreInst = "DDiv">   --->   Core 95 'DDiv' <Latency = 30> <II = 1> <Delay = 2.35> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 32 <SV = 31> <Delay = 2.35>
+ST_32 : Operation 155 [4/31] (2.35ns)   --->   "%div = ddiv i64 %dataB_load, i64 %select_ln56_1" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56]   --->   Operation 155 'ddiv' 'div' <Predicate = true> <Delay = 2.35> <CoreInst = "DDiv">   --->   Core 95 'DDiv' <Latency = 30> <II = 1> <Delay = 2.35> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 33 <SV = 32> <Delay = 2.35>
+ST_33 : Operation 156 [3/31] (2.35ns)   --->   "%div = ddiv i64 %dataB_load, i64 %select_ln56_1" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56]   --->   Operation 156 'ddiv' 'div' <Predicate = true> <Delay = 2.35> <CoreInst = "DDiv">   --->   Core 95 'DDiv' <Latency = 30> <II = 1> <Delay = 2.35> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 34 <SV = 33> <Delay = 2.35>
+ST_34 : Operation 157 [2/31] (2.35ns)   --->   "%div = ddiv i64 %dataB_load, i64 %select_ln56_1" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56]   --->   Operation 157 'ddiv' 'div' <Predicate = true> <Delay = 2.35> <CoreInst = "DDiv">   --->   Core 95 'DDiv' <Latency = 30> <II = 1> <Delay = 2.35> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 35 <SV = 34> <Delay = 2.35>
+ST_35 : Operation 158 [1/31] (2.35ns)   --->   "%div = ddiv i64 %dataB_load, i64 %select_ln56_1" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56]   --->   Operation 158 'ddiv' 'div' <Predicate = true> <Delay = 2.35> <CoreInst = "DDiv">   --->   Core 95 'DDiv' <Latency = 30> <II = 1> <Delay = 2.35> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 36 <SV = 35> <Delay = 1.16>
+ST_36 : Operation 159 [1/1] (0.00ns)   --->   "%p_read_1 = read i64 @_ssdm_op_Read.ap_auto.double, i64 %p_read3"   --->   Operation 159 'read' 'p_read_1' <Predicate = true> <Delay = 0.00>
+ST_36 : Operation 160 [1/1] (0.00ns)   --->   "%p_read_2 = read i64 @_ssdm_op_Read.ap_auto.double, i64 %p_read2"   --->   Operation 160 'read' 'p_read_2' <Predicate = true> <Delay = 0.00>
+ST_36 : Operation 161 [1/1] (0.00ns)   --->   "%p_read_3 = read i64 @_ssdm_op_Read.ap_auto.double, i64 %p_read1"   --->   Operation 161 'read' 'p_read_3' <Predicate = true> <Delay = 0.00>
+ST_36 : Operation 162 [1/1] (0.00ns)   --->   "%p_read72 = read i64 @_ssdm_op_Read.ap_auto.double, i64 %p_read"   --->   Operation 162 'read' 'p_read72' <Predicate = true> <Delay = 0.00>
+ST_36 : Operation 163 [1/1] (0.00ns)   --->   "%specmemcore_ln0 = specmemcore void @_ssdm_op_SpecMemCore, i64 %matA_0, i64 %matA_1, i64, i64, i64"   --->   Operation 163 'specmemcore' 'specmemcore_ln0' <Predicate = true> <Delay = 0.00>
+ST_36 : Operation 164 [1/1] (0.00ns)   --->   "%sext_ln56 = sext i32 %add_ln56" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56]   --->   Operation 164 'sext' 'sext_ln56' <Predicate = true> <Delay = 0.00>
+ST_36 : Operation 165 [1/1] (0.34ns)   --->   "%icmp_ln56 = icmp_eq  i2 %trunc_ln56, i2" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56]   --->   Operation 165 'icmp' 'icmp_ln56' <Predicate = true> <Delay = 0.34> <CoreInst = "Cmp">   --->   Core 10 'Cmp' <Latency = 0> <II = 1> <Delay = 0.34> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_36 : Operation 166 [1/1] (0.00ns) (grouped into LUT with out node select_ln56_3)   --->   "%select_ln56_2 = select i1 %icmp_ln56, i64 %p_read_1, i64 %div" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56]   --->   Operation 166 'select' 'select_ln56_2' <Predicate = true> <Delay = 0.00> <CoreInst = "Sel">   --->   Core 11 'Sel' <Latency = 0> <II = 1> <Delay = 0.41> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_36 : Operation 167 [1/1] (0.34ns)   --->   "%icmp_ln56_1 = icmp_eq  i2 %trunc_ln56, i2" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56]   --->   Operation 167 'icmp' 'icmp_ln56_1' <Predicate = true> <Delay = 0.34> <CoreInst = "Cmp">   --->   Core 10 'Cmp' <Latency = 0> <II = 1> <Delay = 0.34> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_36 : Operation 168 [1/1] (0.41ns) (out node of the LUT)   --->   "%select_ln56_3 = select i1 %icmp_ln56_1, i64 %p_read_1, i64 %select_ln56_2" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56]   --->   Operation 168 'select' 'select_ln56_3' <Predicate = true> <Delay = 0.41> <CoreInst = "Sel">   --->   Core 11 'Sel' <Latency = 0> <II = 1> <Delay = 0.41> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_36 : Operation 169 [1/1] (0.34ns)   --->   "%icmp_ln56_2 = icmp_eq  i2 %trunc_ln56, i2" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56]   --->   Operation 169 'icmp' 'icmp_ln56_2' <Predicate = true> <Delay = 0.34> <CoreInst = "Cmp">   --->   Core 10 'Cmp' <Latency = 0> <II = 1> <Delay = 0.34> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_36 : Operation 170 [1/1] (0.41ns) (out node of the LUT)   --->   "%dataX3_0 = select i1 %icmp_ln56_2, i64 %p_read_1, i64 %select_ln56_3" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56]   --->   Operation 170 'select' 'dataX3_0' <Predicate = true> <Delay = 0.41> <CoreInst = "Sel">   --->   Core 11 'Sel' <Latency = 0> <II = 1> <Delay = 0.41> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_36 : Operation 171 [1/1] (0.41ns)   --->   "%dataX2_0 = select i1 %icmp_ln56_2, i64 %div, i64 %p_read_2" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56]   --->   Operation 171 'select' 'dataX2_0' <Predicate = true> <Delay = 0.41> <CoreInst = "Sel">   --->   Core 11 'Sel' <Latency = 0> <II = 1> <Delay = 0.41> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_36 : Operation 172 [1/1] (0.00ns) (grouped into LUT with out node dataX12_0)   --->   "%select_ln56_4 = select i1 %icmp_ln56_1, i64 %div, i64 %p_read_3" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56]   --->   Operation 172 'select' 'select_ln56_4' <Predicate = true> <Delay = 0.00> <CoreInst = "Sel">   --->   Core 11 'Sel' <Latency = 0> <II = 1> <Delay = 0.41> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_36 : Operation 173 [1/1] (0.41ns) (out node of the LUT)   --->   "%dataX12_0 = select i1 %icmp_ln56_2, i64 %p_read_3, i64 %select_ln56_4" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56]   --->   Operation 173 'select' 'dataX12_0' <Predicate = true> <Delay = 0.41> <CoreInst = "Sel">   --->   Core 11 'Sel' <Latency = 0> <II = 1> <Delay = 0.41> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_36 : Operation 174 [1/1] (0.00ns) (grouped into LUT with out node select_ln56_6)   --->   "%select_ln56_5 = select i1 %icmp_ln56, i64 %div, i64 %p_read72" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56]   --->   Operation 174 'select' 'select_ln56_5' <Predicate = true> <Delay = 0.00> <CoreInst = "Sel">   --->   Core 11 'Sel' <Latency = 0> <II = 1> <Delay = 0.41> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_36 : Operation 175 [1/1] (0.41ns) (out node of the LUT)   --->   "%select_ln56_6 = select i1 %icmp_ln56_1, i64 %p_read72, i64 %select_ln56_5" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56]   --->   Operation 175 'select' 'select_ln56_6' <Predicate = true> <Delay = 0.41> <CoreInst = "Sel">   --->   Core 11 'Sel' <Latency = 0> <II = 1> <Delay = 0.41> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_36 : Operation 176 [1/1] (0.41ns) (out node of the LUT)   --->   "%dataX_0 = select i1 %icmp_ln56_2, i64 %p_read72, i64 %select_ln56_6" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56]   --->   Operation 176 'select' 'dataX_0' <Predicate = true> <Delay = 0.41> <CoreInst = "Sel">   --->   Core 11 'Sel' <Latency = 0> <II = 1> <Delay = 0.41> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_36 : Operation 177 [1/1] (0.88ns)   --->   "%add_ln58 = add i32, i32 %n_read" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:58]   --->   Operation 177 'add' 'add_ln58' <Predicate = true> <Delay = 0.88> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.14> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_36 : Operation 178 [1/1] (0.00ns)   --->   "%sext_ln58 = sext i32 %add_ln58" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:58]   --->   Operation 178 'sext' 'sext_ln58' <Predicate = true> <Delay = 0.00>
+ST_36 : Operation 179 [1/1] (0.60ns)   --->   "%br_ln58 = br void %.lr.ph" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:58]   --->   Operation 179 'br' 'br_ln58' <Predicate = true> <Delay = 0.60>
+
+State 37 <SV = 36> <Delay = 0.82>
+ST_37 : Operation 180 [1/1] (0.00ns)   --->   "%dataX_1 = phi i64 %dataX_0, void %bb29_ifconv, i64 %dataX_2, void %._crit_edge_ifconv" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56]   --->   Operation 180 'phi' 'dataX_1' <Predicate = true> <Delay = 0.00>
+ST_37 : Operation 181 [1/1] (0.00ns)   --->   "%dataX12_1 = phi i64 %dataX12_0, void %bb29_ifconv, i64 %dataX12_2, void %._crit_edge_ifconv" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56]   --->   Operation 181 'phi' 'dataX12_1' <Predicate = true> <Delay = 0.00>
+ST_37 : Operation 182 [1/1] (0.00ns)   --->   "%dataX2_1 = phi i64 %dataX2_0, void %bb29_ifconv, i64 %dataX2_2, void %._crit_edge_ifconv" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56]   --->   Operation 182 'phi' 'dataX2_1' <Predicate = true> <Delay = 0.00>
+ST_37 : Operation 183 [1/1] (0.00ns)   --->   "%dataX3_1 = phi i64 %dataX3_0, void %bb29_ifconv, i64 %dataX3_2, void %._crit_edge_ifconv" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56]   --->   Operation 183 'phi' 'dataX3_1' <Predicate = true> <Delay = 0.00>
+ST_37 : Operation 184 [1/1] (0.00ns)   --->   "%i = phi i64 %sext_ln58, void %bb29_ifconv, i64 %add_ln58_1, void %._crit_edge_ifconv" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:58]   --->   Operation 184 'phi' 'i' <Predicate = true> <Delay = 0.00>
+ST_37 : Operation 185 [1/1] (0.00ns)   --->   "%trunc_ln58 = trunc i64 %i" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:58]   --->   Operation 185 'trunc' 'trunc_ln58' <Predicate = true> <Delay = 0.00>
+ST_37 : Operation 186 [1/1] (0.00ns)   --->   "%tmp_3 = bitselect i1 @_ssdm_op_BitSelect.i1.i64.i32, i64 %i, i32" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:58]   --->   Operation 186 'bitselect' 'tmp_3' <Predicate = true> <Delay = 0.00>
+ST_37 : Operation 187 [1/1] (0.00ns)   --->   "%br_ln58 = br i1 %tmp_3, void %.lr.ph.split, void %._crit_edge21.loopexit" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:58]   --->   Operation 187 'br' 'br_ln58' <Predicate = true> <Delay = 0.00>
+ST_37 : Operation 188 [1/1] (0.00ns)   --->   "%specloopname_ln58 = specloopname void @_ssdm_op_SpecLoopName, void @empty_17" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:58]   --->   Operation 188 'specloopname' 'specloopname_ln58' <Predicate = (!tmp_3)> <Delay = 0.00>
+ST_37 : Operation 189 [1/1] (0.00ns)   --->   "%tmp_4 = partselect i31 @_ssdm_op_PartSelect.i31.i64.i32.i32, i64 %i, i32, i32" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:58]   --->   Operation 189 'partselect' 'tmp_4' <Predicate = (!tmp_3)> <Delay = 0.00>
+ST_37 : Operation 190 [1/1] (0.00ns)   --->   "%p_cast = partselect i2 @_ssdm_op_PartSelect.i2.i64.i32.i32, i64 %i, i32, i32" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:58]   --->   Operation 190 'partselect' 'p_cast' <Predicate = (!tmp_3)> <Delay = 0.00>
+ST_37 : Operation 191 [1/1] (0.00ns)   --->   "%p_cast7 = zext i31 %tmp_4" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:58]   --->   Operation 191 'zext' 'p_cast7' <Predicate = (!tmp_3)> <Delay = 0.00>
+ST_37 : Operation 192 [1/1] (0.00ns)   --->   "%empty_36 = trunc i64 %i" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:58]   --->   Operation 192 'trunc' 'empty_36' <Predicate = (!tmp_3)> <Delay = 0.00>
+ST_37 : Operation 193 [1/1] (0.57ns)   --->   "%empty_37 = add i3, i3 %trunc_ln58" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:58]   --->   Operation 193 'add' 'empty_37' <Predicate = (!tmp_3)> <Delay = 0.57> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.14> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_37 : Operation 194 [1/1] (0.43ns)   --->   "%p_t = add i2, i2 %empty_36" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:58]   --->   Operation 194 'add' 'p_t' <Predicate = (!tmp_3)> <Delay = 0.43> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.14> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_37 : Operation 195 [1/1] (0.39ns)   --->   "%tmp = mux i64 @_ssdm_op_Mux.ap_auto.4double.i2, i64 %dataX_1, i64 %dataX12_1, i64 %dataX2_1, i64 %dataX3_1, i2 %p_t" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:66]   --->   Operation 195 'mux' 'tmp' <Predicate = (!tmp_3)> <Delay = 0.39> <CoreInst = "MuxnS">   --->   Core 16 'MuxnS' <Latency = 0> <II = 1> <Delay = 0.39> <FuncUnit> <Opcode : 'mux'> <InPorts = 2> <OutPorts = 1>
+ST_37 : Operation 196 [1/1] (0.60ns)   --->   "%br_ln60 = br void" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:60]   --->   Operation 196 'br' 'br_ln60' <Predicate = (!tmp_3)> <Delay = 0.60>
+ST_37 : Operation 197 [1/1] (0.00ns)   --->   "%mrv = insertvalue i256, i64 %dataX_1" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:71]   --->   Operation 197 'insertvalue' 'mrv' <Predicate = (tmp_3)> <Delay = 0.00>
+ST_37 : Operation 198 [1/1] (0.00ns)   --->   "%mrv_1 = insertvalue i256 %mrv, i64 %dataX12_1" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:71]   --->   Operation 198 'insertvalue' 'mrv_1' <Predicate = (tmp_3)> <Delay = 0.00>
+ST_37 : Operation 199 [1/1] (0.00ns)   --->   "%mrv_2 = insertvalue i256 %mrv_1, i64 %dataX2_1" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:71]   --->   Operation 199 'insertvalue' 'mrv_2' <Predicate = (tmp_3)> <Delay = 0.00>
+ST_37 : Operation 200 [1/1] (0.00ns)   --->   "%mrv_3 = insertvalue i256 %mrv_2, i64 %dataX3_1" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:71]   --->   Operation 200 'insertvalue' 'mrv_3' <Predicate = (tmp_3)> <Delay = 0.00>
+ST_37 : Operation 201 [1/1] (0.00ns)   --->   "%ret_ln71 = ret i256 %mrv_3" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:71]   --->   Operation 201 'ret' 'ret_ln71' <Predicate = (tmp_3)> <Delay = 0.00>
+
+State 38 <SV = 37> <Delay = 1.73>
+ST_38 : Operation 202 [1/1] (0.00ns)   --->   "%j = phi i64 %p_cast7, void %.lr.ph.split, i64 %add_ln60, void %._crit_edge1" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:58]   --->   Operation 202 'phi' 'j' <Predicate = true> <Delay = 0.00>
+ST_38 : Operation 203 [1/1] (0.00ns)   --->   "%trunc_ln66 = trunc i64 %j" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:66]   --->   Operation 203 'trunc' 'trunc_ln66' <Predicate = true> <Delay = 0.00>
+ST_38 : Operation 204 [1/1] (0.00ns)   --->   "%trunc_ln66_1 = trunc i64 %j" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:66]   --->   Operation 204 'trunc' 'trunc_ln66_1' <Predicate = true> <Delay = 0.00>
+ST_38 : Operation 205 [1/1] (0.00ns)   --->   "%tmp_6_cast = bitconcatenate i3 @_ssdm_op_BitConcatenate.i3.i1.i2, i1 %trunc_ln66_1, i2" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:66]   --->   Operation 205 'bitconcatenate' 'tmp_6_cast' <Predicate = true> <Delay = 0.00>
+ST_38 : Operation 206 [1/1] (0.57ns)   --->   "%add_ln66 = add i3 %empty_37, i3 %tmp_6_cast" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:66]   --->   Operation 206 'add' 'add_ln66' <Predicate = true> <Delay = 0.57> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.14> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_38 : Operation 207 [1/1] (0.00ns)   --->   "%zext_ln66 = zext i3 %add_ln66" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:66]   --->   Operation 207 'zext' 'zext_ln66' <Predicate = true> <Delay = 0.00>
+ST_38 : Operation 208 [1/1] (0.00ns)   --->   "%matA_0_addr_1 = getelementptr i64 %matA_0, i64, i64 %zext_ln66" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:66]   --->   Operation 208 'getelementptr' 'matA_0_addr_1' <Predicate = true> <Delay = 0.00>
+ST_38 : Operation 209 [1/1] (0.00ns)   --->   "%matA_1_addr_1 = getelementptr i64 %matA_1, i64, i64 %zext_ln66" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:66]   --->   Operation 209 'getelementptr' 'matA_1_addr_1' <Predicate = true> <Delay = 0.00>
+ST_38 : Operation 210 [1/1] (0.12ns)   --->   "%xor_ln66 = xor i2 %trunc_ln66, i2" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:66]   --->   Operation 210 'xor' 'xor_ln66' <Predicate = true> <Delay = 0.12> <CoreInst = "LogicGate">   --->   Core 12 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.12> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_38 : Operation 211 [1/1] (0.00ns)   --->   "%zext_ln66_1 = zext i2 %xor_ln66" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:66]   --->   Operation 211 'zext' 'zext_ln66_1' <Predicate = true> <Delay = 0.00>
+ST_38 : Operation 212 [1/1] (0.00ns)   --->   "%dataB_addr_2 = getelementptr i64 %dataB, i64, i64 %zext_ln66_1" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:66]   --->   Operation 212 'getelementptr' 'dataB_addr_2' <Predicate = true> <Delay = 0.00>
+ST_38 : Operation 213 [1/1] (0.00ns)   --->   "%dataB_addr_3 = getelementptr i64 %dataB, i64, i64 %j" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:66]   --->   Operation 213 'getelementptr' 'dataB_addr_3' <Predicate = true> <Delay = 0.00>
+ST_38 : Operation 214 [1/1] (0.00ns)   --->   "%tmp_5 = bitselect i1 @_ssdm_op_BitSelect.i1.i64.i32, i64 %j, i32" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:60]   --->   Operation 214 'bitselect' 'tmp_5' <Predicate = true> <Delay = 0.00>
+ST_38 : Operation 215 [1/1] (0.00ns)   --->   "%br_ln60 = br i1 %tmp_5, void %.split, void %._crit_edge_ifconv" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:60]   --->   Operation 215 'br' 'br_ln60' <Predicate = true> <Delay = 0.00>
+ST_38 : Operation 216 [1/1] (0.00ns)   --->   "%specpipeline_ln60 = specpipeline void @_ssdm_op_SpecPipeline, i32, i32, i32, i32, void @empty" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:60]   --->   Operation 216 'specpipeline' 'specpipeline_ln60' <Predicate = (!tmp_5)> <Delay = 0.00>
+ST_38 : Operation 217 [1/1] (0.00ns)   --->   "%specloopname_ln60 = specloopname void @_ssdm_op_SpecLoopName, void @empty_9" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:60]   --->   Operation 217 'specloopname' 'specloopname_ln60' <Predicate = (!tmp_5)> <Delay = 0.00>
+ST_38 : Operation 218 [1/1] (0.00ns)   --->   "%empty_38 = shl i64 %j, i64" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:58]   --->   Operation 218 'shl' 'empty_38' <Predicate = (!tmp_5)> <Delay = 0.00>
+ST_38 : Operation 219 [1/1] (0.00ns) (grouped into LUT with out node icmp_ln66)   --->   "%or_ln66 = or i64 %empty_38, i64" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:66]   --->   Operation 219 'or' 'or_ln66' <Predicate = (!tmp_5)> <Delay = 0.00>
+ST_38 : Operation 220 [1/1] (1.06ns) (out node of the LUT)   --->   "%icmp_ln66 = icmp_slt  i64 %or_ln66, i64 %sext_ln56" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:66]   --->   Operation 220 'icmp' 'icmp_ln66' <Predicate = (!tmp_5)> <Delay = 1.06> <CoreInst = "Cmp">   --->   Core 10 'Cmp' <Latency = 0> <II = 1> <Delay = 0.34> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_38 : Operation 221 [1/1] (0.00ns)   --->   "%br_ln66 = br i1 %icmp_ln66, void %.split._crit_edge, void %bb28" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:66]   --->   Operation 221 'br' 'br_ln66' <Predicate = (!tmp_5)> <Delay = 0.00>
+ST_38 : Operation 222 [3/3] (1.15ns)   --->   "%matA_1_load_2 = load i3 %matA_1_addr_1" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:66]   --->   Operation 222 'load' 'matA_1_load_2' <Predicate = (!tmp_5 & icmp_ln66)> <Delay = 1.15> <CoreInst = "XPM_MEMORY_Ultra">   --->   Core 69 'XPM_MEMORY_Ultra' <Latency = 2> <II = 1> <Delay = 1.15> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 8> <RAM>
+ST_38 : Operation 223 [1/1] (1.06ns)   --->   "%icmp_ln66_1 = icmp_slt  i64 %empty_38, i64 %sext_ln56" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:66]   --->   Operation 223 'icmp' 'icmp_ln66_1' <Predicate = (!tmp_5)> <Delay = 1.06> <CoreInst = "Cmp">   --->   Core 10 'Cmp' <Latency = 0> <II = 1> <Delay = 0.34> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_38 : Operation 224 [1/1] (0.00ns)   --->   "%br_ln66 = br i1 %icmp_ln66_1, void %._crit_edge1, void %bb" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:66]   --->   Operation 224 'br' 'br_ln66' <Predicate = (!tmp_5)> <Delay = 0.00>
+ST_38 : Operation 225 [3/3] (1.15ns)   --->   "%matA_0_load_2 = load i3 %matA_0_addr_1" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:66]   --->   Operation 225 'load' 'matA_0_load_2' <Predicate = (!tmp_5 & icmp_ln66_1)> <Delay = 1.15> <CoreInst = "XPM_MEMORY_Ultra">   --->   Core 69 'XPM_MEMORY_Ultra' <Latency = 2> <II = 1> <Delay = 1.15> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 8> <RAM>
+ST_38 : Operation 226 [1/1] (1.14ns)   --->   "%add_ln60 = add i64 %j, i64" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:60]   --->   Operation 226 'add' 'add_ln60' <Predicate = (!tmp_5)> <Delay = 1.14> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.14> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_38 : Operation 227 [1/1] (0.00ns)   --->   "%br_ln0 = br void"   --->   Operation 227 'br' 'br_ln0' <Predicate = (!tmp_5)> <Delay = 0.00>
+
+State 39 <SV = 38> <Delay = 1.15>
+ST_39 : Operation 228 [2/3] (1.15ns)   --->   "%matA_1_load_2 = load i3 %matA_1_addr_1" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:66]   --->   Operation 228 'load' 'matA_1_load_2' <Predicate = (!tmp_5 & icmp_ln66)> <Delay = 1.15> <CoreInst = "XPM_MEMORY_Ultra">   --->   Core 69 'XPM_MEMORY_Ultra' <Latency = 2> <II = 1> <Delay = 1.15> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 8> <RAM>
+ST_39 : Operation 229 [2/3] (1.15ns)   --->   "%matA_0_load_2 = load i3 %matA_0_addr_1" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:66]   --->   Operation 229 'load' 'matA_0_load_2' <Predicate = (!tmp_5 & icmp_ln66_1)> <Delay = 1.15> <CoreInst = "XPM_MEMORY_Ultra">   --->   Core 69 'XPM_MEMORY_Ultra' <Latency = 2> <II = 1> <Delay = 1.15> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 8> <RAM>
+
+State 40 <SV = 39> <Delay = 1.15>
+ST_40 : Operation 230 [1/3] (1.15ns)   --->   "%matA_1_load_2 = load i3 %matA_1_addr_1" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:66]   --->   Operation 230 'load' 'matA_1_load_2' <Predicate = (icmp_ln66)> <Delay = 1.15> <CoreInst = "XPM_MEMORY_Ultra">   --->   Core 69 'XPM_MEMORY_Ultra' <Latency = 2> <II = 1> <Delay = 1.15> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 8> <RAM>
+ST_40 : Operation 231 [1/3] (1.15ns)   --->   "%matA_0_load_2 = load i3 %matA_0_addr_1" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:66]   --->   Operation 231 'load' 'matA_0_load_2' <Predicate = (icmp_ln66_1)> <Delay = 1.15> <CoreInst = "XPM_MEMORY_Ultra">   --->   Core 69 'XPM_MEMORY_Ultra' <Latency = 2> <II = 1> <Delay = 1.15> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 8> <RAM>
+
+State 41 <SV = 40> <Delay = 2.32>
+ST_41 : Operation 232 [8/8] (2.32ns)   --->   "%mul = dmul i64 %matA_1_load_2, i64 %tmp" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:66]   --->   Operation 232 'dmul' 'mul' <Predicate = (icmp_ln66)> <Delay = 2.32> <CoreInst = "DMul_maxdsp">   --->   Core 105 'DMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.32> <FuncUnit> <Opcode : 'dmul'> <InPorts = 2> <OutPorts = 1>
+
+State 42 <SV = 41> <Delay = 2.32>
+ST_42 : Operation 233 [7/8] (2.32ns)   --->   "%mul = dmul i64 %matA_1_load_2, i64 %tmp" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:66]   --->   Operation 233 'dmul' 'mul' <Predicate = (icmp_ln66)> <Delay = 2.32> <CoreInst = "DMul_maxdsp">   --->   Core 105 'DMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.32> <FuncUnit> <Opcode : 'dmul'> <InPorts = 2> <OutPorts = 1>
+ST_42 : Operation 234 [8/8] (2.32ns)   --->   "%mul35_1 = dmul i64 %matA_0_load_2, i64 %tmp" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:66]   --->   Operation 234 'dmul' 'mul35_1' <Predicate = (icmp_ln66_1)> <Delay = 2.32> <CoreInst = "DMul_maxdsp">   --->   Core 105 'DMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.32> <FuncUnit> <Opcode : 'dmul'> <InPorts = 2> <OutPorts = 1>
+
+State 43 <SV = 42> <Delay = 2.32>
+ST_43 : Operation 235 [6/8] (2.32ns)   --->   "%mul = dmul i64 %matA_1_load_2, i64 %tmp" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:66]   --->   Operation 235 'dmul' 'mul' <Predicate = (icmp_ln66)> <Delay = 2.32> <CoreInst = "DMul_maxdsp">   --->   Core 105 'DMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.32> <FuncUnit> <Opcode : 'dmul'> <InPorts = 2> <OutPorts = 1>
+ST_43 : Operation 236 [7/8] (2.32ns)   --->   "%mul35_1 = dmul i64 %matA_0_load_2, i64 %tmp" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:66]   --->   Operation 236 'dmul' 'mul35_1' <Predicate = (icmp_ln66_1)> <Delay = 2.32> <CoreInst = "DMul_maxdsp">   --->   Core 105 'DMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.32> <FuncUnit> <Opcode : 'dmul'> <InPorts = 2> <OutPorts = 1>
+
+State 44 <SV = 43> <Delay = 2.32>
+ST_44 : Operation 237 [5/8] (2.32ns)   --->   "%mul = dmul i64 %matA_1_load_2, i64 %tmp" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:66]   --->   Operation 237 'dmul' 'mul' <Predicate = (icmp_ln66)> <Delay = 2.32> <CoreInst = "DMul_maxdsp">   --->   Core 105 'DMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.32> <FuncUnit> <Opcode : 'dmul'> <InPorts = 2> <OutPorts = 1>
+ST_44 : Operation 238 [6/8] (2.32ns)   --->   "%mul35_1 = dmul i64 %matA_0_load_2, i64 %tmp" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:66]   --->   Operation 238 'dmul' 'mul35_1' <Predicate = (icmp_ln66_1)> <Delay = 2.32> <CoreInst = "DMul_maxdsp">   --->   Core 105 'DMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.32> <FuncUnit> <Opcode : 'dmul'> <InPorts = 2> <OutPorts = 1>
+
+State 45 <SV = 44> <Delay = 2.32>
+ST_45 : Operation 239 [4/8] (2.32ns)   --->   "%mul = dmul i64 %matA_1_load_2, i64 %tmp" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:66]   --->   Operation 239 'dmul' 'mul' <Predicate = (icmp_ln66)> <Delay = 2.32> <CoreInst = "DMul_maxdsp">   --->   Core 105 'DMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.32> <FuncUnit> <Opcode : 'dmul'> <InPorts = 2> <OutPorts = 1>
+ST_45 : Operation 240 [5/8] (2.32ns)   --->   "%mul35_1 = dmul i64 %matA_0_load_2, i64 %tmp" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:66]   --->   Operation 240 'dmul' 'mul35_1' <Predicate = (icmp_ln66_1)> <Delay = 2.32> <CoreInst = "DMul_maxdsp">   --->   Core 105 'DMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.32> <FuncUnit> <Opcode : 'dmul'> <InPorts = 2> <OutPorts = 1>
+
+State 46 <SV = 45> <Delay = 2.32>
+ST_46 : Operation 241 [3/8] (2.32ns)   --->   "%mul = dmul i64 %matA_1_load_2, i64 %tmp" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:66]   --->   Operation 241 'dmul' 'mul' <Predicate = (icmp_ln66)> <Delay = 2.32> <CoreInst = "DMul_maxdsp">   --->   Core 105 'DMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.32> <FuncUnit> <Opcode : 'dmul'> <InPorts = 2> <OutPorts = 1>
+ST_46 : Operation 242 [2/2] (0.59ns)   --->   "%dataB_load_2 = load i2 %dataB_addr_2" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:66]   --->   Operation 242 'load' 'dataB_load_2' <Predicate = (icmp_ln66)> <Delay = 0.59> <CoreInst = "RAM">   --->   Core 23 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_46 : Operation 243 [4/8] (2.32ns)   --->   "%mul35_1 = dmul i64 %matA_0_load_2, i64 %tmp" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:66]   --->   Operation 243 'dmul' 'mul35_1' <Predicate = (icmp_ln66_1)> <Delay = 2.32> <CoreInst = "DMul_maxdsp">   --->   Core 105 'DMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.32> <FuncUnit> <Opcode : 'dmul'> <InPorts = 2> <OutPorts = 1>
+
+State 47 <SV = 46> <Delay = 2.32>
+ST_47 : Operation 244 [2/8] (2.32ns)   --->   "%mul = dmul i64 %matA_1_load_2, i64 %tmp" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:66]   --->   Operation 244 'dmul' 'mul' <Predicate = (icmp_ln66)> <Delay = 2.32> <CoreInst = "DMul_maxdsp">   --->   Core 105 'DMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.32> <FuncUnit> <Opcode : 'dmul'> <InPorts = 2> <OutPorts = 1>
+ST_47 : Operation 245 [1/2] (0.59ns)   --->   "%dataB_load_2 = load i2 %dataB_addr_2" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:66]   --->   Operation 245 'load' 'dataB_load_2' <Predicate = (icmp_ln66)> <Delay = 0.59> <CoreInst = "RAM">   --->   Core 23 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_47 : Operation 246 [3/8] (2.32ns)   --->   "%mul35_1 = dmul i64 %matA_0_load_2, i64 %tmp" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:66]   --->   Operation 246 'dmul' 'mul35_1' <Predicate = (icmp_ln66_1)> <Delay = 2.32> <CoreInst = "DMul_maxdsp">   --->   Core 105 'DMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.32> <FuncUnit> <Opcode : 'dmul'> <InPorts = 2> <OutPorts = 1>
+
+State 48 <SV = 47> <Delay = 2.32>
+ST_48 : Operation 247 [1/8] (2.32ns)   --->   "%mul = dmul i64 %matA_1_load_2, i64 %tmp" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:66]   --->   Operation 247 'dmul' 'mul' <Predicate = (icmp_ln66)> <Delay = 2.32> <CoreInst = "DMul_maxdsp">   --->   Core 105 'DMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.32> <FuncUnit> <Opcode : 'dmul'> <InPorts = 2> <OutPorts = 1>
+ST_48 : Operation 248 [2/8] (2.32ns)   --->   "%mul35_1 = dmul i64 %matA_0_load_2, i64 %tmp" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:66]   --->   Operation 248 'dmul' 'mul35_1' <Predicate = (icmp_ln66_1)> <Delay = 2.32> <CoreInst = "DMul_maxdsp">   --->   Core 105 'DMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.32> <FuncUnit> <Opcode : 'dmul'> <InPorts = 2> <OutPorts = 1>
+ST_48 : Operation 249 [2/2] (0.59ns)   --->   "%dataB_load_3 = load i2 %dataB_addr_3" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:66]   --->   Operation 249 'load' 'dataB_load_3' <Predicate = (icmp_ln66_1)> <Delay = 0.59> <CoreInst = "RAM">   --->   Core 23 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+
+State 49 <SV = 48> <Delay = 2.32>
+ST_49 : Operation 250 [8/8] (1.90ns)   --->   "%sub = dsub i64 %dataB_load_2, i64 %mul" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:66]   --->   Operation 250 'dsub' 'sub' <Predicate = (icmp_ln66)> <Delay = 1.90> <CoreInst = "DAddSub_fulldsp">   --->   Core 93 'DAddSub_fulldsp' <Latency = 7> <II = 1> <Delay = 1.90> <FuncUnit> <Opcode : 'dadd' 'dsub'> <InPorts = 2> <OutPorts = 1>
+ST_49 : Operation 251 [1/8] (2.32ns)   --->   "%mul35_1 = dmul i64 %matA_0_load_2, i64 %tmp" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:66]   --->   Operation 251 'dmul' 'mul35_1' <Predicate = (icmp_ln66_1)> <Delay = 2.32> <CoreInst = "DMul_maxdsp">   --->   Core 105 'DMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.32> <FuncUnit> <Opcode : 'dmul'> <InPorts = 2> <OutPorts = 1>
+ST_49 : Operation 252 [1/2] (0.59ns)   --->   "%dataB_load_3 = load i2 %dataB_addr_3" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:66]   --->   Operation 252 'load' 'dataB_load_3' <Predicate = (icmp_ln66_1)> <Delay = 0.59> <CoreInst = "RAM">   --->   Core 23 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+
+State 50 <SV = 49> <Delay = 1.90>
+ST_50 : Operation 253 [7/8] (1.90ns)   --->   "%sub = dsub i64 %dataB_load_2, i64 %mul" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:66]   --->   Operation 253 'dsub' 'sub' <Predicate = (icmp_ln66)> <Delay = 1.90> <CoreInst = "DAddSub_fulldsp">   --->   Core 93 'DAddSub_fulldsp' <Latency = 7> <II = 1> <Delay = 1.90> <FuncUnit> <Opcode : 'dadd' 'dsub'> <InPorts = 2> <OutPorts = 1>
+ST_50 : Operation 254 [8/8] (1.90ns)   --->   "%sub40_1 = dsub i64 %dataB_load_3, i64 %mul35_1" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:66]   --->   Operation 254 'dsub' 'sub40_1' <Predicate = (icmp_ln66_1)> <Delay = 1.90> <CoreInst = "DAddSub_fulldsp">   --->   Core 93 'DAddSub_fulldsp' <Latency = 7> <II = 1> <Delay = 1.90> <FuncUnit> <Opcode : 'dadd' 'dsub'> <InPorts = 2> <OutPorts = 1>
+
+State 51 <SV = 50> <Delay = 1.90>
+ST_51 : Operation 255 [6/8] (1.90ns)   --->   "%sub = dsub i64 %dataB_load_2, i64 %mul" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:66]   --->   Operation 255 'dsub' 'sub' <Predicate = (icmp_ln66)> <Delay = 1.90> <CoreInst = "DAddSub_fulldsp">   --->   Core 93 'DAddSub_fulldsp' <Latency = 7> <II = 1> <Delay = 1.90> <FuncUnit> <Opcode : 'dadd' 'dsub'> <InPorts = 2> <OutPorts = 1>
+ST_51 : Operation 256 [7/8] (1.90ns)   --->   "%sub40_1 = dsub i64 %dataB_load_3, i64 %mul35_1" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:66]   --->   Operation 256 'dsub' 'sub40_1' <Predicate = (icmp_ln66_1)> <Delay = 1.90> <CoreInst = "DAddSub_fulldsp">   --->   Core 93 'DAddSub_fulldsp' <Latency = 7> <II = 1> <Delay = 1.90> <FuncUnit> <Opcode : 'dadd' 'dsub'> <InPorts = 2> <OutPorts = 1>
+
+State 52 <SV = 51> <Delay = 1.90>
+ST_52 : Operation 257 [5/8] (1.90ns)   --->   "%sub = dsub i64 %dataB_load_2, i64 %mul" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:66]   --->   Operation 257 'dsub' 'sub' <Predicate = (icmp_ln66)> <Delay = 1.90> <CoreInst = "DAddSub_fulldsp">   --->   Core 93 'DAddSub_fulldsp' <Latency = 7> <II = 1> <Delay = 1.90> <FuncUnit> <Opcode : 'dadd' 'dsub'> <InPorts = 2> <OutPorts = 1>
+ST_52 : Operation 258 [6/8] (1.90ns)   --->   "%sub40_1 = dsub i64 %dataB_load_3, i64 %mul35_1" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:66]   --->   Operation 258 'dsub' 'sub40_1' <Predicate = (icmp_ln66_1)> <Delay = 1.90> <CoreInst = "DAddSub_fulldsp">   --->   Core 93 'DAddSub_fulldsp' <Latency = 7> <II = 1> <Delay = 1.90> <FuncUnit> <Opcode : 'dadd' 'dsub'> <InPorts = 2> <OutPorts = 1>
+
+State 53 <SV = 52> <Delay = 1.90>
+ST_53 : Operation 259 [4/8] (1.90ns)   --->   "%sub = dsub i64 %dataB_load_2, i64 %mul" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:66]   --->   Operation 259 'dsub' 'sub' <Predicate = (icmp_ln66)> <Delay = 1.90> <CoreInst = "DAddSub_fulldsp">   --->   Core 93 'DAddSub_fulldsp' <Latency = 7> <II = 1> <Delay = 1.90> <FuncUnit> <Opcode : 'dadd' 'dsub'> <InPorts = 2> <OutPorts = 1>
+ST_53 : Operation 260 [5/8] (1.90ns)   --->   "%sub40_1 = dsub i64 %dataB_load_3, i64 %mul35_1" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:66]   --->   Operation 260 'dsub' 'sub40_1' <Predicate = (icmp_ln66_1)> <Delay = 1.90> <CoreInst = "DAddSub_fulldsp">   --->   Core 93 'DAddSub_fulldsp' <Latency = 7> <II = 1> <Delay = 1.90> <FuncUnit> <Opcode : 'dadd' 'dsub'> <InPorts = 2> <OutPorts = 1>
+
+State 54 <SV = 53> <Delay = 1.90>
+ST_54 : Operation 261 [3/8] (1.90ns)   --->   "%sub = dsub i64 %dataB_load_2, i64 %mul" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:66]   --->   Operation 261 'dsub' 'sub' <Predicate = (icmp_ln66)> <Delay = 1.90> <CoreInst = "DAddSub_fulldsp">   --->   Core 93 'DAddSub_fulldsp' <Latency = 7> <II = 1> <Delay = 1.90> <FuncUnit> <Opcode : 'dadd' 'dsub'> <InPorts = 2> <OutPorts = 1>
+ST_54 : Operation 262 [4/8] (1.90ns)   --->   "%sub40_1 = dsub i64 %dataB_load_3, i64 %mul35_1" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:66]   --->   Operation 262 'dsub' 'sub40_1' <Predicate = (icmp_ln66_1)> <Delay = 1.90> <CoreInst = "DAddSub_fulldsp">   --->   Core 93 'DAddSub_fulldsp' <Latency = 7> <II = 1> <Delay = 1.90> <FuncUnit> <Opcode : 'dadd' 'dsub'> <InPorts = 2> <OutPorts = 1>
+
+State 55 <SV = 54> <Delay = 1.90>
+ST_55 : Operation 263 [2/8] (1.90ns)   --->   "%sub = dsub i64 %dataB_load_2, i64 %mul" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:66]   --->   Operation 263 'dsub' 'sub' <Predicate = (icmp_ln66)> <Delay = 1.90> <CoreInst = "DAddSub_fulldsp">   --->   Core 93 'DAddSub_fulldsp' <Latency = 7> <II = 1> <Delay = 1.90> <FuncUnit> <Opcode : 'dadd' 'dsub'> <InPorts = 2> <OutPorts = 1>
+ST_55 : Operation 264 [3/8] (1.90ns)   --->   "%sub40_1 = dsub i64 %dataB_load_3, i64 %mul35_1" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:66]   --->   Operation 264 'dsub' 'sub40_1' <Predicate = (icmp_ln66_1)> <Delay = 1.90> <CoreInst = "DAddSub_fulldsp">   --->   Core 93 'DAddSub_fulldsp' <Latency = 7> <II = 1> <Delay = 1.90> <FuncUnit> <Opcode : 'dadd' 'dsub'> <InPorts = 2> <OutPorts = 1>
+
+State 56 <SV = 55> <Delay = 1.90>
+ST_56 : Operation 265 [1/8] (1.90ns)   --->   "%sub = dsub i64 %dataB_load_2, i64 %mul" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:66]   --->   Operation 265 'dsub' 'sub' <Predicate = (icmp_ln66)> <Delay = 1.90> <CoreInst = "DAddSub_fulldsp">   --->   Core 93 'DAddSub_fulldsp' <Latency = 7> <II = 1> <Delay = 1.90> <FuncUnit> <Opcode : 'dadd' 'dsub'> <InPorts = 2> <OutPorts = 1>
+ST_56 : Operation 266 [2/8] (1.90ns)   --->   "%sub40_1 = dsub i64 %dataB_load_3, i64 %mul35_1" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:66]   --->   Operation 266 'dsub' 'sub40_1' <Predicate = (icmp_ln66_1)> <Delay = 1.90> <CoreInst = "DAddSub_fulldsp">   --->   Core 93 'DAddSub_fulldsp' <Latency = 7> <II = 1> <Delay = 1.90> <FuncUnit> <Opcode : 'dadd' 'dsub'> <InPorts = 2> <OutPorts = 1>
+
+State 57 <SV = 56> <Delay = 1.90>
+ST_57 : Operation 267 [1/1] (0.59ns)   --->   "%store_ln66 = store i64 %sub, i2 %dataB_addr_2, i64 %dataB_load_2" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:66]   --->   Operation 267 'store' 'store_ln66' <Predicate = (icmp_ln66)> <Delay = 0.59> <CoreInst = "RAM">   --->   Core 23 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_57 : Operation 268 [1/1] (0.00ns)   --->   "%br_ln66 = br void %.split._crit_edge" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:66]   --->   Operation 268 'br' 'br_ln66' <Predicate = (icmp_ln66)> <Delay = 0.00>
+ST_57 : Operation 269 [1/8] (1.90ns)   --->   "%sub40_1 = dsub i64 %dataB_load_3, i64 %mul35_1" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:66]   --->   Operation 269 'dsub' 'sub40_1' <Predicate = (icmp_ln66_1)> <Delay = 1.90> <CoreInst = "DAddSub_fulldsp">   --->   Core 93 'DAddSub_fulldsp' <Latency = 7> <II = 1> <Delay = 1.90> <FuncUnit> <Opcode : 'dadd' 'dsub'> <InPorts = 2> <OutPorts = 1>
+
+State 58 <SV = 57> <Delay = 0.00>
+
+State 59 <SV = 58> <Delay = 0.59>
+ST_59 : Operation 270 [1/1] (0.59ns)   --->   "%store_ln66 = store i64 %sub40_1, i2 %dataB_addr_3, i64 %dataB_load_3" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:66]   --->   Operation 270 'store' 'store_ln66' <Predicate = (icmp_ln66_1)> <Delay = 0.59> <CoreInst = "RAM">   --->   Core 23 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_59 : Operation 271 [1/1] (0.00ns)   --->   "%br_ln66 = br void %._crit_edge1" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:66]   --->   Operation 271 'br' 'br_ln66' <Predicate = (icmp_ln66_1)> <Delay = 0.00>
+
+State 60 <SV = 38> <Delay = 1.85>
+ST_60 : Operation 272 [1/1] (0.00ns)   --->   "%trunc_ln69 = trunc i64 %i" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69]   --->   Operation 272 'trunc' 'trunc_ln69' <Predicate = true> <Delay = 0.00>
+ST_60 : Operation 273 [1/1] (0.00ns)   --->   "%tmp_6 = bitselect i1 @_ssdm_op_BitSelect.i1.i64.i32, i64 %i, i32" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69]   --->   Operation 273 'bitselect' 'tmp_6' <Predicate = true> <Delay = 0.00>
+ST_60 : Operation 274 [1/1] (0.57ns)   --->   "%sub_ln69 = sub i3, i3 %trunc_ln58" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69]   --->   Operation 274 'sub' 'sub_ln69' <Predicate = true> <Delay = 0.57> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.14> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_60 : Operation 275 [1/1] (0.00ns)   --->   "%trunc_ln69_3 = partselect i2 @_ssdm_op_PartSelect.i2.i3.i32.i32, i3 %sub_ln69, i32, i32" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69]   --->   Operation 275 'partselect' 'trunc_ln69_3' <Predicate = true> <Delay = 0.00>
+ST_60 : Operation 276 [1/1] (0.43ns)   --->   "%sub_ln69_1 = sub i2, i2 %trunc_ln69_3" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69]   --->   Operation 276 'sub' 'sub_ln69_1' <Predicate = true> <Delay = 0.43> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.14> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_60 : Operation 277 [1/1] (0.27ns)   --->   "%select_ln69 = select i1 %tmp_6, i2 %sub_ln69_1, i2 %p_cast" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69]   --->   Operation 277 'select' 'select_ln69' <Predicate = true> <Delay = 0.27> <CoreInst = "Sel">   --->   Core 11 'Sel' <Latency = 0> <II = 1> <Delay = 0.41> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_60 : Operation 278 [1/1] (0.00ns)   --->   "%trunc_ln69_1 = trunc i2 %select_ln69" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69]   --->   Operation 278 'trunc' 'trunc_ln69_1' <Predicate = true> <Delay = 0.00>
+ST_60 : Operation 279 [1/1] (0.00ns)   --->   "%tmp_11_cast = bitconcatenate i3 @_ssdm_op_BitConcatenate.i3.i1.i2, i1 %trunc_ln69_1, i2" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69]   --->   Operation 279 'bitconcatenate' 'tmp_11_cast' <Predicate = true> <Delay = 0.00>
+ST_60 : Operation 280 [1/1] (0.57ns)   --->   "%add_ln69 = add i3 %trunc_ln58, i3 %tmp_11_cast" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69]   --->   Operation 280 'add' 'add_ln69' <Predicate = true> <Delay = 0.57> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.14> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_60 : Operation 281 [1/1] (1.14ns)   --->   "%add_ln58_1 = add i64, i64 %i" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:58]   --->   Operation 281 'add' 'add_ln58_1' <Predicate = true> <Delay = 1.14> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.14> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+
+State 61 <SV = 39> <Delay = 1.15>
+ST_61 : Operation 282 [1/1] (0.00ns)   --->   "%zext_ln69 = zext i3 %add_ln69" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69]   --->   Operation 282 'zext' 'zext_ln69' <Predicate = true> <Delay = 0.00>
+ST_61 : Operation 283 [1/1] (0.00ns)   --->   "%matA_0_addr_2 = getelementptr i64 %matA_0, i64, i64 %zext_ln69" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69]   --->   Operation 283 'getelementptr' 'matA_0_addr_2' <Predicate = (!trunc_ln69)> <Delay = 0.00>
+ST_61 : Operation 284 [1/1] (0.00ns)   --->   "%matA_1_addr_2 = getelementptr i64 %matA_1, i64, i64 %zext_ln69" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69]   --->   Operation 284 'getelementptr' 'matA_1_addr_2' <Predicate = (trunc_ln69)> <Delay = 0.00>
+ST_61 : Operation 285 [3/3] (1.15ns)   --->   "%matA_1_load_1 = load i3 %matA_1_addr_2" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69]   --->   Operation 285 'load' 'matA_1_load_1' <Predicate = (trunc_ln69)> <Delay = 1.15> <CoreInst = "XPM_MEMORY_Ultra">   --->   Core 69 'XPM_MEMORY_Ultra' <Latency = 2> <II = 1> <Delay = 1.15> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 8> <RAM>
+ST_61 : Operation 286 [3/3] (1.15ns)   --->   "%matA_0_load_1 = load i3 %matA_0_addr_2" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69]   --->   Operation 286 'load' 'matA_0_load_1' <Predicate = (!trunc_ln69)> <Delay = 1.15> <CoreInst = "XPM_MEMORY_Ultra">   --->   Core 69 'XPM_MEMORY_Ultra' <Latency = 2> <II = 1> <Delay = 1.15> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 8> <RAM>
+
+State 62 <SV = 40> <Delay = 1.15>
+ST_62 : Operation 287 [1/1] (0.00ns)   --->   "%tmp_s = bitconcatenate i2 @_ssdm_op_BitConcatenate.i2.i1.i1, i1 %trunc_ln69, i1" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69]   --->   Operation 287 'bitconcatenate' 'tmp_s' <Predicate = true> <Delay = 0.00>
+ST_62 : Operation 288 [1/1] (0.43ns)   --->   "%add_ln69_1 = add i2 %select_ln69, i2 %tmp_s" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69]   --->   Operation 288 'add' 'add_ln69_1' <Predicate = true> <Delay = 0.43> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.14> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_62 : Operation 289 [1/1] (0.00ns)   --->   "%zext_ln69_1 = zext i2 %add_ln69_1" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69]   --->   Operation 289 'zext' 'zext_ln69_1' <Predicate = true> <Delay = 0.00>
+ST_62 : Operation 290 [1/1] (0.00ns)   --->   "%dataB_addr_1 = getelementptr i64 %dataB, i64, i64 %zext_ln69_1" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69]   --->   Operation 290 'getelementptr' 'dataB_addr_1' <Predicate = true> <Delay = 0.00>
+ST_62 : Operation 291 [2/2] (0.59ns)   --->   "%dataB_load_1 = load i2 %dataB_addr_1" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69]   --->   Operation 291 'load' 'dataB_load_1' <Predicate = true> <Delay = 0.59> <CoreInst = "RAM">   --->   Core 23 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_62 : Operation 292 [2/3] (1.15ns)   --->   "%matA_1_load_1 = load i3 %matA_1_addr_2" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69]   --->   Operation 292 'load' 'matA_1_load_1' <Predicate = (trunc_ln69)> <Delay = 1.15> <CoreInst = "XPM_MEMORY_Ultra">   --->   Core 69 'XPM_MEMORY_Ultra' <Latency = 2> <II = 1> <Delay = 1.15> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 8> <RAM>
+ST_62 : Operation 293 [2/3] (1.15ns)   --->   "%matA_0_load_1 = load i3 %matA_0_addr_2" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69]   --->   Operation 293 'load' 'matA_0_load_1' <Predicate = (!trunc_ln69)> <Delay = 1.15> <CoreInst = "XPM_MEMORY_Ultra">   --->   Core 69 'XPM_MEMORY_Ultra' <Latency = 2> <II = 1> <Delay = 1.15> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 8> <RAM>
+
+State 63 <SV = 41> <Delay = 1.56>
+ST_63 : Operation 294 [1/2] (0.59ns)   --->   "%dataB_load_1 = load i2 %dataB_addr_1" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69]   --->   Operation 294 'load' 'dataB_load_1' <Predicate = true> <Delay = 0.59> <CoreInst = "RAM">   --->   Core 23 'RAM' <Latency = 1> <II = 1> <Delay = 0.59> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 4> <RAM>
+ST_63 : Operation 295 [1/3] (1.15ns)   --->   "%matA_1_load_1 = load i3 %matA_1_addr_2" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69]   --->   Operation 295 'load' 'matA_1_load_1' <Predicate = (trunc_ln69)> <Delay = 1.15> <CoreInst = "XPM_MEMORY_Ultra">   --->   Core 69 'XPM_MEMORY_Ultra' <Latency = 2> <II = 1> <Delay = 1.15> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 8> <RAM>
+ST_63 : Operation 296 [1/3] (1.15ns)   --->   "%matA_0_load_1 = load i3 %matA_0_addr_2" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69]   --->   Operation 296 'load' 'matA_0_load_1' <Predicate = (!trunc_ln69)> <Delay = 1.15> <CoreInst = "XPM_MEMORY_Ultra">   --->   Core 69 'XPM_MEMORY_Ultra' <Latency = 2> <II = 1> <Delay = 1.15> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 8> <RAM>
+ST_63 : Operation 297 [1/1] (0.41ns)   --->   "%select_ln69_1 = select i1 %trunc_ln69, i64 %matA_1_load_1, i64 %matA_0_load_1" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69]   --->   Operation 297 'select' 'select_ln69_1' <Predicate = true> <Delay = 0.41> <CoreInst = "Sel">   --->   Core 11 'Sel' <Latency = 0> <II = 1> <Delay = 0.41> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+
+State 64 <SV = 42> <Delay = 2.35>
+ST_64 : Operation 298 [31/31] (2.35ns)   --->   "%div1 = ddiv i64 %dataB_load_1, i64 %select_ln69_1" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69]   --->   Operation 298 'ddiv' 'div1' <Predicate = true> <Delay = 2.35> <CoreInst = "DDiv">   --->   Core 95 'DDiv' <Latency = 30> <II = 1> <Delay = 2.35> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 65 <SV = 43> <Delay = 2.35>
+ST_65 : Operation 299 [30/31] (2.35ns)   --->   "%div1 = ddiv i64 %dataB_load_1, i64 %select_ln69_1" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69]   --->   Operation 299 'ddiv' 'div1' <Predicate = true> <Delay = 2.35> <CoreInst = "DDiv">   --->   Core 95 'DDiv' <Latency = 30> <II = 1> <Delay = 2.35> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 66 <SV = 44> <Delay = 2.35>
+ST_66 : Operation 300 [29/31] (2.35ns)   --->   "%div1 = ddiv i64 %dataB_load_1, i64 %select_ln69_1" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69]   --->   Operation 300 'ddiv' 'div1' <Predicate = true> <Delay = 2.35> <CoreInst = "DDiv">   --->   Core 95 'DDiv' <Latency = 30> <II = 1> <Delay = 2.35> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 67 <SV = 45> <Delay = 2.35>
+ST_67 : Operation 301 [28/31] (2.35ns)   --->   "%div1 = ddiv i64 %dataB_load_1, i64 %select_ln69_1" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69]   --->   Operation 301 'ddiv' 'div1' <Predicate = true> <Delay = 2.35> <CoreInst = "DDiv">   --->   Core 95 'DDiv' <Latency = 30> <II = 1> <Delay = 2.35> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 68 <SV = 46> <Delay = 2.35>
+ST_68 : Operation 302 [27/31] (2.35ns)   --->   "%div1 = ddiv i64 %dataB_load_1, i64 %select_ln69_1" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69]   --->   Operation 302 'ddiv' 'div1' <Predicate = true> <Delay = 2.35> <CoreInst = "DDiv">   --->   Core 95 'DDiv' <Latency = 30> <II = 1> <Delay = 2.35> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 69 <SV = 47> <Delay = 2.35>
+ST_69 : Operation 303 [26/31] (2.35ns)   --->   "%div1 = ddiv i64 %dataB_load_1, i64 %select_ln69_1" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69]   --->   Operation 303 'ddiv' 'div1' <Predicate = true> <Delay = 2.35> <CoreInst = "DDiv">   --->   Core 95 'DDiv' <Latency = 30> <II = 1> <Delay = 2.35> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 70 <SV = 48> <Delay = 2.35>
+ST_70 : Operation 304 [25/31] (2.35ns)   --->   "%div1 = ddiv i64 %dataB_load_1, i64 %select_ln69_1" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69]   --->   Operation 304 'ddiv' 'div1' <Predicate = true> <Delay = 2.35> <CoreInst = "DDiv">   --->   Core 95 'DDiv' <Latency = 30> <II = 1> <Delay = 2.35> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 71 <SV = 49> <Delay = 2.35>
+ST_71 : Operation 305 [24/31] (2.35ns)   --->   "%div1 = ddiv i64 %dataB_load_1, i64 %select_ln69_1" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69]   --->   Operation 305 'ddiv' 'div1' <Predicate = true> <Delay = 2.35> <CoreInst = "DDiv">   --->   Core 95 'DDiv' <Latency = 30> <II = 1> <Delay = 2.35> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 72 <SV = 50> <Delay = 2.35>
+ST_72 : Operation 306 [23/31] (2.35ns)   --->   "%div1 = ddiv i64 %dataB_load_1, i64 %select_ln69_1" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69]   --->   Operation 306 'ddiv' 'div1' <Predicate = true> <Delay = 2.35> <CoreInst = "DDiv">   --->   Core 95 'DDiv' <Latency = 30> <II = 1> <Delay = 2.35> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 73 <SV = 51> <Delay = 2.35>
+ST_73 : Operation 307 [22/31] (2.35ns)   --->   "%div1 = ddiv i64 %dataB_load_1, i64 %select_ln69_1" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69]   --->   Operation 307 'ddiv' 'div1' <Predicate = true> <Delay = 2.35> <CoreInst = "DDiv">   --->   Core 95 'DDiv' <Latency = 30> <II = 1> <Delay = 2.35> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 74 <SV = 52> <Delay = 2.35>
+ST_74 : Operation 308 [21/31] (2.35ns)   --->   "%div1 = ddiv i64 %dataB_load_1, i64 %select_ln69_1" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69]   --->   Operation 308 'ddiv' 'div1' <Predicate = true> <Delay = 2.35> <CoreInst = "DDiv">   --->   Core 95 'DDiv' <Latency = 30> <II = 1> <Delay = 2.35> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 75 <SV = 53> <Delay = 2.35>
+ST_75 : Operation 309 [20/31] (2.35ns)   --->   "%div1 = ddiv i64 %dataB_load_1, i64 %select_ln69_1" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69]   --->   Operation 309 'ddiv' 'div1' <Predicate = true> <Delay = 2.35> <CoreInst = "DDiv">   --->   Core 95 'DDiv' <Latency = 30> <II = 1> <Delay = 2.35> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 76 <SV = 54> <Delay = 2.35>
+ST_76 : Operation 310 [19/31] (2.35ns)   --->   "%div1 = ddiv i64 %dataB_load_1, i64 %select_ln69_1" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69]   --->   Operation 310 'ddiv' 'div1' <Predicate = true> <Delay = 2.35> <CoreInst = "DDiv">   --->   Core 95 'DDiv' <Latency = 30> <II = 1> <Delay = 2.35> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 77 <SV = 55> <Delay = 2.35>
+ST_77 : Operation 311 [18/31] (2.35ns)   --->   "%div1 = ddiv i64 %dataB_load_1, i64 %select_ln69_1" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69]   --->   Operation 311 'ddiv' 'div1' <Predicate = true> <Delay = 2.35> <CoreInst = "DDiv">   --->   Core 95 'DDiv' <Latency = 30> <II = 1> <Delay = 2.35> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 78 <SV = 56> <Delay = 2.35>
+ST_78 : Operation 312 [17/31] (2.35ns)   --->   "%div1 = ddiv i64 %dataB_load_1, i64 %select_ln69_1" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69]   --->   Operation 312 'ddiv' 'div1' <Predicate = true> <Delay = 2.35> <CoreInst = "DDiv">   --->   Core 95 'DDiv' <Latency = 30> <II = 1> <Delay = 2.35> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 79 <SV = 57> <Delay = 2.35>
+ST_79 : Operation 313 [16/31] (2.35ns)   --->   "%div1 = ddiv i64 %dataB_load_1, i64 %select_ln69_1" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69]   --->   Operation 313 'ddiv' 'div1' <Predicate = true> <Delay = 2.35> <CoreInst = "DDiv">   --->   Core 95 'DDiv' <Latency = 30> <II = 1> <Delay = 2.35> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 80 <SV = 58> <Delay = 2.35>
+ST_80 : Operation 314 [15/31] (2.35ns)   --->   "%div1 = ddiv i64 %dataB_load_1, i64 %select_ln69_1" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69]   --->   Operation 314 'ddiv' 'div1' <Predicate = true> <Delay = 2.35> <CoreInst = "DDiv">   --->   Core 95 'DDiv' <Latency = 30> <II = 1> <Delay = 2.35> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 81 <SV = 59> <Delay = 2.35>
+ST_81 : Operation 315 [14/31] (2.35ns)   --->   "%div1 = ddiv i64 %dataB_load_1, i64 %select_ln69_1" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69]   --->   Operation 315 'ddiv' 'div1' <Predicate = true> <Delay = 2.35> <CoreInst = "DDiv">   --->   Core 95 'DDiv' <Latency = 30> <II = 1> <Delay = 2.35> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 82 <SV = 60> <Delay = 2.35>
+ST_82 : Operation 316 [13/31] (2.35ns)   --->   "%div1 = ddiv i64 %dataB_load_1, i64 %select_ln69_1" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69]   --->   Operation 316 'ddiv' 'div1' <Predicate = true> <Delay = 2.35> <CoreInst = "DDiv">   --->   Core 95 'DDiv' <Latency = 30> <II = 1> <Delay = 2.35> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 83 <SV = 61> <Delay = 2.35>
+ST_83 : Operation 317 [12/31] (2.35ns)   --->   "%div1 = ddiv i64 %dataB_load_1, i64 %select_ln69_1" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69]   --->   Operation 317 'ddiv' 'div1' <Predicate = true> <Delay = 2.35> <CoreInst = "DDiv">   --->   Core 95 'DDiv' <Latency = 30> <II = 1> <Delay = 2.35> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 84 <SV = 62> <Delay = 2.35>
+ST_84 : Operation 318 [11/31] (2.35ns)   --->   "%div1 = ddiv i64 %dataB_load_1, i64 %select_ln69_1" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69]   --->   Operation 318 'ddiv' 'div1' <Predicate = true> <Delay = 2.35> <CoreInst = "DDiv">   --->   Core 95 'DDiv' <Latency = 30> <II = 1> <Delay = 2.35> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 85 <SV = 63> <Delay = 2.35>
+ST_85 : Operation 319 [10/31] (2.35ns)   --->   "%div1 = ddiv i64 %dataB_load_1, i64 %select_ln69_1" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69]   --->   Operation 319 'ddiv' 'div1' <Predicate = true> <Delay = 2.35> <CoreInst = "DDiv">   --->   Core 95 'DDiv' <Latency = 30> <II = 1> <Delay = 2.35> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 86 <SV = 64> <Delay = 2.35>
+ST_86 : Operation 320 [9/31] (2.35ns)   --->   "%div1 = ddiv i64 %dataB_load_1, i64 %select_ln69_1" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69]   --->   Operation 320 'ddiv' 'div1' <Predicate = true> <Delay = 2.35> <CoreInst = "DDiv">   --->   Core 95 'DDiv' <Latency = 30> <II = 1> <Delay = 2.35> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 87 <SV = 65> <Delay = 2.35>
+ST_87 : Operation 321 [8/31] (2.35ns)   --->   "%div1 = ddiv i64 %dataB_load_1, i64 %select_ln69_1" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69]   --->   Operation 321 'ddiv' 'div1' <Predicate = true> <Delay = 2.35> <CoreInst = "DDiv">   --->   Core 95 'DDiv' <Latency = 30> <II = 1> <Delay = 2.35> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 88 <SV = 66> <Delay = 2.35>
+ST_88 : Operation 322 [7/31] (2.35ns)   --->   "%div1 = ddiv i64 %dataB_load_1, i64 %select_ln69_1" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69]   --->   Operation 322 'ddiv' 'div1' <Predicate = true> <Delay = 2.35> <CoreInst = "DDiv">   --->   Core 95 'DDiv' <Latency = 30> <II = 1> <Delay = 2.35> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 89 <SV = 67> <Delay = 2.35>
+ST_89 : Operation 323 [6/31] (2.35ns)   --->   "%div1 = ddiv i64 %dataB_load_1, i64 %select_ln69_1" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69]   --->   Operation 323 'ddiv' 'div1' <Predicate = true> <Delay = 2.35> <CoreInst = "DDiv">   --->   Core 95 'DDiv' <Latency = 30> <II = 1> <Delay = 2.35> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 90 <SV = 68> <Delay = 2.35>
+ST_90 : Operation 324 [5/31] (2.35ns)   --->   "%div1 = ddiv i64 %dataB_load_1, i64 %select_ln69_1" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69]   --->   Operation 324 'ddiv' 'div1' <Predicate = true> <Delay = 2.35> <CoreInst = "DDiv">   --->   Core 95 'DDiv' <Latency = 30> <II = 1> <Delay = 2.35> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 91 <SV = 69> <Delay = 2.35>
+ST_91 : Operation 325 [4/31] (2.35ns)   --->   "%div1 = ddiv i64 %dataB_load_1, i64 %select_ln69_1" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69]   --->   Operation 325 'ddiv' 'div1' <Predicate = true> <Delay = 2.35> <CoreInst = "DDiv">   --->   Core 95 'DDiv' <Latency = 30> <II = 1> <Delay = 2.35> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 92 <SV = 70> <Delay = 2.35>
+ST_92 : Operation 326 [3/31] (2.35ns)   --->   "%div1 = ddiv i64 %dataB_load_1, i64 %select_ln69_1" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69]   --->   Operation 326 'ddiv' 'div1' <Predicate = true> <Delay = 2.35> <CoreInst = "DDiv">   --->   Core 95 'DDiv' <Latency = 30> <II = 1> <Delay = 2.35> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 93 <SV = 71> <Delay = 2.35>
+ST_93 : Operation 327 [2/31] (2.35ns)   --->   "%div1 = ddiv i64 %dataB_load_1, i64 %select_ln69_1" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69]   --->   Operation 327 'ddiv' 'div1' <Predicate = true> <Delay = 2.35> <CoreInst = "DDiv">   --->   Core 95 'DDiv' <Latency = 30> <II = 1> <Delay = 2.35> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 94 <SV = 72> <Delay = 2.35>
+ST_94 : Operation 328 [1/31] (2.35ns)   --->   "%div1 = ddiv i64 %dataB_load_1, i64 %select_ln69_1" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69]   --->   Operation 328 'ddiv' 'div1' <Predicate = true> <Delay = 2.35> <CoreInst = "DDiv">   --->   Core 95 'DDiv' <Latency = 30> <II = 1> <Delay = 2.35> <FuncUnit> <Opcode : 'ddiv' 'drem'> <InPorts = 2> <OutPorts = 1>
+
+State 95 <SV = 73> <Delay = 1.16>
+ST_95 : Operation 329 [1/1] (0.34ns)   --->   "%icmp_ln69 = icmp_eq  i2 %empty_36, i2" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69]   --->   Operation 329 'icmp' 'icmp_ln69' <Predicate = true> <Delay = 0.34> <CoreInst = "Cmp">   --->   Core 10 'Cmp' <Latency = 0> <II = 1> <Delay = 0.34> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_95 : Operation 330 [1/1] (0.00ns) (grouped into LUT with out node select_ln69_3)   --->   "%select_ln69_2 = select i1 %icmp_ln69, i64 %dataX3_1, i64 %div1" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69]   --->   Operation 330 'select' 'select_ln69_2' <Predicate = true> <Delay = 0.00> <CoreInst = "Sel">   --->   Core 11 'Sel' <Latency = 0> <II = 1> <Delay = 0.41> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_95 : Operation 331 [1/1] (0.34ns)   --->   "%icmp_ln69_1 = icmp_eq  i2 %empty_36, i2" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69]   --->   Operation 331 'icmp' 'icmp_ln69_1' <Predicate = true> <Delay = 0.34> <CoreInst = "Cmp">   --->   Core 10 'Cmp' <Latency = 0> <II = 1> <Delay = 0.34> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_95 : Operation 332 [1/1] (0.41ns) (out node of the LUT)   --->   "%select_ln69_3 = select i1 %icmp_ln69_1, i64 %dataX3_1, i64 %select_ln69_2" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69]   --->   Operation 332 'select' 'select_ln69_3' <Predicate = true> <Delay = 0.41> <CoreInst = "Sel">   --->   Core 11 'Sel' <Latency = 0> <II = 1> <Delay = 0.41> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_95 : Operation 333 [1/1] (0.34ns)   --->   "%icmp_ln69_2 = icmp_eq  i2 %empty_36, i2" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69]   --->   Operation 333 'icmp' 'icmp_ln69_2' <Predicate = true> <Delay = 0.34> <CoreInst = "Cmp">   --->   Core 10 'Cmp' <Latency = 0> <II = 1> <Delay = 0.34> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_95 : Operation 334 [1/1] (0.41ns) (out node of the LUT)   --->   "%dataX3_2 = select i1 %icmp_ln69_2, i64 %dataX3_1, i64 %select_ln69_3" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69]   --->   Operation 334 'select' 'dataX3_2' <Predicate = true> <Delay = 0.41> <CoreInst = "Sel">   --->   Core 11 'Sel' <Latency = 0> <II = 1> <Delay = 0.41> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_95 : Operation 335 [1/1] (0.41ns)   --->   "%dataX2_2 = select i1 %icmp_ln69_2, i64 %div1, i64 %dataX2_1" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69]   --->   Operation 335 'select' 'dataX2_2' <Predicate = true> <Delay = 0.41> <CoreInst = "Sel">   --->   Core 11 'Sel' <Latency = 0> <II = 1> <Delay = 0.41> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_95 : Operation 336 [1/1] (0.00ns) (grouped into LUT with out node dataX12_2)   --->   "%select_ln69_4 = select i1 %icmp_ln69_1, i64 %div1, i64 %dataX12_1" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69]   --->   Operation 336 'select' 'select_ln69_4' <Predicate = true> <Delay = 0.00> <CoreInst = "Sel">   --->   Core 11 'Sel' <Latency = 0> <II = 1> <Delay = 0.41> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_95 : Operation 337 [1/1] (0.41ns) (out node of the LUT)   --->   "%dataX12_2 = select i1 %icmp_ln69_2, i64 %dataX12_1, i64 %select_ln69_4" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69]   --->   Operation 337 'select' 'dataX12_2' <Predicate = true> <Delay = 0.41> <CoreInst = "Sel">   --->   Core 11 'Sel' <Latency = 0> <II = 1> <Delay = 0.41> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_95 : Operation 338 [1/1] (0.00ns) (grouped into LUT with out node select_ln69_6)   --->   "%select_ln69_5 = select i1 %icmp_ln69, i64 %div1, i64 %dataX_1" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69]   --->   Operation 338 'select' 'select_ln69_5' <Predicate = true> <Delay = 0.00> <CoreInst = "Sel">   --->   Core 11 'Sel' <Latency = 0> <II = 1> <Delay = 0.41> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_95 : Operation 339 [1/1] (0.41ns) (out node of the LUT)   --->   "%select_ln69_6 = select i1 %icmp_ln69_1, i64 %dataX_1, i64 %select_ln69_5" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69]   --->   Operation 339 'select' 'select_ln69_6' <Predicate = true> <Delay = 0.41> <CoreInst = "Sel">   --->   Core 11 'Sel' <Latency = 0> <II = 1> <Delay = 0.41> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_95 : Operation 340 [1/1] (0.41ns) (out node of the LUT)   --->   "%dataX_2 = select i1 %icmp_ln69_2, i64 %dataX_1, i64 %select_ln69_6" [/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69]   --->   Operation 340 'select' 'dataX_2' <Predicate = true> <Delay = 0.41> <CoreInst = "Sel">   --->   Core 11 'Sel' <Latency = 0> <II = 1> <Delay = 0.41> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_95 : Operation 341 [1/1] (0.00ns)   --->   "%br_ln0 = br void %.lr.ph"   --->   Operation 341 'br' 'br_ln0' <Predicate = true> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 3.33ns, clock uncertainty: 0.9ns.
+
+ <State 1>: 1.86ns
+The critical path consists of the following:
+	wire read on port 'n' [14]  (0 ns)
+	'sub' operation ('sub_ln56', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56) [23]  (0.572 ns)
+	'sub' operation ('sub_ln56_1', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56) [25]  (0.436 ns)
+	'select' operation ('select_ln56', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56) [27]  (0.278 ns)
+	'add' operation ('add_ln56_3', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56) [36]  (0.572 ns)
+
+ <State 2>: 1.16ns
+The critical path consists of the following:
+	'getelementptr' operation ('matA_1_addr', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56) [39]  (0 ns)
+	'load' operation ('matA_1_load', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56) on array 'matA_1' [40]  (1.16 ns)
+
+ <State 3>: 1.16ns
+The critical path consists of the following:
+	'load' operation ('matA_1_load', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56) on array 'matA_1' [40]  (1.16 ns)
+
+ <State 4>: 1.57ns
+The critical path consists of the following:
+	'load' operation ('matA_1_load', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56) on array 'matA_1' [40]  (1.16 ns)
+	'select' operation ('select_ln56_1', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56) [42]  (0.411 ns)
+
+ <State 5>: 2.35ns
+The critical path consists of the following:
+	'ddiv' operation ('div', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56) [43]  (2.35 ns)
+
+ <State 6>: 2.35ns
+The critical path consists of the following:
+	'ddiv' operation ('div', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56) [43]  (2.35 ns)
+
+ <State 7>: 2.35ns
+The critical path consists of the following:
+	'ddiv' operation ('div', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56) [43]  (2.35 ns)
+
+ <State 8>: 2.35ns
+The critical path consists of the following:
+	'ddiv' operation ('div', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56) [43]  (2.35 ns)
+
+ <State 9>: 2.35ns
+The critical path consists of the following:
+	'ddiv' operation ('div', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56) [43]  (2.35 ns)
+
+ <State 10>: 2.35ns
+The critical path consists of the following:
+	'ddiv' operation ('div', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56) [43]  (2.35 ns)
+
+ <State 11>: 2.35ns
+The critical path consists of the following:
+	'ddiv' operation ('div', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56) [43]  (2.35 ns)
+
+ <State 12>: 2.35ns
+The critical path consists of the following:
+	'ddiv' operation ('div', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56) [43]  (2.35 ns)
+
+ <State 13>: 2.35ns
+The critical path consists of the following:
+	'ddiv' operation ('div', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56) [43]  (2.35 ns)
+
+ <State 14>: 2.35ns
+The critical path consists of the following:
+	'ddiv' operation ('div', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56) [43]  (2.35 ns)
+
+ <State 15>: 2.35ns
+The critical path consists of the following:
+	'ddiv' operation ('div', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56) [43]  (2.35 ns)
+
+ <State 16>: 2.35ns
+The critical path consists of the following:
+	'ddiv' operation ('div', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56) [43]  (2.35 ns)
+
+ <State 17>: 2.35ns
+The critical path consists of the following:
+	'ddiv' operation ('div', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56) [43]  (2.35 ns)
+
+ <State 18>: 2.35ns
+The critical path consists of the following:
+	'ddiv' operation ('div', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56) [43]  (2.35 ns)
+
+ <State 19>: 2.35ns
+The critical path consists of the following:
+	'ddiv' operation ('div', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56) [43]  (2.35 ns)
+
+ <State 20>: 2.35ns
+The critical path consists of the following:
+	'ddiv' operation ('div', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56) [43]  (2.35 ns)
+
+ <State 21>: 2.35ns
+The critical path consists of the following:
+	'ddiv' operation ('div', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56) [43]  (2.35 ns)
+
+ <State 22>: 2.35ns
+The critical path consists of the following:
+	'ddiv' operation ('div', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56) [43]  (2.35 ns)
+
+ <State 23>: 2.35ns
+The critical path consists of the following:
+	'ddiv' operation ('div', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56) [43]  (2.35 ns)
+
+ <State 24>: 2.35ns
+The critical path consists of the following:
+	'ddiv' operation ('div', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56) [43]  (2.35 ns)
+
+ <State 25>: 2.35ns
+The critical path consists of the following:
+	'ddiv' operation ('div', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56) [43]  (2.35 ns)
+
+ <State 26>: 2.35ns
+The critical path consists of the following:
+	'ddiv' operation ('div', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56) [43]  (2.35 ns)
+
+ <State 27>: 2.35ns
+The critical path consists of the following:
+	'ddiv' operation ('div', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56) [43]  (2.35 ns)
+
+ <State 28>: 2.35ns
+The critical path consists of the following:
+	'ddiv' operation ('div', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56) [43]  (2.35 ns)
+
+ <State 29>: 2.35ns
+The critical path consists of the following:
+	'ddiv' operation ('div', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56) [43]  (2.35 ns)
+
+ <State 30>: 2.35ns
+The critical path consists of the following:
+	'ddiv' operation ('div', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56) [43]  (2.35 ns)
+
+ <State 31>: 2.35ns
+The critical path consists of the following:
+	'ddiv' operation ('div', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56) [43]  (2.35 ns)
+
+ <State 32>: 2.35ns
+The critical path consists of the following:
+	'ddiv' operation ('div', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56) [43]  (2.35 ns)
+
+ <State 33>: 2.35ns
+The critical path consists of the following:
+	'ddiv' operation ('div', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56) [43]  (2.35 ns)
+
+ <State 34>: 2.35ns
+The critical path consists of the following:
+	'ddiv' operation ('div', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56) [43]  (2.35 ns)
+
+ <State 35>: 2.35ns
+The critical path consists of the following:
+	'ddiv' operation ('div', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56) [43]  (2.35 ns)
+
+ <State 36>: 1.17ns
+The critical path consists of the following:
+	'icmp' operation ('icmp_ln56', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56) [44]  (0.343 ns)
+	'select' operation ('select_ln56_2', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56) [45]  (0 ns)
+	'select' operation ('select_ln56_3', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56) [47]  (0.411 ns)
+	'select' operation ('dataX3_0', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:56) [49]  (0.411 ns)
+
+ <State 37>: 0.829ns
+The critical path consists of the following:
+	'phi' operation ('i', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:58) with incoming values : ('sext_ln58', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:58) ('add_ln58_1', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:58) [64]  (0 ns)
+	'add' operation ('p_t', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:58) [75]  (0.436 ns)
+	'mux' operation ('tmp', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:66) [76]  (0.393 ns)
+
+ <State 38>: 1.73ns
+The critical path consists of the following:
+	'phi' operation ('j', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:58) with incoming values : ('p_cast7', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:58) ('add_ln60', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:60) [79]  (0 ns)
+	'add' operation ('add_ln66', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:66) [83]  (0.572 ns)
+	'getelementptr' operation ('matA_1_addr_1', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:66) [86]  (0 ns)
+	'load' operation ('matA_1_load_2', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:66) on array 'matA_1' [101]  (1.16 ns)
+
+ <State 39>: 1.16ns
+The critical path consists of the following:
+	'load' operation ('matA_1_load_2', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:66) on array 'matA_1' [101]  (1.16 ns)
+
+ <State 40>: 1.16ns
+The critical path consists of the following:
+	'load' operation ('matA_1_load_2', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:66) on array 'matA_1' [101]  (1.16 ns)
+
+ <State 41>: 2.32ns
+The critical path consists of the following:
+	'dmul' operation ('mul', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:66) [102]  (2.32 ns)
+
+ <State 42>: 2.32ns
+The critical path consists of the following:
+	'dmul' operation ('mul', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:66) [102]  (2.32 ns)
+
+ <State 43>: 2.32ns
+The critical path consists of the following:
+	'dmul' operation ('mul', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:66) [102]  (2.32 ns)
+
+ <State 44>: 2.32ns
+The critical path consists of the following:
+	'dmul' operation ('mul', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:66) [102]  (2.32 ns)
+
+ <State 45>: 2.32ns
+The critical path consists of the following:
+	'dmul' operation ('mul', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:66) [102]  (2.32 ns)
+
+ <State 46>: 2.32ns
+The critical path consists of the following:
+	'dmul' operation ('mul', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:66) [102]  (2.32 ns)
+
+ <State 47>: 2.32ns
+The critical path consists of the following:
+	'dmul' operation ('mul', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:66) [102]  (2.32 ns)
+
+ <State 48>: 2.32ns
+The critical path consists of the following:
+	'dmul' operation ('mul', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:66) [102]  (2.32 ns)
+
+ <State 49>: 2.32ns
+The critical path consists of the following:
+	'dmul' operation ('mul35_1', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:66) [112]  (2.32 ns)
+
+ <State 50>: 1.91ns
+The critical path consists of the following:
+	'dsub' operation ('sub', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:66) [104]  (1.91 ns)
+
+ <State 51>: 1.91ns
+The critical path consists of the following:
+	'dsub' operation ('sub', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:66) [104]  (1.91 ns)
+
+ <State 52>: 1.91ns
+The critical path consists of the following:
+	'dsub' operation ('sub', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:66) [104]  (1.91 ns)
+
+ <State 53>: 1.91ns
+The critical path consists of the following:
+	'dsub' operation ('sub', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:66) [104]  (1.91 ns)
+
+ <State 54>: 1.91ns
+The critical path consists of the following:
+	'dsub' operation ('sub', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:66) [104]  (1.91 ns)
+
+ <State 55>: 1.91ns
+The critical path consists of the following:
+	'dsub' operation ('sub', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:66) [104]  (1.91 ns)
+
+ <State 56>: 1.91ns
+The critical path consists of the following:
+	'dsub' operation ('sub', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:66) [104]  (1.91 ns)
+
+ <State 57>: 1.91ns
+The critical path consists of the following:
+	'dsub' operation ('sub40_1', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:66) [114]  (1.91 ns)
+
+ <State 58>: 0ns
+The critical path consists of the following:
+
+ <State 59>: 0.594ns
+The critical path consists of the following:
+	'store' operation ('store_ln66', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:66) of variable 'sub40_1', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:66 on array 'dataB' [115]  (0.594 ns)
+
+ <State 60>: 1.86ns
+The critical path consists of the following:
+	'sub' operation ('sub_ln69', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69) [124]  (0.572 ns)
+	'sub' operation ('sub_ln69_1', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69) [126]  (0.436 ns)
+	'select' operation ('select_ln69', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69) [127]  (0.278 ns)
+	'add' operation ('add_ln69', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69) [130]  (0.572 ns)
+
+ <State 61>: 1.16ns
+The critical path consists of the following:
+	'getelementptr' operation ('matA_1_addr_2', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69) [133]  (0 ns)
+	'load' operation ('matA_1_load_1', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69) on array 'matA_1' [138]  (1.16 ns)
+
+ <State 62>: 1.16ns
+The critical path consists of the following:
+	'load' operation ('matA_1_load_1', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69) on array 'matA_1' [138]  (1.16 ns)
+
+ <State 63>: 1.57ns
+The critical path consists of the following:
+	'load' operation ('matA_1_load_1', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69) on array 'matA_1' [138]  (1.16 ns)
+	'select' operation ('select_ln69_1', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69) [140]  (0.411 ns)
+
+ <State 64>: 2.35ns
+The critical path consists of the following:
+	'ddiv' operation ('div1', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69) [141]  (2.35 ns)
+
+ <State 65>: 2.35ns
+The critical path consists of the following:
+	'ddiv' operation ('div1', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69) [141]  (2.35 ns)
+
+ <State 66>: 2.35ns
+The critical path consists of the following:
+	'ddiv' operation ('div1', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69) [141]  (2.35 ns)
+
+ <State 67>: 2.35ns
+The critical path consists of the following:
+	'ddiv' operation ('div1', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69) [141]  (2.35 ns)
+
+ <State 68>: 2.35ns
+The critical path consists of the following:
+	'ddiv' operation ('div1', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69) [141]  (2.35 ns)
+
+ <State 69>: 2.35ns
+The critical path consists of the following:
+	'ddiv' operation ('div1', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69) [141]  (2.35 ns)
+
+ <State 70>: 2.35ns
+The critical path consists of the following:
+	'ddiv' operation ('div1', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69) [141]  (2.35 ns)
+
+ <State 71>: 2.35ns
+The critical path consists of the following:
+	'ddiv' operation ('div1', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69) [141]  (2.35 ns)
+
+ <State 72>: 2.35ns
+The critical path consists of the following:
+	'ddiv' operation ('div1', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69) [141]  (2.35 ns)
+
+ <State 73>: 2.35ns
+The critical path consists of the following:
+	'ddiv' operation ('div1', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69) [141]  (2.35 ns)
+
+ <State 74>: 2.35ns
+The critical path consists of the following:
+	'ddiv' operation ('div1', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69) [141]  (2.35 ns)
+
+ <State 75>: 2.35ns
+The critical path consists of the following:
+	'ddiv' operation ('div1', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69) [141]  (2.35 ns)
+
+ <State 76>: 2.35ns
+The critical path consists of the following:
+	'ddiv' operation ('div1', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69) [141]  (2.35 ns)
+
+ <State 77>: 2.35ns
+The critical path consists of the following:
+	'ddiv' operation ('div1', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69) [141]  (2.35 ns)
+
+ <State 78>: 2.35ns
+The critical path consists of the following:
+	'ddiv' operation ('div1', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69) [141]  (2.35 ns)
+
+ <State 79>: 2.35ns
+The critical path consists of the following:
+	'ddiv' operation ('div1', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69) [141]  (2.35 ns)
+
+ <State 80>: 2.35ns
+The critical path consists of the following:
+	'ddiv' operation ('div1', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69) [141]  (2.35 ns)
+
+ <State 81>: 2.35ns
+The critical path consists of the following:
+	'ddiv' operation ('div1', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69) [141]  (2.35 ns)
+
+ <State 82>: 2.35ns
+The critical path consists of the following:
+	'ddiv' operation ('div1', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69) [141]  (2.35 ns)
+
+ <State 83>: 2.35ns
+The critical path consists of the following:
+	'ddiv' operation ('div1', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69) [141]  (2.35 ns)
+
+ <State 84>: 2.35ns
+The critical path consists of the following:
+	'ddiv' operation ('div1', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69) [141]  (2.35 ns)
+
+ <State 85>: 2.35ns
+The critical path consists of the following:
+	'ddiv' operation ('div1', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69) [141]  (2.35 ns)
+
+ <State 86>: 2.35ns
+The critical path consists of the following:
+	'ddiv' operation ('div1', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69) [141]  (2.35 ns)
+
+ <State 87>: 2.35ns
+The critical path consists of the following:
+	'ddiv' operation ('div1', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69) [141]  (2.35 ns)
+
+ <State 88>: 2.35ns
+The critical path consists of the following:
+	'ddiv' operation ('div1', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69) [141]  (2.35 ns)
+
+ <State 89>: 2.35ns
+The critical path consists of the following:
+	'ddiv' operation ('div1', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69) [141]  (2.35 ns)
+
+ <State 90>: 2.35ns
+The critical path consists of the following:
+	'ddiv' operation ('div1', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69) [141]  (2.35 ns)
+
+ <State 91>: 2.35ns
+The critical path consists of the following:
+	'ddiv' operation ('div1', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69) [141]  (2.35 ns)
+
+ <State 92>: 2.35ns
+The critical path consists of the following:
+	'ddiv' operation ('div1', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69) [141]  (2.35 ns)
+
+ <State 93>: 2.35ns
+The critical path consists of the following:
+	'ddiv' operation ('div1', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69) [141]  (2.35 ns)
+
+ <State 94>: 2.35ns
+The critical path consists of the following:
+	'ddiv' operation ('div1', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69) [141]  (2.35 ns)
+
+ <State 95>: 1.17ns
+The critical path consists of the following:
+	'icmp' operation ('icmp_ln69', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69) [142]  (0.343 ns)
+	'select' operation ('select_ln69_2', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69) [143]  (0 ns)
+	'select' operation ('select_ln69_3', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69) [145]  (0.411 ns)
+	'select' operation ('dataX3_2', /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp:69) [147]  (0.411 ns)
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+	State 4
+	State 5
+	State 6
+	State 7
+	State 8
+	State 9
+	State 10
+	State 11
+	State 12
+	State 13
+	State 14
+	State 15
+	State 16
+	State 17
+	State 18
+	State 19
+	State 20
+	State 21
+	State 22
+	State 23
+	State 24
+	State 25
+	State 26
+	State 27
+	State 28
+	State 29
+	State 30
+	State 31
+	State 32
+	State 33
+	State 34
+	State 35
+	State 36
+	State 37
+	State 38
+	State 39
+	State 40
+	State 41
+	State 42
+	State 43
+	State 44
+	State 45
+	State 46
+	State 47
+	State 48
+	State 49
+	State 50
+	State 51
+	State 52
+	State 53
+	State 54
+	State 55
+	State 56
+	State 57
+	State 58
+	State 59
+	State 60
+	State 61
+	State 62
+	State 63
+	State 64
+	State 65
+	State 66
+	State 67
+	State 68
+	State 69
+	State 70
+	State 71
+	State 72
+	State 73
+	State 74
+	State 75
+	State 76
+	State 77
+	State 78
+	State 79
+	State 80
+	State 81
+	State 82
+	State 83
+	State 84
+	State 85
+	State 86
+	State 87
+	State 88
+	State 89
+	State 90
+	State 91
+	State 92
+	State 93
+	State 94
+	State 95
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

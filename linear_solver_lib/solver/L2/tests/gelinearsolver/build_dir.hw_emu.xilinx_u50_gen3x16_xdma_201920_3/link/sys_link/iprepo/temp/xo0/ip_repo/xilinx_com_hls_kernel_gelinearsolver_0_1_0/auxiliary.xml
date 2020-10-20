@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xd:acceleratorMap xmlns:xd="http://www.xilinx.com/xidane" xd:functionName="kernel_gelinearsolver_0" xd:componentRef="kernel_gelinearsolver_0" xd:initiationInterval="x" xd:clockPeriod="3.333" xd:sequential="true" xd:hostMachine="64" xd:reset="control">
+  <xd:controlReg xd:name="control" xd:interfaceRef="s_axi_control" xd:busTypeRef="axilite" xd:type="generic_axi_lite" xd:offset="0x0"/>
+  <xd:arg xd:name="*(dataA)" xd:originalName="dataA" xd:direction="inout" xd:interfaceRef="m_axi_gmem0" xd:busTypeRef="aximm" xd:dataPack="true" xd:bitMapping="63:0" xd:dataWidth="64" xd:bufferDirection="in"/>
+  <xd:arg xd:name="*(dataB)" xd:originalName="dataB" xd:direction="inout" xd:interfaceRef="m_axi_gmem0" xd:busTypeRef="aximm" xd:dataPack="true" xd:bitMapping="63:0" xd:dataWidth="64" xd:bufferDirection="inout"/>
+  <xd:latencyEstimates xd:best-case="undef" xd:worst-case="undef" xd:average-case="undef"/>
+  <xd:resourceEstimates xd:LUT="12343" xd:FF="14976" xd:BRAM="20" xd:DSP="47"/>
+</xd:acceleratorMap>
