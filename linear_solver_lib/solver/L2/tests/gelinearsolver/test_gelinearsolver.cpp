@@ -149,32 +149,32 @@ int main(int argc, const char* argv[]) {
     for (int i = 0; i < dataAM; ++i) {
         for (int j = 0; j < dataAN; ++j) {
             dataA[i * dataAN + j] = dataE[i][j];
-            printf("Data A Row %d Column %d : %f \n",i,j,dataA[i * dataAN + j]);
+            //printf("Data A Row %d Column %d : %f \n",i,j,dataA[i * dataAN + j]);
         }
     }
     for (int i = 0; i < dataAM; ++i) {
         for (int j = 0; j < NB; ++j) {
             dataB[i * NB + j] = i;
-            printf("Data B Row %d Column %d : %f \n",i,j,dataB[i * NB + j]);
+            //printf("Data B Row %d Column %d : %f \n",i,j,dataB[i * NB + j]);
         }
     }
 
     // DDR Settings
-    std::vector<cl_mem_ext_ptr_t> mext_io(2);
+    /*std::vector<cl_mem_ext_ptr_t> mext_io(2);
     mext_io[0].flags = XCL_MEM_DDR_BANK0;
     mext_io[0].obj = dataA;
     mext_io[0].param = 0;
     mext_io[1].flags = XCL_MEM_DDR_BANK0;
     mext_io[1].obj = dataB;
-    mext_io[1].param = 0;
+    mext_io[1].param = 0;*/
 
     // Create device buffer and map dev buf to host buf
     std::vector<cl::Buffer> buffer(2);
 
-    buffer[0] = cl::Buffer(context, CL_MEM_EXT_PTR_XILINX | CL_MEM_USE_HOST_PTR | CL_MEM_READ_WRITE,
-                           sizeof(double) * inout_size, &mext_io[0]);
-    buffer[1] = cl::Buffer(context, CL_MEM_EXT_PTR_XILINX | CL_MEM_USE_HOST_PTR | CL_MEM_READ_WRITE,
-                           sizeof(double) * inoutB_size, &mext_io[1]);
+    buffer[0] = cl::Buffer(context, CL_MEM_USE_HOST_PTR | CL_MEM_READ_WRITE,
+                           sizeof(double) * inout_size, dataA, NULL);
+    buffer[1] = cl::Buffer(context, CL_MEM_USE_HOST_PTR | CL_MEM_READ_WRITE,
+                           sizeof(double) * inoutB_size, dataB, NULL);
 
     // Data transfer from host buffer to device buffer
     std::vector<std::vector<cl::Event> > kernel_evt(2);
