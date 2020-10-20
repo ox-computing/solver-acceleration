@@ -60,7 +60,7 @@ DEVICE ?= xilinx_u50_gen3x16_xdma_201920_3
 
 RUNS ?= 1
 ROW_SIZE ?= 4
-COLUMN_SIZE += 4
+COLUMN_SIZE ?= 4
 SEED ?= 12
 
 include ./utils.mk

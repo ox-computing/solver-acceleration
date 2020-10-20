@@ -149,11 +149,13 @@ int main(int argc, const char* argv[]) {
     for (int i = 0; i < dataAM; ++i) {
         for (int j = 0; j < dataAN; ++j) {
             dataA[i * dataAN + j] = dataE[i][j];
+            printf("Data A Row %d Column %d : %f \n",i,j,dataA[i * dataAN + j]);
         }
     }
     for (int i = 0; i < dataAM; ++i) {
         for (int j = 0; j < NB; ++j) {
             dataB[i * NB + j] = i;
+            printf("Data B Row %d Column %d : %f \n",i,j,dataB[i * NB + j]);
         }
     }
 
