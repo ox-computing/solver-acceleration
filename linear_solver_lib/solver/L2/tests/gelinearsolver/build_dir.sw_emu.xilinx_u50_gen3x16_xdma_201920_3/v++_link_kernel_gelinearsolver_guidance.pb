@@ -1,7 +1,0 @@
-
-¡
-v++_link_kernel_gelinearsolver$a3ae4048-af51-41cd-a798-02c75221c116¢v++  -t sw_emu --platform /opt/xilinx/platforms/xilinx_u50_gen3x16_xdma_201920_3/xilinx_u50_gen3x16_xdma_201920_3.xpfm --save-temps --config conn_u50.ini -I/home/jacksoncd/solver-acceleration/linear_solver_lib/solver//L2/tests/gelinearsolver -I/home/jacksoncd/solver-acceleration/linear_solver_lib/solver//L2/include -I/home/jacksoncd/solver-acceleration/linear_solver_lib/solver//ext --temp_dir build_dir.sw_emu.xilinx_u50_gen3x16_xdma_201920_3 --report_dir /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/tests/gelinearsolver/reports/_build.sw_emu.xilinx_u50_gen3x16_xdma_201920_3/kernel_gelinearsolver -l --optimize 2 --jobs 8 -obuild_dir.sw_emu.xilinx_u50_gen3x16_xdma_201920_3/kernel_gelinearsolver.xclbin _x_temp.sw_emu.xilinx_u50_gen3x16_xdma_201920_3/kernel_gelinearsolver_0.xo *Ø"Ó/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/tests/gelinearsolver/reports/_build.sw_emu.xilinx_u50_gen3x16_xdma_201920_3/kernel_gelinearsolver/link/v++_link_kernel_gelinearsolver_guidance.html2¶"±/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/tests/gelinearsolver/build_dir.sw_emu.xilinx_u50_gen3x16_xdma_201920_3/v++_link_kernel_gelinearsolver_guidance.pbBŸ
-conn_u50.iniŽ[connectivity] 
-sp =  kernel_gelinearsolver_0_1.dataA:bank0
-sp =  kernel_gelinearsolver_0_1.dataB:bank0
-#slr = kernel_gelinearsolver_0_1:SLR0
