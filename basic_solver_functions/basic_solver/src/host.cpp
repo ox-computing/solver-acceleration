@@ -26,7 +26,8 @@ HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABI
 OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
 EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 **********/
-clear
+
+#include "host.hpp"
 
 int main(int argc, char** argv)
 {
@@ -41,10 +42,10 @@ int main(int argc, char** argv)
     unsigned fileBufSize;
     
     // Allocate Memory in Host Memory
-    std::vector<double,aligned_allocator<double>> source_inA(4);
-    std::vector<double,aligned_allocator<double>> source_inB(2);
-    std::vector<double,aligned_allocator<double>> source_hw_results(2);
-    std::vector<double,aligned_allocator<double>> source_sw_results{0,0};
+    double source_inA[4];
+    double source_inB[2];
+    double source_hw_results[2];
+    double source_sw_results[2];
 
     // Create the test data 
     for(int i = 0 ; i < 4 ; i++){
@@ -56,6 +57,10 @@ int main(int argc, char** argv)
         source_inB[i] = rand() % 100;
         printf("Test B %d : %f \n",i,source_inB[i]);
     }
+    
+    //Find the determinant
+    double det = find_determinant(source_inA);
+
     
     //Calculate the output value
     double * Ainv_ptr = get_inverse(source_inA);
@@ -120,17 +125,17 @@ int main(int argc, char** argv)
 // Allocate Global Memory for source_inA
 // .......................................................	
     OCL_CHECK(err, cl::Buffer buffer_inA   (context,CL_MEM_USE_HOST_PTR | CL_MEM_READ_ONLY, 
-            sizeof(double)*4, source_inA.data(), &err));
+            sizeof(double)*4, source_inA, &err));
 // .......................................................
 // Allocate Global Memory for source_inB
 // .......................................................
     OCL_CHECK(err, cl::Buffer buffer_inB   (context,CL_MEM_USE_HOST_PTR | CL_MEM_READ_ONLY, 
-            sizeof(double)*2, source_inB.data(), &err));
+            sizeof(double)*2, source_inB, &err));
 // .......................................................
 // Allocate Global Memory for source_hw_results
 // .......................................................
     OCL_CHECK(err, cl::Buffer buffer_output(context,CL_MEM_USE_HOST_PTR | CL_MEM_WRITE_ONLY, 
-            sizeof(double)*2, source_hw_results.data(), &err));
+            sizeof(double)*2, source_hw_results, &err));
 
 // ============================================================================
 // Step 2: Set Kernel Arguments and Run the Application

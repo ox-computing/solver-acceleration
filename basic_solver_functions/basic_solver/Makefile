@@ -16,9 +16,8 @@ help::
 	$(ECHO) "      Command to run application in emulation."
 	$(ECHO) ""
 
-TARGETS := hw
-TARGET := $(TARGETS)
-DEVICE := $(DEVICES)
+TARGET ?= sw_emu
+DEVICE ?= xilinx_u50_gen3x16_xdma_201920_3
 XCLBIN := ./xclbin
 KERNEL_NAME := solver
 VER ?= host_cpp
@@ -51,6 +50,10 @@ HOST_CPP_SRCS += src/host.cpp
 # Host Header FILE
 HOST_CPP_HDRS += src/host.hpp
 
+# Functions CPP FILE
+FUNCTIONS_CPP += src/functions.cpp
+#Functions HPP FILE
+FUNCTIONS_HPP += src/functions.hpp
 
 # Enable Profiling
 REPORT := no
@@ -96,9 +99,9 @@ $(XCLBIN)/$(KERNEL_NAME).$(TARGET).xclbin: $(BINARY_CONTAINER_solver_OBJS)
 
 ifeq ($(VER),host_cpp)
 # Building Host
-$(EXECUTABLE): $(HOST_CPP_SRCS) $(HOST_CPP_HDRS)
+$(EXECUTABLE): $(HOST_CPP_SRCS) $(HOST_CPP_HDRS) $(FUNCTIONS_HPP) $(FUNCTIONS_CPP)
 	mkdir -p $(XCLBIN)
-	$(CXX) $(CXXFLAGS) $(HOST_CPP_SRCS) $(HOST_CPP_HDRS) -o '$@' $(LDFLAGS)
+	$(CXX) $(CXXFLAGS) $(HOST_CPP_SRCS) $(HOST_CPP_HDRS) $(FUNCTIONS_HPP) $(FUNCTIONS_CPP) -o '$@' $(LDFLAGS)
 else
 $(EXECUTABLE): $(HOST_C_SRCS) $(HOST_C_HDRS)
 	mkdir -p $(XCLBIN)

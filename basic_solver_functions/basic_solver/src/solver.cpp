@@ -44,12 +44,12 @@ Description:
         size  (input)     --> Size of Vector in Integer
    */
    
-//#include <vector>
+#include "functions.hpp"
 
 extern "C" {
 void solver(
-        const double *inA, // Read-Only Vector 1
-        const double *inB, // Read-Only Vector 2
+        const double *inA, // Read-Only Array 1
+        const double *inB, // Read-Only Array 2
         double *outx            // Output Result
         )
 {

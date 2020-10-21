@@ -16,9 +16,8 @@ help::
 	$(ECHO) "      Command to run application in emulation."
 	$(ECHO) ""
 
-TARGETS := hw
-TARGET := $(TARGETS)
-DEVICE := $(DEVICES)
+TARGET ?= sw_emu
+DEVICE ?= xilinx_u50_gen3x16_xdma_201920_3
 XCLBIN := ./xclbin
 KERNEL_NAME := solver
 VER ?= host_cpp

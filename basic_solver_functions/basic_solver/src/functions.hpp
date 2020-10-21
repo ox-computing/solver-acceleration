@@ -1,5 +1,7 @@
-#include <vector>
-#include "host.hpp"
+#ifndef FUNCTIONS_HPP
+#define FUNCTIONS_HPP
 
-double find_determinant(std::vector<double,aligned_allocator<double>> A);
-double * get_inverse(std::vector<double,aligned_allocator<double>> A);
+double find_determinant(double A[4]);
+double * get_inverse(double A[4]);
+
+#endif

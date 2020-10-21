@@ -1,3 +1,7 @@
+#ifndef HOST_HPP
+#define HOST_HPP
+
+
 #define CL_HPP_CL_1_2_DEFAULT_BUILD
 #define CL_HPP_TARGET_OPENCL_VERSION 120
 #define CL_HPP_MINIMUM_OPENCL_VERSION 120
@@ -82,3 +86,5 @@ char* read_binary_file(const std::string &xclbin_file_name, unsigned &nb)
     bin_file.read(buf, nb);
     return buf;
 }
+
+#endif
