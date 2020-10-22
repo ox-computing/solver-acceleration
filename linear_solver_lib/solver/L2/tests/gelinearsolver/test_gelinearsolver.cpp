@@ -60,6 +60,11 @@ class ArgParser {
 
 //! Core function of Cholesky benchmark
 int main(int argc, const char* argv[]) {
+    
+    //Determine start time
+    struct timevalues time_begin, time_finish;
+    gettimeofday(&time_begin,0);
+    
     // Initialize parser
     ArgParser parser(argc, argv);
 
@@ -214,6 +219,11 @@ int main(int argc, const char* argv[]) {
     // Data transfer from device buffer to host buffer
     q.enqueueMigrateMemObjects(ob_io, 1, nullptr, nullptr); // 1 : migrate from dev to host
     q.finish();
+    
+    //Print the overall time value
+    gettimeofday($time_finish,0);
+    int overall_time = diff(&time_finish,&time_start);
+    printf("Overall execution time: %d \n",overall_time); 
 
     // Calculate err between dataA and dataC
     double errA = 0;
