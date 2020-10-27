@@ -17,7 +17,7 @@
       exit(EXIT_FAILURE);                                           \
     }
 #define DATA_SIZE 4096
-#include "functions.hpp"
+#include "functions/functions.hpp"
 #include <unistd.h>
 #include <iostream>
 #include <fstream>

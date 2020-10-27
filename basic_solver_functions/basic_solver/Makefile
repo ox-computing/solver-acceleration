@@ -50,10 +50,12 @@ HOST_CPP_SRCS += src/host.cpp
 # Host Header FILE
 HOST_CPP_HDRS += src/host.hpp
 
-# Functions CPP FILE
-FUNCTIONS_CPP += src/functions.cpp
-#Functions HPP FILE
-FUNCTIONS_HPP += src/functions.hpp
+# Functions FLAGS
+FUNCTIONS_CPP += functions/functions.cpp
+FUNCTIONS_HPP += functions/functions.hpp
+FUNCTIONS_FLAGS += -I'functions'
+
+
 
 # Enable Profiling
 REPORT := no
@@ -92,16 +94,16 @@ exe: $(EXECUTABLE)
 # Building kernel
 $(XCLBIN)/$(KERNEL_NAME).$(TARGET).xo: src/solver.cpp
 	mkdir -p $(XCLBIN)
-	$(VPP) $(CLFLAGS) --temp_dir $(BUILD_DIR_solver) -c -k $(KERNEL_NAME) -I'$(<D)' -o'$@' '$<'
+	$(VPP) $(CLFLAGS) $(FUNCTIONS_FLAGS) --temp_dir $(BUILD_DIR_solver) -c -k $(KERNEL_NAME) -I'$(<D)' -o'$@' '$<'
 $(XCLBIN)/$(KERNEL_NAME).$(TARGET).xclbin: $(BINARY_CONTAINER_solver_OBJS)
 	mkdir -p $(XCLBIN)
-	$(VPP) $(CLFLAGS) --temp_dir $(BUILD_DIR_solver) -l $(LDCLFLAGS) -o'$@' $(+)
+	$(VPP) $(CLFLAGS) $(FUNCTIONS_FLAGS) --temp_dir $(BUILD_DIR_solver) -l $(LDCLFLAGS) -o'$@' $(+)
 
 ifeq ($(VER),host_cpp)
 # Building Host
-$(EXECUTABLE): $(HOST_CPP_SRCS) $(HOST_CPP_HDRS) $(FUNCTIONS_HPP) $(FUNCTIONS_CPP)
+$(EXECUTABLE): $(HOST_CPP_SRCS) $(HOST_CPP_HDRS)
 	mkdir -p $(XCLBIN)
-	$(CXX) $(CXXFLAGS) $(HOST_CPP_SRCS) $(HOST_CPP_HDRS) $(FUNCTIONS_HPP) $(FUNCTIONS_CPP) -o '$@' $(LDFLAGS)
+	$(CXX) $(CXXFLAGS) $(FUNCTIONS_CPP) $(FUNCTIONS_HPP) $(HOST_CPP_SRCS) $(HOST_CPP_HDRS) -o '$@' $(LDFLAGS)
 else
 $(EXECUTABLE): $(HOST_C_SRCS) $(HOST_C_HDRS)
 	mkdir -p $(XCLBIN)

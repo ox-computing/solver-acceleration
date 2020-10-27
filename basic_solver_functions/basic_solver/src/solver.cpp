@@ -48,8 +48,8 @@ Description:
 
 extern "C" {
 void solver(
-        const double *inA, // Read-Only Array 1
-        const double *inB, // Read-Only Array 2
+        double *inA, // Read-Only Array 1
+        double *inB, // Read-Only Array 2
         double *outx            // Output Result
         )
 {
@@ -62,6 +62,8 @@ void solver(
 // Multiple interfaces can also be created based on the requirements. For example when multiple memory accessing arguments need access to
 // global memory simultaneously, user can create multiple master interfaces and can connect to different arguments.
 
+    //double test[4] = {4,3,2,1};
+    
     //Find the matrix inverse
     double * inv_ptr = get_inverse(inA);
     

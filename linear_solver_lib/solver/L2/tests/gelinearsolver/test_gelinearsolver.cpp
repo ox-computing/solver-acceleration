@@ -60,11 +60,13 @@ class ArgParser {
 
 //! Core function of Cholesky benchmark
 int main(int argc, const char* argv[]) {
-    
-    //Determine start time
-    struct timevalues time_begin, time_finish;
-    gettimeofday(&time_begin,0);
-    
+
+    // Variables to measure time
+    struct timeval tstart, tend;
+
+    // Get start time
+    gettimeofday(&tstart, 0);
+
     // Initialize parser
     ArgParser parser(argc, argv);
 
@@ -202,28 +204,28 @@ int main(int argc, const char* argv[]) {
     std::cout << "INFO: Finish kernel setup" << std::endl;
 
     // Variables to measure time
-    struct timeval tstart, tend;
+    //struct timeval tstart, tend;
 
     // Launch kernel and compute kernel execution time
-    gettimeofday(&tstart, 0);
+    //gettimeofday(&tstart, 0);
     for (int i = 0; i < num_runs; ++i) {
         q.enqueueTask(kernel_gelinearsolver_0, nullptr, nullptr);
     }
     q.finish();
-    gettimeofday(&tend, 0);
-    std::cout << "INFO: Finish kernel execution" << std::endl;
-    int exec_time = diff(&tend, &tstart);
-    std::cout << "INFO: FPGA execution time of " << num_runs << " runs:" << exec_time << " us\n"
-              << "INFO: Average executiom per run: " << exec_time / num_runs << " us\n";
+    //gettimeofday(&tend, 0);
+    //std::cout << "INFO: Finish kernel execution" << std::endl;
+    //int exec_time = diff(&tend, &tstart);
+    //std::cout << "INFO: FPGA execution time of " << num_runs << " runs:" << exec_time << " us\n"
+              //<< "INFO: Average executiom per run: " << exec_time / num_runs << " us\n";
 
     // Data transfer from device buffer to host buffer
     q.enqueueMigrateMemObjects(ob_io, 1, nullptr, nullptr); // 1 : migrate from dev to host
     q.finish();
     
-    //Print the overall time value
-    gettimeofday($time_finish,0);
-    int overall_time = diff(&time_finish,&time_start);
-    printf("Overall execution time: %d \n",overall_time); 
+    // Print the overall time value
+    gettimeofday(&tend,0);
+    int exec_time = diff(&tend,&tstart);
+    printf("INFO: Overall execution time: %d us \n",exec_time); 
 
     // Calculate err between dataA and dataC
     double errA = 0;

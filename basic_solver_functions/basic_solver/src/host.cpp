@@ -59,11 +59,12 @@ int main(int argc, char** argv)
     }
     
     //Find the determinant
-    double det = find_determinant(source_inA);
+    double * source_inA_ptr = &source_inA[0];
+    double det = find_determinant(source_inA_ptr);
 
     
     //Calculate the output value
-    double * Ainv_ptr = get_inverse(source_inA);
+    double * Ainv_ptr = get_inverse(source_inA_ptr);
     
     //Multiply A_inv with inB
     source_sw_results[0] = (*(Ainv_ptr))*source_inB[0] + (*(Ainv_ptr+1))*source_inB[1];
@@ -183,7 +184,7 @@ int main(int argc, char** argv)
             printf("Error : results mismatch \n");
             printf("Software output value: %f \n",source_sw_results[i]);
             match = false;
-            break;
+           break;
         }
     }
 	
