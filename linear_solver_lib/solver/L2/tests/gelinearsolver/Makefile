@@ -53,7 +53,7 @@ XF_PROJ_ROOT ?= $(shell bash -c 'export MK_PATH=$(MK_PATH); echo $${MK_PATH%L2/t
 CUR_DIR := $(patsubst %/,%,$(dir $(MK_PATH)))
 XFLIB_DIR = $(XF_PROJ_ROOT)
 
-TARGET ?= hw
+TARGET ?= sw_emu
 HOST_ARCH := x86
 SYSROOT := ${SYSROOT}
 DEVICE ?= xilinx_u50_gen3x16_xdma_201920_3
@@ -122,7 +122,7 @@ CXXFLAGS += -DUSE_DDR
 else ifneq (,$(shell echo $(XPLATFORM) | awk '/u50/'))
 # U50
 VPP_FLAGS += --config conn_u50.ini
-CXXFLAGS += -DUSE_DDR
+CXXFLAGS += -DUSE_HBM
 else ifneq (,$(XPLATFORM))
 $(warning Unsupported platform $(XPLATFORM))
 endif
