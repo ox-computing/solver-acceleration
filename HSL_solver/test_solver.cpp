@@ -141,6 +141,6 @@ int main(int argc, const char* argv[]) {
     printf("INFO: Overall execution time: %d us \n",exec_time); 
     
     // Print the output
-    printf("Output value: %d \n",dataA[0]);
+    printf("Output value: %fmak \n",dataA[0]);
     
 }

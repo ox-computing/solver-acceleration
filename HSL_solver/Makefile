@@ -48,12 +48,12 @@ help::
 	$(ECHO) ""
 
 ############################## Setting up Project Variables ##############################
-#MK_PATH := $(abspath $(lastword $(MAKEFILE_LIST)))
-#XF_PROJ_ROOT ?= $(shell bash -c 'export MK_PATH=$(MK_PATH); echo $${MK_PATH%L2/tests/gelinearsolver/*}')
-#CUR_DIR := $(patsubst %/,%,$(dir $(MK_PATH)))
-#XFLIB_DIR = $(XF_PROJ_ROOT)
+MK_PATH := $(abspath $(lastword $(MAKEFILE_LIST)))
+XF_PROJ_ROOT ?= $(shell bash -c 'export MK_PATH=$(MK_PATH); echo $${MK_PATH%L2/tests/gelinearsolver/*}')
+CUR_DIR := $(patsubst %/,%,$(dir $(MK_PATH)))
+XFLIB_DIR = $(XF_PROJ_ROOT)
 
-TARGET ?= hw_emu
+TARGET ?= sw_emu
 HOST_ARCH := x86
 SYSROOT := ${SYSROOT}
 DEVICE ?= xilinx_u50_gen3x16_xdma_201920_3
