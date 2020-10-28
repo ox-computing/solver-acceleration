@@ -53,7 +53,7 @@ help::
 #CUR_DIR := $(patsubst %/,%,$(dir $(MK_PATH)))
 #XFLIB_DIR = $(XF_PROJ_ROOT)
 
-TARGET ?= sw_emu
+TARGET ?= hw_emu
 HOST_ARCH := x86
 SYSROOT := ${SYSROOT}
 DEVICE ?= xilinx_u50_gen3x16_xdma_201920_3
@@ -74,7 +74,7 @@ EMU_DIR := $(SDCARD)/data/emulation
 
 ############################## Setting up Host Variables ##############################
 #Include Required Host Source Files
-HOST_SRCS += test_MA97.cpp
+HOST_SRCS += test_solver.cpp
 HOST_SRCS += xcl2/xcl2.cpp
 
 CXXFLAGS += -Ixcl2
@@ -87,9 +87,9 @@ CXXFLAGS += -fmessage-length=0 -O3
 CXXFLAGS +=-I$(CUR_DIR)/src/ 
 
 
-EXE_FILE := test_MA97.exe
-SOC_HOST_ARGS :=  -xclbin $(BUILD_DIR)/kernel_MA97.xclbin
-HOST_ARGS :=  -xclbin $(BUILD_DIR)/kernel_MA97.xclbin
+EXE_FILE := test_solver.exe
+SOC_HOST_ARGS :=  -xclbin $(BUILD_DIR)/kernel_solver.xclbin
+HOST_ARGS :=  -xclbin $(BUILD_DIR)/kernel_solver.xclbin
 
 ifneq ($(HOST_ARCH), x86)
 	LDFLAGS += --sysroot=$(SYSROOT)
@@ -130,8 +130,8 @@ VPP_FLAGS += -Icoinhsl-2019.05.21/hsl_ma97/C
 
 
 ############################## Declaring Binary Containers ##############################
-BINARY_CONTAINERS += $(BUILD_DIR)/kernel_MA97.xclbin
-BINARY_CONTAINER_kernel_MA97_OBJS += $(TEMP_DIR)/kernel_MA97_0.xo
+BINARY_CONTAINERS += $(BUILD_DIR)/kernel_solver.xclbin
+BINARY_CONTAINER_kernel_solver_OBJS += $(TEMP_DIR)/kernel_solver_0.xo
 
 ############################## Setting Targets ##############################
 CP = cp -rf
@@ -146,14 +146,14 @@ host: $(EXE_FILE) | check_xrt
 xclbin: check_vpp | $(BINARY_CONTAINERS)
 
 ############################## Setting Rules for Binary Containers (Building Kernels) ##############################
-$(TEMP_DIR)/kernel_MA97_0.xo: kernel_MA97.cpp
-	$(ECHO) "Compiling Kernel: kernel_MA97_0"
+$(TEMP_DIR)/kernel_solver_0.xo: kernel_solver.cpp
+	$(ECHO) "Compiling Kernel: kernel_solver_0"
 	mkdir -p $(TEMP_DIR)
-	$(VPP) $(kernel_MA97_0_VPP_FLAGS) $(VPP_FLAGS) --temp_dir $(TEMP_DIR) --report_dir $(TEMP_REPORT_DIR) -c -k kernel_MA97_0 -I'$(<D)' -o $@ $^
+	$(VPP) $(kernel_solver_0_VPP_FLAGS) $(VPP_FLAGS) --temp_dir $(TEMP_DIR) --report_dir $(TEMP_REPORT_DIR) -c -k kernel_solver_0 -I'$(<D)' -o $@ $^
 
-$(BUILD_DIR)/kernel_MA97.xclbin: $(BINARY_CONTAINER_kernel_MA97_OBJS)
+$(BUILD_DIR)/kernel_solver.xclbin: $(BINARY_CONTAINER_kernel_solver_OBJS)
 	mkdir -p $(BUILD_DIR)
-	$(VPP) $(VPP_FLAGS) --temp_dir $(BUILD_DIR) --report_dir $(BUILD_REPORT_DIR)/kernel_MA97 -l $(LDCLFLAGS) $(LDCLFLAGS_kernel_MA97) -o'$@' $(+)
+	$(VPP) $(VPP_FLAGS) --temp_dir $(BUILD_DIR) --report_dir $(BUILD_REPORT_DIR)/kernel_solver -l $(LDCLFLAGS) $(LDCLFLAGS_kernel_solver) -o'$@' $(+)
 
 ############################## Setting Rules for Host (Building Host Executable) ##############################
 $(EXE_FILE): $(HOST_SRCS) | check_xrt

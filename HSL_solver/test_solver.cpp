@@ -12,7 +12,6 @@ Testing the MA97 solver kernel. Main programme
 #include "xcl2.hpp"
 
 
-
 // Memory alignment
 template <typename T>
 T* aligned_alloc(std::size_t num) {
@@ -84,7 +83,7 @@ int main(int argc, const char* argv[]) {
     cl::Program::Binaries xclBins = xcl::import_binary_file(xclbin_path);
     devices.resize(1);
     cl::Program program(context, devices, xclBins);
-    cl::Kernel kernel_MA97_0(program, "kernel_MA97_0");
+    cl::Kernel kernel_solver_0(program, "kernel_solver_0");
     std::cout << "INFO: Kernel has been created" << std::endl;
     
     // Create the data A and B
@@ -122,14 +121,14 @@ int main(int argc, const char* argv[]) {
     std::cout << "INFO: Finish data transfer from host to device" << std::endl;
 
     // Setup kernel
-    kernel_MA97_0.setArg(0, inout_size);
-    kernel_MA97_0.setArg(1, buffer[0]);
-    kernel_MA97_0.setArg(2, buffer[1]);
+    kernel_solver_0.setArg(0, inout_size);
+    kernel_solver_0.setArg(1, buffer[0]);
+    kernel_solver_0.setArg(2, buffer[1]);
     q.finish();
     std::cout << "INFO: Finish kernel setup" << std::endl;
     
     // Launch kernel
-    q.enqueueTask(kernel_MA97_0, nullptr, nullptr);
+    q.enqueueTask(kernel_solver_0, nullptr, nullptr);
     q.finish();
     
     // Data transfer from device buffer to host buffer
