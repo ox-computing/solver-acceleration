@@ -62,7 +62,7 @@ class ArgParser {
 int main(int argc, const char* argv[]) {
 
     // Variables to measure time
-    struct timeval tstart, tend;
+    struct timeval tstart, tinit_parse, tplatform_setup, tbuffer_setup, tbuffer_transfer1, tkernel_setup, tkernel_launch, tbuffer_transfer2;
 
     // Get start time
     gettimeofday(&tstart, 0);
@@ -105,32 +105,10 @@ int main(int argc, const char* argv[]) {
     }
     int NB = 2;
     
-
     // dataAM = dataAN is valid only for symmetric matrix
     dataAM = (dataAM > dataAN) ? dataAN : dataAM;
     dataAN = dataAM;
-
-    // Platform related operations
-    std::vector<cl::Device> devices = xcl::get_xil_devices();
-    cl::Device device = devices[0];
-
-    // Creating Context and Command Queue for selected Device
-    cl::Context context(device);
-    cl::CommandQueue q(context, device, CL_QUEUE_PROFILING_ENABLE | CL_QUEUE_OUT_OF_ORDER_EXEC_MODE_ENABLE);
-    std::string devName = device.getInfo<CL_DEVICE_NAME>();
-    printf("INFO: Found Device=%s\n", devName.c_str());
-
-    cl::Program::Binaries xclBins = xcl::import_binary_file(xclbin_path);
-    devices.resize(1);
-    cl::Program program(context, devices, xclBins);
-    cl::Kernel kernel_gelinearsolver_0(program, "kernel_gelinearsolver_0");
-    std::cout << "INFO: Kernel has been created" << std::endl;
-
-    // Output the inputs information
-    std::cout << "INFO: Number of kernel runs: " << num_runs << std::endl;
-    std::cout << "INFO: Matrix Row M: " << dataAM << std::endl;
-    std::cout << "INFO: Matrix Col N: " << dataAN << std::endl;
-
+    
     // Initialization of host buffers
 
     int inout_size = dataAM * dataAN;
@@ -165,6 +143,32 @@ int main(int argc, const char* argv[]) {
             //printf("Data B Row %d Column %d : %f \n",i,j,dataB[i * NB + j]);
         }
     }
+    
+    gettimeofday(&tinit_parse, 0);
+
+    // Platform related operations
+    std::vector<cl::Device> devices = xcl::get_xil_devices();
+    cl::Device device = devices[0];
+
+    // Creating Context and Command Queue for selected Device
+    cl::Context context(device);
+    cl::CommandQueue q(context, device, CL_QUEUE_PROFILING_ENABLE | CL_QUEUE_OUT_OF_ORDER_EXEC_MODE_ENABLE);
+    std::string devName = device.getInfo<CL_DEVICE_NAME>();
+    printf("INFO: Found Device=%s\n", devName.c_str());
+
+    cl::Program::Binaries xclBins = xcl::import_binary_file(xclbin_path);
+    devices.resize(1);
+    cl::Program program(context, devices, xclBins);
+    cl::Kernel kernel_gelinearsolver_0(program, "kernel_gelinearsolver_0");
+    std::cout << "INFO: Kernel has been created" << std::endl;
+
+    // Output the inputs information
+    std::cout << "INFO: Number of kernel runs: " << num_runs << std::endl;
+    std::cout << "INFO: Matrix Row M: " << dataAM << std::endl;
+    std::cout << "INFO: Matrix Col N: " << dataAN << std::endl;
+    
+    gettimeofday(&tplatform_setup,0);
+
 
     // DDR Settings
     /*std::vector<cl_mem_ext_ptr_t> mext_io(2);
@@ -182,6 +186,8 @@ int main(int argc, const char* argv[]) {
                            sizeof(double) * inout_size, dataA, NULL);
     buffer[1] = cl::Buffer(context, CL_MEM_USE_HOST_PTR | CL_MEM_READ_WRITE,
                            sizeof(double) * inoutB_size, dataB, NULL);
+                           
+    gettimeofday(&tbuffer_setup,0);
 
     // Data transfer from host buffer to device buffer
     std::vector<std::vector<cl::Event> > kernel_evt(2);
@@ -195,6 +201,8 @@ int main(int argc, const char* argv[]) {
     q.enqueueMigrateMemObjects(ob_io, 0, nullptr, &kernel_evt[0][0]); // 0 : migrate from host to dev
     q.finish();
     std::cout << "INFO: Finish data transfer from host to device" << std::endl;
+    
+    gettimeofday(&tbuffer_transfer1,0);
 
     // Setup kernel
     kernel_gelinearsolver_0.setArg(0, dataAN);
@@ -202,6 +210,8 @@ int main(int argc, const char* argv[]) {
     kernel_gelinearsolver_0.setArg(2, buffer[1]);
     q.finish();
     std::cout << "INFO: Finish kernel setup" << std::endl;
+    
+    gettimeofday(&tkernel_setup,0);
 
     // Variables to measure time
     //struct timeval tstart, tend;
@@ -217,15 +227,40 @@ int main(int argc, const char* argv[]) {
     //int exec_time = diff(&tend, &tstart);
     //std::cout << "INFO: FPGA execution time of " << num_runs << " runs:" << exec_time << " us\n"
               //<< "INFO: Average executiom per run: " << exec_time / num_runs << " us\n";
+              
+    gettimeofday(&tkernel_launch,0);
 
     // Data transfer from device buffer to host buffer
     q.enqueueMigrateMemObjects(ob_io, 1, nullptr, nullptr); // 1 : migrate from dev to host
     q.finish();
     
+    gettimeofday(&tbuffer_transfer2,0);
+    
     // Print the overall time value
-    gettimeofday(&tend,0);
-    int exec_time = diff(&tend,&tstart);
-    printf("INFO: Overall execution time: %d us \n",exec_time); 
+    //gettimeofday(&tend,0);
+    //int exec_time = diff(&tend,&tstart);
+    //printf("INFO: Overall execution time: %d us \n",exec_time);
+    
+    // Calculate the time differences and print
+    int parse = diff(&tinit_parse,&tstart);
+    int platform_setup = diff(&tplatform_setup,&tinit_parse);
+    int buffer_setup = diff(&tbuffer_setup,&tplatform_setup);
+    int buffer_transfer1 = diff(&tbuffer_transfer1,&tbuffer_setup);
+    int kernel_setup = diff(&tkernel_setup,&tbuffer_transfer1);
+    int kernel_launch = diff(&tkernel_launch,&tkernel_setup);
+    int buffer_transfer2 = diff(&tbuffer_transfer2,&tkernel_launch);
+    int overall = diff(&tbuffer_transfer2,&tstart);
+    
+    printf("INFO: Argument parse time: %d us \n",parse);
+    printf("INFO: Platform setup time: %d us \n",platform_setup);
+    printf("INFO: Buffer setup time: %d us \n",buffer_setup);
+    printf("INFO: Buffer transfer from host to device time: %d us \n",buffer_transfer1);
+    printf("INFO: Kernel setup time: %d us \n",kernel_setup);
+    printf("INFO: Kernel launch and run time: %d us \n",kernel_launch);
+    printf("INFO: Buffer transfer from device to host time: %d us \n",buffer_transfer2);
+    printf("INFO: Overall execution time: %d us \n",overall);
+    
+     
 
     // Calculate err between dataA and dataC
     double errA = 0;
