@@ -59,8 +59,8 @@ SYSROOT := ${SYSROOT}
 DEVICE ?= xilinx_u50_gen3x16_xdma_201920_3
 
 RUNS ?= 1
-ROW_SIZE ?= 4
-COLUMN_SIZE ?= 4
+ROW_SIZE ?= 100
+COLUMN_SIZE ?= 100
 SEED ?= 12
 
 include ./utils.mk
@@ -98,7 +98,9 @@ CXXFLAGS +=-I$(CUR_DIR)/src/
 
 EXE_FILE := test_gelinearsolver.exe
 SOC_HOST_ARGS :=  -xclbin $(BUILD_DIR)/kernel_gelinearsolver.xclbin
-HOST_ARGS :=  -xclbin $(BUILD_DIR)/kernel_gelinearsolver.xclbin
+HOST_ARGS += -xclbin $(BUILD_DIR)/kernel_gelinearsolver.xclbin
+HOST_ARGS += -M $(ROW_SIZE)
+HOST_ARGS += -N $(COLUMN_SIZE)
 
 ifneq ($(HOST_ARCH), x86)
 	LDFLAGS += --sysroot=$(SYSROOT)

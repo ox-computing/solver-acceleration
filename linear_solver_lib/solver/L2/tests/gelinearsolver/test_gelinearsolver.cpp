@@ -103,7 +103,7 @@ int main(int argc, const char* argv[]) {
     } else {
         seed = std::stoi(num_str);
     }
-    int NB = 2;
+    int NB = 1;
     
     // dataAM = dataAN is valid only for symmetric matrix
     dataAM = (dataAM > dataAN) ? dataAN : dataAM;
@@ -134,15 +134,15 @@ int main(int argc, const char* argv[]) {
     for (int i = 0; i < dataAM; ++i) {
         for (int j = 0; j < dataAN; ++j) {
             dataA[i * dataAN + j] = dataE[i][j];
-            //printf("Data A Row %d Column %d : %f \n",i,j,dataA[i * dataAN + j]);
+            printf("Data A Row %d Column %d : %f \n",i,j,dataA[i * dataAN + j]);
         }
     }
     for (int i = 0; i < dataAM; ++i) {
         for (int j = 0; j < NB; ++j) {
             dataB[i * NB + j] = i;
-            //printf("Data B Row %d Column %d : %f \n",i,j,dataB[i * NB + j]);
+            printf("Data B Row %d Column %d : %f \n",i,j,dataB[i * NB + j]);
         }
-    }
+    } 
     
     gettimeofday(&tinit_parse, 0);
 
