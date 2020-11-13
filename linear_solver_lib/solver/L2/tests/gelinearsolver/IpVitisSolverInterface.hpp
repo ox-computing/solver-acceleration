@@ -16,6 +16,8 @@ Base class is SparseSymLinearSolver
 
 #include "xcl2.hpp"
 
+#include "IpSparseSymLinearSolverInterface.hpp"
+
 namespace Ipopt
 {
 class VitisSolverInterface: public SparseSymLinearSolverInterface
@@ -38,12 +40,21 @@ private:
   
   // Matrix variables
   int _numneg; // Number of negative eigenvalues
-  double * _val; // Ptr for values
+  double * val_; // Ptr for values
+  
+  Index matrix_nonzeros; // Number of non zeros values in A
+  Index matrix_dimension;
+  
+  double * dataA; 
+  double * dataB;
+  
+  int inout_size; // Overall size of matrix A
+  int inoutB_size; // Overall size of matrix B
   
   // OpenCL variables
   std::string xclbin_path; // Path for FPGA binary file
-  std::vector<cl::Device> devices // Vector of found devices
-  cl::Device device // Chosen device
+  std::vector<cl::Device> devices; // Vector of found devices
+  cl::Device device; // Chosen device
   
   cl::Context context; // OpenCL context
   cl::CommandQueue q; // OpenCL q
@@ -66,19 +77,11 @@ private:
 public:
 
 
-  //Constructor
-  VitisSolverInterface(){
+  // Constructor
+  VitisSolverInterface(){};
   
   
-  
-  };
-  
-  
-  
-  
-  
-  
-  //Destructor
+  // Destructor
   ~VitisSolverInterface();
   
   
