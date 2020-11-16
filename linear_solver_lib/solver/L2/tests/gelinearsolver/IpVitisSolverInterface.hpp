@@ -43,7 +43,9 @@ private:
   double * val_; // Ptr for values
   
   Index matrix_nonzeros; // Number of non zeros values in A
-  Index matrix_dimension;
+  Index matrix_dimension; // Dimension of A
+  int dataA_size;    // Size of array A
+  int dataB_size;    // Size of array B
   
   double * dataA; 
   double * dataB;
@@ -166,10 +168,6 @@ public:
    {
       return SYMSOLVER_FATAL_ERROR;
    }
-   //@}
-   
-   // Time difference
-   unsigned long diff(const struct timeval* newTime, const struct timeval* oldTime);
    
 };
 
