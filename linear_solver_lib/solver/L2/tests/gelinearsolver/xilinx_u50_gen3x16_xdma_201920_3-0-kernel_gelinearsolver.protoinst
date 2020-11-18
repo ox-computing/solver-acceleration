@@ -3,7 +3,7 @@
   "modules": {
       "kernel_gelinearsolver_0": {
       "proto_instances": {
-        "grp_gelinearsolver_double_4_2_s_fu_82/grp_gelinearsolver_double_4_2_s_fu_82": {
+        "grp_gelinearsolver_double_100_1_s_fu_74/grp_gelinearsolver_double_100_1_s_fu_74": {
           "silent": true,
           "interface": "xilinx.com:interface:internal_hls_dataflow:1.0",
           "ports": {
@@ -14,7 +14,7 @@
             "AP_READY": { "actual": "ap_ready", "optional":true }
           }
         },
-        "grp_gelinearsolver_double_4_2_s_fu_82/grp_getrf_core_double_2_4_2_s_fu_570/grp_getrf_core_double_2_4_2_s_fu_570": {
+        "grp_gelinearsolver_double_100_1_s_fu_74/grp_getrf_core_double_100_100_1_s_fu_416/grp_getrf_core_double_100_100_1_s_fu_416": {
           "silent": true,
           "interface": "xilinx.com:interface:internal_hls_dataflow:1.0",
           "ports": {
@@ -25,7 +25,7 @@
             "AP_READY": { "actual": "ap_ready", "optional":true }
           }
         },
-        "grp_gelinearsolver_double_4_2_s_fu_82/grp_trisolver_U_double_4_2_s_fu_588/grp_trisolver_U_double_4_2_s_fu_588": {
+        "grp_gelinearsolver_double_100_1_s_fu_74/grp_trisolver_U_double_100_1_s_fu_428/grp_trisolver_U_double_100_1_s_fu_428": {
           "silent": true,
           "interface": "xilinx.com:interface:internal_hls_dataflow:1.0",
           "ports": {
@@ -36,7 +36,7 @@
             "AP_READY": { "actual": "ap_ready", "optional":true }
           }
         },
-        "grp_gelinearsolver_double_4_2_s_fu_82/grp_trisolver_L_double_4_2_s_fu_602/grp_trisolver_L_double_4_2_s_fu_602": {
+        "grp_gelinearsolver_double_100_1_s_fu_74/grp_trisolver_L_double_100_1_s_fu_437/grp_trisolver_L_double_100_1_s_fu_437": {
           "silent": true,
           "interface": "xilinx.com:interface:internal_hls_dataflow:1.0",
           "ports": {

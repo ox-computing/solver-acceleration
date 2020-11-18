@@ -15,7 +15,7 @@
  */
 
 #include "xf_solver_L2.hpp"
-#define NCU 2
+#define NCU 1
 #define MAXN 100
 #define LDB 1
 

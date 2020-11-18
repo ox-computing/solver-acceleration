@@ -105,7 +105,7 @@ int main(int argc, const char* argv[]) {
     }
     int NB = 1;
     
-    // dataAM = dataAN is valid only for symmetric matrix
+    /*// dataAM = dataAN is valid only for symmetric matrix
     dataAM = (dataAM > dataAN) ? dataAN : dataAM;
     dataAN = dataAM;
     
@@ -142,7 +142,31 @@ int main(int argc, const char* argv[]) {
             dataB[i * NB + j] = i;
             printf("Data B Row %d Column %d : %f \n",i,j,dataB[i * NB + j]);
         }
-    } 
+    } */
+    
+    // Test for sparse matrix
+    int num_rows = 5;
+    int matrix_size = num_rows*num_rows;
+    int b_size = num_rows;
+    
+    // Initialise matrix
+    double * dataA;
+    dataA = aligned_alloc<double>(matrix_size);
+    double * dataB;
+    dataB = aligned_alloc<double>(b_size);
+    
+    double dataA_init[matrix_size] = {2.,1.,0,0,0,1.,4.,1.,0,1.,0,1.,3.,2.,0,0,0,2.,0.,0,0,1.,0,0,2.};
+    double dataB_init[b_size] = {4.,12.,10.,4.,4.};
+    
+    for(int i = 0; i < matrix_size; i++){
+        dataA[i] = dataA_init[i];
+        printf("data A %d: %f \n",i,dataA[i]);
+    }
+    
+    for(int i = 0; i < b_size; i++){
+        dataB[i] = dataB_init[i];
+        printf("data b %d: %f \n",i,dataB[i]);
+    }
     
     gettimeofday(&tinit_parse, 0);
 
@@ -183,9 +207,9 @@ int main(int argc, const char* argv[]) {
     std::vector<cl::Buffer> buffer(2);
 
     buffer[0] = cl::Buffer(context, CL_MEM_USE_HOST_PTR | CL_MEM_READ_WRITE,
-                           sizeof(double) * inout_size, dataA, NULL);
+                           sizeof(double) * matrix_size, dataA, NULL);
     buffer[1] = cl::Buffer(context, CL_MEM_USE_HOST_PTR | CL_MEM_READ_WRITE,
-                           sizeof(double) * inoutB_size, dataB, NULL);
+                           sizeof(double) * b_size, dataB, NULL);
                            
     gettimeofday(&tbuffer_setup,0);
 
@@ -205,7 +229,7 @@ int main(int argc, const char* argv[]) {
     gettimeofday(&tbuffer_transfer1,0);
 
     // Setup kernel
-    kernel_gelinearsolver_0.setArg(0, dataAN);
+    kernel_gelinearsolver_0.setArg(0, num_rows);
     kernel_gelinearsolver_0.setArg(1, buffer[0]);
     kernel_gelinearsolver_0.setArg(2, buffer[1]);
     q.finish();
@@ -263,7 +287,7 @@ int main(int argc, const char* argv[]) {
      
 
     // Calculate err between dataA and dataC
-    double errA = 0;
+    /*double errA = 0;
     for (int p = 0; p < NB; p++) {
         double res = 0;
         for (int i = 0; i < dataAM; i++) {
@@ -285,5 +309,10 @@ int main(int argc, const char* argv[]) {
         std::cout << "INFO: Result correct" << std::endl;
         std::cout << "-------------- " << std::endl;
         return 0;
+    }*/
+    
+    // Print solution
+    for(int i = 0; i < b_size; i++){
+        printf("x%d : %f \n",i,dataB[i]);
     }
 }
