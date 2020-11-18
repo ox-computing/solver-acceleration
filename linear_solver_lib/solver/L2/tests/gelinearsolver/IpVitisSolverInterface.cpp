@@ -37,6 +37,7 @@ namespace Ipopt
   
   int VitisSolverInterface::SetBinaryPath(std::string binary_path){
       xclbin_path = binary_path;
+      std::cout << "Xclbin Path : " << xclbin_path << std::endl;
       return 0;
   }
   
@@ -44,22 +45,8 @@ namespace Ipopt
       const OptionsList& options,
       const std::string& prefix
    ){
-       // Find platform
-      devices = xcl::get_xil_devices();
-      device = devices[0];
-      
-      
-      // Create context and queue
-      context = cl::Context(device);
-      q = cl::CommandQueue(context, device, CL_QUEUE_PROFILING_ENABLE | CL_QUEUE_OUT_OF_ORDER_EXEC_MODE_ENABLE);
-      devName = device.getInfo<CL_DEVICE_NAME>();
-      
-      // Binary file
-      xclbin_path = "kernel_solver_0.xclbin";
-      devices.resize(1);
-      xclBins = xcl::import_binary_file(xclbin_path); 
-      program = cl::Program(context, devices, xclBins);
-      kernel_gelinearsolver_0 = cl::Kernel(program, "kernel_gelinearsolver_0");
+      // Read in xclbin path from options
+      options.GetStringValue("vitis_xclbin",xclbin_path,prefix);
       
       return true;
       
@@ -81,7 +68,7 @@ namespace Ipopt
        {
           delete[] val_;
        }
-       val_ = new double[nonzeros];
+       val_ = new double[matrix_nonzeros];
        
        return SYMSOLVER_SUCCESS;
    }
@@ -104,7 +91,7 @@ namespace Ipopt
         
        // Allocate memory for A
        dataA_size = matrix_dimension*matrix_dimension;
-       dataA = aligned_alloc(dataA_size);
+       dataA = aligned_alloc<double>(dataA_size);
        
        // Create the values of the array A
        Index row_nonzeros[matrix_dimension];
@@ -136,19 +123,42 @@ namespace Ipopt
            column_counter += row_nonzeros[i];
        }
        
+       // Print the values of A
+       for(int i = 0; i < dataA_size; i++)
+       {
+           printf("Data A value %d : %f \n",i,dataA[i]);
+       }
+       
        // Allocate memory for B
-       dataB_size = nrhs;
-       dataB = aligned_alloc(dataB_size);
+       dataB_size = matrix_dimension;
+       dataB = aligned_alloc<double>(dataB_size);
        
        // Assign the values of B
-       for(int i = 0; i < nrhs; i++){
+       for(int i = 0; i < dataB_size; i++){
            dataB[i] = rhs_vals[i];
        }
        
        /**************
-        Buffer programming and triggering
+        Device programming and triggering
         ************/
+        // Find platform
+        devices = xcl::get_xil_devices();
+        device = devices[0];
         
+        
+        // Create context and queue
+        context = cl::Context(device);
+        q = cl::CommandQueue(context, device, CL_QUEUE_PROFILING_ENABLE | CL_QUEUE_OUT_OF_ORDER_EXEC_MODE_ENABLE);
+        devName = device.getInfo<CL_DEVICE_NAME>();
+        printf("INFO: Found Device=%s\n", devName.c_str());
+        
+        // Binary file
+        devices.resize(1);
+        xclBins = xcl::import_binary_file(xclbin_path); 
+        program = cl::Program(context, devices, xclBins);
+        kernel_gelinearsolver_0 = cl::Kernel(program, "kernel_gelinearsolver_0");
+        std::cout << "INFO: Kernel has been created" << std::endl;
+          
         // Buffers
         buffer[0] = cl::Buffer(context, CL_MEM_USE_HOST_PTR | CL_MEM_READ_WRITE,
                            sizeof(double) * dataA_size, dataA, NULL);
@@ -182,6 +192,11 @@ namespace Ipopt
          // Transfer data back to host
          q.enqueueMigrateMemObjects(ob_io, 1, nullptr, nullptr); // 1 : migrate from dev to host
          q.finish();
+         
+         // Print the value of the solution
+         for(int i = 0; i < dataB_size; i++){
+         printf("Solution %d: %f \n",i,dataB[i]);
+         }
          
          return SYMSOLVER_SUCCESS;
                 

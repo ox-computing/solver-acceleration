@@ -24,18 +24,20 @@ class VitisSolverInterface: public SparseSymLinearSolverInterface
 private:
   
   // Memory allocator
-  double * aligned_alloc(std::size_t num){
-    void * ptr = nullptr;
-    if (posix_memalign(&ptr, 4096, num * sizeof(double))) {
-        throw std::bad_alloc();
-    }
-    return reinterpret_cast<double*>(ptr);
+    template <typename T>
+  T* aligned_alloc(std::size_t num) {
+      void* ptr = nullptr;
+      if (posix_memalign(&ptr, 4096, num * sizeof(T))) {
+          throw std::bad_alloc();
+      }
+      return reinterpret_cast<T*>(ptr);
   }
   
   // Time difference
   unsigned long diff(const struct timeval* newTime, const struct timeval* oldTime) {
     return (newTime->tv_sec - oldTime->tv_sec) * 1000000 + (newTime->tv_usec - oldTime->tv_usec);
   }
+  
   
   // Matrix variables
   int numneg_; // Number of negative eigenvalues
