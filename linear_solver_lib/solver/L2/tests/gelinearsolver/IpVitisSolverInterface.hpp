@@ -8,7 +8,6 @@ Base class is SparseSymLinearSolver
 #ifndef __IPVITISSOLVERINTERFACE_HPP_
 #define __IPVITISSOLVERINTERFACE_HPP_
 
-#include <iosteam>
 #include <iostream>
 #include <string.h>
 #include <sys/time.h>
@@ -27,10 +26,10 @@ private:
   // Memory allocator
   double * aligned_alloc(std::size_t num){
     void * ptr = nullptr;
-    if (posix_memalign(&ptr, 4096, num * sizeof(T))) {
+    if (posix_memalign(&ptr, 4096, num * sizeof(double))) {
         throw std::bad_alloc();
     }
-    return reinterpret_cast<T*>(ptr);
+    return reinterpret_cast<double*>(ptr);
   }
   
   // Time difference
@@ -39,7 +38,7 @@ private:
   }
   
   // Matrix variables
-  int _numneg; // Number of negative eigenvalues
+  int numneg_; // Number of negative eigenvalues
   double * val_; // Ptr for values
   
   Index matrix_nonzeros; // Number of non zeros values in A
@@ -62,13 +61,13 @@ private:
   cl::CommandQueue q; // OpenCL q
   std::string devName; // Device name string
   
-  cl::Program::Binaries xclBins // OpenCL binaries
+  cl::Program::Binaries xclBins; // OpenCL binaries
   cl::Program program; // OpenCL programme
   cl::Kernel kernel_gelinearsolver_0; // Device kernel
   
-  std::vector<cl::Buffer> buffer(2); // Device buffers
+  std::vector<cl::Buffer> buffer; // Device buffers
   
-  std::vector<std::vector<cl::Event> > kernel_evt(2); // Kernel events
+  std::vector<std::vector<cl::Event>> kernel_evt; // Kernel events
   std::vector<cl::Memory> ob_io; // IO object for transfer
   
   // Time variables
@@ -80,11 +79,15 @@ public:
 
 
   // Constructor
-  VitisSolverInterface(){};
+  VitisSolverInterface():buffer(2),kernel_evt(2)
+  {}
   
   
   // Destructor
   ~VitisSolverInterface();
+  
+  // Set xclbin path
+  int SetBinaryPath(std::string binary_path);
   
   
   

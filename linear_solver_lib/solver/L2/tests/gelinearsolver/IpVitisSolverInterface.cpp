@@ -35,6 +35,11 @@ namespace Ipopt
       free(dataB);
   }
   
+  int VitisSolverInterface::SetBinaryPath(std::string binary_path){
+      xclbin_path = binary_path;
+      return 0;
+  }
+  
   bool VitisSolverInterface::InitializeImpl(
       const OptionsList& options,
       const std::string& prefix
@@ -45,16 +50,18 @@ namespace Ipopt
       
       
       // Create context and queue
-      context(device);
-      q(context, device, CL_QUEUE_PROFILING_ENABLE | CL_QUEUE_OUT_OF_ORDER_EXEC_MODE_ENABLE);
+      context = cl::Context(device);
+      q = cl::CommandQueue(context, device, CL_QUEUE_PROFILING_ENABLE | CL_QUEUE_OUT_OF_ORDER_EXEC_MODE_ENABLE);
       devName = device.getInfo<CL_DEVICE_NAME>();
       
       // Binary file
       xclbin_path = "kernel_solver_0.xclbin";
       devices.resize(1);
       xclBins = xcl::import_binary_file(xclbin_path); 
-      program(context, devices, xclBins);
-      kernel_gelinearsolver_0(program, "kernel_gelinearsolver_0");
+      program = cl::Program(context, devices, xclBins);
+      kernel_gelinearsolver_0 = cl::Kernel(program, "kernel_gelinearsolver_0");
+      
+      return true;
       
    }
    
@@ -75,6 +82,8 @@ namespace Ipopt
           delete[] val_;
        }
        val_ = new double[nonzeros];
+       
+       return SYMSOLVER_SUCCESS;
    }
    
    
@@ -95,7 +104,7 @@ namespace Ipopt
         
        // Allocate memory for A
        dataA_size = matrix_dimension*matrix_dimension;
-       dataA = aligned_alloc<double>(dataA_size);
+       dataA = aligned_alloc(dataA_size);
        
        // Create the values of the array A
        Index row_nonzeros[matrix_dimension];
@@ -110,13 +119,16 @@ namespace Ipopt
              dataA[i] = 0;
        }
        
+       // Create counter
+       int column_counter = 0;
+       
        // For each row
        for(int i = 0; i < matrix_dimension; i++){
            // Check if there are any nonzero terms
            if(row_nonzeros[i] != 0)
            {
                // Read off the columns the data is in
-               for(k = column_counter; k < column_counter + row_nonzeros[i]; k++)
+               for(int k = column_counter; k < column_counter + row_nonzeros[i]; k++)
                {
                    dataA[matrix_dimension*i + ja[k]] = val_[k];
                }
@@ -126,7 +138,7 @@ namespace Ipopt
        
        // Allocate memory for B
        dataB_size = nrhs;
-       dataB = aligned_alloc<double>(dataB_size);
+       dataB = aligned_alloc(dataB_size);
        
        // Assign the values of B
        for(int i = 0; i < nrhs; i++){
@@ -156,7 +168,7 @@ namespace Ipopt
         q.finish();
         
          // Setup kernel
-         kernel_gelinearsolver_0.setArg(0, dataAN);
+         kernel_gelinearsolver_0.setArg(0, matrix_dimension);
          kernel_gelinearsolver_0.setArg(1, buffer[0]);
          kernel_gelinearsolver_0.setArg(2, buffer[1]);
          q.finish();
@@ -170,6 +182,8 @@ namespace Ipopt
          // Transfer data back to host
          q.enqueueMigrateMemObjects(ob_io, 1, nullptr, nullptr); // 1 : migrate from dev to host
          q.finish();
+         
+         return SYMSOLVER_SUCCESS;
                 
            
    }

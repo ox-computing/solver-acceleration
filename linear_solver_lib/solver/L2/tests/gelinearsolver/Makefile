@@ -53,7 +53,7 @@ XF_PROJ_ROOT ?= $(shell bash -c 'export MK_PATH=$(MK_PATH); echo $${MK_PATH%L2/t
 CUR_DIR := $(patsubst %/,%,$(dir $(MK_PATH)))
 XFLIB_DIR = $(XF_PROJ_ROOT)
 
-TARGET ?= hw
+TARGET ?= sw_emu
 HOST_ARCH := x86
 SYSROOT := ${SYSROOT}
 DEVICE ?= xilinx_u50_gen3x16_xdma_201920_3
@@ -81,10 +81,13 @@ EMU_DIR := $(SDCARD)/data/emulation
 #Include Required Host Source Files
 HOST_SRCS += $(XFLIB_DIR)/L2/tests/gelinearsolver/test_gelinearsolver.cpp
 HOST_SRCS += $(XFLIB_DIR)/ext/xcl2/xcl2.cpp
+HOST_SRCS += $(XFLIB_DIR)/L2/tests/gelinearsolver/IpVitisSolverInterface.cpp
 
 CXXFLAGS += -I$(XFLIB_DIR)/L2/tests/gelinearsolver
 CXXFLAGS += -I$(XFLIB_DIR)/ext/xcl2
 CXXFLAGS += -I$(XFLIB_DIR)/ext/MatrixGen
+CXXFLAGS += -I$(XFLIB_DIR)/L2/tests/gelinearsolver/Ipopt-releases-3.13.3/src/Algorithm/LinearSolvers
+CXXFLAGS += -I/usr/local/include/coin-or
 
 
 
@@ -92,6 +95,7 @@ CXXFLAGS += -I$(XFLIB_DIR)/ext/MatrixGen
 CXXFLAGS += -I$(XILINX_XRT)/include -I$(XILINX_VIVADO)/include -std=c++14  -Wall -Wno-unknown-pragmas -Wno-unused-label -pthread 
 LDFLAGS += -L$(XILINX_XRT)/lib -lxilinxopencl -lpthread -lrt -Wno-unused-label -Wno-narrowing -DVERBOSE 
 LDFLAGS += -L$(XILINX_VIVADO)/lnx64/tools/fpo_v7_0 -Wl,--as-needed -lgmp -lmpfr -lIp_floating_point_v7_0_bitacc_cmodel
+LDFLAGS += -lipopt
 CXXFLAGS += -fmessage-length=0 -O3 
 CXXFLAGS +=-I$(CUR_DIR)/src/ 
 

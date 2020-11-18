@@ -14,14 +14,8 @@
  * limitations under the License.
  */
 
-#include <iostream>
-#include <string.h>
-#include <sys/time.h>
-#include <algorithm>
-
-#include "xcl2.hpp"
-
-#include "matrixUtility.hpp"
+#include "IpVitisSolverInterface.hpp"
+using namespace Ipopt;
 
 // Memory alignment
 template <typename T>
@@ -71,12 +65,12 @@ int main(int argc, const char* argv[]) {
     ArgParser parser(argc, argv);
 
     // Initialize paths addresses
-    std::string xclbin_path;
+    std::string xclbin_path_init;
     std::string num_str;
     int num_runs, dataAM, dataAN, seed;
 
     // Read In paths addresses
-    if (!parser.getCmdOption("-xclbin", xclbin_path)) {
+    if (!parser.getCmdOption("-xclbin", xclbin_path_init)) {
         std::cout << "INFO:input path is not set!\n";
     }
     if (!parser.getCmdOption("-runs", num_str)) {
@@ -105,7 +99,16 @@ int main(int argc, const char* argv[]) {
     }
     int NB = 1;
     
-    // dataAM = dataAN is valid only for symmetric matrix
+    /********************
+    Test IPOPT interface
+    *********************/
+    
+    // Create instance
+    VitisSolverInterface solver;
+    
+    
+    
+    /*// dataAM = dataAN is valid only for symmetric matrix
     dataAM = (dataAM > dataAN) ? dataAN : dataAM;
     dataAN = dataAM;
     
@@ -171,13 +174,13 @@ int main(int argc, const char* argv[]) {
 
 
     // DDR Settings
-    /*std::vector<cl_mem_ext_ptr_t> mext_io(2);
+    std::vector<cl_mem_ext_ptr_t> mext_io(2);
     mext_io[0].flags = XCL_MEM_DDR_BANK0;
     mext_io[0].obj = dataA;
     mext_io[0].param = 0;
     mext_io[1].flags = XCL_MEM_DDR_BANK0;
     mext_io[1].obj = dataB;
-    mext_io[1].param = 0;*/
+    mext_io[1].param = 0;
 
     // Create device buffer and map dev buf to host buf
     std::vector<cl::Buffer> buffer(2);
@@ -285,5 +288,5 @@ int main(int argc, const char* argv[]) {
         std::cout << "INFO: Result correct" << std::endl;
         std::cout << "-------------- " << std::endl;
         return 0;
-    }
+    }*/
 }
