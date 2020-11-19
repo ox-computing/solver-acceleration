@@ -53,14 +53,14 @@ XF_PROJ_ROOT ?= $(shell bash -c 'export MK_PATH=$(MK_PATH); echo $${MK_PATH%L2/t
 CUR_DIR := $(patsubst %/,%,$(dir $(MK_PATH)))
 XFLIB_DIR = $(XF_PROJ_ROOT)
 
-TARGET ?= sw_emu
+TARGET ?= hw
 HOST_ARCH := x86
 SYSROOT := ${SYSROOT}
 DEVICE ?= xilinx_u50_gen3x16_xdma_201920_3
 
 RUNS ?= 1
-ROW_SIZE ?= 100
-COLUMN_SIZE ?= 100
+ROW_SIZE ?= 500
+COLUMN_SIZE ?= 500
 SEED ?= 12
 
 include ./utils.mk

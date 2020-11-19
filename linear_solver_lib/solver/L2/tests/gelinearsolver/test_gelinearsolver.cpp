@@ -13,9 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+ 
+#include <iostream>
+#include <string.h>
+#include <sys/time.h>
+#include <algorithm>
 
-#include "IpVitisSolverInterface.hpp"
-using namespace Ipopt;
+#include "xcl2.hpp"
+
+#include "matrixUtility.hpp"
 
 // Memory alignment
 template <typename T>
@@ -99,55 +105,28 @@ int main(int argc, const char* argv[]) {
     }
     int NB = 1;
     
-    /********************
-    Test IPOPT interface
-    *********************/
+    int first_row = 500;
+    int final_row = 1000;
+    int max_row = 0;
     
-    // Create instance
-    VitisSolverInterface solver_interface;
+    int execution_times[final_row - first_row];
     
-    // Set the binary file path
-    solver_interface.SetBinaryPath(xclbin_path_init);
     
-    // Initialise the structure using data from the HSL example
-    Index dimension = 5;
-    Index non_zeros = 13;
+    for(int a = first_row; a < final_row; a++)
+    {
     
-    const Index ja[non_zeros] = {0,1,0,1,2,4,1,2,3,2,3,1,4};
-    const Index * ja_ptr = ja;
+    printf("Current row size : %d \n",a);
     
-    const Index ia[dimension+1] = {0,2,6,9,11,13};
-    const Index * ia_ptr = ia;
-    
-    solver_interface.InitializeStructure(dimension,non_zeros,ia_ptr,ja_ptr);
-    
-    // Find the location of the values array and populate
-    double nonzero_values[non_zeros] = {2.,1.,1.,4.,1.,1.,1.,3.,2.,2.,0.,1.,2.};
-    double* value_pointer = solver_interface.GetValuesArrayPtr();
-    
-    for(int i = 0; i < non_zeros; i++){
-        value_pointer[i] = nonzero_values[i];
-    }
-    
-    // Initialise the RHS
-    double rhs_values[dimension] = {4.,12.,10.,4.,4.};
-    double * rhs_value_ptr = rhs_values;
-    
-    // Call the solve class method
-    bool new_matrix = true;
-    Index nrhs = 1;
-    bool check_eigenvalues = false;
-    Index eigenvalues = 0;
-    
-    solver_interface.MultiSolve(new_matrix,ia_ptr,ja_ptr,nrhs,rhs_value_ptr,check_eigenvalues,eigenvalues);
+        // Set dataAM and dataAN
+        dataAM = a;
+        dataAN = a;
+        
+        // Get start time
+    gettimeofday(&tstart, 0);
     
     
     
-    
-    
-    
-    
-    /*// dataAM = dataAN is valid only for symmetric matrix
+    // dataAM = dataAN is valid only for symmetric matrix
     dataAM = (dataAM > dataAN) ? dataAN : dataAM;
     dataAN = dataAM;
     
@@ -176,17 +155,17 @@ int main(int argc, const char* argv[]) {
     for (int i = 0; i < dataAM; ++i) {
         for (int j = 0; j < dataAN; ++j) {
             dataA[i * dataAN + j] = dataE[i][j];
-            printf("Data A Row %d Column %d : %f \n",i,j,dataA[i * dataAN + j]);
+            //printf("Data A Row %d Column %d : %f \n",i,j,dataA[i * dataAN + j]);
         }
     }
     for (int i = 0; i < dataAM; ++i) {
         for (int j = 0; j < NB; ++j) {
             dataB[i * NB + j] = i;
-            printf("Data B Row %d Column %d : %f \n",i,j,dataB[i * NB + j]);
+            //printf("Data B Row %d Column %d : %f \n",i,j,dataB[i * NB + j]);
         }
     } 
     
-    gettimeofday(&tinit_parse, 0);
+    //gettimeofday(&tinit_parse, 0);
 
     // Platform related operations
     std::vector<cl::Device> devices = xcl::get_xil_devices();
@@ -198,7 +177,7 @@ int main(int argc, const char* argv[]) {
     std::string devName = device.getInfo<CL_DEVICE_NAME>();
     printf("INFO: Found Device=%s\n", devName.c_str());
 
-    cl::Program::Binaries xclBins = xcl::import_binary_file(xclbin_path);
+    cl::Program::Binaries xclBins = xcl::import_binary_file(xclbin_path_init);
     devices.resize(1);
     cl::Program program(context, devices, xclBins);
     cl::Kernel kernel_gelinearsolver_0(program, "kernel_gelinearsolver_0");
@@ -209,7 +188,7 @@ int main(int argc, const char* argv[]) {
     std::cout << "INFO: Matrix Row M: " << dataAM << std::endl;
     std::cout << "INFO: Matrix Col N: " << dataAN << std::endl;
     
-    gettimeofday(&tplatform_setup,0);
+    //gettimeofday(&tplatform_setup,0);
 
 
     // DDR Settings
@@ -229,7 +208,7 @@ int main(int argc, const char* argv[]) {
     buffer[1] = cl::Buffer(context, CL_MEM_USE_HOST_PTR | CL_MEM_READ_WRITE,
                            sizeof(double) * inoutB_size, dataB, NULL);
                            
-    gettimeofday(&tbuffer_setup,0);
+    //gettimeofday(&tbuffer_setup,0);
 
     // Data transfer from host buffer to device buffer
     std::vector<std::vector<cl::Event> > kernel_evt(2);
@@ -244,7 +223,7 @@ int main(int argc, const char* argv[]) {
     q.finish();
     std::cout << "INFO: Finish data transfer from host to device" << std::endl;
     
-    gettimeofday(&tbuffer_transfer1,0);
+    //gettimeofday(&tbuffer_transfer1,0);
 
     // Setup kernel
     kernel_gelinearsolver_0.setArg(0, dataAN);
@@ -253,7 +232,7 @@ int main(int argc, const char* argv[]) {
     q.finish();
     std::cout << "INFO: Finish kernel setup" << std::endl;
     
-    gettimeofday(&tkernel_setup,0);
+    //gettimeofday(&tkernel_setup,0);
 
     // Variables to measure time
     //struct timeval tstart, tend;
@@ -270,7 +249,7 @@ int main(int argc, const char* argv[]) {
     //std::cout << "INFO: FPGA execution time of " << num_runs << " runs:" << exec_time << " us\n"
               //<< "INFO: Average executiom per run: " << exec_time / num_runs << " us\n";
               
-    gettimeofday(&tkernel_launch,0);
+    //gettimeofday(&tkernel_launch,0);
 
     // Data transfer from device buffer to host buffer
     q.enqueueMigrateMemObjects(ob_io, 1, nullptr, nullptr); // 1 : migrate from dev to host
@@ -284,27 +263,34 @@ int main(int argc, const char* argv[]) {
     //printf("INFO: Overall execution time: %d us \n",exec_time);
     
     // Calculate the time differences and print
-    int parse = diff(&tinit_parse,&tstart);
+    /*int parse = diff(&tinit_parse,&tstart);
     int platform_setup = diff(&tplatform_setup,&tinit_parse);
     int buffer_setup = diff(&tbuffer_setup,&tplatform_setup);
     int buffer_transfer1 = diff(&tbuffer_transfer1,&tbuffer_setup);
     int kernel_setup = diff(&tkernel_setup,&tbuffer_transfer1);
     int kernel_launch = diff(&tkernel_launch,&tkernel_setup);
-    int buffer_transfer2 = diff(&tbuffer_transfer2,&tkernel_launch);
+    int buffer_transfer2 = diff(&tbuffer_transfer2,&tkernel_launch);*/
     int overall = diff(&tbuffer_transfer2,&tstart);
     
-    printf("INFO: Argument parse time: %d us \n",parse);
+    /*printf("INFO: Argument parse time: %d us \n",parse);
     printf("INFO: Platform setup time: %d us \n",platform_setup);
     printf("INFO: Buffer setup time: %d us \n",buffer_setup);
     printf("INFO: Buffer transfer from host to device time: %d us \n",buffer_transfer1);
     printf("INFO: Kernel setup time: %d us \n",kernel_setup);
     printf("INFO: Kernel launch and run time: %d us \n",kernel_launch);
-    printf("INFO: Buffer transfer from device to host time: %d us \n",buffer_transfer2);
+    printf("INFO: Buffer transfer from device to host time: %d us \n",buffer_transfer2);*/
     printf("INFO: Overall execution time: %d us \n",overall);
+    
+    // Store the execution time
+    execution_times[a-first_row] = overall;
     
      
 
     // Calculate err between dataA and dataC
+    for (int i = 0; i < inoutB_size; i++){
+        //printf("Data x Row %d : %f \n",i,dataB[i]);
+    }
+    
     double errA = 0;
     for (int p = 0; p < NB; p++) {
         double res = 0;
@@ -317,15 +303,30 @@ int main(int argc, const char* argv[]) {
         errA += res * res;
     }
     errA = std::sqrt(errA);
+    
+    free(dataA);
+    free(dataB);
 
     std::cout << "-------------- " << std::endl;
     if (errA > 0.0001) {
         std::cout << "INFO: Result false" << std::endl;
         std::cout << "-------------- " << std::endl;
-        return -1;
+        // Store the iteration we made it too
+        max_row = a;
+        break;
     } else {
         std::cout << "INFO: Result correct" << std::endl;
         std::cout << "-------------- " << std::endl;
-        return 0;
-    }*/
+    }
+    
+    } // for loop
+    
+    // Print the execution times
+    printf("Max Row size : %d",max_row);
+    for (int i = 0; i < max_row - first_row; i++){
+        printf("Execution time Row size %d : %d \n",i,execution_times[i]);
+    }
+    
+    
+    return 0;
 }
