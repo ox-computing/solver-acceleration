@@ -19,18 +19,39 @@
 #define MAXN 1000
 #define LDB 1
 
-extern "C" void kernel_gelinearsolver_0(int na, double* dataA, double* dataB) {
+extern "C" void kernel_gelinearsolver_0(int num_rhs, int na, double* dataA, double* dataB) {
 #pragma HLS INTERFACE m_axi port = dataA bundle = gmem0 offset = slave num_read_outstanding = \
     16 max_read_burst_length = 32
 #pragma HLS INTERFACE m_axi port = dataB bundle = gmem0 offset = slave num_read_outstanding = \
     16 max_read_burst_length = 32
 
+#pragma HLS INTERFACE s_axilite port = num_rhs bundle = control
 #pragma HLS INTERFACE s_axilite port = na bundle = control
 #pragma HLS INTERFACE s_axilite port = dataA bundle = control
 #pragma HLS INTERFACE s_axilite port = dataB bundle = control
 #pragma HLS INTERFACE s_axilite port = return bundle = control
 
     int info;
-    // Calling for cholesky core function
-    xf::solver::gelinearsolver<double, MAXN, NCU>(na, dataA, LDB, dataB, na, LDB, info);
+    
+    /*double current_data[na];
+    double * current_data_ptr = current_data;
+    
+    // Solve for each RHS
+    for(int i = 0; i < num_rhs; i++){
+        for(int k = 0; k < na; k++)
+        {
+            // Determine current RHS
+            current_data_ptr[k] = dataB[na*i + k];
+        }*/
+        
+        // Solver
+        xf::solver::gelinearsolver<double, MAXN, NCU>(na, dataA, LDB, dataB, na, LDB, info);
+        
+        // Store result
+        /*for(int k = 0; k < na; k++)
+        {
+            // Determine current RHS
+            dataB[na*i + k] = current_data_ptr[k];
+        }
+    }*/
 }

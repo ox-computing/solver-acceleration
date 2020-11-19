@@ -45,8 +45,10 @@ private:
   
   Index matrix_nonzeros; // Number of non zeros values in A
   Index matrix_dimension; // Dimension of A
+  Index num_rhs;     // The number of different RHS we are solving
   int dataA_size;    // Size of array A
   int dataB_size;    // Size of array B
+  
   
   double * dataA; 
   double * dataB;

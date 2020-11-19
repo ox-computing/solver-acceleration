@@ -47,7 +47,7 @@ class ArgParser {
 int main(int argc, const char* argv[]) {
 
     // Variables to measure time
-    struct timeval tstart, tinit_parse, tplatform_setup, tbuffer_setup, tbuffer_transfer1, tkernel_setup, tkernel_launch, tbuffer_transfer2;
+    struct timeval tstart, tend;
 
     // Get start time
     gettimeofday(&tstart, 0);
@@ -100,9 +100,18 @@ int main(int argc, const char* argv[]) {
     // Set the binary file path
     solver_interface.SetBinaryPath(xclbin_path_init);
     
+    // Call initialiser
+    const OptionsList options;
+    const std::string prefix;
+    solver_interface.InitializeImpl(options,prefix);
+    
     // Initialise the structure using data from the HSL example
     Index dimension = 5;
     Index non_zeros = 13;
+    Index nrhs = 1;
+    
+    
+    Index rhs_values_size = dimension*nrhs;
     
     const Index ja[non_zeros] = {0,1,0,1,2,4,1,2,3,2,3,1,4};
     const Index * ja_ptr = ja;
@@ -110,28 +119,58 @@ int main(int argc, const char* argv[]) {
     const Index ia[dimension+1] = {0,2,6,9,11,13};
     const Index * ia_ptr = ia;
     
-    solver_interface.InitializeStructure(dimension,non_zeros,ia_ptr,ja_ptr);
+    int num_iters = 100;
     
-    // Find the location of the values array and populate
-    double nonzero_values[non_zeros] = {2.,1.,1.,4.,1.,1.,1.,3.,2.,2.,0.,1.,2.};
-    double* value_pointer = solver_interface.GetValuesArrayPtr();
+    for(int iter = 0; iter < num_iters; iter++)
+    {
     
-    for(int i = 0; i < non_zeros; i++){
-        value_pointer[i] = nonzero_values[i];
-    }
+      printf("Iteration Number : %d \n",iter);
+      
+      gettimeofday(&tstart,0);
+      
     
-    // Initialise the RHS
-    double rhs_values[dimension] = {4.,12.,10.,4.,4.};
-    double * rhs_value_ptr = rhs_values;
+      solver_interface.InitializeStructure(dimension,non_zeros,ia_ptr,ja_ptr);
+      
+      // Find the location of the values array and populate
+      double nonzero_values[non_zeros] = {2.,1.,1.,4.,1.,1.,1.,3.,2.,2.,0.,1.,2.};
+      double* value_pointer = solver_interface.GetValuesArrayPtr();
+      
+      for(int i = 0; i < non_zeros; i++){
+          value_pointer[i] = nonzero_values[i];
+      }
+      
+      // Initialise the RHS
+      double rhs_values[rhs_values_size] = {4,12.,10.,4.,4.};
+      double * rhs_value_ptr = rhs_values;
+      
+      /*double solver_input[dimension*nrhs];
+      double solver_input_ptr
+      
+      // Edit so in form solver accepts
+      for(int i = 0; i < dimension; i ++)
+      {
+          
+      }*/
+      
+      // Call the solve class method
+      bool new_matrix = true;
+      bool check_eigenvalues = false;
+      Index eigenvalues = 0;
+      
+      solver_interface.MultiSolve(new_matrix,ia_ptr,ja_ptr,nrhs,rhs_value_ptr,check_eigenvalues,eigenvalues);
+      
+      // Print the returned solution
+      for(int i = 0; i < rhs_values_size; i++){
+          printf("Returned values %d : %f \n",i,rhs_value_ptr[i]); 
+      }
+      
+      gettimeofday(&tend,0);
+      
+      int time_diff = diff(&tend,&tstart);
+      
+      printf("Iteration runtime : %d \n", time_diff);
     
-    // Call the solve class method
-    bool new_matrix = true;
-    Index nrhs = 1;
-    bool check_eigenvalues = false;
-    Index eigenvalues = 0;
-    
-    solver_interface.MultiSolve(new_matrix,ia_ptr,ja_ptr,nrhs,rhs_value_ptr,check_eigenvalues,eigenvalues);
-    
+   } // for loop
     
     
     

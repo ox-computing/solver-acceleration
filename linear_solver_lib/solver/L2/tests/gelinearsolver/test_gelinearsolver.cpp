@@ -103,10 +103,11 @@ int main(int argc, const char* argv[]) {
     } else {
         seed = std::stoi(num_str);
     }
-    int NB = 1;
+    int NB = 2;
     
-    int first_row = 500;
-    int final_row = 1000;
+    
+    int first_row = 4;
+    int final_row = 5;
     int max_row = 0;
     
     int execution_times[final_row - first_row];
@@ -155,13 +156,13 @@ int main(int argc, const char* argv[]) {
     for (int i = 0; i < dataAM; ++i) {
         for (int j = 0; j < dataAN; ++j) {
             dataA[i * dataAN + j] = dataE[i][j];
-            //printf("Data A Row %d Column %d : %f \n",i,j,dataA[i * dataAN + j]);
+            printf("Data A Row %d Column %d : %f \n",i,j,dataA[i * dataAN + j]);
         }
     }
     for (int i = 0; i < dataAM; ++i) {
         for (int j = 0; j < NB; ++j) {
-            dataB[i * NB + j] = i;
-            //printf("Data B Row %d Column %d : %f \n",i,j,dataB[i * NB + j]);
+            dataB[i * NB + j] = i*1000;
+            printf("Data B Row %d Column %d : %f \n",i,j,dataB[i * NB + j]);
         }
     } 
     
@@ -226,9 +227,10 @@ int main(int argc, const char* argv[]) {
     //gettimeofday(&tbuffer_transfer1,0);
 
     // Setup kernel
-    kernel_gelinearsolver_0.setArg(0, dataAN);
-    kernel_gelinearsolver_0.setArg(1, buffer[0]);
-    kernel_gelinearsolver_0.setArg(2, buffer[1]);
+    kernel_gelinearsolver_0.setArg(0, NB);
+    kernel_gelinearsolver_0.setArg(1, dataAN);
+    kernel_gelinearsolver_0.setArg(2, buffer[0]);
+    kernel_gelinearsolver_0.setArg(3, buffer[1]);
     q.finish();
     std::cout << "INFO: Finish kernel setup" << std::endl;
     
@@ -288,7 +290,7 @@ int main(int argc, const char* argv[]) {
 
     // Calculate err between dataA and dataC
     for (int i = 0; i < inoutB_size; i++){
-        //printf("Data x Row %d : %f \n",i,dataB[i]);
+        printf("Data x Row %d : %f \n",i,dataB[i]);
     }
     
     double errA = 0;
@@ -306,13 +308,13 @@ int main(int argc, const char* argv[]) {
     
     free(dataA);
     free(dataB);
+    
+    max_row = a;
 
     std::cout << "-------------- " << std::endl;
     if (errA > 0.0001) {
         std::cout << "INFO: Result false" << std::endl;
         std::cout << "-------------- " << std::endl;
-        // Store the iteration we made it too
-        max_row = a;
         break;
     } else {
         std::cout << "INFO: Result correct" << std::endl;
@@ -322,7 +324,7 @@ int main(int argc, const char* argv[]) {
     } // for loop
     
     // Print the execution times
-    printf("Max Row size : %d",max_row);
+    printf("Max Row size : %d \n",max_row);
     for (int i = 0; i < max_row - first_row; i++){
         printf("Execution time Row size %d : %d \n",i,execution_times[i]);
     }

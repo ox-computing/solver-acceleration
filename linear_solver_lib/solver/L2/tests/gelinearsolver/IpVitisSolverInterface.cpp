@@ -46,8 +46,31 @@ namespace Ipopt
       const std::string& prefix
    ){
       // Read in xclbin path from options
-      options.GetStringValue("vitis_xclbin",xclbin_path,prefix);
+      //options.GetStringValue("vitis_xclbin",xclbin_path,prefix);
       
+      /********************
+      Device setup
+      **************/
+      
+      
+      // Find platform
+      devices = xcl::get_xil_devices();
+      device = devices[0];
+      
+      
+      // Create context and queue
+      context = cl::Context(device);
+      q = cl::CommandQueue(context, device, CL_QUEUE_PROFILING_ENABLE | CL_QUEUE_OUT_OF_ORDER_EXEC_MODE_ENABLE);
+      devName = device.getInfo<CL_DEVICE_NAME>();
+      printf("INFO: Found Device=%s\n", devName.c_str());
+      
+      // Binary file
+      devices.resize(1);
+      xclBins = xcl::import_binary_file(xclbin_path); 
+      program = cl::Program(context, devices, xclBins);
+      kernel_gelinearsolver_0 = cl::Kernel(program, "kernel_gelinearsolver_0");
+      std::cout << "INFO: Kernel has been created" << std::endl;
+    
       return true;
       
    }
@@ -89,11 +112,17 @@ namespace Ipopt
         Data Allocation
         *******************/
         
+       // Number of RHS
+       num_rhs = nrhs;
+        
        // Allocate memory for A
        dataA_size = matrix_dimension*matrix_dimension;
        dataA = aligned_alloc<double>(dataA_size);
        
-       // Create the values of the array A
+       /************
+        Convert A from CSR to array
+       *****************/
+       
        Index row_nonzeros[matrix_dimension];
        
        // Find the number of nonzero elements in each row
@@ -124,13 +153,13 @@ namespace Ipopt
        }
        
        // Print the values of A
-       for(int i = 0; i < dataA_size; i++)
+       /*for(int i = 0; i < dataA_size; i++)
        {
            printf("Data A value %d : %f \n",i,dataA[i]);
-       }
+       }*/
        
        // Allocate memory for B
-       dataB_size = matrix_dimension;
+       dataB_size = matrix_dimension*num_rhs;
        dataB = aligned_alloc<double>(dataB_size);
        
        // Assign the values of B
@@ -139,27 +168,10 @@ namespace Ipopt
        }
        
        /**************
-        Device programming and triggering
+        Buffer programming and triggering
         ************/
-        // Find platform
-        devices = xcl::get_xil_devices();
-        device = devices[0];
         
-        
-        // Create context and queue
-        context = cl::Context(device);
-        q = cl::CommandQueue(context, device, CL_QUEUE_PROFILING_ENABLE | CL_QUEUE_OUT_OF_ORDER_EXEC_MODE_ENABLE);
-        devName = device.getInfo<CL_DEVICE_NAME>();
-        printf("INFO: Found Device=%s\n", devName.c_str());
-        
-        // Binary file
-        devices.resize(1);
-        xclBins = xcl::import_binary_file(xclbin_path); 
-        program = cl::Program(context, devices, xclBins);
-        kernel_gelinearsolver_0 = cl::Kernel(program, "kernel_gelinearsolver_0");
-        std::cout << "INFO: Kernel has been created" << std::endl;
-          
-        // Buffers
+        // Setup buffers
         buffer[0] = cl::Buffer(context, CL_MEM_USE_HOST_PTR | CL_MEM_READ_WRITE,
                            sizeof(double) * dataA_size, dataA, NULL);
         buffer[1] = cl::Buffer(context, CL_MEM_USE_HOST_PTR | CL_MEM_READ_WRITE,
@@ -178,9 +190,10 @@ namespace Ipopt
         q.finish();
         
          // Setup kernel
-         kernel_gelinearsolver_0.setArg(0, matrix_dimension);
-         kernel_gelinearsolver_0.setArg(1, buffer[0]);
-         kernel_gelinearsolver_0.setArg(2, buffer[1]);
+         kernel_gelinearsolver_0.setArg(0, num_rhs);
+         kernel_gelinearsolver_0.setArg(1, matrix_dimension);
+         kernel_gelinearsolver_0.setArg(2, buffer[0]);
+         kernel_gelinearsolver_0.setArg(3, buffer[1]);
          q.finish();
          
          
@@ -193,10 +206,15 @@ namespace Ipopt
          q.enqueueMigrateMemObjects(ob_io, 1, nullptr, nullptr); // 1 : migrate from dev to host
          q.finish();
          
-         // Print the value of the solution
+         // Return the value of the solution to rhs_values
          for(int i = 0; i < dataB_size; i++){
+           rhs_vals[i] = dataB[i];
+         } 
+         
+         // Print the value of the solution
+         /*for(int i = 0; i < dataB_size; i++){
          printf("Solution %d: %f \n",i,dataB[i]);
-         }
+         }*/
          
          return SYMSOLVER_SUCCESS;
                 
