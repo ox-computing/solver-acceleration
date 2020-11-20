@@ -82,6 +82,7 @@ EMU_DIR := $(SDCARD)/data/emulation
 HOST_SRCS += $(XFLIB_DIR)/L2/tests/gelinearsolver/test_gelinearsolver_interface.cpp
 HOST_SRCS += $(XFLIB_DIR)/ext/xcl2/xcl2.cpp
 HOST_SRCS += $(XFLIB_DIR)/L2/tests/gelinearsolver/IpVitisSolverInterface.cpp
+#HOST_SRCS += $(XFLIB_DIR)/L2/tests/gelinearsolver/MyNLP.cpp
 
 CXXFLAGS += -I$(XFLIB_DIR)/L2/tests/gelinearsolver
 CXXFLAGS += -I$(XFLIB_DIR)/ext/xcl2

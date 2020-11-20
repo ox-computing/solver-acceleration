@@ -33,25 +33,7 @@ extern "C" void kernel_gelinearsolver_0(int num_rhs, int na, double* dataA, doub
 
     int info;
     
-    /*double current_data[na];
-    double * current_data_ptr = current_data;
+    // Solver
+    xf::solver::gelinearsolver<double, MAXN, NCU>(na, dataA, num_rhs, dataB, na, num_rhs, info);
     
-    // Solve for each RHS
-    for(int i = 0; i < num_rhs; i++){
-        for(int k = 0; k < na; k++)
-        {
-            // Determine current RHS
-            current_data_ptr[k] = dataB[na*i + k];
-        }*/
-        
-        // Solver
-        xf::solver::gelinearsolver<double, MAXN, NCU>(na, dataA, LDB, dataB, na, LDB, info);
-        
-        // Store result
-        /*for(int k = 0; k < na; k++)
-        {
-            // Determine current RHS
-            dataB[na*i + k] = current_data_ptr[k];
-        }
-    }*/
 }

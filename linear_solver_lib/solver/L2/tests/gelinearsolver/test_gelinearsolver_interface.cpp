@@ -119,14 +119,14 @@ int main(int argc, const char* argv[]) {
     const Index ia[dimension+1] = {0,2,6,9,11,13};
     const Index * ia_ptr = ia;
     
-    int num_iters = 100;
+    int num_iters = 50;
+    
+    gettimeofday(&tstart,0);
     
     for(int iter = 0; iter < num_iters; iter++)
     {
     
       printf("Iteration Number : %d \n",iter);
-      
-      gettimeofday(&tstart,0);
       
     
       solver_interface.InitializeStructure(dimension,non_zeros,ia_ptr,ja_ptr);
@@ -140,8 +140,14 @@ int main(int argc, const char* argv[]) {
       }
       
       // Initialise the RHS
-      double rhs_values[rhs_values_size] = {4,12.,10.,4.,4.};
-      double * rhs_value_ptr = rhs_values;
+      double rhs_values[rhs_values_size];
+      double * rhs_values_ptr = rhs_values;
+      
+      for(int i = 0; i < rhs_values_size; i++)
+      {
+          rhs_values_ptr[i] = rand() % 10 + 1;
+          //printf("Input b %d : %f \n",i,rhs_value_ptr[i]);
+      }
       
       /*double solver_input[dimension*nrhs];
       double solver_input_ptr
@@ -152,25 +158,23 @@ int main(int argc, const char* argv[]) {
           
       }*/
       
+      
       // Call the solve class method
       bool new_matrix = true;
       bool check_eigenvalues = false;
       Index eigenvalues = 0;
       
-      solver_interface.MultiSolve(new_matrix,ia_ptr,ja_ptr,nrhs,rhs_value_ptr,check_eigenvalues,eigenvalues);
+      solver_interface.MultiSolve(new_matrix,ia_ptr,ja_ptr,nrhs,rhs_values_ptr,check_eigenvalues,eigenvalues);
       
-      // Print the returned solution
-      for(int i = 0; i < rhs_values_size; i++){
-          printf("Returned values %d : %f \n",i,rhs_value_ptr[i]); 
-      }
-      
-      gettimeofday(&tend,0);
-      
-      int time_diff = diff(&tend,&tstart);
-      
-      printf("Iteration runtime : %d \n", time_diff);
     
    } // for loop
+   
+   gettimeofday(&tend,0);
+   
+   int time_diff = diff(&tend,&tstart);
+   
+   printf("Average iteration runtime : %d \n", time_diff/num_iters);
+   
     
     
     

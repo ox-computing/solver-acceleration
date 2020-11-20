@@ -41,7 +41,7 @@ private:
   
   // Matrix variables
   int numneg_; // Number of negative eigenvalues
-  double * val_; // Ptr for values
+  double * val_ = NULL; // Ptr for values
   
   Index matrix_nonzeros; // Number of non zeros values in A
   Index matrix_dimension; // Dimension of A
@@ -50,8 +50,8 @@ private:
   int dataB_size;    // Size of array B
   
   
-  double * dataA; 
-  double * dataB;
+  double * dataA = NULL; 
+  double * dataB = NULL;
   
   int inout_size; // Overall size of matrix A
   int inoutB_size; // Overall size of matrix B

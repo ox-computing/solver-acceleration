@@ -46,7 +46,7 @@ namespace Ipopt
       const std::string& prefix
    ){
       // Read in xclbin path from options
-      //options.GetStringValue("vitis_xclbin",xclbin_path,prefix);
+      options.GetStringValue("vitis_xclbin",xclbin_path,prefix);
       
       /********************
       Device setup
@@ -163,9 +163,21 @@ namespace Ipopt
        dataB = aligned_alloc<double>(dataB_size);
        
        // Assign the values of B
-       for(int i = 0; i < dataB_size; i++){
-           dataB[i] = rhs_vals[i];
+       int counter = 0;
+       for(int i = 0; i < matrix_dimension; i++){
+           for(int k = 0; k < nrhs; k++)
+           {
+               dataB[counter] = rhs_vals[i + k*matrix_dimension];
+               counter++;
+           }
+       
        }
+       
+       // Print the value of B
+       /*for(int i = 0; i < dataB_size; i++){
+           printf("Data B value %d : %f \n",i,dataB[i]);
+       
+       }*/
        
        /**************
         Buffer programming and triggering
@@ -206,10 +218,21 @@ namespace Ipopt
          q.enqueueMigrateMemObjects(ob_io, 1, nullptr, nullptr); // 1 : migrate from dev to host
          q.finish();
          
+           // Print the value of B
+         /*for(int i = 0; i < dataB_size; i++){
+             printf("Data x value %d : %f \n",i,dataB[i]);
+         
+         }*/
+       
          // Return the value of the solution to rhs_values
-         for(int i = 0; i < dataB_size; i++){
-           rhs_vals[i] = dataB[i];
-         } 
+         counter = 0;
+         for(int i = 0; i < nrhs; i++){
+             for(int k = 0; k < matrix_dimension; k++)
+             {
+                 rhs_vals[counter] = dataB[i + k*nrhs];
+                 counter++;
+             }
+         }
          
          // Print the value of the solution
          /*for(int i = 0; i < dataB_size; i++){
