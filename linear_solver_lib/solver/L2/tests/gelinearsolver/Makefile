@@ -79,7 +79,7 @@ EMU_DIR := $(SDCARD)/data/emulation
 
 ############################## Setting up Host Variables ##############################
 #Include Required Host Source Files
-HOST_SRCS += $(XFLIB_DIR)/L2/tests/gelinearsolver/test_gelinearsolver_interface.cpp
+HOST_SRCS += $(XFLIB_DIR)/L2/tests/gelinearsolver/test_gelinearsolver.cpp
 HOST_SRCS += $(XFLIB_DIR)/ext/xcl2/xcl2.cpp
 HOST_SRCS += $(XFLIB_DIR)/L2/tests/gelinearsolver/IpVitisSolverInterface.cpp
 #HOST_SRCS += $(XFLIB_DIR)/L2/tests/gelinearsolver/MyNLP.cpp
@@ -101,7 +101,7 @@ CXXFLAGS += -fmessage-length=0 -O3
 CXXFLAGS +=-I$(CUR_DIR)/src/ 
 
 
-EXE_FILE := test_gelinearsolver_interface.exe
+EXE_FILE := test_gelinearsolver.exe
 SOC_HOST_ARGS :=  -xclbin $(BUILD_DIR)/kernel_gelinearsolver.xclbin
 HOST_ARGS += -xclbin $(BUILD_DIR)/kernel_gelinearsolver.xclbin
 HOST_ARGS += -M $(ROW_SIZE)
