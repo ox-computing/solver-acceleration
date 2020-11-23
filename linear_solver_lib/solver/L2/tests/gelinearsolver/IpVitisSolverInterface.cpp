@@ -31,6 +31,8 @@ namespace Ipopt
   
   VitisSolverInterface::~VitisSolverInterface(){
       delete[] val_;
+      free(dataA);
+      free(dataB);
   }
   
   int VitisSolverInterface::SetBinaryPath(std::string binary_path){
