@@ -91,8 +91,6 @@ namespace Ipopt
        }
        val_ = new double[matrix_nonzeros];
        
-       printf("Val allocated \n");
-       
        return SYMSOLVER_SUCCESS;
    }
    
@@ -235,9 +233,6 @@ namespace Ipopt
                  counter++;
              }
          }
-         
-         free(dataA);
-         free(dataB);
   
          
          // Print the value of the solution

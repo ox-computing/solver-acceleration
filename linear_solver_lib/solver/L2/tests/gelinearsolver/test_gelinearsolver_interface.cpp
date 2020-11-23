@@ -143,24 +143,20 @@ int main(int argc, const char* argv[]) {
     
       solver_interface.InitializeStructure(dimension,non_zeros,ia_ptr,ja_ptr);
       
-      printf("Here \n");
       
       // Find the location of the values array and populate
       double* value_pointer = solver_interface.GetValuesArrayPtr();
-      
-      printf("Now Here \n");
       
       for(int i = 0; i < non_zeros; i++){
           value_pointer[i] = nonzero_values[i];
       }
       
       // Allocate the values of B
-      double rhs_values[rhs_values_size] = {4.,12.,10.,4.,4.};
       double * rhs_values_ptr = new double[rhs_values_size];
       
       for(int i = 0; i < rhs_values_size; i++)
       {
-          rhs_values_ptr[i] = rhs_values[i];
+          rhs_values_ptr[i] = rand() % 10 + 1;
           //printf("Input b %d : %f \n",i,rhs_value_ptr[i]);
       }
       
@@ -183,7 +179,7 @@ int main(int argc, const char* argv[]) {
       
       gettimeofday(&tend,0);
       
-      // Check the result
+      // Print the result
       for(int i = 0; i < rhs_values_size; i++)
       {
           printf("Output x %d : %f \n",i,rhs_values_ptr[i]);
