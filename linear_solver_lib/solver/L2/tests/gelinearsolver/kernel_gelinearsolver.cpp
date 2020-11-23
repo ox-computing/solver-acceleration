@@ -17,7 +17,6 @@
 #include "xf_solver_L2.hpp"
 #define NCU 1
 #define MAXN 1000
-#define LDB 1
 
 extern "C" void kernel_gelinearsolver_0(int num_rhs, int na, double* dataA, double* dataB) {
 #pragma HLS INTERFACE m_axi port = dataA bundle = gmem0 offset = slave num_read_outstanding = \

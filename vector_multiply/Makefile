@@ -17,6 +17,7 @@ help::
 	$(ECHO) ""
 
 TARGETS := hw
+DEVICES := xilinx_u50_gen3x16_xdma_201920_3
 TARGET := $(TARGETS)
 DEVICE := $(DEVICES)
 XCLBIN := ./xclbin

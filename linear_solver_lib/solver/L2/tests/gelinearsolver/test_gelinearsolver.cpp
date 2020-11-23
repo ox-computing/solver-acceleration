@@ -103,30 +103,26 @@ int main(int argc, const char* argv[]) {
     } else {
         seed = std::stoi(num_str);
     }
-    int NB = 2;
+    int NB = 1;
     
     
-    int first_row = 500;
-    int final_row = 700;
-    int max_row = 0;
+    int first_row = 0;
+    int final_row = 100;
     
-    int execution_times[final_row - first_row];
+    // Create file to store array data
+    std::ofstream myfile;
+    myfile.open("iteration_times.txt");
     
     
     for(int a = first_row; a < final_row; a++)
     {
     
-    printf("Current row size : %d \n",a);
+    printf("Current iteration : %d \n",a);
     
-        // Set dataAM and dataAN
-        dataAM = a;
-        dataAN = a;
-        
-        // Get start time
-    gettimeofday(&tstart, 0);
-    
-    
-    
+    // Set dataAM and dataAN
+    dataAM = 100;
+    dataAN = 100;
+     
     // dataAM = dataAN is valid only for symmetric matrix
     dataAM = (dataAM > dataAN) ? dataAN : dataAM;
     dataAN = dataAM;
@@ -166,8 +162,6 @@ int main(int argc, const char* argv[]) {
         }
     } 
     
-    //gettimeofday(&tinit_parse, 0);
-
     // Platform related operations
     std::vector<cl::Device> devices = xcl::get_xil_devices();
     cl::Device device = devices[0];
@@ -189,18 +183,10 @@ int main(int argc, const char* argv[]) {
     std::cout << "INFO: Matrix Row M: " << dataAM << std::endl;
     std::cout << "INFO: Matrix Col N: " << dataAN << std::endl;
     
-    //gettimeofday(&tplatform_setup,0);
 
-
-    // DDR Settings
-    std::vector<cl_mem_ext_ptr_t> mext_io(2);
-    mext_io[0].flags = XCL_MEM_DDR_BANK0;
-    mext_io[0].obj = dataA;
-    mext_io[0].param = 0;
-    mext_io[1].flags = XCL_MEM_DDR_BANK0;
-    mext_io[1].obj = dataB;
-    mext_io[1].param = 0;
-
+    gettimeofday(&tstart, 0);
+    
+    
     // Create device buffer and map dev buf to host buf
     std::vector<cl::Buffer> buffer(2);
 
@@ -281,11 +267,9 @@ int main(int argc, const char* argv[]) {
     printf("INFO: Kernel setup time: %d us \n",kernel_setup);
     printf("INFO: Kernel launch and run time: %d us \n",kernel_launch);
     printf("INFO: Buffer transfer from device to host time: %d us \n",buffer_transfer2);*/
-    printf("INFO: Overall execution time: %d us \n",overall);
-    
-    // Store the execution time
-    execution_times[a-first_row] = overall;
-    
+    //printf("INFO: Overall execution time: %d us \n",overall);
+
+    myfile << overall << std::endl;
      
 
     // Calculate err between dataA and dataC
@@ -308,14 +292,11 @@ int main(int argc, const char* argv[]) {
     
     free(dataA);
     free(dataB);
-    
-    max_row = a;
 
     std::cout << "-------------- " << std::endl;
     if (errA > 0.0001) {
         std::cout << "INFO: Result false" << std::endl;
         std::cout << "-------------- " << std::endl;
-        break;
     } else {
         std::cout << "INFO: Result correct" << std::endl;
         std::cout << "-------------- " << std::endl;
@@ -323,11 +304,8 @@ int main(int argc, const char* argv[]) {
     
     } // for loop
     
-    // Print the execution times
-    printf("Max Row size : %d \n",max_row);
-    for (int i = 0; i < max_row - first_row; i++){
-        printf("Execution time Row size %d : %d \n",i,execution_times[i]);
-    }
+    myfile.close();
+    
     
     
     return 0;

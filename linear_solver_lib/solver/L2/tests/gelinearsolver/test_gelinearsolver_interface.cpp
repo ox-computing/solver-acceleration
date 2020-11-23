@@ -7,6 +7,8 @@ Testing the interface
 #include "IpVitisSolverInterface.hpp"
 using namespace Ipopt;
 
+#include <fstream>
+
 
 // Memory alignment
 template <typename T>
@@ -90,6 +92,11 @@ int main(int argc, const char* argv[]) {
     }
     int NB = 1;
     
+    // Create file to store array data
+    std::ofstream myfile;
+    myfile.open("interface_iteration_times.txt");
+    
+    
     /********************
     Test IPOPT interface
     *********************/
@@ -109,43 +116,51 @@ int main(int argc, const char* argv[]) {
     Index dimension = 5;
     Index non_zeros = 13;
     Index nrhs = 1;
-    
-    
     Index rhs_values_size = dimension*nrhs;
     
+    // Data A values
     const Index ja[non_zeros] = {0,1,0,1,2,4,1,2,3,2,3,1,4};
     const Index * ja_ptr = ja;
     
     const Index ia[dimension+1] = {0,2,6,9,11,13};
     const Index * ia_ptr = ia;
     
-    int num_iters = 50;
+    double nonzero_values[non_zeros] = {2.,1.,1.,4.,1.,1.,1.,3.,2.,2.,0.,1.,2.};
     
-    gettimeofday(&tstart,0);
+    /***********
+    Iterate
+    ***************/
+    
+    int num_iters = 100;
+    int time_diff = 0;
     
     for(int iter = 0; iter < num_iters; iter++)
-    {
+    { 
+      gettimeofday(&tstart,0);
     
       printf("Iteration Number : %d \n",iter);
       
     
       solver_interface.InitializeStructure(dimension,non_zeros,ia_ptr,ja_ptr);
       
+      printf("Here \n");
+      
       // Find the location of the values array and populate
-      double nonzero_values[non_zeros] = {2.,1.,1.,4.,1.,1.,1.,3.,2.,2.,0.,1.,2.};
       double* value_pointer = solver_interface.GetValuesArrayPtr();
+      
+      printf("Now Here \n");
       
       for(int i = 0; i < non_zeros; i++){
           value_pointer[i] = nonzero_values[i];
       }
       
-      // Initialise the RHS
-      double rhs_values[rhs_values_size];
-      double * rhs_values_ptr = rhs_values;
+      // Allocate the values of B
+      double rhs_values[rhs_values_size] = {4.,12.,10.,4.,4.};
+      double * rhs_values_ptr = new double[rhs_values_size];
       
       for(int i = 0; i < rhs_values_size; i++)
       {
-          rhs_values_ptr[i] = rand() % 10 + 1;
+          rhs_values_ptr[i] = rhs_values[i];
           //printf("Input b %d : %f \n",i,rhs_value_ptr[i]);
       }
       
@@ -166,16 +181,26 @@ int main(int argc, const char* argv[]) {
       
       solver_interface.MultiSolve(new_matrix,ia_ptr,ja_ptr,nrhs,rhs_values_ptr,check_eigenvalues,eigenvalues);
       
+      gettimeofday(&tend,0);
+      
+      // Check the result
+      for(int i = 0; i < rhs_values_size; i++)
+      {
+          printf("Output x %d : %f \n",i,rhs_values_ptr[i]);
+      }
+      
+      delete[] rhs_values_ptr;
+      
+      time_diff = diff(&tend,&tstart);
+      
+      
+      myfile << time_diff << std::endl;
+      
+      
+      
     
    } // for loop
    
-   gettimeofday(&tend,0);
-   
-   int time_diff = diff(&tend,&tstart);
-   
-   printf("Average iteration runtime : %d \n", time_diff/num_iters);
-   
-    
-    
+   myfile.close();
     
 }

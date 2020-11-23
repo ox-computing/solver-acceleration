@@ -31,8 +31,6 @@ namespace Ipopt
   
   VitisSolverInterface::~VitisSolverInterface(){
       delete[] val_;
-      free(dataA);
-      free(dataB);
   }
   
   int VitisSolverInterface::SetBinaryPath(std::string binary_path){
@@ -93,6 +91,8 @@ namespace Ipopt
        }
        val_ = new double[matrix_nonzeros];
        
+       printf("Val allocated \n");
+       
        return SYMSOLVER_SUCCESS;
    }
    
@@ -114,9 +114,10 @@ namespace Ipopt
         
        // Number of RHS
        num_rhs = nrhs;
-        
+       
        // Allocate memory for A
        dataA_size = matrix_dimension*matrix_dimension;
+       double * dataA;
        dataA = aligned_alloc<double>(dataA_size);
        
        /************
@@ -160,6 +161,7 @@ namespace Ipopt
        
        // Allocate memory for B
        dataB_size = matrix_dimension*num_rhs;
+       double * dataB;
        dataB = aligned_alloc<double>(dataB_size);
        
        // Assign the values of B
@@ -218,7 +220,7 @@ namespace Ipopt
          q.enqueueMigrateMemObjects(ob_io, 1, nullptr, nullptr); // 1 : migrate from dev to host
          q.finish();
          
-           // Print the value of B
+           // Print the value of x
          /*for(int i = 0; i < dataB_size; i++){
              printf("Data x value %d : %f \n",i,dataB[i]);
          
@@ -233,6 +235,10 @@ namespace Ipopt
                  counter++;
              }
          }
+         
+         free(dataA);
+         free(dataB);
+  
          
          // Print the value of the solution
          /*for(int i = 0; i < dataB_size; i++){
