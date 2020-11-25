@@ -49,9 +49,6 @@ private:
   int dataA_size;    // Size of array A
   int dataB_size;    // Size of array B
   
-  double * dataA = NULL; // Data A pointer
-  double * dataB = NULL; // Data B pointer
-  
   int inout_size; // Overall size of matrix A
   int inoutB_size; // Overall size of matrix B
   

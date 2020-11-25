@@ -31,8 +31,6 @@ namespace Ipopt
   
   VitisSolverInterface::~VitisSolverInterface(){
       delete[] val_;
-      free(dataA);
-      free(dataB);
   }
   
   int VitisSolverInterface::SetBinaryPath(std::string binary_path){
@@ -117,8 +115,8 @@ namespace Ipopt
        
        // Allocate memory for A
        dataA_size = matrix_dimension*matrix_dimension;
-       double * dataA;
-       dataA = aligned_alloc<double>(dataA_size);
+       double * dataA;      
+       dataA = aligned_alloc<double>(dataA_size);      
        
        /************
         Convert A from CSR to array
@@ -163,7 +161,7 @@ namespace Ipopt
        dataB_size = matrix_dimension*num_rhs;
        double * dataB;
        dataB = aligned_alloc<double>(dataB_size);
-       
+  
        // Assign the values of B
        int counter = 0;
        for(int i = 0; i < matrix_dimension; i++){

@@ -18,8 +18,8 @@ int main(
 )
 {
     
+    
     // Create an instance of your nlp...
-   
    SmartPtr<TNLP> mynlp = new MyNLP();
    
    

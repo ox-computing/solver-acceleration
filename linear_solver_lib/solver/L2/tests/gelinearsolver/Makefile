@@ -53,7 +53,7 @@ XF_PROJ_ROOT ?= $(shell bash -c 'export MK_PATH=$(MK_PATH); echo $${MK_PATH%L2/t
 CUR_DIR := $(patsubst %/,%,$(dir $(MK_PATH)))
 XFLIB_DIR = $(XF_PROJ_ROOT)
 
-TARGET ?= sw_emu
+TARGET ?= hw
 HOST_ARCH := x86
 SYSROOT := ${SYSROOT}
 DEVICE ?= xilinx_u50_gen3x16_xdma_201920_3
@@ -81,16 +81,16 @@ EMU_DIR := $(SDCARD)/data/emulation
 #Include Required Host Source Files
 HOST_SRCS += $(XFLIB_DIR)/L2/tests/gelinearsolver/test_gelinearsolver_interface.cpp
 HOST_SRCS += $(XFLIB_DIR)/ext/xcl2/xcl2.cpp
-#HOST_SRCS += $(XFLIB_DIR)/L2/tests/gelinearsolver/IpVitisSolverInterface.cpp
-HOST_SRCS += $(XFLIB_DIR)/L2/tests/gelinearsolver/MyNLP.cpp
+HOST_SRCS += $(XFLIB_DIR)/L2/tests/gelinearsolver/IpVitisSolverInterface.cpp
+#HOST_SRCS += $(XFLIB_DIR)/L2/tests/gelinearsolver/MyNLP.cpp
 
 CXXFLAGS += -I$(XFLIB_DIR)/L2/tests/gelinearsolver
 CXXFLAGS += -I$(XFLIB_DIR)/ext/xcl2
 CXXFLAGS += -I$(XFLIB_DIR)/ext/MatrixGen
-#CXXFLAGS += -I$(XFLIB_DIR)/L2/tests/gelinearsolver/Ipopt-releases-3.13.3/src/Algorithm/LinearSolvers
-#CXXFLAGS += -I/usr/local/include/coin-or
+CXXFLAGS += -I$(XFLIB_DIR)/L2/tests/gelinearsolver/Ipopt-releases-3.13.3/src/Algorithm/LinearSolvers
+CXXFLAGS += -I/usr/local/include/coin-or
 
-INCL = `PKG_CONFIG_PATH=/usr/local/lib/pkgconfig: pkg-config --cflags ipopt` $(ADDINCFLAGS)
+#INCL = `PKG_CONFIG_PATH=/usr/local/lib/pkgconfig: pkg-config --cflags ipopt` $(ADDINCFLAGS)
 
 
 
@@ -174,11 +174,7 @@ $(BUILD_DIR)/kernel_gelinearsolver.xclbin: $(BINARY_CONTAINER_kernel_gelinearsol
 	$(VPP) $(VPP_FLAGS) --temp_dir $(BUILD_DIR) --report_dir $(BUILD_REPORT_DIR)/kernel_gelinearsolver -l $(LDCLFLAGS) $(LDCLFLAGS_kernel_gelinearsolver) -o'$@' $(+)
 
 ############################## Setting Rules for Host (Building Host Executable) ##############################
-$(OBJ_FILE): $(HOST_SRCS)
-  $(CXX) $(CXXFLAGS) $(INCL) -c -o $@ $<
-
-
-$(EXE_FILE): $(OBJ_FILES) | check_xrt
+$(EXE_FILE): $(HOST_SRCS) | check_xrt
 	$(CXX) -o $@ $^ $(CXXFLAGS) $(LDFLAGS)
 
 emconfig:$(EMCONFIG_DIR)/emconfig.json
