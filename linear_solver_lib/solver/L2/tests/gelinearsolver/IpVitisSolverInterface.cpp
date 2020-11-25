@@ -39,17 +39,44 @@ namespace Ipopt
       return 0;
   }
   
+  void VitisSolverInterface::RegisterOptions(
+   SmartPtr<RegisteredOptions> roptions
+  ){
+      roptions->AddStringOption3(
+      "vitis_xclbin",
+      "Sets the location of the xclbin file",
+      "hw",
+      "hw","Running on HW",
+      "hw_emu", "Running on HW emulation",
+      "sw_emu", "Running on SW emulation"  
+      );
+  }
+  
+  
+  
   bool VitisSolverInterface::InitializeImpl(
       const OptionsList& options,
       const std::string& prefix
    ){
       // Read in xclbin path from options
-      options.GetStringValue("vitis_xclbin",xclbin_path,prefix);
+      std::string run_type;
+      options.GetStringValue("vitis_xclbin",run_type,prefix);
+      if(run_type == "hw")
+      {
+          xclbin_path = "build_dir.hw.xilinx_u50_gen3x16_xdma_201920_3/kernel_gelinearsolver.xclbin";
+      }
+      else if(run_type == "hw_emu")
+      {
+          xclbin_path = "build_dir.hw_emu.xilinx_u50_gen3x16_xdma_201920_3/kernel_gelinearsolver.xclbin";
+      }
+      else if(run_type == "sw_emu")
+      {
+          xclbin_path = "build_dir.sw_emu.xilinx_u50_gen3x16_xdma_201920_3/kernel_gelinearsolver.xclbin";  
+      }
       
       /********************
       Device setup
       **************/
-      
       
       // Find platform
       devices = xcl::get_xil_devices();

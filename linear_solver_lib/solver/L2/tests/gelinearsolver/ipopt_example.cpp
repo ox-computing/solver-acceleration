@@ -18,10 +18,8 @@ int main(
 )
 {
     
-    
     // Create an instance of your nlp...
    SmartPtr<TNLP> mynlp = new MyNLP();
-   
    
    // Create an instance of the IpoptApplication
    //

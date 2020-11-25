@@ -53,7 +53,7 @@ XF_PROJ_ROOT ?= $(shell bash -c 'export MK_PATH=$(MK_PATH); echo $${MK_PATH%L2/t
 CUR_DIR := $(patsubst %/,%,$(dir $(MK_PATH)))
 XFLIB_DIR = $(XF_PROJ_ROOT)
 
-TARGET ?= hw
+TARGET ?= sw_emu
 HOST_ARCH := x86
 SYSROOT := ${SYSROOT}
 DEVICE ?= xilinx_u50_gen3x16_xdma_201920_3
@@ -79,31 +79,38 @@ EMU_DIR := $(SDCARD)/data/emulation
 
 ############################## Setting up Host Variables ##############################
 #Include Required Host Source Files
-HOST_SRCS += $(XFLIB_DIR)/L2/tests/gelinearsolver/test_gelinearsolver_interface.cpp
+HOST_SRCS += ipopt_example.cpp
 HOST_SRCS += $(XFLIB_DIR)/ext/xcl2/xcl2.cpp
-HOST_SRCS += $(XFLIB_DIR)/L2/tests/gelinearsolver/IpVitisSolverInterface.cpp
-#HOST_SRCS += $(XFLIB_DIR)/L2/tests/gelinearsolver/MyNLP.cpp
+HOST_SRCS += IpVitisSolverInterface.cpp
+HOST_SRCS += MyNLP.cpp
+HOST_SRCS += IpAlgBuilder.cpp
 
 CXXFLAGS += -I$(XFLIB_DIR)/L2/tests/gelinearsolver
 CXXFLAGS += -I$(XFLIB_DIR)/ext/xcl2
 CXXFLAGS += -I$(XFLIB_DIR)/ext/MatrixGen
 CXXFLAGS += -I$(XFLIB_DIR)/L2/tests/gelinearsolver/Ipopt-releases-3.13.3/src/Algorithm/LinearSolvers
-CXXFLAGS += -I/usr/local/include/coin-or
+CXXFLAGS += -I$(XFLIB_DIR)/L2/tests/gelinearsolver/Ipopt-releases-3.13.3/src/Algorithm
+CXXFLAGS += -I$(XFLIB_DIR)/L2/tests/gelinearsolver/Ipopt-releases-3.13.3/src/LinAlg
+CXXFLAGS += -I$(XFLIB_DIR)/L2/tests/gelinearsolver/Ipopt-releases-3.13.3/src/contrib/CGPenalty
+#CXXFLAGS += -I/usr/local/include/coin-or
 
-#INCL = `PKG_CONFIG_PATH=/usr/local/lib/pkgconfig: pkg-config --cflags ipopt` $(ADDINCFLAGS)
+INCL = `PKG_CONFIG_PATH=/usr/local/lib/pkgconfig: pkg-config --cflags ipopt`
+LIBS = `PKG_CONFIG_PATH=/usr/local/lib/pkgconfig: pkg-config --libs ipopt`
+CXXLINKFLAGS =  -Wl,--rpath -Wl,/usr/local/lib
 
 
 
 # Host compiler global settings
 CXXFLAGS += -I$(XILINX_XRT)/include -I$(XILINX_VIVADO)/include -std=c++14  -Wall -Wno-unknown-pragmas -Wno-unused-label -pthread 
-LDFLAGS += -L$(XILINX_XRT)/lib -lxilinxopencl -lpthread -lrt -Wno-unused-label -Wno-narrowing -DVERBOSE 
-LDFLAGS += -L$(XILINX_VIVADO)/lnx64/tools/fpo_v7_0 -Wl,--as-needed -lgmp -lmpfr -lIp_floating_point_v7_0_bitacc_cmodel
-LDFLAGS += -lipopt
+CXXLINKFLAGS += -L$(XILINX_XRT)/lib -lxilinxopencl -lpthread -lrt -Wno-unused-label -Wno-narrowing -DVERBOSE 
+CXXLINKFLAGS += -L$(XILINX_VIVADO)/lnx64/tools/fpo_v7_0 -Wl,--as-needed -lgmp -lmpfr -lIp_floating_point_v7_0_bitacc_cmodel
+#LDFLAGS += -lipopt
 CXXFLAGS += -fmessage-length=0 -O3 -O2 -DNDEBUG
 #CXXFLAGS +=-I$(CUR_DIR)/src/ 
 
-
-EXE_FILE := test_gelinearsolver_interface.exe
+OBJS += ipopt_example.o
+OBJS += myNLP.o
+EXE_FILE := ipopt_example.exe
 SOC_HOST_ARGS :=  -xclbin $(BUILD_DIR)/kernel_gelinearsolver.xclbin
 HOST_ARGS += -xclbin $(BUILD_DIR)/kernel_gelinearsolver.xclbin
 HOST_ARGS += -M $(ROW_SIZE)
@@ -174,8 +181,11 @@ $(BUILD_DIR)/kernel_gelinearsolver.xclbin: $(BINARY_CONTAINER_kernel_gelinearsol
 	$(VPP) $(VPP_FLAGS) --temp_dir $(BUILD_DIR) --report_dir $(BUILD_REPORT_DIR)/kernel_gelinearsolver -l $(LDCLFLAGS) $(LDCLFLAGS_kernel_gelinearsolver) -o'$@' $(+)
 
 ############################## Setting Rules for Host (Building Host Executable) ##############################
-$(EXE_FILE): $(HOST_SRCS) | check_xrt
-	$(CXX) -o $@ $^ $(CXXFLAGS) $(LDFLAGS)
+prefix=/usr/local
+exec_prefix=${prefix}
+ 
+$(EXE_FILE): $(HOST_SRCS)
+	$(CXX) -o $@ $^ $(CXXLINKFLAGS) $(INCL) $(CXXFLAGS) $(LIBS)
 
 emconfig:$(EMCONFIG_DIR)/emconfig.json
 $(EMCONFIG_DIR)/emconfig.json:

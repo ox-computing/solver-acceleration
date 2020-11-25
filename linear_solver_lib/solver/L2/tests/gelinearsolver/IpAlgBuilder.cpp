@@ -50,6 +50,8 @@
 #include "IpEquilibrationScaling.hpp"
 #include "IpExactHessianUpdater.hpp"
 
+#include "IpVitisSolverInterface.hpp"
+
 #ifdef IPOPT_HAS_HSL
 #include "CoinHslConfig.h"
 #endif
@@ -439,7 +441,7 @@ SmartPtr<SymLinearSolver> AlgorithmBuilder::SymLinearSolverFactory(
    }
    else if( linear_solver == "custom" )
    {
-      SolverInterface = new VitisSolverInterface;
+      SolverInterface = new VitisSolverInterface();
    }
 
    SmartPtr<TSymScalingMethod> ScalingMethod;
@@ -509,15 +511,15 @@ SmartPtr<AugSystemSolver> AlgorithmBuilder::AugSystemSolverFactory(
    SmartPtr<AugSystemSolver> AugSolver;
    std::string linear_solver;
    options.GetStringValue("linear_solver", linear_solver, prefix);
-   if( linear_solver == "custom" )
+   /*if( linear_solver == "custom" )
    {
       ASSERT_EXCEPTION(IsValid(custom_solver_), OPTION_INVALID, "Selected linear solver CUSTOM not available.");
       AugSolver = custom_solver_;
-   }
-   else
-   {
+   }*/
+   //else
+   //{
       AugSolver = new StdAugSystemSolver(*GetSymLinearSolver(jnlst, options, prefix));
-   }
+   //}
 
    Index enum_int;
    options.GetEnumValue("hessian_approximation", enum_int, prefix);

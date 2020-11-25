@@ -49,9 +49,6 @@ private:
   int dataA_size;    // Size of array A
   int dataB_size;    // Size of array B
   
-  int inout_size; // Overall size of matrix A
-  int inoutB_size; // Overall size of matrix B
-  
   // OpenCL variables
   std::string xclbin_path; // Path for FPGA binary file
   std::vector<cl::Device> devices; // Vector of found devices
@@ -81,6 +78,10 @@ public:
   // Constructor
   VitisSolverInterface():buffer(2),kernel_evt(2)
   {}
+  
+  static void RegisterOptions(
+      SmartPtr<RegisteredOptions> roptions
+   );
   
   
   // Destructor

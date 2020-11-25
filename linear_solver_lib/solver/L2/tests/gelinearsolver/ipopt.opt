@@ -1,4 +1,4 @@
 # Options
 
 linear_solver custom
-vitis_xclbin build_dir.sw_emu.xilinx_u50_gen3x16_xdma_201920_3/kernel_gelinearsolver.xclbin
+# vitis_xclbin sw_emu
