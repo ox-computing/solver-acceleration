@@ -105,11 +105,9 @@ CXXFLAGS += -I$(XILINX_XRT)/include -I$(XILINX_VIVADO)/include -std=c++14  -Wall
 CXXLINKFLAGS += -L$(XILINX_XRT)/lib -lxilinxopencl -lpthread -lrt -Wno-unused-label -Wno-narrowing -DVERBOSE 
 CXXLINKFLAGS += -L$(XILINX_VIVADO)/lnx64/tools/fpo_v7_0 -Wl,--as-needed -lgmp -lmpfr -lIp_floating_point_v7_0_bitacc_cmodel
 #LDFLAGS += -lipopt
-CXXFLAGS += -fmessage-length=0 -O3 -O2 -DNDEBUG
+CXXFLAGS += -fmessage-length=0 -O3 -O2 -DNDEBUG -ggdb
 #CXXFLAGS +=-I$(CUR_DIR)/src/ 
 
-OBJS += ipopt_example.o
-OBJS += myNLP.o
 EXE_FILE := ipopt_example.exe
 SOC_HOST_ARGS :=  -xclbin $(BUILD_DIR)/kernel_gelinearsolver.xclbin
 HOST_ARGS += -xclbin $(BUILD_DIR)/kernel_gelinearsolver.xclbin

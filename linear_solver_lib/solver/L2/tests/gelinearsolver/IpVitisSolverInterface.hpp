@@ -41,7 +41,7 @@ private:
   
   // Matrix variables
   int numneg_; // Number of negative eigenvalues
-  double * val_; // Ptr for values
+  double * val_ = NULL; // Ptr for values
   
   Index matrix_nonzeros; // Number of non zeros values in A
   Index matrix_dimension; // Dimension of A
@@ -49,8 +49,8 @@ private:
   int dataA_size;    // Size of array A
   int dataB_size;    // Size of array B
   
-  double * dataA;
-  double * dataB;
+  double * dataA = NULL;
+  double * dataB = NULL;
   
   // OpenCL variables
   std::string xclbin_path; // Path for FPGA binary file
@@ -64,6 +64,11 @@ private:
   cl::Program program; // OpenCL programme
   cl::Kernel kernel_gelinearsolver_0; // Device kernel
   
+  std::vector<cl::Device> devices; // Vector of devices
+  std::vector<cl::Buffer> buffer; // Device buffer vector
+  std::vector<std::vector<cl::Event>> kernel_evt; // Kernel event vector
+  std::vector<cl::Memory> ob_io; // IO device vector
+  
   // Time variables
   struct timeval tstart, tinit_parse, tplatform_setup, tbuffer_setup, tbuffer_transfer1, tkernel_setup, tkernel_launch, tbuffer_transfer2; // Variables to measure time
 
@@ -73,8 +78,8 @@ public:
 
 
   // Constructor
-  VitisSolverInterface()
-  {}
+  VitisSolverInterface():devices(1),buffer(2),kernel_evt(2)
+  {};
   
   static void RegisterOptions(
       SmartPtr<RegisteredOptions> roptions

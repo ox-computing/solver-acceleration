@@ -11,6 +11,7 @@ namespace Ipopt
 {
 
 
+  
   /*VitisSolverInterface::VitisSolverInterface(
   ){
   
@@ -31,8 +32,6 @@ namespace Ipopt
   
   VitisSolverInterface::~VitisSolverInterface(){
       delete[] val_;
-      free(dataA);
-      free(dataB);
   }
   
   int VitisSolverInterface::SetBinaryPath(std::string binary_path){
@@ -86,7 +85,7 @@ namespace Ipopt
       **************/
       
       // Find platform
-      std::vector<cl::Device> devices = xcl::get_xil_devices();
+      devices = xcl::get_xil_devices();
       device = devices[0];
       
       
@@ -97,8 +96,7 @@ namespace Ipopt
       printf("INFO: Found Device=%s\n", devName.c_str());
       
       // Binary file
-      xclBins = xcl::import_binary_file(xclbin_path);
-      devices.resize(1); 
+      xclBins = xcl::import_binary_file(xclbin_path); 
       program = cl::Program(context, devices, xclBins);
       kernel_gelinearsolver_0 = cl::Kernel(program, "kernel_gelinearsolver_0");
       std::cout << "INFO: Kernel has been created" << std::endl;
@@ -126,8 +124,6 @@ namespace Ipopt
           delete[] val_;
        }
        val_ = new double[matrix_nonzeros];
-       
-       printf("INFO: Done with that \n");
        
        return SYMSOLVER_SUCCESS;
    }
@@ -220,7 +216,6 @@ namespace Ipopt
         ************/
         
         // Setup buffers
-        std::vector<cl::Buffer> buffer(2);
         buffer[0] = cl::Buffer(context, CL_MEM_USE_HOST_PTR | CL_MEM_READ_WRITE,
                            sizeof(double) * dataA_size, dataA, NULL);
         buffer[1] = cl::Buffer(context, CL_MEM_USE_HOST_PTR | CL_MEM_READ_WRITE,
@@ -229,7 +224,6 @@ namespace Ipopt
                            
         
         // Data transfer from host to device
-        std::vector<std::vector<cl::Event>> kernel_evt;
         kernel_evt[0].resize(1);
         kernel_evt[1].resize(1);
    
@@ -267,6 +261,9 @@ namespace Ipopt
                  counter++;
              }
          }
+         
+         free(dataA);
+         free(dataB);      
   
          printf("INFO: End of linear solver \n");
          return SYMSOLVER_SUCCESS;

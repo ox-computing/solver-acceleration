@@ -150,7 +150,7 @@ int main(int argc, const char* argv[]) {
       }
       
       // Allocate the values of B
-      Index nrhs = iter;
+      Index nrhs = 1;
       Index rhs_values_size = dimension*nrhs;
       double * rhs_values_ptr = new double[rhs_values_size];
       
