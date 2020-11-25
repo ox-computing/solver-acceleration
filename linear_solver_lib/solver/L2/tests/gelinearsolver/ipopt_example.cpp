@@ -35,7 +35,6 @@ int main(
       std::cout << std::endl << std::endl << "*** Error during initialization!" << std::endl;
       return (int) status;
    }
-
    status = app->OptimizeTNLP(mynlp);
 
    if( status == Solve_Succeeded )

@@ -31,6 +31,8 @@ namespace Ipopt
   
   VitisSolverInterface::~VitisSolverInterface(){
       delete[] val_;
+      free(dataA);
+      free(dataB);
   }
   
   int VitisSolverInterface::SetBinaryPath(std::string binary_path){
@@ -58,20 +60,25 @@ namespace Ipopt
       const OptionsList& options,
       const std::string& prefix
    ){
+      printf("INFO: Initialising IMPL \n");
+      
       // Read in xclbin path from options
       std::string run_type;
-      options.GetStringValue("vitis_xclbin",run_type,prefix);
-      if(run_type == "hw")
+      //options.GetStringValue("vitis_xclbin",run_type,prefix);
+      if(run_type == "hw_emu")
       {
-          xclbin_path = "build_dir.hw.xilinx_u50_gen3x16_xdma_201920_3/kernel_gelinearsolver.xclbin";
-      }
-      else if(run_type == "hw_emu")
-      {
+          printf("INFO: Running on HW_EMU \n");
           xclbin_path = "build_dir.hw_emu.xilinx_u50_gen3x16_xdma_201920_3/kernel_gelinearsolver.xclbin";
       }
       else if(run_type == "sw_emu")
       {
+          printf("INFO: Running on SW_EMU \n");
           xclbin_path = "build_dir.sw_emu.xilinx_u50_gen3x16_xdma_201920_3/kernel_gelinearsolver.xclbin";  
+      }
+      else
+      {
+          printf("INFO: Running on HW \n");
+          xclbin_path = "build_dir.hw.xilinx_u50_gen3x16_xdma_201920_3/kernel_gelinearsolver.xclbin";
       }
       
       /********************
@@ -79,7 +86,7 @@ namespace Ipopt
       **************/
       
       // Find platform
-      devices = xcl::get_xil_devices();
+      std::vector<cl::Device> devices = xcl::get_xil_devices();
       device = devices[0];
       
       
@@ -90,8 +97,8 @@ namespace Ipopt
       printf("INFO: Found Device=%s\n", devName.c_str());
       
       // Binary file
-      devices.resize(1);
-      xclBins = xcl::import_binary_file(xclbin_path); 
+      xclBins = xcl::import_binary_file(xclbin_path);
+      devices.resize(1); 
       program = cl::Program(context, devices, xclBins);
       kernel_gelinearsolver_0 = cl::Kernel(program, "kernel_gelinearsolver_0");
       std::cout << "INFO: Kernel has been created" << std::endl;
@@ -107,6 +114,8 @@ namespace Ipopt
       const Index* ia,
       const Index* ja
    ){
+       printf("INFO: Initialising structure \n");
+       
        // Store variables and pointers for later use
        matrix_dimension = dim;
        matrix_nonzeros = nonzeros;
@@ -117,6 +126,8 @@ namespace Ipopt
           delete[] val_;
        }
        val_ = new double[matrix_nonzeros];
+       
+       printf("INFO: Done with that \n");
        
        return SYMSOLVER_SUCCESS;
    }
@@ -132,7 +143,7 @@ namespace Ipopt
       bool         check_NegEVals,
       Index        numberOfNegEVals
    ){
-       
+       printf("INFO: Running linear solver \n");
        /*********************
         Data Allocation
         *******************/
@@ -141,8 +152,7 @@ namespace Ipopt
        num_rhs = nrhs;
        
        // Allocate memory for A
-       dataA_size = matrix_dimension*matrix_dimension;
-       double * dataA;      
+       dataA_size = matrix_dimension*matrix_dimension;    
        dataA = aligned_alloc<double>(dataA_size);      
        
        /************
@@ -186,7 +196,6 @@ namespace Ipopt
        
        // Allocate memory for B
        dataB_size = matrix_dimension*num_rhs;
-       double * dataB;
        dataB = aligned_alloc<double>(dataB_size);
   
        // Assign the values of B
@@ -211,6 +220,7 @@ namespace Ipopt
         ************/
         
         // Setup buffers
+        std::vector<cl::Buffer> buffer(2);
         buffer[0] = cl::Buffer(context, CL_MEM_USE_HOST_PTR | CL_MEM_READ_WRITE,
                            sizeof(double) * dataA_size, dataA, NULL);
         buffer[1] = cl::Buffer(context, CL_MEM_USE_HOST_PTR | CL_MEM_READ_WRITE,
@@ -219,12 +229,14 @@ namespace Ipopt
                            
         
         // Data transfer from host to device
+        std::vector<std::vector<cl::Event>> kernel_evt;
         kernel_evt[0].resize(1);
         kernel_evt[1].resize(1);
    
+        std::vector<cl::Memory> ob_io;
         ob_io.push_back(buffer[0]);
         ob_io.push_back(buffer[1]);
-    
+        
         q.enqueueMigrateMemObjects(ob_io, 0, nullptr, &kernel_evt[0][0]); // 0 : migrate from host to dev
         q.finish();
         
@@ -245,11 +257,6 @@ namespace Ipopt
          q.enqueueMigrateMemObjects(ob_io, 1, nullptr, nullptr); // 1 : migrate from dev to host
          q.finish();
          
-           // Print the value of x
-         /*for(int i = 0; i < dataB_size; i++){
-             printf("Data x value %d : %f \n",i,dataB[i]);
-         
-         }*/
        
          // Return the value of the solution to rhs_values
          counter = 0;
@@ -261,12 +268,7 @@ namespace Ipopt
              }
          }
   
-         
-         // Print the value of the solution
-         /*for(int i = 0; i < dataB_size; i++){
-         printf("Solution %d: %f \n",i,dataB[i]);
-         }*/
-         
+         printf("INFO: End of linear solver \n");
          return SYMSOLVER_SUCCESS;
                 
            
