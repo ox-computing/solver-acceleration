@@ -18,7 +18,7 @@
 #define NCU 1
 #define MAXN 1000
 
-extern "C" void kernel_gelinearsolver_0(int num_rhs, int na, double* dataA, double* dataB, double* eigenvalue_output) {
+extern "C" void kernel_gelinearsolver_0(int num_rhs, int na, double* dataA, double* dataB) {
 #pragma HLS INTERFACE m_axi port = dataA bundle = gmem0 offset = slave num_read_outstanding = \
     16 max_read_burst_length = 32
 #pragma HLS INTERFACE m_axi port = dataB bundle = gmem0 offset = slave num_read_outstanding = \
@@ -39,7 +39,7 @@ extern "C" void kernel_gelinearsolver_0(int num_rhs, int na, double* dataA, doub
     xf::solver::gelinearsolver<double, MAXN, NCU>(na, dataA, num_rhs, dataB, na, num_rhs, info);
     
     // Eigenvalue solver
-    double* U;
-    xf::solver::syevj<double, MAXN, NCU>(na, dataA, na, eigenvalue_output, U, na, na, info)
+    //double* U;
+    //xf::solver::syevj<double, MAXN, NCU>(na, dataA, na, eigenvalue_output, U, na, na, info)
     
 }
