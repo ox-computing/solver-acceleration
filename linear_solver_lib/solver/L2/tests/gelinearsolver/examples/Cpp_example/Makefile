@@ -16,7 +16,7 @@ OBJS =  cpp_example.o \
 	MyNLP.o
 
 # CHANGEME: Additional libraries
-ADDLIBS =
+ADDLIBS = -lcoinhsl
 
 # CHANGEME: Additional flags for compilation (e.g., include flags)
 ADDINCFLAGS =

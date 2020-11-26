@@ -9,8 +9,6 @@ Source for Vitis solver interface
 
 namespace Ipopt
 {
-
-
   
   /*VitisSolverInterface::VitisSolverInterface(
   ){
@@ -140,22 +138,55 @@ namespace Ipopt
       Index        numberOfNegEVals
    ){
        printf("INFO: Running linear solver \n");
+       
        /*********************
         Data Allocation
         *******************/
+        if(check_NegEVals){
+        printf("Requesting Check \n");
+        }
+        printf("Stated number of evals : %d \n",numberOfNegEVals);
+        printf("Matrix dimension : %d \n",matrix_dimension);
+        printf("Number of non-zeros : %d \n",matrix_nonzeros);
+        
+        // Print input values
+        printf("NRHS : %d \n",nrhs);
+        
+        for(int i = 0; i < nrhs*matrix_dimension; i++)
+        {
+            printf("Input data %d : %f \n",i,rhs_vals[i]);
+        }
+        
+         for(int i = 0; i < matrix_nonzeros; i++)
+        {
+            printf("ja %d : %d \n",i,ja[i]);
+        }
+        
+         for(int i = 0; i < matrix_dimension + 1; i++)
+        {
+            printf("ia %d : %d \n",i,ia[i]);
+        }
+        
+        for(int i = 0; i < matrix_nonzeros; i++)
+        {
+            printf("Nonzero values %d : %f \n",i,val_[i]);
+        }
+        
         
        // Number of RHS
        num_rhs = nrhs;
        
        // Allocate memory for A
-       dataA_size = matrix_dimension*matrix_dimension;    
+       dataA_size = matrix_dimension*matrix_dimension;
+       printf("dataA size: %d \n",dataA_size);    
+       double * dataA;
        dataA = aligned_alloc<double>(dataA_size);      
        
        /************
         Convert A from CSR to array
        *****************/
        
-       Index row_nonzeros[matrix_dimension];
+       /*Index row_nonzeros[matrix_dimension];
        
        // Find the number of nonzero elements in each row
        for(int i = matrix_dimension; i >= 0; i--){
@@ -182,22 +213,29 @@ namespace Ipopt
                }
            }
            column_counter += row_nonzeros[i];
+       }*/
+       
+       for(int i = 0; i < dataA_size; i++)
+       {
+           dataA[i] = val_[i];
        }
+        
        
        // Print the values of A
-       /*for(int i = 0; i < dataA_size; i++)
+       for(int i = 0; i < dataA_size; i++)
        {
-           printf("Data A value %d : %f \n",i,dataA[i]);
-       }*/
+           printf("Data A %d : %f \n",i,dataA[i]);
+       }
        
        // Allocate memory for B
        dataB_size = matrix_dimension*num_rhs;
+       double * dataB;
        dataB = aligned_alloc<double>(dataB_size);
   
        // Assign the values of B
        int counter = 0;
        for(int i = 0; i < matrix_dimension; i++){
-           for(int k = 0; k < nrhs; k++)
+           for(int k = 0; k < num_rhs; k++)
            {
                dataB[counter] = rhs_vals[i + k*matrix_dimension];
                counter++;
@@ -206,10 +244,11 @@ namespace Ipopt
        }
        
        // Print the value of B
-       /*for(int i = 0; i < dataB_size; i++){
-           printf("Data B value %d : %f \n",i,dataB[i]);
+       for(int i = 0; i < dataB_size; i++){
+           printf("Data B %d : %f \n",i,dataB[i]);
        
-       }*/
+       }
+       
        
        /**************
         Buffer programming and triggering
@@ -220,16 +259,11 @@ namespace Ipopt
                            sizeof(double) * dataA_size, dataA, NULL);
         buffer[1] = cl::Buffer(context, CL_MEM_USE_HOST_PTR | CL_MEM_READ_WRITE,
                            sizeof(double) * dataB_size, dataB, NULL);
-                 
                            
         
         // Data transfer from host to device
-        kernel_evt[0].resize(1);
-        kernel_evt[1].resize(1);
-   
-        std::vector<cl::Memory> ob_io;
-        ob_io.push_back(buffer[0]);
-        ob_io.push_back(buffer[1]);
+        ob_io[0] = buffer[0];
+        ob_io[1] = buffer[1];
         
         q.enqueueMigrateMemObjects(ob_io, 0, nullptr, &kernel_evt[0][0]); // 0 : migrate from host to dev
         q.finish();
@@ -263,13 +297,23 @@ namespace Ipopt
          }
          
          free(dataA);
-         free(dataB);      
+         free(dataB);
+         
+         // Check if singular
+         for(int i = 0; i < dataB_size; i++)
+         {
+             if(std::isnan(rhs_vals[i]))
+             {
+                 printf("Matrix singular \n");
+                 return SYMSOLVER_SINGULAR;
+             }  
+         }  
   
          printf("INFO: End of linear solver \n");
+         
          return SYMSOLVER_SUCCESS;
-                
-           
-   }
+         
+}
   
 
 

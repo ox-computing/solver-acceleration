@@ -12,6 +12,7 @@ Base class is SparseSymLinearSolver
 #include <string.h>
 #include <sys/time.h>
 #include <algorithm>
+#include <cmath>
 
 #include "xcl2.hpp"
 
@@ -41,16 +42,13 @@ private:
   
   // Matrix variables
   int numneg_; // Number of negative eigenvalues
-  double * val_ = NULL; // Ptr for values
+  double * val_; // Ptr for values
   
   Index matrix_nonzeros; // Number of non zeros values in A
   Index matrix_dimension; // Dimension of A
   Index num_rhs;     // The number of different RHS we are solving
   int dataA_size;    // Size of array A
   int dataB_size;    // Size of array B
-  
-  double * dataA = NULL;
-  double * dataB = NULL;
   
   // OpenCL variables
   std::string xclbin_path; // Path for FPGA binary file
@@ -78,8 +76,11 @@ public:
 
 
   // Constructor
-  VitisSolverInterface():devices(1),buffer(2),kernel_evt(2)
-  {};
+  VitisSolverInterface():val_(NULL),devices(1),buffer(2),kernel_evt(2),ob_io(2)
+  {
+      kernel_evt[0].resize(1);
+      kernel_evt[1].resize(1);
+  };
   
   static void RegisterOptions(
       SmartPtr<RegisteredOptions> roptions

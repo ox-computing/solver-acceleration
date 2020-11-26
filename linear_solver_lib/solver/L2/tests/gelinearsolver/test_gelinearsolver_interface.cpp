@@ -152,11 +152,13 @@ int main(int argc, const char* argv[]) {
       // Allocate the values of B
       Index nrhs = 1;
       Index rhs_values_size = dimension*nrhs;
+      double rhs_values[rhs_values_size] = {4.,12.,10.,4.,4.};
       double * rhs_values_ptr = new double[rhs_values_size];
       
       for(int i = 0; i < rhs_values_size; i++)
       {
           rhs_values_ptr[i] = rand() % 10 + 1;
+          printf("b %d : %f \n",i,rhs_values_ptr[i]);
           //myfile << rhs_values_ptr[i] << " ";
       }
       
@@ -185,6 +187,7 @@ int main(int argc, const char* argv[]) {
       // Print the result
       for(int i = 0; i < rhs_values_size; i++)
       {
+          printf("x %d : %f \n",i,rhs_values_ptr[i]);
           //myfile << rhs_values_ptr[i] << " ";
       }
       
