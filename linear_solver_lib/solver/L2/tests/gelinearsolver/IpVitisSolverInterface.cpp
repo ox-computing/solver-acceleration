@@ -10,6 +10,7 @@ Source for Vitis solver interface
 namespace Ipopt
 {
   
+  
   /*VitisSolverInterface::VitisSolverInterface(
   ){
   
@@ -110,7 +111,7 @@ namespace Ipopt
       const Index* ia,
       const Index* ja
    ){
-       printf("INFO: Initialising structure \n");
+       printf("INFO : Initialising structure \n");
        
        // Store variables and pointers for later use
        matrix_dimension = dim;
@@ -127,6 +128,11 @@ namespace Ipopt
    }
    
    
+   double* VitisSolverInterface::GetValuesArrayPtr(){
+       //printf("INFO : IPOPT requesting values \n");
+       return val_;
+   }
+   
    
    ESymSolverStatus VitisSolverInterface::MultiSolve(
       bool         new_matrix,
@@ -137,7 +143,8 @@ namespace Ipopt
       bool         check_NegEVals,
       Index        numberOfNegEVals
    ){
-       printf("INFO: Running linear solver \n");
+       
+       printf("INFO : Running linear solver \n");
        
        /*********************
         Data Allocation
@@ -169,7 +176,7 @@ namespace Ipopt
         
         for(int i = 0; i < matrix_nonzeros; i++)
         {
-            printf("Nonzero values %d : %f \n",i,val_[i]);
+            //printf("Nonzero values %d : %f \n",i,val_[i]);
         }
         
         
@@ -185,6 +192,7 @@ namespace Ipopt
        /************
         Convert A from CSR to array
        *****************/
+       
        
        /*Index row_nonzeros[matrix_dimension];
        
@@ -215,16 +223,34 @@ namespace Ipopt
            column_counter += row_nonzeros[i];
        }*/
        
-       for(int i = 0; i < dataA_size; i++)
+       
+       // Populate the lower triangle
+       int data_counter = 0;
+       for(int i = 0; i < matrix_dimension; i++)
        {
-           dataA[i] = val_[i];
+           for(int j = 0; j <= i ; j++)
+           {
+               dataA[matrix_dimension*i + j] = val_[data_counter];
+               data_counter++;
+           }  
        }
+       
+       // Populate the upper triangle
+       for(int i = 0; i < matrix_dimension; i++)
+       {
+           for(int j = 0; j < matrix_dimension; j++)
+           {
+               dataA[matrix_dimension*i + j] = dataA[matrix_dimension*j + i];
+           }
+       }
+       
+       
         
        
        // Print the values of A
        for(int i = 0; i < dataA_size; i++)
        {
-           printf("Data A %d : %f \n",i,dataA[i]);
+           //printf("Data A %d : %f \n",i,dataA[i]);
        }
        
        // Allocate memory for B
@@ -296,6 +322,12 @@ namespace Ipopt
              }
          }
          
+         for(int i = 0; i < dataB_size; i++){
+           printf("Output %d : %f \n",i,rhs_vals[i]);
+       
+       }
+         
+         
          free(dataA);
          free(dataB);
          
@@ -304,12 +336,12 @@ namespace Ipopt
          {
              if(std::isnan(rhs_vals[i]))
              {
-                 printf("Matrix singular \n");
+                 printf("INFO : Matrix singular \n");
                  return SYMSOLVER_SINGULAR;
              }  
          }  
   
-         printf("INFO: End of linear solver \n");
+         printf("INFO : Linear solver successful \n");
          
          return SYMSOLVER_SUCCESS;
          

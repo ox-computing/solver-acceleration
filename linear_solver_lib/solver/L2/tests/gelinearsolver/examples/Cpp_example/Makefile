@@ -16,7 +16,7 @@ OBJS =  cpp_example.o \
 	MyNLP.o
 
 # CHANGEME: Additional libraries
-ADDLIBS = -lcoinhsl
+ADDLIBS = -lmetis
 
 # CHANGEME: Additional flags for compilation (e.g., include flags)
 ADDINCFLAGS =
@@ -39,12 +39,12 @@ prefix=/usr/local
 exec_prefix=${prefix}
 
 # Include directories
-INCL = `PKG_CONFIG_PATH=/usr/local/lib/pkgconfig: pkg-config --cflags ipopt` $(ADDINCFLAGS)
-#INCL = -I${prefix}/include/coin-or    -DIPOPTLIB_BUILD $(ADDINCFLAGS)
+#INCL = `PKG_CONFIG_PATH=/usr/local/lib/pkgconfig: pkg-config --cflags ipopt` $(ADDINCFLAGS)
+INCL = -I${prefix}/include/coin-or    -DIPOPTLIB_BUILD $(ADDINCFLAGS)
 
 # Linker flags
-LIBS = `PKG_CONFIG_PATH=/usr/local/lib/pkgconfig: pkg-config --libs ipopt`
-#LIBS = -L${exec_prefix}/lib -lipopt -llapack -lblas  -lm  -ldl
+#LIBS = `PKG_CONFIG_PATH=/usr/local/lib/pkgconfig: pkg-config --libs ipopt`
+LIBS = -L${exec_prefix}/lib -lipopt -llapack -lblas  -lm  -ldl
 
 all: $(EXE)
 

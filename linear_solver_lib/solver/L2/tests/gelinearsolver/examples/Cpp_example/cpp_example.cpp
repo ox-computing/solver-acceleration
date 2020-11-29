@@ -17,9 +17,11 @@ int main(
    char**
 )
 {
+   
    // Create an instance of your nlp...
    SmartPtr<TNLP> mynlp = new MyNLP();
 
+   
    // Create an instance of the IpoptApplication
    //
    // We are using the factory, since this allows us to compile this

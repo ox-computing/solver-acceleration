@@ -108,10 +108,7 @@ public:
       const Index* ja
    );
 
-   double* GetValuesArrayPtr()
-   {
-      return val_;
-   }
+   double* GetValuesArrayPtr();
 
    ESymSolverStatus MultiSolve(
       bool         new_matrix,
@@ -151,7 +148,7 @@ public:
    
    EMatrixFormat MatrixFormat() const
    {
-      return CSR_Full_Format_0_Offset;
+      return CSR_Format_0_Offset;
    }
    //@}
 
