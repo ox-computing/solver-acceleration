@@ -166,17 +166,18 @@ namespace Ipopt
         
          for(int i = 0; i < matrix_nonzeros; i++)
         {
-            printf("ja %d : %d \n",i,ja[i]);
+            printf("ja %d : %d \n",i,ia[i]);
+            printf("ia %d : %d \n",i,ja[i]);
         }
         
-         for(int i = 0; i < matrix_dimension + 1; i++)
+         for(int i = 0; i < matrix_nonzeros; i++)
         {
-            printf("ia %d : %d \n",i,ia[i]);
+            //printf("ia %d : %d \n",i,ia[i]);
         }
         
         for(int i = 0; i < matrix_nonzeros; i++)
         {
-            //printf("Nonzero values %d : %f \n",i,val_[i]);
+            printf("Nonzero values %d : %f \n",i,val_[i]);
         }
         
         
@@ -190,7 +191,7 @@ namespace Ipopt
        dataA = aligned_alloc<double>(dataA_size);      
        
        /************
-        Convert A from CSR to array
+        Convert A from Triplet to array
        *****************/
        
        
@@ -225,7 +226,7 @@ namespace Ipopt
        
        
        // Populate the lower triangle
-       int data_counter = 0;
+       /*int data_counter = 0;
        for(int i = 0; i < matrix_dimension; i++)
        {
            for(int j = 0; j <= i ; j++)
@@ -233,9 +234,29 @@ namespace Ipopt
                dataA[matrix_dimension*i + j] = val_[data_counter];
                data_counter++;
            }  
+       }*/
+       
+       // Use the triplet format originally for MA27
+       // Convert to 0 offset
+       Index ia_nonoffset[matrix_nonzeros];
+       Index ja_nonoffset[matrix_nonzeros];
+       
+       for(int i = 0; i < matrix_nonzeros; i++)
+       {
+           ia_nonoffset[i] = ia[i] - 1;
+           ja_nonoffset[i] = ja[i] - 1;    
        }
        
-       // Populate the upper triangle
+       // Populate half of matrix
+       for(int i = 0; i < matrix_nonzeros; i++)
+       {
+           if(val_[i] != 0)
+           {
+               dataA[matrix_dimension*ia_nonoffset[i] + ja_nonoffset[i]] = val_[i];
+           }
+       }
+       
+       // Populate other half
        for(int i = 0; i < matrix_dimension; i++)
        {
            for(int j = 0; j < matrix_dimension; j++)
@@ -250,7 +271,7 @@ namespace Ipopt
        // Print the values of A
        for(int i = 0; i < dataA_size; i++)
        {
-           //printf("Data A %d : %f \n",i,dataA[i]);
+           printf("Data A %d : %f \n",i,dataA[i]);
        }
        
        // Allocate memory for B
@@ -324,9 +345,7 @@ namespace Ipopt
          
          for(int i = 0; i < dataB_size; i++){
            printf("Output %d : %f \n",i,rhs_vals[i]);
-       
-       }
-         
+         } 
          
          free(dataA);
          free(dataB);
@@ -338,8 +357,9 @@ namespace Ipopt
              {
                  printf("INFO : Matrix singular \n");
                  return SYMSOLVER_SINGULAR;
-             }  
-         }  
+             }
+         } 
+         
   
          printf("INFO : Linear solver successful \n");
          

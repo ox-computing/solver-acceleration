@@ -148,7 +148,7 @@ public:
    
    EMatrixFormat MatrixFormat() const
    {
-      return CSR_Format_0_Offset;
+      return Triplet_Format;
    }
    //@}
 
