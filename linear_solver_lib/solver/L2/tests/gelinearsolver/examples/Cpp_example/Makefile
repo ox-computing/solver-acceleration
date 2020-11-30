@@ -16,10 +16,10 @@ OBJS =  cpp_example.o \
 	MyNLP.o
 
 # CHANGEME: Additional libraries
-ADDLIBS = -lmetis
+ADDLIBS = -lmetis -lm -lgfortran -lblas -llapack
 
 # CHANGEME: Additional flags for compilation (e.g., include flags)
-ADDINCFLAGS =
+ADDINCFLAGS = 
 
 ##########################################################################
 #  Usually, you don't have to change anything below.  Note that if you   #
@@ -44,7 +44,7 @@ INCL = -I${prefix}/include/coin-or    -DIPOPTLIB_BUILD $(ADDINCFLAGS)
 
 # Linker flags
 #LIBS = `PKG_CONFIG_PATH=/usr/local/lib/pkgconfig: pkg-config --libs ipopt`
-LIBS = -L${exec_prefix}/lib -lipopt -llapack -lblas  -lm  -ldl
+LIBS = -L${exec_prefix}/lib -lipopt -llapack -lblas  -lm  -ldl -lmetis
 
 all: $(EXE)
 

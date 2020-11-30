@@ -111,7 +111,8 @@ namespace Ipopt
       const Index* ia,
       const Index* ja
    ){
-       printf("INFO : Initialising structure \n");
+       Jnlst().Printf(J_DETAILED, J_LINEAR_ALGEBRA,
+                     "Vitis: Initialising Structure \n");
        
        // Store variables and pointers for later use
        matrix_dimension = dim;
@@ -144,12 +145,13 @@ namespace Ipopt
       Index        numberOfNegEVals
    ){
        
-       printf("INFO : Running linear solver \n");
+       Jnlst().Printf(J_DETAILED, J_LINEAR_ALGEBRA,
+                     "Vitis: Running solver \n");
        
        /*********************
         Data Allocation
         *******************/
-        if(check_NegEVals){
+        /*if(check_NegEVals){
         printf("Requesting Check \n");
         }
         printf("Stated number of evals : %d \n",numberOfNegEVals);
@@ -178,193 +180,177 @@ namespace Ipopt
         for(int i = 0; i < matrix_nonzeros; i++)
         {
             printf("Nonzero values %d : %f \n",i,val_[i]);
-        }
+        }*/
         
         
        // Number of RHS
        num_rhs = nrhs;
        
-       // Allocate memory for A
-       dataA_size = matrix_dimension*matrix_dimension;
-       printf("dataA size: %d \n",dataA_size);    
-       double * dataA;
-       dataA = aligned_alloc<double>(dataA_size);      
-       
-       /************
-        Convert A from Triplet to array
-       *****************/
-       
-       
-       /*Index row_nonzeros[matrix_dimension];
-       
-       // Find the number of nonzero elements in each row
-       for(int i = matrix_dimension; i >= 0; i--){
-           row_nonzeros[i-1] = ia[i] - ia[i-1];
-       }
-       
-       // Populate the dataA array
-       for(int i = 0; i < dataA_size; i++){
-             dataA[i] = 0;
-       }
-       
-       // Create counter
-       int column_counter = 0;
-       
-       // For each row
-       for(int i = 0; i < matrix_dimension; i++){
-           // Check if there are any nonzero terms
-           if(row_nonzeros[i] != 0)
-           {
-               // Read off the columns the data is in
-               for(int k = column_counter; k < column_counter + row_nonzeros[i]; k++)
-               {
-                   dataA[matrix_dimension*i + ja[k]] = val_[k];
-               }
-           }
-           column_counter += row_nonzeros[i];
-       }*/
-       
-       
-       // Populate the lower triangle
-       /*int data_counter = 0;
-       for(int i = 0; i < matrix_dimension; i++)
+       if( HaveIpData() )
        {
-           for(int j = 0; j <= i ; j++)
-           {
-               dataA[matrix_dimension*i + j] = val_[data_counter];
-               data_counter++;
-           }  
-       }*/
-       
-       // Use the triplet format originally for MA27
-       // Convert to 0 offset
-       Index ia_nonoffset[matrix_nonzeros];
-       Index ja_nonoffset[matrix_nonzeros];
-       
-       for(int i = 0; i < matrix_nonzeros; i++)
-       {
-           ia_nonoffset[i] = ia[i] - 1;
-           ja_nonoffset[i] = ja[i] - 1;    
+         IpData().TimingStats().LinearSystemBackSolve().Start();
        }
-       
-       // Populate half of matrix
-       for(int i = 0; i < matrix_nonzeros; i++)
-       {
-           if(val_[i] != 0)
-           {
-               dataA[matrix_dimension*ia_nonoffset[i] + ja_nonoffset[i]] = val_[i];
-           }
-       }
-       
-       // Populate other half
-       for(int i = 0; i < matrix_dimension; i++)
-       {
-           for(int j = 0; j < matrix_dimension; j++)
-           {
-               dataA[matrix_dimension*i + j] = dataA[matrix_dimension*j + i];
-           }
-       }
-       
-       
+         
+        // Allocate memory for A
+        dataA_size = matrix_dimension*matrix_dimension;  
+        double * dataA;
+        dataA = aligned_alloc<double>(dataA_size);      
         
-       
-       // Print the values of A
-       for(int i = 0; i < dataA_size; i++)
-       {
-           printf("Data A %d : %f \n",i,dataA[i]);
-       }
-       
-       // Allocate memory for B
-       dataB_size = matrix_dimension*num_rhs;
-       double * dataB;
-       dataB = aligned_alloc<double>(dataB_size);
-  
-       // Assign the values of B
-       int counter = 0;
-       for(int i = 0; i < matrix_dimension; i++){
-           for(int k = 0; k < num_rhs; k++)
-           {
-               dataB[counter] = rhs_vals[i + k*matrix_dimension];
-               counter++;
-           }
-       
-       }
-       
-       // Print the value of B
-       for(int i = 0; i < dataB_size; i++){
-           printf("Data B %d : %f \n",i,dataB[i]);
-       
-       }
-       
-       
-       /**************
-        Buffer programming and triggering
-        ************/
+        /************
+         Convert A from Triplet to array
+        *****************/
         
-        // Setup buffers
-        buffer[0] = cl::Buffer(context, CL_MEM_USE_HOST_PTR | CL_MEM_READ_WRITE,
-                           sizeof(double) * dataA_size, dataA, NULL);
-        buffer[1] = cl::Buffer(context, CL_MEM_USE_HOST_PTR | CL_MEM_READ_WRITE,
-                           sizeof(double) * dataB_size, dataB, NULL);
-                           
+        // Populate the initial A array with zeros
+         for(int i = 0; i < dataA_size; i++)
+        {
+           dataA[i] = 0;   
+        }
         
-        // Data transfer from host to device
-        ob_io[0] = buffer[0];
-        ob_io[1] = buffer[1];
+        // Use the triplet format originally for MA27
+        // Convert to 0 offset
+        Index ia_nonoffset[matrix_nonzeros];
+        Index ja_nonoffset[matrix_nonzeros];
         
-        q.enqueueMigrateMemObjects(ob_io, 0, nullptr, &kernel_evt[0][0]); // 0 : migrate from host to dev
-        q.finish();
+        for(int i = 0; i < matrix_nonzeros; i++)
+        {
+            ia_nonoffset[i] = ia[i] - 1;
+            ja_nonoffset[i] = ja[i] - 1;    
+        }
         
-         // Setup kernel
-         kernel_gelinearsolver_0.setArg(0, num_rhs);
-         kernel_gelinearsolver_0.setArg(1, matrix_dimension);
-         kernel_gelinearsolver_0.setArg(2, buffer[0]);
-         kernel_gelinearsolver_0.setArg(3, buffer[1]);
+        // Populate half of matrix
+        for(int i = 0; i < matrix_nonzeros; i++)
+        {
+            if(val_[i] != 0)
+            {
+                dataA[matrix_dimension*ia_nonoffset[i] + ja_nonoffset[i]] = val_[i];
+            }
+        }
+        
+        // Populate other half
+        for(int i = 0; i < matrix_dimension; i++)
+        {
+            for(int j = 0; j < matrix_dimension; j++)
+            {
+                dataA[matrix_dimension*i + j] = dataA[matrix_dimension*j + i];
+            }
+        }
+        
+        
+         
+        
+        // Print the values of A
+        /*for(int i = 0; i < dataA_size; i++)
+        {
+            printf("Data A %d : %f \n",i,dataA[i]);
+        }*/
+        
+        // Allocate memory for B
+        dataB_size = matrix_dimension*num_rhs;
+        double * dataB;
+        dataB = aligned_alloc<double>(dataB_size);
+   
+        // Assign the values of B
+        int counter = 0;
+        for(int i = 0; i < matrix_dimension; i++){
+            for(int k = 0; k < num_rhs; k++)
+            {
+                dataB[counter] = rhs_vals[i + k*matrix_dimension];
+                counter++;
+            }
+        
+        }
+        
+        // Print the value of B
+        /*for(int i = 0; i < dataB_size; i++){
+            printf("Data B %d : %f \n",i,dataB[i]);
+        
+        }*/
+        
+        
+        /**************
+         Buffer programming and triggering
+         ************/
+         
+         // Setup buffers
+         buffer[0] = cl::Buffer(context, CL_MEM_USE_HOST_PTR | CL_MEM_READ_WRITE,
+                            sizeof(double) * dataA_size, dataA, NULL);
+         buffer[1] = cl::Buffer(context, CL_MEM_USE_HOST_PTR | CL_MEM_READ_WRITE,
+                            sizeof(double) * dataB_size, dataB, NULL);
+                            
+         
+         // Data transfer from host to device
+         ob_io[0] = buffer[0];
+         ob_io[1] = buffer[1];
+         
+         q.enqueueMigrateMemObjects(ob_io, 0, nullptr, &kernel_evt[0][0]); // 0 : migrate from host to dev
          q.finish();
          
-         
-         // Launch kernel
-         q.enqueueTask(kernel_gelinearsolver_0, nullptr, nullptr);
-         q.finish();
-         
-         
-         // Transfer data back to host
-         q.enqueueMigrateMemObjects(ob_io, 1, nullptr, nullptr); // 1 : migrate from dev to host
-         q.finish();
-         
-       
-         // Return the value of the solution to rhs_values
-         counter = 0;
-         for(int i = 0; i < nrhs; i++){
-             for(int k = 0; k < matrix_dimension; k++)
-             {
-                 rhs_vals[counter] = dataB[i + k*nrhs];
-                 counter++;
-             }
-         }
-         
-         for(int i = 0; i < dataB_size; i++){
-           printf("Output %d : %f \n",i,rhs_vals[i]);
-         } 
-         
-         free(dataA);
-         free(dataB);
-         
-         // Check if singular
-         for(int i = 0; i < dataB_size; i++)
-         {
-             if(std::isnan(rhs_vals[i]))
-             {
-                 printf("INFO : Matrix singular \n");
-                 return SYMSOLVER_SINGULAR;
-             }
-         } 
-         
-  
-         printf("INFO : Linear solver successful \n");
-         
-         return SYMSOLVER_SUCCESS;
-         
+          // Setup kernel
+          kernel_gelinearsolver_0.setArg(0, num_rhs);
+          kernel_gelinearsolver_0.setArg(1, matrix_dimension);
+          kernel_gelinearsolver_0.setArg(2, buffer[0]);
+          kernel_gelinearsolver_0.setArg(3, buffer[1]);
+          q.finish();
+          
+          
+          // Launch kernel
+          q.enqueueTask(kernel_gelinearsolver_0, nullptr, nullptr);
+          q.finish();
+          
+          
+          // Transfer data back to host
+          q.enqueueMigrateMemObjects(ob_io, 1, nullptr, nullptr); // 1 : migrate from dev to host
+          q.finish();
+          
+        
+          // Return the value of the solution to rhs_values
+          counter = 0;
+          for(int i = 0; i < nrhs; i++){
+              for(int k = 0; k < matrix_dimension; k++)
+              {
+                  rhs_vals[counter] = dataB[i + k*nrhs];
+                  counter++;
+              }
+          }
+
+          /*for(int i = 0; i < dataB_size; i++){
+            printf("Output %d : %f \n",i,rhs_vals[i]);
+          } */
+          
+          free(dataA);
+          free(dataB);
+          
+          if( HaveIpData() )
+          {
+             IpData().TimingStats().LinearSystemBackSolve().End();
+          }
+          
+          
+          /*if(check_NegEVals && (numberOfNegEVals != 1))
+          {
+              printf("Eigenvalues do not match \n");
+              Jnlst().Printf(J_DETAILED, J_LINEAR_ALGEBRA,
+                     "Vitis: Eigenvalues do not match \n");
+              return SYMSOLVER_WRONG_INERTIA;
+          }*/
+          
+          // Check if singular
+          for(int i = 0; i < dataB_size; i++)
+          {
+              if(std::isnan(rhs_vals[i]))
+              {
+                  //printf("Matrix singular \n");
+                  Jnlst().Printf(J_DETAILED, J_LINEAR_ALGEBRA,
+                     "Vitis: Matrix Singular \n");
+                  return SYMSOLVER_SINGULAR;
+              }
+          } 
+          
+          // printf("Solver successful \n");
+          Jnlst().Printf(J_DETAILED, J_LINEAR_ALGEBRA,
+                     "Vitis: Solver Successful \n");
+          
+          return SYMSOLVER_SUCCESS;
 }
   
 
