@@ -8,7 +8,7 @@
 ##########################################################################
 
 # CHANGEME: This should be the name of your executable
-EXE = TutorialCpp
+EXE = TutorialCpp.exe
 
 # CHANGEME: Here is the name of all object files corresponding to the source
 #           code that you wrote in order to define the problem statement
@@ -16,7 +16,7 @@ OBJS = TutorialCpp_main.o \
 	TutorialCpp_nlp.o
 
 # CHANGEME: Additional libraries
-ADDLIBS =
+ADDLIBS = -lmetis
 
 # CHANGEME: Additional flags for compilation (e.g., include flags)
 ADDINCFLAGS =

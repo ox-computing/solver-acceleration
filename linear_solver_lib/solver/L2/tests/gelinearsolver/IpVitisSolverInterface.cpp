@@ -148,6 +148,10 @@ namespace Ipopt
        Jnlst().Printf(J_DETAILED, J_LINEAR_ALGEBRA,
                      "Vitis: Running solver \n");
        
+       printf("INFO : Running Vitis solver \n");
+                     
+       printf("Matrix dimension : %d \n",matrix_dimension);
+       
        /*********************
         Data Allocation
         *******************/
@@ -339,14 +343,14 @@ namespace Ipopt
           {
               if(std::isnan(rhs_vals[i]))
               {
-                  //printf("Matrix singular \n");
+                  printf("INFO : Matrix singular \n");
                   Jnlst().Printf(J_DETAILED, J_LINEAR_ALGEBRA,
                      "Vitis: Matrix Singular \n");
                   return SYMSOLVER_SINGULAR;
               }
           } 
           
-          // printf("Solver successful \n");
+          printf("INFO : Solver successful \n");
           Jnlst().Printf(J_DETAILED, J_LINEAR_ALGEBRA,
                      "Vitis: Solver Successful \n");
           
