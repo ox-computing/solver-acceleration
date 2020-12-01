@@ -38,7 +38,7 @@ int main(
    // Set the data:
 
    // Number of variables
-   Index N = 400;
+   Index N = 200;
 
    // constant terms in the constraints
    Number* a = new double[N - 2];

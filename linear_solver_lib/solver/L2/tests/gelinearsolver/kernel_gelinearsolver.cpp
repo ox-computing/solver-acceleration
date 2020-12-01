@@ -15,7 +15,7 @@
  */
 
 #include "xf_solver_L2.hpp"
-#define NCU 1
+#define NCU 4
 #define MAXN 1000
 
 extern "C" void kernel_gelinearsolver_0(int num_rhs, int na, double* dataA, double* dataB) {
@@ -23,14 +23,11 @@ extern "C" void kernel_gelinearsolver_0(int num_rhs, int na, double* dataA, doub
     16 max_read_burst_length = 32
 #pragma HLS INTERFACE m_axi port = dataB bundle = gmem0 offset = slave num_read_outstanding = \
     16 max_read_burst_length = 32
-#pragma HLS INTERFACE m_axi port = eigenvalue_output bundle = gmem0 offset = slave num_read_outstanding = \
-    16 max_read_burst_length = 32
 
 #pragma HLS INTERFACE s_axilite port = num_rhs bundle = control
 #pragma HLS INTERFACE s_axilite port = na bundle = control
 #pragma HLS INTERFACE s_axilite port = dataA bundle = control
 #pragma HLS INTERFACE s_axilite port = dataB bundle = control
-#pragma HLS INTERFACE s_axilite port = eigenvalue_output bundle = control
 #pragma HLS INTERFACE s_axilite port = return bundle = control
 
     int info;

@@ -150,7 +150,7 @@ namespace Ipopt
        
        //printf("INFO : Running Vitis solver \n");
                      
-       //printf("Matrix dimension : %d \n",matrix_dimension);
+       printf("Matrix dimension : %d \n",matrix_dimension);
        
        /*********************
         Data Allocation

@@ -8,7 +8,7 @@
 ##########################################################################
 
 # CHANGEME: This should be the name of your executable
-EXE = hs071_cpp.exe
+EXE = hs071_main.exe
 
 # CHANGEME: Here is the name of all object files corresponding to the source
 #           code that you wrote in order to define the problem statement
