@@ -16,7 +16,7 @@ OBJS = TutorialCpp_main.o \
 	TutorialCpp_nlp.o
 
 # CHANGEME: Additional libraries
-ADDLIBS = -lmetis
+ADDLIBS =
 
 # CHANGEME: Additional flags for compilation (e.g., include flags)
 ADDINCFLAGS =

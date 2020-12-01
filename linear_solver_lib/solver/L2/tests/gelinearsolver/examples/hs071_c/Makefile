@@ -15,7 +15,7 @@ EXE = hs071_c
 OBJS = hs071_c.o
 
 # CHANGEME: Additional libraries
-ADDLIBS =
+ADDLIBS = -lmetis -lm -lgfortran -lblas -llapack -lhsl_ma97
 
 # CHANGEME: Additional flags for compilation (e.g., include flags)
 ADDINCFLAGS =
@@ -42,8 +42,8 @@ INCL = `PKG_CONFIG_PATH=/usr/local/lib/pkgconfig: pkg-config --cflags ipopt` $(A
 #INCL = -I${prefix}/include/coin-or    -DIPOPTLIB_BUILD $(ADDINCFLAGS)
 
 # Linker flags
-LIBS = `PKG_CONFIG_PATH=/usr/local/lib/pkgconfig: pkg-config --libs ipopt` -lstdc++ -lm
-#LIBS = -L${exec_prefix}/lib -lipopt -llapack -lblas  -lm  -ldl -lstdc++ -lm
+#LIBS = `PKG_CONFIG_PATH=/usr/local/lib/pkgconfig: pkg-config --libs ipopt` -lstdc++ -lm
+LIBS = -lipopt -llapack -lblas  -lm  -ldl -lstdc++ -lm
 
 all: $(EXE)
 

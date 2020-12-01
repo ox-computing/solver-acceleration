@@ -38,7 +38,7 @@ int main(
    // Set the data:
 
    // Number of variables
-   Index N = 100;
+   Index N = 400;
 
    // constant terms in the constraints
    Number* a = new double[N - 2];
@@ -58,7 +58,7 @@ int main(
    // Change some options
    // Note: The following choices are only examples, they might not be
    //       suitable for your optimization problem.
-   app->Options()->SetNumericValue("tol", 1e-10);
+   app->Options()->SetNumericValue("tol", 1e-4);
    app->Options()->SetStringValue("mu_strategy", "adaptive");
 
    // Intialize the IpoptApplication and process the options

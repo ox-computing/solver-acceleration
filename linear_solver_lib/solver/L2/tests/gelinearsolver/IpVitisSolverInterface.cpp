@@ -148,9 +148,9 @@ namespace Ipopt
        Jnlst().Printf(J_DETAILED, J_LINEAR_ALGEBRA,
                      "Vitis: Running solver \n");
        
-       printf("INFO : Running Vitis solver \n");
+       //printf("INFO : Running Vitis solver \n");
                      
-       printf("Matrix dimension : %d \n",matrix_dimension);
+       //printf("Matrix dimension : %d \n",matrix_dimension);
        
        /*********************
         Data Allocation
@@ -350,7 +350,7 @@ namespace Ipopt
               }
           } 
           
-          printf("INFO : Solver successful \n");
+          //printf("INFO : Solver successful \n");
           Jnlst().Printf(J_DETAILED, J_LINEAR_ALGEBRA,
                      "Vitis: Solver Successful \n");
           
