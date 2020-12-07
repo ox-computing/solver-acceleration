@@ -15,7 +15,7 @@
  */
 
 #include "xf_solver_L2.hpp"
-#define NCU 4
+#define NCU 30
 #define MAXN 1000
 
 extern "C" void kernel_gelinearsolver_0(int num_rhs, int na, double* dataA, double* dataB) {
@@ -32,11 +32,32 @@ extern "C" void kernel_gelinearsolver_0(int num_rhs, int na, double* dataA, doub
 
     int info;
     
-    // Solver
-    xf::solver::gelinearsolver<double, MAXN, NCU>(na, dataA, num_rhs, dataB, na, num_rhs, info);
+    // Determine if matrix is definite
     
-    // Eigenvalue solver
-    //double* U;
-    //xf::solver::syevj<double, MAXN, NCU>(na, dataA, na, eigenvalue_output, U, na, na, info)
+    // Find eigenvalues    
+    /*xf::solver::syevj<double, MAXN, NCU>(na, dataA, na, sigma, U, na, info);
     
+    // Determine if any are all positive
+    bool positive_definite = true;
+    
+    for(int i = 0; i < na; i++)
+    {
+        if(sigma[i] <= 0)
+        {
+            positive_definite = false;
+            break;
+        }
+    }
+    
+    if(positive_definite)
+    {
+        // SPD solver
+        xf::solver::polinearsolver<double, MAXN, NCU>(na, dataA, num_rhs, dataB, na, num_rhs, info);
+    }
+    else
+    {*/
+        // General solver
+        xf::solver::gelinearsolver<double, MAXN, NCU>(na, dataA, num_rhs, dataB, na, num_rhs, info);
+    //}
+
 }

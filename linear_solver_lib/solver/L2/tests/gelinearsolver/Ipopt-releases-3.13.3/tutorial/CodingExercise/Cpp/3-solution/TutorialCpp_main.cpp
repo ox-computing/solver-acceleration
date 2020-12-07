@@ -24,21 +24,47 @@
 //
 
 #include <cstdio>
+#include <fstream>
+#include <sys/time.h>
 
 #include "IpIpoptApplication.hpp"
 #include "TutorialCpp_nlp.hpp"
 
 using namespace Ipopt;
 
+// Compute time difference
+unsigned long diff(const struct timeval* newTime, const struct timeval* oldTime) {
+    return (newTime->tv_usec - oldTime->tv_usec);
+}
+
 int main(
    int argv,
    char* argc[]
 )
 {
+
+    // Create file to store timing data
+    std::ofstream myfile;
+    myfile.open("Tutorial_ma57_timings.txt");
+    
+    int number_iterations = 1;
+    
+    struct timeval tstart, tend;
+    
+    unsigned long time_diff = 0;
+   
+    for(int i = 1; i <= number_iterations; i++)
+    {
+    
    // Set the data:
+   
 
    // Number of variables
-   Index N = 100;
+   Index N = 300;
+   
+   printf("N : %d \n",N);
+   
+   myfile << N << " ";
 
    // constant terms in the constraints
    Number* a = new double[N - 2];
@@ -58,7 +84,7 @@ int main(
    // Change some options
    // Note: The following choices are only examples, they might not be
    //       suitable for your optimization problem.
-   app->Options()->SetNumericValue("tol", 1e-10);
+   app->Options()->SetNumericValue("tol", 1e-4);
    app->Options()->SetStringValue("mu_strategy", "adaptive");
 
    // Intialize the IpoptApplication and process the options
@@ -82,6 +108,18 @@ int main(
 
    // However, we created the Number array for a here and have to delete it
    delete[] a;
+   
+   
+    gettimeofday(&tend,0);
+   
+   // Determine time difference and store
+   time_diff = diff(&tend,&tstart);
+   
+   myfile << time_diff << std::endl;
+   
+   } //for loop
+   
+   myfile.close();
 
-   return (int) status;
+   return 0;
 }

@@ -114,25 +114,25 @@ int main(int argc, const char* argv[]) {
     
     // Initialise the structure using data from the HSL example
     Index dimension = 5;
-    Index non_zeros = 13;
+    Index non_zeros = 8;
     
     // Data A values
-    const Index ja[non_zeros] = {0,1,0,1,2,4,1,2,3,2,3,1,4};
+    const Index ja[non_zeros] = {1,2,2,3,5,3,4,5};
     const Index * ja_ptr = ja;
     
-    const Index ia[dimension+1] = {0,2,6,9,11,13};
+    const Index ia[non_zeros] = {1,1,2,2,2,3,3,5};
     const Index * ia_ptr = ia;
     
-    double nonzero_values[non_zeros] = {2.,1.,1.,4.,1.,1.,1.,3.,2.,2.,0.,1.,2.};
+    double nonzero_values[non_zeros] = {2.,1.,4.,1.,1.,3.,2.,2.};
     
     /***********
     Iterate
     ***************/
     
-    int num_iters = 100;
+    int num_iters = 1;
     int time_diff = 0;
     
-    for(int iter = 1; iter < num_iters; iter++)
+    for(int iter = 0; iter < num_iters; iter++)
     { 
       gettimeofday(&tstart,0);
     

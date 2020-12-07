@@ -107,21 +107,16 @@ int main(int argc, const char* argv[]) {
     
     
     int first_row = 0;
-    int final_row = 100;
+    int final_row = 1;
     
     // Create file to store array data
-    std::ofstream myfile;
-    myfile.open("iteration_times.txt");
+    //std::ofstream myfile;
+    //myfile.open("iteration_times.txt");
     
-    
-    for(int a = first_row; a < final_row; a++)
-    {
-    
-    printf("Current iteration : %d \n",a);
     
     // Set dataAM and dataAN
-    dataAM = 100;
-    dataAN = 100;
+    dataAM = 10;
+    dataAN = 10;
      
     // dataAM = dataAN is valid only for symmetric matrix
     dataAM = (dataAM > dataAN) ? dataAN : dataAM;
@@ -135,6 +130,10 @@ int main(int argc, const char* argv[]) {
     dataA = aligned_alloc<double>(inout_size);
     double* dataB;
     dataB = aligned_alloc<double>(inoutB_size);
+    double* sigma;
+    sigma = aligned_alloc<double>(dataAM);
+    double* U;
+    U = aligned_alloc<double>(inout_size);
 
     // Generate general matrix dataAM x dataAN
     double** dataC = new double*[dataAM];
@@ -152,7 +151,7 @@ int main(int argc, const char* argv[]) {
     for (int i = 0; i < dataAM; ++i) {
         for (int j = 0; j < dataAN; ++j) {
             dataA[i * dataAN + j] = dataE[i][j];
-            //printf("Data A Row %d Column %d : %f \n",i,j,dataA[i * dataAN + j]);
+            printf("Data A Row %d Column %d : %f \n",i,j,dataA[i * dataAN + j]);
         }
     }
     for (int i = 0; i < dataAM; ++i) {
@@ -160,7 +159,17 @@ int main(int argc, const char* argv[]) {
             dataB[i * NB + j] = i;
             //printf("Data B Row %d Column %d : %f \n",i,j,dataB[i * NB + j]);
         }
-    } 
+    }
+    
+    for(int i = 0; i < inout_size; i++)
+    {
+        U[i] = 0;
+    }
+    
+    for(int i = 0; i < dataAM; i++)
+    {
+        sigma[i] = 0;
+    }
     
     // Platform related operations
     std::vector<cl::Device> devices = xcl::get_xil_devices();
@@ -194,6 +203,11 @@ int main(int argc, const char* argv[]) {
                            sizeof(double) * inout_size, dataA, NULL);
     buffer[1] = cl::Buffer(context, CL_MEM_USE_HOST_PTR | CL_MEM_READ_WRITE,
                            sizeof(double) * inoutB_size, dataB, NULL);
+    buffer[2] = cl::Buffer(context, CL_MEM_USE_HOST_PTR | CL_MEM_READ_WRITE,
+                           sizeof(double) * dataAM, sigma, NULL);
+    buffer[3] = cl::Buffer(context, CL_MEM_USE_HOST_PTR | CL_MEM_READ_WRITE,
+                           sizeof(double) * inout_size, U, NULL);
+                                                 
                            
     //gettimeofday(&tbuffer_setup,0);
 
@@ -205,6 +219,8 @@ int main(int argc, const char* argv[]) {
     std::vector<cl::Memory> ob_io;
     ob_io.push_back(buffer[0]);
     ob_io.push_back(buffer[1]);
+    ob_io.push_back(buffer[2]);
+    ob_io.push_back(buffer[3]);
 
     q.enqueueMigrateMemObjects(ob_io, 0, nullptr, &kernel_evt[0][0]); // 0 : migrate from host to dev
     q.finish();
@@ -217,6 +233,8 @@ int main(int argc, const char* argv[]) {
     kernel_gelinearsolver_0.setArg(1, dataAN);
     kernel_gelinearsolver_0.setArg(2, buffer[0]);
     kernel_gelinearsolver_0.setArg(3, buffer[1]);
+    kernel_gelinearsolver_0.setArg(4, buffer[2]);
+    kernel_gelinearsolver_0.setArg(5, buffer[3]);
     q.finish();
     std::cout << "INFO: Finish kernel setup" << std::endl;
     
@@ -269,7 +287,7 @@ int main(int argc, const char* argv[]) {
     printf("INFO: Buffer transfer from device to host time: %d us \n",buffer_transfer2);*/
     //printf("INFO: Overall execution time: %d us \n",overall);
 
-    myfile << overall << std::endl;
+    //myfile << overall << std::endl;
      
 
     // Calculate err between dataA and dataC
@@ -302,9 +320,17 @@ int main(int argc, const char* argv[]) {
         std::cout << "-------------- " << std::endl;
     }
     
-    } // for loop
     
-    myfile.close();
+    // Print the value of the eigenvalues
+    for (int i = 0; i < dataAM; i++){
+        printf("Eigenvalue %d : %f \n",i,sigma[i]);
+    }
+    
+    free(sigma);
+    free(U);
+    
+    
+    //myfile.close();
     
     
     

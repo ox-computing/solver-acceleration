@@ -316,13 +316,10 @@ namespace Ipopt
                   counter++;
               }
           }
-
-          /*for(int i = 0; i < dataB_size; i++){
-            printf("Output %d : %f \n",i,rhs_vals[i]);
-          } */
           
           free(dataA);
           free(dataB);
+          
           
           if( HaveIpData() )
           {

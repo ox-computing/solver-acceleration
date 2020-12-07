@@ -24,27 +24,56 @@
 //
 
 #include <cstdio>
+#include <fstream>
+#include <sys/time.h>
 
 #include "IpIpoptApplication.hpp"
 #include "TutorialCpp_nlp.hpp"
 
 using namespace Ipopt;
 
+// Compute time difference
+unsigned long diff(const struct timeval* newTime, const struct timeval* oldTime) {
+    return (newTime->tv_sec - oldTime->tv_sec) * 1000000 + (newTime->tv_usec - oldTime->tv_usec);
+}
+
 int main(
    int argv,
    char* argc[]
 )
 {
+
+    // Create file to store timing data
+    std::ofstream myfile;
+    myfile.open("Tutorial_vitis_timings.txt");
+    
+    int number_iterations = 1;
+    
+    struct timeval tstart, tend;
+    
+    int time_diff = 0;
+    
+    for(int i = 1; i <= number_iterations; i++)
+    {
+    
+    // Start the timer
+    gettimeofday(&tstart, 0);
+    
    // Set the data:
 
    // Number of variables
    Index N = 200;
+   
+   printf("N : %d \n",N);
+   
+   myfile << N << " ";
 
    // constant terms in the constraints
    Number* a = new double[N - 2];
    for( Index i = 0; i < N - 2; i++ )
    {
       a[i] = (double(i + 2)) / (double) N;
+      printf("Constant value : %f \n",a[i]);
    }
 
    // Create a new instance of your nlp
@@ -66,7 +95,7 @@ int main(
 
    // Ask Ipopt to solve the problem
    ApplicationReturnStatus status = app->OptimizeTNLP(mynlp);
-
+      
    if( status == Solve_Succeeded )
    {
       printf("\n\n*** The problem solved!\n");
@@ -82,6 +111,17 @@ int main(
 
    // However, we created the Number array for a here and have to delete it
    delete[] a;
+   
+   gettimeofday(&tend,0);
+   
+   // Determine time difference and store
+   time_diff = diff(&tend,&tstart);
+   
+   myfile << time_diff << std::endl;
+   
+   } //for loop
+   
+   myfile.close();
 
-   return (int) status;
+   return 0;
 }
