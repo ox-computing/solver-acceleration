@@ -62,7 +62,7 @@ int main(
    // Set the data:
 
    // Number of variables
-   Index N = 10;
+   Index N = 300;
    
    printf("N : %d \n",N);
    

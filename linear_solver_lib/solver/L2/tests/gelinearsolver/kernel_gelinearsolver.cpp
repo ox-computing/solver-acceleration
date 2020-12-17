@@ -19,10 +19,8 @@
 #define MAXN 1000
 
 extern "C" void kernel_gelinearsolver_0(int num_rhs, int na, double* dataA, double* dataB) {
-#pragma HLS INTERFACE m_axi port = dataA bundle = gmem0 offset = slave num_read_outstanding = \
-    16 max_read_burst_length = 32
-#pragma HLS INTERFACE m_axi port = dataB bundle = gmem0 offset = slave num_read_outstanding = \
-    16 max_read_burst_length = 32
+#pragma HLS INTERFACE m_axi port = dataA offset = slave bundle = gmem0 
+#pragma HLS INTERFACE m_axi port = dataB offset = slave bundle = gmem1 
 
 #pragma HLS INTERFACE s_axilite port = num_rhs bundle = control
 #pragma HLS INTERFACE s_axilite port = na bundle = control
