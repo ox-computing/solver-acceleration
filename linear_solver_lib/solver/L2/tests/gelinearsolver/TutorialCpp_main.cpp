@@ -47,7 +47,7 @@ int main(
     std::ofstream myfile;
     myfile.open("Tutorial_vitis_timings.txt");
     
-    int number_iterations = 1;
+    int number_iterations = 30;
     
     struct timeval tstart, tend;
     
@@ -62,7 +62,7 @@ int main(
    // Set the data:
 
    // Number of variables
-   Index N = 300;
+   Index N = 10*i;
    
    printf("N : %d \n",N);
    
