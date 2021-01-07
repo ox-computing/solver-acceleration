@@ -63,21 +63,8 @@ namespace Ipopt
       // Read in xclbin path from options
       std::string run_type;
       //options.GetStringValue("vitis_xclbin",run_type,prefix);
-      if(run_type == "hw_emu")
-      {
-          printf("INFO: Running on HW_EMU \n");
-          xclbin_path = "build_dir.hw_emu.xilinx_u50_gen3x16_xdma_201920_3/kernel_gelinearsolver.xclbin";
-      }
-      else if(run_type == "sw_emu")
-      {
-          printf("INFO: Running on SW_EMU \n");
-          xclbin_path = "build_dir.sw_emu.xilinx_u50_gen3x16_xdma_201920_3/kernel_gelinearsolver.xclbin";  
-      }
-      else
-      {
-          printf("INFO: Running on HW \n");
-          xclbin_path = "build_dir.hw.xilinx_u50_gen3x16_xdma_201920_3/kernel_gelinearsolver.xclbin";
-      }
+      printf("INFO: Running on HW \n");
+      xclbin_path = "/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/tests/gelinearsolver/build_dir.hw.xilinx_u50_gen3x16_xdma_201920_3/kernel_gelinearsolver.xclbin";
       
       /********************
       Device setup
@@ -353,23 +340,6 @@ namespace Ipopt
           
           return SYMSOLVER_SUCCESS;
 }
-  
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-}
+} //namespace Ipopt

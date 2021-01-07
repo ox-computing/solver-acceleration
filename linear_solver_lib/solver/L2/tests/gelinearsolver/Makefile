@@ -80,20 +80,20 @@ EMU_DIR := $(SDCARD)/data/emulation
 ############################## Setting up Host Variables ##############################
 #Include Required Host Source Files
 HOST_SRCS += TutorialCpp_main.cpp
-HOST_SRCS += $(XFLIB_DIR)/ext/xcl2/xcl2.cpp
-HOST_SRCS += IpVitisSolverInterface.cpp
+#HOST_SRCS += $(XFLIB_DIR)/ext/xcl2/xcl2.cpp
+#HOST_SRCS += IpVitisSolverInterface.cpp
 #HOST_SRCS += MyNLP.cpp
 #HOST_SRCS += hs071_nlp.cpp
-HOST_SRCS += IpAlgBuilder.cpp
+#HOST_SRCS += IpAlgBuilder.cpp
 HOST_SRCS += TutorialCpp_nlp.cpp
 
-CXXFLAGS += -I$(XFLIB_DIR)/L2/tests/gelinearsolver
-CXXFLAGS += -I$(XFLIB_DIR)/ext/xcl2
-CXXFLAGS += -I$(XFLIB_DIR)/ext/MatrixGen
-CXXFLAGS += -I$(XFLIB_DIR)/L2/tests/gelinearsolver/Ipopt-releases-3.13.3/src/Algorithm/LinearSolvers
-CXXFLAGS += -I$(XFLIB_DIR)/L2/tests/gelinearsolver/Ipopt-releases-3.13.3/src/Algorithm
-CXXFLAGS += -I$(XFLIB_DIR)/L2/tests/gelinearsolver/Ipopt-releases-3.13.3/src/LinAlg
-CXXFLAGS += -I$(XFLIB_DIR)/L2/tests/gelinearsolver/Ipopt-releases-3.13.3/src/contrib/CGPenalty
+#CXXFLAGS += -I$(XFLIB_DIR)/L2/tests/gelinearsolver
+#CXXFLAGS += -I$(XFLIB_DIR)/ext/xcl2
+#CXXFLAGS += -I$(XFLIB_DIR)/ext/MatrixGen
+#CXXFLAGS += -I$(XFLIB_DIR)/L2/tests/gelinearsolver/Ipopt-releases-3.13.3/src/Algorithm/LinearSolvers
+#CXXFLAGS += -I$(XFLIB_DIR)/L2/tests/gelinearsolver/Ipopt-releases-3.13.3/src/Algorithm
+#CXXFLAGS += -I$(XFLIB_DIR)/L2/tests/gelinearsolver/Ipopt-releases-3.13.3/src/LinAlg
+#CXXFLAGS += -I$(XFLIB_DIR)/L2/tests/gelinearsolver/Ipopt-releases-3.13.3/src/contrib/CGPenalty
 CXXFLAGS += -I/usr/local/include/coin-or
 
 #INCL = `PKG_CONFIG_PATH=/usr/local/lib/pkgconfig: pkg-config --cflags ipopt`
@@ -106,7 +106,7 @@ CXXFLAGS += -I/usr/local/include/coin-or
 CXXFLAGS += -I$(XILINX_XRT)/include -I$(XILINX_VIVADO)/include -std=c++14  -Wall -Wno-unknown-pragmas -Wno-unused-label -pthread 
 CXXLINKFLAGS += -L$(XILINX_XRT)/lib -lxilinxopencl -lpthread -lrt -Wno-unused-label -Wno-narrowing -DVERBOSE 
 CXXLINKFLAGS += -L$(XILINX_VIVADO)/lnx64/tools/fpo_v7_0 -Wl,--as-needed -lgmp -lmpfr -lIp_floating_point_v7_0_bitacc_cmodel
-CXXLINKFLAGS += -L/usr/local/lib -lipopt
+CXXLINKFLAGS += -L/usr/local/lib -lipopt -lvitislibrary
 CXXFLAGS += -fmessage-length=0 -O3 -O2 -DNDEBUG -g
 #CXXFLAGS += -g -O0
 
