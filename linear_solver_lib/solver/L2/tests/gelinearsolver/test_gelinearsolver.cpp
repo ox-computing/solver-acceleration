@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+ 
 #include <iostream>
 #include <string.h>
 #include <sys/time.h>
@@ -71,12 +71,12 @@ int main(int argc, const char* argv[]) {
     ArgParser parser(argc, argv);
 
     // Initialize paths addresses
-    std::string xclbin_path;
+    std::string xclbin_path_init;
     std::string num_str;
     int num_runs, dataAM, dataAN, seed;
 
     // Read In paths addresses
-    if (!parser.getCmdOption("-xclbin", xclbin_path)) {
+    if (!parser.getCmdOption("-xclbin", xclbin_path_init)) {
         std::cout << "INFO:input path is not set!\n";
     }
     if (!parser.getCmdOption("-runs", num_str)) {
@@ -105,7 +105,24 @@ int main(int argc, const char* argv[]) {
     }
     int NB = 1;
     
+<<<<<<< HEAD
     /*// dataAM = dataAN is valid only for symmetric matrix
+=======
+    
+    int first_row = 0;
+    int final_row = 1;
+    
+    // Create file to store array data
+    //std::ofstream myfile;
+    //myfile.open("iteration_times.txt");
+    
+    
+    // Set dataAM and dataAN
+    dataAM = 10;
+    dataAN = 10;
+     
+    // dataAM = dataAN is valid only for symmetric matrix
+>>>>>>> ipopt_example
     dataAM = (dataAM > dataAN) ? dataAN : dataAM;
     dataAN = dataAM;
     
@@ -117,6 +134,10 @@ int main(int argc, const char* argv[]) {
     dataA = aligned_alloc<double>(inout_size);
     double* dataB;
     dataB = aligned_alloc<double>(inoutB_size);
+    double* sigma;
+    sigma = aligned_alloc<double>(dataAM);
+    double* U;
+    U = aligned_alloc<double>(inout_size);
 
     // Generate general matrix dataAM x dataAN
     double** dataC = new double*[dataAM];
@@ -140,8 +161,9 @@ int main(int argc, const char* argv[]) {
     for (int i = 0; i < dataAM; ++i) {
         for (int j = 0; j < NB; ++j) {
             dataB[i * NB + j] = i;
-            printf("Data B Row %d Column %d : %f \n",i,j,dataB[i * NB + j]);
+            //printf("Data B Row %d Column %d : %f \n",i,j,dataB[i * NB + j]);
         }
+<<<<<<< HEAD
     } */
     
     // Test for sparse matrix
@@ -166,10 +188,20 @@ int main(int argc, const char* argv[]) {
     for(int i = 0; i < b_size; i++){
         dataB[i] = dataB_init[i];
         printf("data b %d: %f \n",i,dataB[i]);
+=======
     }
     
-    gettimeofday(&tinit_parse, 0);
-
+    for(int i = 0; i < inout_size; i++)
+    {
+        U[i] = 0;
+    }
+    
+    for(int i = 0; i < dataAM; i++)
+    {
+        sigma[i] = 0;
+>>>>>>> ipopt_example
+    }
+    
     // Platform related operations
     std::vector<cl::Device> devices = xcl::get_xil_devices();
     cl::Device device = devices[0];
@@ -180,7 +212,7 @@ int main(int argc, const char* argv[]) {
     std::string devName = device.getInfo<CL_DEVICE_NAME>();
     printf("INFO: Found Device=%s\n", devName.c_str());
 
-    cl::Program::Binaries xclBins = xcl::import_binary_file(xclbin_path);
+    cl::Program::Binaries xclBins = xcl::import_binary_file(xclbin_path_init);
     devices.resize(1);
     cl::Program program(context, devices, xclBins);
     cl::Kernel kernel_gelinearsolver_0(program, "kernel_gelinearsolver_0");
@@ -191,27 +223,28 @@ int main(int argc, const char* argv[]) {
     std::cout << "INFO: Matrix Row M: " << dataAM << std::endl;
     std::cout << "INFO: Matrix Col N: " << dataAN << std::endl;
     
-    gettimeofday(&tplatform_setup,0);
 
-
-    // DDR Settings
-    /*std::vector<cl_mem_ext_ptr_t> mext_io(2);
-    mext_io[0].flags = XCL_MEM_DDR_BANK0;
-    mext_io[0].obj = dataA;
-    mext_io[0].param = 0;
-    mext_io[1].flags = XCL_MEM_DDR_BANK0;
-    mext_io[1].obj = dataB;
-    mext_io[1].param = 0;*/
-
+    gettimeofday(&tstart, 0);
+    
+    
     // Create device buffer and map dev buf to host buf
     std::vector<cl::Buffer> buffer(2);
 
     buffer[0] = cl::Buffer(context, CL_MEM_USE_HOST_PTR | CL_MEM_READ_WRITE,
                            sizeof(double) * matrix_size, dataA, NULL);
     buffer[1] = cl::Buffer(context, CL_MEM_USE_HOST_PTR | CL_MEM_READ_WRITE,
+<<<<<<< HEAD
                            sizeof(double) * b_size, dataB, NULL);
+=======
+                           sizeof(double) * inoutB_size, dataB, NULL);
+    buffer[2] = cl::Buffer(context, CL_MEM_USE_HOST_PTR | CL_MEM_READ_WRITE,
+                           sizeof(double) * dataAM, sigma, NULL);
+    buffer[3] = cl::Buffer(context, CL_MEM_USE_HOST_PTR | CL_MEM_READ_WRITE,
+                           sizeof(double) * inout_size, U, NULL);
+                                                 
+>>>>>>> ipopt_example
                            
-    gettimeofday(&tbuffer_setup,0);
+    //gettimeofday(&tbuffer_setup,0);
 
     // Data transfer from host buffer to device buffer
     std::vector<std::vector<cl::Event> > kernel_evt(2);
@@ -221,21 +254,32 @@ int main(int argc, const char* argv[]) {
     std::vector<cl::Memory> ob_io;
     ob_io.push_back(buffer[0]);
     ob_io.push_back(buffer[1]);
+    ob_io.push_back(buffer[2]);
+    ob_io.push_back(buffer[3]);
 
     q.enqueueMigrateMemObjects(ob_io, 0, nullptr, &kernel_evt[0][0]); // 0 : migrate from host to dev
     q.finish();
     std::cout << "INFO: Finish data transfer from host to device" << std::endl;
     
-    gettimeofday(&tbuffer_transfer1,0);
+    //gettimeofday(&tbuffer_transfer1,0);
 
     // Setup kernel
+<<<<<<< HEAD
     kernel_gelinearsolver_0.setArg(0, num_rows);
     kernel_gelinearsolver_0.setArg(1, buffer[0]);
     kernel_gelinearsolver_0.setArg(2, buffer[1]);
+=======
+    kernel_gelinearsolver_0.setArg(0, NB);
+    kernel_gelinearsolver_0.setArg(1, dataAN);
+    kernel_gelinearsolver_0.setArg(2, buffer[0]);
+    kernel_gelinearsolver_0.setArg(3, buffer[1]);
+    kernel_gelinearsolver_0.setArg(4, buffer[2]);
+    kernel_gelinearsolver_0.setArg(5, buffer[3]);
+>>>>>>> ipopt_example
     q.finish();
     std::cout << "INFO: Finish kernel setup" << std::endl;
     
-    gettimeofday(&tkernel_setup,0);
+    //gettimeofday(&tkernel_setup,0);
 
     // Variables to measure time
     //struct timeval tstart, tend;
@@ -252,7 +296,7 @@ int main(int argc, const char* argv[]) {
     //std::cout << "INFO: FPGA execution time of " << num_runs << " runs:" << exec_time << " us\n"
               //<< "INFO: Average executiom per run: " << exec_time / num_runs << " us\n";
               
-    gettimeofday(&tkernel_launch,0);
+    //gettimeofday(&tkernel_launch,0);
 
     // Data transfer from device buffer to host buffer
     q.enqueueMigrateMemObjects(ob_io, 1, nullptr, nullptr); // 1 : migrate from dev to host
@@ -266,28 +310,37 @@ int main(int argc, const char* argv[]) {
     //printf("INFO: Overall execution time: %d us \n",exec_time);
     
     // Calculate the time differences and print
-    int parse = diff(&tinit_parse,&tstart);
+    /*int parse = diff(&tinit_parse,&tstart);
     int platform_setup = diff(&tplatform_setup,&tinit_parse);
     int buffer_setup = diff(&tbuffer_setup,&tplatform_setup);
     int buffer_transfer1 = diff(&tbuffer_transfer1,&tbuffer_setup);
     int kernel_setup = diff(&tkernel_setup,&tbuffer_transfer1);
     int kernel_launch = diff(&tkernel_launch,&tkernel_setup);
-    int buffer_transfer2 = diff(&tbuffer_transfer2,&tkernel_launch);
+    int buffer_transfer2 = diff(&tbuffer_transfer2,&tkernel_launch);*/
     int overall = diff(&tbuffer_transfer2,&tstart);
     
-    printf("INFO: Argument parse time: %d us \n",parse);
+    /*printf("INFO: Argument parse time: %d us \n",parse);
     printf("INFO: Platform setup time: %d us \n",platform_setup);
     printf("INFO: Buffer setup time: %d us \n",buffer_setup);
     printf("INFO: Buffer transfer from host to device time: %d us \n",buffer_transfer1);
     printf("INFO: Kernel setup time: %d us \n",kernel_setup);
     printf("INFO: Kernel launch and run time: %d us \n",kernel_launch);
-    printf("INFO: Buffer transfer from device to host time: %d us \n",buffer_transfer2);
-    printf("INFO: Overall execution time: %d us \n",overall);
-    
+    printf("INFO: Buffer transfer from device to host time: %d us \n",buffer_transfer2);*/
+    //printf("INFO: Overall execution time: %d us \n",overall);
+
+    //myfile << overall << std::endl;
      
 
     // Calculate err between dataA and dataC
+<<<<<<< HEAD
     /*double errA = 0;
+=======
+    for (int i = 0; i < inoutB_size; i++){
+        //printf("Data x Row %d : %f \n",i,dataB[i]);
+    }
+    
+    double errA = 0;
+>>>>>>> ipopt_example
     for (int p = 0; p < NB; p++) {
         double res = 0;
         for (int i = 0; i < dataAM; i++) {
@@ -299,20 +352,41 @@ int main(int argc, const char* argv[]) {
         errA += res * res;
     }
     errA = std::sqrt(errA);
+    
+    free(dataA);
+    free(dataB);
 
     std::cout << "-------------- " << std::endl;
     if (errA > 0.0001) {
         std::cout << "INFO: Result false" << std::endl;
         std::cout << "-------------- " << std::endl;
-        return -1;
     } else {
         std::cout << "INFO: Result correct" << std::endl;
         std::cout << "-------------- " << std::endl;
+<<<<<<< HEAD
         return 0;
     }*/
     
     // Print solution
     for(int i = 0; i < b_size; i++){
         printf("x%d : %f \n",i,dataB[i]);
+=======
+>>>>>>> ipopt_example
     }
+    
+    
+    // Print the value of the eigenvalues
+    for (int i = 0; i < dataAM; i++){
+        printf("Eigenvalue %d : %f \n",i,sigma[i]);
+    }
+    
+    free(sigma);
+    free(U);
+    
+    
+    //myfile.close();
+    
+    
+    
+    return 0;
 }

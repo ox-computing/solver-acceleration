@@ -15,22 +15,53 @@
  */
 
 #include "xf_solver_L2.hpp"
+<<<<<<< HEAD
 #define NCU 1
 #define MAXN 100
 #define LDB 1
+=======
+#define NCU 30
+#define MAXN 1000
+>>>>>>> ipopt_example
 
-extern "C" void kernel_gelinearsolver_0(int na, double* dataA, double* dataB) {
-#pragma HLS INTERFACE m_axi port = dataA bundle = gmem0 offset = slave num_read_outstanding = \
-    16 max_read_burst_length = 32
-#pragma HLS INTERFACE m_axi port = dataB bundle = gmem0 offset = slave num_read_outstanding = \
-    16 max_read_burst_length = 32
+extern "C" void kernel_gelinearsolver_0(int num_rhs, int na, double* dataA, double* dataB) {
+#pragma HLS INTERFACE m_axi port = dataA bundle = gmem0 offset = slave
+#pragma HLS INTERFACE m_axi port = dataB bundle = gmem1 offset = slave
 
+#pragma HLS INTERFACE s_axilite port = num_rhs bundle = control
 #pragma HLS INTERFACE s_axilite port = na bundle = control
 #pragma HLS INTERFACE s_axilite port = dataA bundle = control
 #pragma HLS INTERFACE s_axilite port = dataB bundle = control
 #pragma HLS INTERFACE s_axilite port = return bundle = control
 
     int info;
-    // Calling for cholesky core function
-    xf::solver::gelinearsolver<double, MAXN, NCU>(na, dataA, LDB, dataB, na, LDB, info);
+    
+    // Determine if matrix is definite
+    
+    // Find eigenvalues    
+    /*xf::solver::syevj<double, MAXN, NCU>(na, dataA, na, sigma, U, na, info);
+    
+    // Determine if any are all positive
+    bool positive_definite = true;
+    
+    for(int i = 0; i < na; i++)
+    {
+        if(sigma[i] <= 0)
+        {
+            positive_definite = false;
+            break;
+        }
+    }
+    
+    if(positive_definite)
+    {
+        // SPD solver
+        xf::solver::polinearsolver<double, MAXN, NCU>(na, dataA, num_rhs, dataB, na, num_rhs, info);
+    }
+    else
+    {*/
+        // General solver
+        xf::solver::gelinearsolver<double, MAXN, NCU>(na, dataA, num_rhs, dataB, na, num_rhs, info);
+    //}
+
 }
