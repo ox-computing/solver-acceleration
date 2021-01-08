@@ -59,13 +59,6 @@ SYSROOT := ${SYSROOT}
 DEVICE ?= xilinx_u50_gen3x16_xdma_201920_3
 
 RUNS ?= 1
-<<<<<<< HEAD
-ROW_SIZE ?= 5
-COLUMN_SIZE ?= 5
-=======
-ROW_SIZE ?= 500
-COLUMN_SIZE ?= 500
->>>>>>> ipopt_example
 SEED ?= 12
 
 include ./utils.mk
