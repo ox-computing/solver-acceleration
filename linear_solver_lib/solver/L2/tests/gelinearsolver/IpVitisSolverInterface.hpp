@@ -13,6 +13,7 @@ Base class is SparseSymLinearSolver
 #include <sys/time.h>
 #include <algorithm>
 #include <cmath>
+#include <fstream>
 
 #include "xcl2.hpp"
 

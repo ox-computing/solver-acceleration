@@ -58,6 +58,11 @@ namespace Ipopt
       const OptionsList& options,
       const std::string& prefix
    ){
+      // Get time
+      struct timeval tstart, tend;
+      
+      gettimeofday(&tstart,0);
+      
       printf("INFO: Initialising IMPL \n");
       
       // Read in xclbin path from options
@@ -86,6 +91,11 @@ namespace Ipopt
       program = cl::Program(context, devices, xclBins);
       kernel_gelinearsolver_0 = cl::Kernel(program, "kernel_gelinearsolver_0");
       std::cout << "INFO: Kernel has been created" << std::endl;
+      
+      gettimeofday(&tend,0);
+      
+      int time = diff(&tend, &tstart);
+      
     
       return true;
       
@@ -131,6 +141,10 @@ namespace Ipopt
       bool         check_NegEVals,
       Index        numberOfNegEVals
    ){
+       
+       struct timeval tstart, tinit_array, ttrans1, tlaunch, ttrans2, tpost;
+       
+       gettimeofday(&tstart,0);
        
        Jnlst().Printf(J_DETAILED, J_LINEAR_ALGEBRA,
                      "Vitis: Running solver \n");
@@ -211,6 +225,7 @@ namespace Ipopt
         
         }*/
         
+        gettimeofday(&tinit_array,0);
         
         /**************
          Buffer programming and triggering
@@ -230,6 +245,8 @@ namespace Ipopt
          q.enqueueMigrateMemObjects(ob_io, 0, nullptr, &kernel_evt[0][0]); // 0 : migrate from host to dev
          q.finish();
          
+         gettimeofday(&ttrans1,0);
+         
           // Setup kernel
           kernel_gelinearsolver_0.setArg(0, num_rhs);
           kernel_gelinearsolver_0.setArg(1, matrix_dimension);
@@ -242,11 +259,13 @@ namespace Ipopt
           q.enqueueTask(kernel_gelinearsolver_0, nullptr, nullptr);
           q.finish();
           
+          gettimeofday(&tlaunch,0);
           
           // Transfer data back to host
           q.enqueueMigrateMemObjects(ob_io, 1, nullptr, nullptr); // 1 : migrate from dev to host
           q.finish();
           
+          gettimeofday(&ttransfer2,0);
         
           // Return the value of the solution to rhs_values
           counter = 0;
@@ -287,6 +306,15 @@ namespace Ipopt
                   return SYMSOLVER_SINGULAR;
               }
           } 
+          
+          gettimeofday(&tpost,0);
+          
+          int array_setup = diff(&tinit_array,&tstart);
+          int trans1 = diff(&ttrans1,&tinit_array);
+          int launch = diff(&tlaunch,&ttrans1);
+          int trans2 = diff(&ttrans2,&tlaunch);
+          int post =  diff(&tpost,&ttrans2);
+          
           
           //printf("INFO : Solver successful \n");
           Jnlst().Printf(J_DETAILED, J_LINEAR_ALGEBRA,

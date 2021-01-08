@@ -42,10 +42,6 @@ int main(
    char* argc[]
 )
 {
-
-    // Create file to store timing data
-    std::ofstream myfile;
-    myfile.open("Tutorial_vitis_timings.txt");
     
     int number_iterations = 30;
     
@@ -56,13 +52,10 @@ int main(
     for(int i = 1; i <= number_iterations; i++)
     {
     
-    // Start the timer
-    gettimeofday(&tstart, 0);
-    
    // Set the data:
 
    // Number of variables
-   Index N = 10*i;
+   Index N = 200;
    
    printf("N : %d \n",N);
    
@@ -73,7 +66,7 @@ int main(
    for( Index i = 0; i < N - 2; i++ )
    {
       a[i] = (double(i + 2)) / (double) N;
-      printf("Constant value : %f \n",a[i]);
+      //printf("Constant value : %f \n",a[i]);
    }
 
    // Create a new instance of your nlp
@@ -111,17 +104,9 @@ int main(
 
    // However, we created the Number array for a here and have to delete it
    delete[] a;
-   
-   gettimeofday(&tend,0);
-   
-   // Determine time difference and store
-   time_diff = diff(&tend,&tstart);
-   
-   myfile << time_diff << std::endl;
+
    
    } //for loop
-   
-   myfile.close();
 
    return 0;
 }
