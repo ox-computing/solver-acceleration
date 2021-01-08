@@ -52,14 +52,14 @@ int main(
     for(int i = 1; i <= number_iterations; i++)
     {
     
-   // Set the data:
+   // Create Journalist
+   SmartPtr<Journalist> my_journalist = new Journalist();
+   
 
    // Number of variables
    Index N = 200;
    
    printf("N : %d \n",N);
-   
-   myfile << N << " ";
 
    // constant terms in the constraints
    Number* a = new double[N - 2];

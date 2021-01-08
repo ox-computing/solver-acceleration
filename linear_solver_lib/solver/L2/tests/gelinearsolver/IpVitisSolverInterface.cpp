@@ -265,7 +265,7 @@ namespace Ipopt
           q.enqueueMigrateMemObjects(ob_io, 1, nullptr, nullptr); // 1 : migrate from dev to host
           q.finish();
           
-          gettimeofday(&ttransfer2,0);
+          gettimeofday(&ttrans2,0);
         
           // Return the value of the solution to rhs_values
           counter = 0;
