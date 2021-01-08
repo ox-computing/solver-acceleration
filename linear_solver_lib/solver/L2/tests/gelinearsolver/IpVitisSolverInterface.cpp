@@ -135,44 +135,13 @@ namespace Ipopt
        Jnlst().Printf(J_DETAILED, J_LINEAR_ALGEBRA,
                      "Vitis: Running solver \n");
        
-       //printf("INFO : Running Vitis solver \n");
+       printf("INFO : Running Vitis solver \n");
                      
        printf("Matrix dimension : %d \n",matrix_dimension);
        
        /*********************
         Data Allocation
         *******************/
-        /*if(check_NegEVals){
-        printf("Requesting Check \n");
-        }
-        printf("Stated number of evals : %d \n",numberOfNegEVals);
-        printf("Matrix dimension : %d \n",matrix_dimension);
-        printf("Number of non-zeros : %d \n",matrix_nonzeros);
-        
-        // Print input values
-        printf("NRHS : %d \n",nrhs);
-        
-        for(int i = 0; i < nrhs*matrix_dimension; i++)
-        {
-            printf("Input data %d : %f \n",i,rhs_vals[i]);
-        }
-        
-         for(int i = 0; i < matrix_nonzeros; i++)
-        {
-            printf("ja %d : %d \n",i,ia[i]);
-            printf("ia %d : %d \n",i,ja[i]);
-        }
-        
-         for(int i = 0; i < matrix_nonzeros; i++)
-        {
-            //printf("ia %d : %d \n",i,ia[i]);
-        }
-        
-        for(int i = 0; i < matrix_nonzeros; i++)
-        {
-            printf("Nonzero values %d : %f \n",i,val_[i]);
-        }*/
-        
         
        // Number of RHS
        num_rhs = nrhs;
@@ -198,37 +167,22 @@ namespace Ipopt
         }
         
         // Use the triplet format originally for MA27
-        // Convert to 0 offset
         Index ia_nonoffset[matrix_nonzeros];
         Index ja_nonoffset[matrix_nonzeros];
         
+        // Convert to 0 offset and populate half of matrix
         for(int i = 0; i < matrix_nonzeros; i++)
         {
             ia_nonoffset[i] = ia[i] - 1;
-            ja_nonoffset[i] = ja[i] - 1;    
-        }
-        
-        // Populate half of matrix
-        for(int i = 0; i < matrix_nonzeros; i++)
-        {
+            ja_nonoffset[i] = ja[i] - 1;
+            
             if(val_[i] != 0)
             {
                 dataA[matrix_dimension*ia_nonoffset[i] + ja_nonoffset[i]] = val_[i];
+                dataA[matrix_dimension*ja_nonoffset[i] + ia_nonoffset[i]] = val_[i];
             }
         }
-        
-        // Populate other half
-        for(int i = 0; i < matrix_dimension; i++)
-        {
-            for(int j = 0; j < matrix_dimension; j++)
-            {
-                dataA[matrix_dimension*i + j] = dataA[matrix_dimension*j + i];
-            }
-        }
-        
-        
-         
-        
+             
         // Print the values of A
         /*for(int i = 0; i < dataA_size; i++)
         {
