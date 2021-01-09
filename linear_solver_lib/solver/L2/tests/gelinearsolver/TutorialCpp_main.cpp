@@ -43,21 +43,13 @@ int main(
 )
 {
     
-    int number_iterations = 30;
-    
-    struct timeval tstart, tend;
-    
-    int time_diff = 0;
+    int number_iterations = 1;
     
     for(int i = 1; i <= number_iterations; i++)
-    {
-    
-   // Create Journalist
-   SmartPtr<Journalist> my_journalist = new Journalist();
-   
+    {   
 
    // Number of variables
-   Index N = 200;
+   Index N = 100;
    
    printf("N : %d \n",N);
 

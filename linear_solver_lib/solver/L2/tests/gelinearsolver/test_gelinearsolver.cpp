@@ -329,18 +329,8 @@ int main(int argc, const char* argv[]) {
     //printf("INFO: Overall execution time: %d us \n",overall);
 
     //myfile << overall << std::endl;
-     
-
-    // Calculate err between dataA and dataC
-<<<<<<< HEAD
-    /*double errA = 0;
-=======
-    for (int i = 0; i < inoutB_size; i++){
-        //printf("Data x Row %d : %f \n",i,dataB[i]);
-    }
     
     double errA = 0;
->>>>>>> ipopt_example
     for (int p = 0; p < NB; p++) {
         double res = 0;
         for (int i = 0; i < dataAM; i++) {
@@ -363,21 +353,12 @@ int main(int argc, const char* argv[]) {
     } else {
         std::cout << "INFO: Result correct" << std::endl;
         std::cout << "-------------- " << std::endl;
-<<<<<<< HEAD
         return 0;
-    }*/
+    }
     
     // Print solution
     for(int i = 0; i < b_size; i++){
-        printf("x%d : %f \n",i,dataB[i]);
-=======
->>>>>>> ipopt_example
-    }
-    
-    
-    // Print the value of the eigenvalues
-    for (int i = 0; i < dataAM; i++){
-        printf("Eigenvalue %d : %f \n",i,sigma[i]);
+        printf("x%d : %f \n",i,dataB[i]);e
     }
     
     free(sigma);

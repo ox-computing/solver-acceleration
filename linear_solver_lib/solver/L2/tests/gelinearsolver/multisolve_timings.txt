@@ -1,0 +1,9 @@
+ 
+ Multisolve Timings : 
+Array : 199 
+First transfer : 776 
+Launch : 31870 
+Second transfer : 620 
+Post : 51 
+
+

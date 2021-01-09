@@ -58,7 +58,7 @@ namespace Ipopt
       const OptionsList& options,
       const std::string& prefix
    ){
-      // Get time
+      // Time variables
       struct timeval tstart, tend;
       
       gettimeofday(&tstart,0);
@@ -96,6 +96,12 @@ namespace Ipopt
       
       int time = diff(&tend, &tstart);
       
+      FILE* fk = fopen("Impl_timings.txt","w");
+      
+      fprintf(fk,"Impl : %d \n", time);
+      
+      fclose(fk);
+      
     
       return true;
       
@@ -108,9 +114,6 @@ namespace Ipopt
       const Index* ia,
       const Index* ja
    ){
-       Jnlst().Printf(J_DETAILED, J_LINEAR_ALGEBRA,
-                     "Vitis: Initialising Structure \n");
-       
        // Store variables and pointers for later use
        matrix_dimension = dim;
        matrix_nonzeros = nonzeros;
@@ -141,17 +144,13 @@ namespace Ipopt
       bool         check_NegEVals,
       Index        numberOfNegEVals
    ){
-       
+       // Timing variables
        struct timeval tstart, tinit_array, ttrans1, tlaunch, ttrans2, tpost;
        
        gettimeofday(&tstart,0);
        
-       Jnlst().Printf(J_DETAILED, J_LINEAR_ALGEBRA,
-                     "Vitis: Running solver \n");
-       
-       printf("INFO : Running Vitis solver \n");
                      
-       printf("Matrix dimension : %d \n",matrix_dimension);
+       printf("INFO : Matrix dimension : %d \n",matrix_dimension);
        
        /*********************
         Data Allocation
@@ -184,7 +183,7 @@ namespace Ipopt
         Index ia_nonoffset[matrix_nonzeros];
         Index ja_nonoffset[matrix_nonzeros];
         
-        // Convert to 0 offset and populate half of matrix
+        // Convert to 0 offset and populate matrix
         for(int i = 0; i < matrix_nonzeros; i++)
         {
             ia_nonoffset[i] = ia[i] - 1;
@@ -197,11 +196,6 @@ namespace Ipopt
             }
         }
              
-        // Print the values of A
-        /*for(int i = 0; i < dataA_size; i++)
-        {
-            printf("Data A %d : %f \n",i,dataA[i]);
-        }*/
         
         // Allocate memory for B
         dataB_size = matrix_dimension*num_rhs;
@@ -219,11 +213,6 @@ namespace Ipopt
         
         }
         
-        // Print the value of B
-        /*for(int i = 0; i < dataB_size; i++){
-            printf("Data B %d : %f \n",i,dataB[i]);
-        
-        }*/
         
         gettimeofday(&tinit_array,0);
         
@@ -287,22 +276,12 @@ namespace Ipopt
           }
           
           
-          /*if(check_NegEVals && (numberOfNegEVals != 1))
-          {
-              printf("Eigenvalues do not match \n");
-              Jnlst().Printf(J_DETAILED, J_LINEAR_ALGEBRA,
-                     "Vitis: Eigenvalues do not match \n");
-              return SYMSOLVER_WRONG_INERTIA;
-          }*/
-          
           // Check if singular
           for(int i = 0; i < dataB_size; i++)
           {
               if(std::isnan(rhs_vals[i]))
               {
                   printf("INFO : Matrix singular \n");
-                  Jnlst().Printf(J_DETAILED, J_LINEAR_ALGEBRA,
-                     "Vitis: Matrix Singular \n");
                   return SYMSOLVER_SINGULAR;
               }
           } 
@@ -315,10 +294,19 @@ namespace Ipopt
           int trans2 = diff(&ttrans2,&tlaunch);
           int post =  diff(&tpost,&ttrans2);
           
+          FILE* fp = fopen("multisolve_timings.txt","w");
           
-          //printf("INFO : Solver successful \n");
-          Jnlst().Printf(J_DETAILED, J_LINEAR_ALGEBRA,
-                     "Vitis: Solver Successful \n");
+          fprintf(fp," \n Multisolve Timings : \n");
+          
+          fprintf(fp,"Array : %d \n",array_setup);
+          fprintf(fp,"First transfer : %d \n", trans1);
+          fprintf(fp,"Launch : %d \n", launch);
+          fprintf(fp,"Second transfer : %d \n", trans2);
+          fprintf(fp,"Post : %d \n", post);
+          
+          fclose(fp);
+          
+          
           
           return SYMSOLVER_SUCCESS;
 }
