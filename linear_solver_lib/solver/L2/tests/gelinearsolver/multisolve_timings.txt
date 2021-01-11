@@ -1,9 +1,644 @@
- 
- Multisolve Timings : 
-Array : 199 
-First transfer : 776 
-Launch : 31870 
-Second transfer : 620 
-Post : 51 
 
+*** Multisolve Timings : 1 ***
+Array : 668 
+First transfer : 1478 
+Launch : 55436 
+Second transfer : 1256 
+Post : 74 
 
+*** Multisolve Timings : 2 ***
+Array : 1129 
+First transfer : 1241 
+Launch : 55432 
+Second transfer : 1234 
+Post : 87 
+
+*** Multisolve Timings : 3 ***
+Array : 1379 
+First transfer : 1302 
+Launch : 55472 
+Second transfer : 1228 
+Post : 84 
+
+*** Multisolve Timings : 4 ***
+Array : 1461 
+First transfer : 1322 
+Launch : 55482 
+Second transfer : 1349 
+Post : 99 
+
+*** Multisolve Timings : 5 ***
+Array : 1631 
+First transfer : 1338 
+Launch : 55488 
+Second transfer : 1323 
+Post : 112 
+
+*** Multisolve Timings : 6 ***
+Array : 2061 
+First transfer : 1413 
+Launch : 55575 
+Second transfer : 1378 
+Post : 116 
+
+*** Multisolve Timings : 7 ***
+Array : 2036 
+First transfer : 1519 
+Launch : 55562 
+Second transfer : 1411 
+Post : 109 
+
+*** Multisolve Timings : 8 ***
+Array : 2058 
+First transfer : 1441 
+Launch : 55524 
+Second transfer : 1408 
+Post : 124 
+
+*** Multisolve Timings : 9 ***
+Array : 2248 
+First transfer : 1555 
+Launch : 55617 
+Second transfer : 1480 
+Post : 125 
+
+*** Multisolve Timings : 10 ***
+Array : 2499 
+First transfer : 1505 
+Launch : 55644 
+Second transfer : 1478 
+Post : 142 
+
+*** Multisolve Timings : 11 ***
+Array : 2751 
+First transfer : 1515 
+Launch : 55586 
+Second transfer : 1388 
+Post : 101 
+
+*** Multisolve Timings : 12 ***
+Array : 1930 
+First transfer : 1412 
+Launch : 55509 
+Second transfer : 1374 
+Post : 116 
+
+*** Multisolve Timings : 13 ***
+Array : 2066 
+First transfer : 1515 
+Launch : 55530 
+Second transfer : 1408 
+Post : 110 
+
+*** Multisolve Timings : 14 ***
+Array : 2085 
+First transfer : 1427 
+Launch : 55567 
+Second transfer : 1460 
+Post : 132 
+
+*** Multisolve Timings : 15 ***
+Array : 2464 
+First transfer : 1598 
+Launch : 55598 
+Second transfer : 1478 
+Post : 128 
+
+*** Multisolve Timings : 16 ***
+Array : 2465 
+First transfer : 1500 
+Launch : 55594 
+Second transfer : 1465 
+Post : 131 
+
+*** Multisolve Timings : 17 ***
+Array : 2436 
+First transfer : 1627 
+Launch : 55605 
+Second transfer : 1484 
+Post : 126 
+
+*** Multisolve Timings : 18 ***
+Array : 2516 
+First transfer : 2092 
+Launch : 55627 
+Second transfer : 1495 
+Post : 133 
+
+*** Multisolve Timings : 19 ***
+Array : 2442 
+First transfer : 1650 
+Launch : 55645 
+Second transfer : 1522 
+Post : 138 
+
+*** Multisolve Timings : 20 ***
+Array : 2802 
+First transfer : 1560 
+Launch : 55698 
+Second transfer : 1423 
+Post : 167 
+
+*** Multisolve Timings : 21 ***
+Array : 3125 
+First transfer : 1536 
+Launch : 55654 
+Second transfer : 1389 
+Post : 148 
+
+*** Multisolve Timings : 22 ***
+Array : 3083 
+First transfer : 1476 
+Launch : 55638 
+Second transfer : 1406 
+Post : 158 
+
+*** Multisolve Timings : 23 ***
+Array : 3077 
+First transfer : 1533 
+Launch : 55656 
+Second transfer : 1398 
+Post : 150 
+
+*** Multisolve Timings : 24 ***
+Array : 3089 
+First transfer : 1475 
+Launch : 55662 
+Second transfer : 1421 
+Post : 161 
+
+*** Multisolve Timings : 25 ***
+Array : 3085 
+First transfer : 1541 
+Launch : 55656 
+Second transfer : 1403 
+Post : 152 
+
+*** Multisolve Timings : 26 ***
+Array : 3095 
+First transfer : 1540 
+Launch : 55640 
+Second transfer : 1413 
+Post : 160 
+
+*** Multisolve Timings : 27 ***
+Array : 3081 
+First transfer : 1544 
+Launch : 55573 
+Second transfer : 1290 
+Post : 73 
+
+*** Multisolve Timings : 28 ***
+Array : 1247 
+First transfer : 1302 
+Launch : 55501 
+Second transfer : 1374 
+Post : 117 
+
+*** Multisolve Timings : 29 ***
+Array : 2036 
+First transfer : 1430 
+Launch : 55562 
+Second transfer : 1441 
+Post : 119 
+
+*** Multisolve Timings : 30 ***
+Array : 2249 
+First transfer : 1512 
+Launch : 55618 
+Second transfer : 1450 
+Post : 134 
+
+*** Multisolve Timings : 31 ***
+Array : 2463 
+First transfer : 1592 
+Launch : 55605 
+Second transfer : 1476 
+Post : 127 
+
+*** Multisolve Timings : 32 ***
+Array : 2494 
+First transfer : 1506 
+Launch : 55627 
+Second transfer : 1458 
+Post : 134 
+
+*** Multisolve Timings : 33 ***
+Array : 2476 
+First transfer : 1596 
+Launch : 55606 
+Second transfer : 1484 
+Post : 125 
+
+*** Multisolve Timings : 34 ***
+Array : 2522 
+First transfer : 1499 
+Launch : 55624 
+Second transfer : 1486 
+Post : 133 
+
+*** Multisolve Timings : 35 ***
+Array : 2440 
+First transfer : 1650 
+Launch : 55641 
+Second transfer : 1524 
+Post : 147 
+
+*** Multisolve Timings : 36 ***
+Array : 2783 
+First transfer : 1562 
+Launch : 55674 
+Second transfer : 1516 
+Post : 142 
+
+*** Multisolve Timings : 37 ***
+Array : 2710 
+First transfer : 1643 
+Launch : 55688 
+Second transfer : 1521 
+Post : 145 
+
+*** Multisolve Timings : 38 ***
+Array : 2782 
+First transfer : 1582 
+Launch : 55650 
+Second transfer : 1423 
+Post : 156 
+
+*** Multisolve Timings : 39 ***
+Array : 3048 
+First transfer : 1547 
+Launch : 55654 
+Second transfer : 1400 
+Post : 150 
+
+*** Multisolve Timings : 40 ***
+Array : 3125 
+First transfer : 1487 
+Launch : 55644 
+Second transfer : 1418 
+Post : 155 
+
+*** Multisolve Timings : 41 ***
+Array : 3054 
+First transfer : 1576 
+Launch : 55655 
+Second transfer : 1400 
+Post : 149 
+
+*** Multisolve Timings : 42 ***
+Array : 3121 
+First transfer : 1490 
+Launch : 55635 
+Second transfer : 1369 
+Post : 157 
+
+*** Multisolve Timings : 43 ***
+Array : 3050 
+First transfer : 1547 
+Launch : 55574 
+Second transfer : 1208 
+Post : 137 
+
+*** Multisolve Timings : 44 ***
+Array : 3093 
+First transfer : 1449 
+Launch : 55556 
+Second transfer : 1327 
+Post : 169 
+
+*** Multisolve Timings : 45 ***
+Array : 2423 
+First transfer : 1528 
+Launch : 55609 
+Second transfer : 1472 
+Post : 127 
+
+*** Multisolve Timings : 46 ***
+Array : 2503 
+First transfer : 1655 
+Launch : 55611 
+Second transfer : 1376 
+Post : 141 
+
+*** Multisolve Timings : 47 ***
+Array : 2775 
+First transfer : 1688 
+Launch : 55612 
+Second transfer : 1516 
+Post : 146 
+
+*** Multisolve Timings : 48 ***
+Array : 2775 
+First transfer : 1680 
+Launch : 55614 
+Second transfer : 1380 
+Post : 144 
+
+*** Multisolve Timings : 49 ***
+Array : 2712 
+First transfer : 1681 
+Launch : 55618 
+Second transfer : 1515 
+Post : 136 
+
+*** Multisolve Timings : 50 ***
+Array : 2772 
+First transfer : 1671 
+Launch : 55653 
+Second transfer : 1373 
+Post : 192 
+
+*** Multisolve Timings : 51 ***
+Array : 2703 
+First transfer : 1688 
+Launch : 55594 
+Second transfer : 1514 
+Post : 135 
+
+*** Multisolve Timings : 52 ***
+Array : 2780 
+First transfer : 1665 
+Launch : 55613 
+Second transfer : 1372 
+Post : 141 
+
+*** Multisolve Timings : 53 ***
+Array : 2740 
+First transfer : 1654 
+Launch : 55613 
+Second transfer : 1534 
+Post : 135 
+
+*** Multisolve Timings : 54 ***
+Array : 2769 
+First transfer : 1661 
+Launch : 55586 
+Second transfer : 1335 
+Post : 154 
+
+*** Multisolve Timings : 55 ***
+Array : 3084 
+First transfer : 1584 
+Launch : 55614 
+Second transfer : 1394 
+Post : 149 
+
+*** Multisolve Timings : 56 ***
+Array : 3123 
+First transfer : 1588 
+Launch : 55610 
+Second transfer : 1337 
+Post : 166 
+
+*** Multisolve Timings : 57 ***
+Array : 3088 
+First transfer : 1574 
+Launch : 55624 
+Second transfer : 1425 
+Post : 161 
+
+*** Multisolve Timings : 58 ***
+Array : 3121 
+First transfer : 1590 
+Launch : 55616 
+Second transfer : 1337 
+Post : 166 
+
+*** Multisolve Timings : 59 ***
+Array : 3060 
+First transfer : 1572 
+Launch : 55613 
+Second transfer : 1395 
+Post : 148 
+
+*** Multisolve Timings : 60 ***
+Array : 3142 
+First transfer : 1580 
+Launch : 55561 
+Second transfer : 1166 
+Post : 110 
+
+*** Multisolve Timings : 61 ***
+Array : 2030 
+First transfer : 1510 
+Launch : 55537 
+Second transfer : 1475 
+Post : 127 
+
+*** Multisolve Timings : 62 ***
+Array : 2497 
+First transfer : 1655 
+Launch : 55604 
+Second transfer : 1367 
+Post : 143 
+
+*** Multisolve Timings : 63 ***
+Array : 2748 
+First transfer : 1687 
+Launch : 55619 
+Second transfer : 1514 
+Post : 138 
+
+*** Multisolve Timings : 64 ***
+Array : 2777 
+First transfer : 1690 
+Launch : 55602 
+Second transfer : 1371 
+Post : 143 
+
+*** Multisolve Timings : 65 ***
+Array : 2745 
+First transfer : 1641 
+Launch : 55619 
+Second transfer : 1519 
+Post : 138 
+
+*** Multisolve Timings : 66 ***
+Array : 2752 
+First transfer : 1709 
+Launch : 55649 
+Second transfer : 1370 
+Post : 143 
+
+*** Multisolve Timings : 67 ***
+Array : 2765 
+First transfer : 1693 
+Launch : 55659 
+Second transfer : 1492 
+Post : 148 
+
+*** Multisolve Timings : 68 ***
+Array : 2792 
+First transfer : 1670 
+Launch : 55588 
+Second transfer : 1334 
+Post : 156 
+
+*** Multisolve Timings : 69 ***
+Array : 3118 
+First transfer : 1587 
+Launch : 55614 
+Second transfer : 1423 
+Post : 150 
+
+*** Multisolve Timings : 70 ***
+Array : 3125 
+First transfer : 1588 
+Launch : 55617 
+Second transfer : 1353 
+Post : 156 
+
+*** Multisolve Timings : 71 ***
+Array : 3049 
+First transfer : 1606 
+Launch : 55618 
+Second transfer : 1391 
+Post : 148 
+
+*** Multisolve Timings : 72 ***
+Array : 3120 
+First transfer : 1593 
+Launch : 55612 
+Second transfer : 1342 
+Post : 167 
+
+*** Multisolve Timings : 73 ***
+Array : 3081 
+First transfer : 1575 
+Launch : 55618 
+Second transfer : 1400 
+Post : 148 
+
+*** Multisolve Timings : 74 ***
+Array : 3128 
+First transfer : 1594 
+Launch : 55613 
+Second transfer : 1339 
+Post : 156 
+
+*** Multisolve Timings : 75 ***
+Array : 3080 
+First transfer : 1579 
+Launch : 55620 
+Second transfer : 1394 
+Post : 147 
+
+*** Multisolve Timings : 76 ***
+Array : 3130 
+First transfer : 1598 
+Launch : 55441 
+Second transfer : 1172 
+Post : 65 
+
+*** Multisolve Timings : 77 ***
+Array : 840 
+First transfer : 1290 
+Launch : 55419 
+Second transfer : 1367 
+Post : 110 
+
+*** Multisolve Timings : 78 ***
+Array : 2063 
+First transfer : 1533 
+Launch : 55526 
+Second transfer : 1325 
+Post : 132 
+
+*** Multisolve Timings : 79 ***
+Array : 2469 
+First transfer : 1625 
+Launch : 55575 
+Second transfer : 1475 
+Post : 123 
+
+*** Multisolve Timings : 80 ***
+Array : 2498 
+First transfer : 1610 
+Launch : 55589 
+Second transfer : 1329 
+Post : 132 
+
+*** Multisolve Timings : 81 ***
+Array : 2691 
+First transfer : 1685 
+Launch : 55623 
+Second transfer : 1522 
+Post : 144 
+
+*** Multisolve Timings : 82 ***
+Array : 2777 
+First transfer : 1682 
+Launch : 55613 
+Second transfer : 1381 
+Post : 142 
+
+*** Multisolve Timings : 83 ***
+Array : 2715 
+First transfer : 1693 
+Launch : 55619 
+Second transfer : 1509 
+Post : 135 
+
+*** Multisolve Timings : 84 ***
+Array : 2809 
+First transfer : 1685 
+Launch : 55647 
+Second transfer : 1385 
+Post : 142 
+
+*** Multisolve Timings : 85 ***
+Array : 2779 
+First transfer : 1677 
+Launch : 55598 
+Second transfer : 1394 
+Post : 149 
+
+*** Multisolve Timings : 86 ***
+Array : 3073 
+First transfer : 1565 
+Launch : 55606 
+Second transfer : 1337 
+Post : 167 
+
+*** Multisolve Timings : 87 ***
+Array : 3088 
+First transfer : 1573 
+Launch : 55620 
+Second transfer : 1406 
+Post : 161 
+
+*** Multisolve Timings : 88 ***
+Array : 3095 
+First transfer : 1596 
+Launch : 55616 
+Second transfer : 1334 
+Post : 156 
+
+*** Multisolve Timings : 89 ***
+Array : 3098 
+First transfer : 1584 
+Launch : 55623 
+Second transfer : 1399 
+Post : 148 
+
+*** Multisolve Timings : 90 ***
+Array : 3163 
+First transfer : 1581 
+Launch : 55608 
+Second transfer : 1337 
+Post : 155 
+
+*** Multisolve Timings : 91 ***
+Array : 3044 
+First transfer : 1606 
+Launch : 55621 
+Second transfer : 1398 
+Post : 159 
+
+*** Multisolve Timings : 92 ***
+Array : 3120 
+First transfer : 1597 
+Launch : 55620 
+Second transfer : 1225 
+Post : 170 

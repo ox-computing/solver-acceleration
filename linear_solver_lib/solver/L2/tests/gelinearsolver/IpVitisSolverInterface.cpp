@@ -96,11 +96,13 @@ namespace Ipopt
       
       int time = diff(&tend, &tstart);
       
-      FILE* fk = fopen("Impl_timings.txt","w");
+      static int iteration_number = 0;
+      iteration_number++;
       
-      fprintf(fk,"Impl : %d \n", time);
+      static FILE* fk = fopen("Impl_timings.txt","w");
       
-      fclose(fk);
+      fprintf(fk,"\n*** InitializeImpl : %d ***\n", iteration_number);
+      fprintf(fk,"Runtime : %d \n",time);
       
     
       return true;
@@ -294,19 +296,18 @@ namespace Ipopt
           int trans2 = diff(&ttrans2,&tlaunch);
           int post =  diff(&tpost,&ttrans2);
           
-          FILE* fp = fopen("multisolve_timings.txt","w");
+          static int iteration_number = 0;
+          iteration_number++;
           
-          fprintf(fp," \n Multisolve Timings : \n");
+          static FILE* fp = fopen("multisolve_timings.txt","w");
+          
+          fprintf(fp,"\n*** Multisolve Timings : %d ***\n",iteration_number);
           
           fprintf(fp,"Array : %d \n",array_setup);
           fprintf(fp,"First transfer : %d \n", trans1);
           fprintf(fp,"Launch : %d \n", launch);
           fprintf(fp,"Second transfer : %d \n", trans2);
           fprintf(fp,"Post : %d \n", post);
-          
-          fclose(fp);
-          
-          
           
           return SYMSOLVER_SUCCESS;
 }
