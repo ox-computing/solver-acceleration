@@ -152,7 +152,7 @@ namespace Ipopt
        gettimeofday(&tstart,0);
        
                      
-       printf("INFO : Matrix dimension : %d \n",matrix_dimension);
+       printf("INFO : Multsolve \n");
        
        /*********************
         Data Allocation
@@ -303,7 +303,8 @@ namespace Ipopt
           
           fprintf(fp,"\n*** Multisolve Timings : %d ***\n",iteration_number);
           
-          fprintf(fp,"Array : %d \n",array_setup);
+          fprintf(fp,"Matrix dimension : %d \n",matrix_dimension);
+          fprintf(fp,"Array initialise : %d \n",array_setup);
           fprintf(fp,"First transfer : %d \n", trans1);
           fprintf(fp,"Launch : %d \n", launch);
           fprintf(fp,"Second transfer : %d \n", trans2);
