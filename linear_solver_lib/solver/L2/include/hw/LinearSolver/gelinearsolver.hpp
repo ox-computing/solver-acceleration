@@ -149,7 +149,7 @@ void gelinearsolver(int n, T* A, int b, T* B, int lda, int ldb, int& info) {
 #pragma HLS array_partition variable = matB cyclic factor = NCU dim = 1
 #pragma HLS resource variable = matA core = XPM_MEMORY uram
 
-        for (int j = 0; j < b; j++) {
+       /* for (int j = 0; j < b; j++) {
         Loop_read:
             for (int r = 0; r < n; r++) {
                 for (int c = 0; c < n; c++) {
@@ -160,16 +160,16 @@ void gelinearsolver(int n, T* A, int b, T* B, int lda, int ldb, int& info) {
                         matB[r % NCU][r / NCU] = B[r * ldb + j];
                     }
                 }
-            }
+            }*/
 
-            T dataX[NMAX];
-            internal_gelinear::solver_core<T, NMAX, NCU>(n, j, matA, matB, dataX);
+            //T dataX[NMAX];
+            //internal_gelinear::solver_core<T, NMAX, NCU>(n, j, matA, matB, dataX);
 
-            for (int r = 0; r < n; r++) {
+            /*for (int r = 0; r < n; r++) {
 #pragma HLS pipeline
                 B[r * ldb + j] = dataX[r];
-            }
-        }
+            }*/
+        //}
     }
 }
 
