@@ -48,64 +48,13 @@ class ArgParser {
 //! Core function of Cholesky benchmark
 int main(int argc, const char* argv[]) {
 
-    // Variables to measure time
-    struct timeval tstart, tend;
-
-    // Get start time
-    gettimeofday(&tstart, 0);
-
-    // Initialize parser
-    ArgParser parser(argc, argv);
-
-    // Initialize paths addresses
-    std::string xclbin_path_init;
-    std::string num_str;
-    int num_runs, dataAM, dataAN, seed;
-
-    // Read In paths addresses
-    if (!parser.getCmdOption("-xclbin", xclbin_path_init)) {
-        std::cout << "INFO:input path is not set!\n";
-    }
-    if (!parser.getCmdOption("-runs", num_str)) {
-        num_runs = 1;
-        std::cout << "INFO:number runs is not set!\n";
-    } else {
-        num_runs = std::stoi(num_str);
-    }
-    if (!parser.getCmdOption("-M", num_str)) {
-        dataAM = 4;
-        std::cout << "INFO:row size M is not set!\n";
-    } else {
-        dataAM = std::stoi(num_str);
-    }
-    if (!parser.getCmdOption("-N", num_str)) {
-        dataAN = 4;
-        std::cout << "INFO:column size N is not set!\n";
-    } else {
-        dataAN = std::stoi(num_str);
-    }
-    if (!parser.getCmdOption("-seed", num_str)) {
-        seed = 12;
-        std::cout << "INFO:seed is not set!\n";
-    } else {
-        seed = std::stoi(num_str);
-    }
-    int NB = 1;
-    
-    // Create file to store array data
-    std::ofstream myfile;
-    myfile.open("matrix_timings.txt");
-    
-    
+   
     /********************
     Test IPOPT interface
     *********************/
     
     // Create instance
     VitisSolverInterface * solver_interface = new VitisSolverInterface;
-    
-    // Set the binary file path
-    solver_interface->SetBinaryPath(xclbin_path_init);
     
     // Call initialiser
     const OptionsList options;
@@ -126,17 +75,8 @@ int main(int argc, const char* argv[]) {
     double nonzero_values[non_zeros] = {2.,1.,4.,1.,1.,3.,2.,2.};
     
     /***********
-    Iterate
+    Run and with different parts of kernel running to determine bottleneck
     ***************/
-    
-    int num_iters = 1;
-    int time_diff = 0;
-    
-    for(int iter = 0; iter < num_iters; iter++)
-    { 
-      gettimeofday(&tstart,0);
-    
-      printf("Iteration Number : %d \n",iter);
       
     
       solver_interface->InitializeStructure(dimension,non_zeros,ia_ptr,ja_ptr);
@@ -157,22 +97,8 @@ int main(int argc, const char* argv[]) {
       
       for(int i = 0; i < rhs_values_size; i++)
       {
-          rhs_values_ptr[i] = rand() % 10 + 1;
-          printf("b %d : %f \n",i,rhs_values_ptr[i]);
-          //myfile << rhs_values_ptr[i] << " ";
+          rhs_values_ptr[i] = rhs_values[i]; 
       }
-      
-      //myfile << "\n";
-      
-      
-      /*double solver_input[dimension*nrhs];
-      double solver_input_ptr
-      
-      // Edit so in form solver accepts
-      for(int i = 0; i < dimension; i ++)
-      {
-          
-      }*/
       
       
       // Call the solve class method
@@ -181,8 +107,6 @@ int main(int argc, const char* argv[]) {
       Index eigenvalues = 0;
       
       solver_interface->MultiSolve(new_matrix,ia_ptr,ja_ptr,nrhs,rhs_values_ptr,check_eigenvalues,eigenvalues);
-      
-      gettimeofday(&tend,0);
       
       // Print the result
       for(int i = 0; i < rhs_values_size; i++)
@@ -194,18 +118,7 @@ int main(int argc, const char* argv[]) {
       //myfile << "\n";
       
       delete[] rhs_values_ptr;
-      
-      time_diff = diff(&tend,&tstart);
-      
-      
-      myfile << time_diff << std::endl;
-      
-      
-      
     
-   } // for loop
-   
-   myfile.close();
    
    delete solver_interface;
     

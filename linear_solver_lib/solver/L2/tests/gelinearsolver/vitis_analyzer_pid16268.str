@@ -1,0 +1,114 @@
+/*
+
+Xilinx Vitis Analyzer v2020.1 (64-bit) [Major: 2020, Minor: 1]
+SW Build: 2902540 on Wed May 27 19:54:35 MDT 2020
+
+Process ID (PID): 16268
+License: Customer
+
+Current time: 	Tue Jan 12 13:47:05 GMT 2021
+Time zone: 	Greenwich Mean Time (Europe/London)
+
+OS: Ubuntu
+OS Version: 5.4.0-59-generic
+OS Architecture: amd64
+Available processors (cores): 8
+
+Display: localhost:10.0
+Screen size: 1368x912
+Screen resolution (DPI): 100
+Available screens: 2
+Default font: family=Dialog,name=Dialog,style=plain,size=12
+
+Java version: 	9.0.4 64-bit
+Java home: 	/tools/Xilinx/Vitis/2020.1/tps/lnx64/jre9.0.4
+Java executable location: 	/tools/Xilinx/Vitis/2020.1/tps/lnx64/jre9.0.4/bin/java
+Java initial memory (-Xms): 	128 MB
+Java maximum memory (-Xmx):	 3 GB
+
+
+User name: 	jacksoncd
+User home directory: /home/jacksoncd
+User working directory: /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/tests/gelinearsolver
+User country: 	GB
+User language: 	en
+User locale: 	en_GB
+
+RDI_BASEROOT: /tools/Xilinx/Vitis
+HDI_APPROOT: /tools/Xilinx/Vitis/2020.1
+RDI_DATADIR: /tools/Xilinx/Vitis/2020.1/data
+RDI_BINDIR: /tools/Xilinx/Vitis/2020.1/bin
+
+Vitis Analyzer preferences file location: /home/jacksoncd/.Xilinx/vitis_analyzer/2020.1/vitis_analyzer.xml
+Vitis Analyzer preferences directory: /home/jacksoncd/.Xilinx/vitis_analyzer/2020.1/
+Vitis Analyzer layouts directory: /home/jacksoncd/.Xilinx/vitis_analyzer/2020.1/data/layouts
+PlanAhead jar file location: 	/tools/Xilinx/Vitis/2020.1/lib/classes/frank.jar
+Vitis Analyzer log file location: 	/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/tests/gelinearsolver/vitis_analyzer.log
+Vitis Analyzer journal file location: 	/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/tests/gelinearsolver/vitis_analyzer.jou
+Engine tmp dir: 	./.Xil/vitis_analyzer-16268-ENGS-21963
+
+Xilinx Environment Variables
+----------------------------
+XILINX_DSP: 
+XILINX_PLANAHEAD: /tools/Xilinx/Vitis/2020.1
+XILINX_SDK: /tools/Xilinx/Vitis/2020.1
+XILINX_VITIS: /tools/Xilinx/Vitis/2020.1
+XILINX_VIVADO: /tools/Xilinx/Vivado/2020.1
+XILINX_VIVADO_HLS: /tools/Xilinx/Vivado/2020.1
+XILINX_XRT: /opt/xilinx/xrt
+
+
+GUI allocated memory:	130 MB
+GUI max memory:		3,072 MB
+Engine allocated memory: 1,271 MB
+
+Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
+
+*/
+
+// TclEventType: START_GUI
+// Tcl Message: start_gui 
+// WARNING: HEventQueue.dispatchEvent() is taking  2285 ms.
+// bz (ct):  Open Files : addNotify
+// WARNING: HEventQueue.dispatchEvent() is taking  2819 ms.
+// WARNING: HEventQueue.dispatchEvent() is taking  2283 ms.
+// HMemoryUtils.trashcanNow. Engine heap size: 1,287 MB. GUI used memory: 77 MB. Current time: 1/12/21, 1:47:11 PM GMT
+dismissDialog("Open Files"); // bz (ct)
+// Tcl Command: 'create_project dummy'
+// TclEventType: PROJECT_NEW
+// Opening Summary: Type{value=RUN_SUMMARY},SummaryFile{file=/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/tests/gelinearsolver/kernel_gelinearsolver.xclbin.run_summary}
+// Running: '/tools/Xilinx/Vitis/2020.1/bin/perf_analyze profile --format=protobuf --input=/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/tests/gelinearsolver/profile_summary.csv --output=/tmp/vitis_analyzer_jacksoncd15404783205220092429/-1504887983/profile_summary.pb' in /tmp/vitis_analyzer_jacksoncd15404783205220092429/-1504887983
+// bz (ct):  Open Summary : addNotify
+// WARNING: HEventQueue.dispatchEvent() is taking  4146 ms.
+// Tcl Message: create_project dummy 
+dismissDialog("Open Summary"); // bz (ct)
+// Opening Report: Type{value=RUN_SUMMARY_REPORT},SummaryFile{file=kernel_gelinearsolver.xclbin.run_summary isArchive=false},ReportFile{file=/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/tests/gelinearsolver/kernel_gelinearsolver.xclbin.run_summary}
+// [GUI Memory]: 89 MB (+91267kb) [00:00:52]
+// [Engine Memory]: 1,318 MB (+1230957kb) [00:00:52]
+selectButton((HResource) null, "Run Guidance"); // l (Q, ct)
+// Opening Report: Type{value=RUN_GUIDANCE_REPORT},SummaryFile{file=kernel_gelinearsolver.xclbin.run_summary isArchive=false},ReportFile{file=/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/tests/gelinearsolver/profile_summary.csv}
+// WARNING: HEventQueue.dispatchEvent() is taking  1001 ms.
+// WARNING: HEventQueue.dispatchEvent() is taking  1001 ms.
+// WARNING: HEventQueue.dispatchEvent() is taking  1001 ms.
+// Elapsed time: 63 seconds
+selectButton(RDIResource.HPopupTitle_CLOSE, (String) null); // k (n, ResizableWindow)
+// HMemoryUtils.trashcanNow. Engine heap size: 1,336 MB. GUI used memory: 56 MB. Current time: 1/12/21, 1:48:45 PM GMT
+// WARNING: HEventQueue.dispatchEvent() is taking  1001 ms.
+// WARNING: HEventQueue.dispatchEvent() is taking  1001 ms.
+// WARNING: HEventQueue.dispatchEvent() is taking  1001 ms.
+// Opening Report: Type{value=PROFILE_SUMMARY_REPORT},SummaryFile{file=kernel_gelinearsolver.xclbin.run_summary isArchive=false},ReportFile{file=/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/tests/gelinearsolver/profile_summary.csv}
+// Elapsed time: 129 seconds
+closeView((HResource) null, "Profile Summary"); // bh
+// WARNING: HEventQueue.dispatchEvent() is taking  1001 ms.
+// WARNING: HEventQueue.dispatchEvent() is taking  1001 ms.
+// Elapsed time: 48 seconds
+selectTree("Report Navigator Tree", "[root, Type{value=SYSTEM_DIAGRAM_REPORT},SummaryFile{file=kernel_gelinearsolver.xclbin.run_summary isArchive=false}]", 2, false); // b (J, ct)
+// Opening Report: Type{value=SYSTEM_DIAGRAM_REPORT},SummaryFile{file=kernel_gelinearsolver.xclbin.run_summary isArchive=false}
+// Elapsed time: 17 seconds
+selectTree("Report Navigator Tree", "[root, Type{value=PLATFORM_DIAGRAM_REPORT},SummaryFile{file=kernel_gelinearsolver.xclbin.run_summary isArchive=false}]", 3, false); // b (J, ct)
+// Opening Report: Type{value=PLATFORM_DIAGRAM_REPORT},SummaryFile{file=kernel_gelinearsolver.xclbin.run_summary isArchive=false}
+selectTree("Report Navigator Tree", "[root, Type{value=RUN_GUIDANCE_REPORT},SummaryFile{file=kernel_gelinearsolver.xclbin.run_summary isArchive=false},ReportFile{file=/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/tests/gelinearsolver/profile_summary.csv}]", 4, false); // b (J, ct)
+// WARNING: HEventQueue.dispatchEvent() is taking  1001 ms.
+// WARNING: HEventQueue.dispatchEvent() is taking  1001 ms.
+// WARNING: HEventQueue.dispatchEvent() is taking  1001 ms.
+// WARNING: HEventQueue.dispatchEvent() is taking  1001 ms.
