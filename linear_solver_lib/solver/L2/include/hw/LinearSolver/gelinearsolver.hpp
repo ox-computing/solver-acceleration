@@ -71,18 +71,25 @@ Loop_row:
 }
 
 template <typename T, int NRCU, int NMAX, int NCU>
-void getrf_core(int n, T A[NCU][NRCU][NMAX], int lda, int P[NMAX]) {
+void getrf_core(int debug_mode, int n, T A[NCU][NRCU][NMAX], int lda, int P[NMAX]) {
     for (int r = 0; r < n; r++) {
 #pragma HLS pipeline
         P[r] = r;
     }
+    
+    if(debug_mode != 4)
+    {
     internalgetrf::getrf_core<T, NRCU, NMAX, NCU>(n, n, A, P, n);
+    }
 };
 template <typename T, int N, int NCU>
-void solver(int n, T dataA[NCU][(N + NCU - 1) / NCU][N], T dataB[NCU][(N + NCU - 1) / NCU], T dataX[N]) {
+void solver(int debug_mode, int n, T dataA[NCU][(N + NCU - 1) / NCU][N], T dataB[NCU][(N + NCU - 1) / NCU], T dataX[N]) {
     T buf[N], buf_i[NCU][(N + NCU - 1) / NCU], buf_o[N];
 
+    if(debug_mode != 5)
+    {
     trisolver_L<T, N, NCU>(n, dataA, dataB, buf);
+    }
 
     for (int i = 0; i < (N + NCU - 1) / NCU; i++) {
         for (int k = 0; k < NCU; k++) {
@@ -95,7 +102,10 @@ void solver(int n, T dataA[NCU][(N + NCU - 1) / NCU][N], T dataB[NCU][(N + NCU -
         }
     }
 
+    if(debug_mode != 6)
+    {
     trisolver_U<T, N, NCU>(n, dataA, buf_i, buf_o);
+    }
 
     for (int i = 0; i < N; i++) {
 #pragma HLS pipeline
@@ -104,17 +114,26 @@ void solver(int n, T dataA[NCU][(N + NCU - 1) / NCU][N], T dataB[NCU][(N + NCU -
 }
 
 template <typename T, int N, int NCU>
-void solver_core(int n, int j, T dataA[NCU][(N + NCU - 1) / NCU][N], T dataB[NCU][(N + NCU - 1) / NCU], T dataX[N]) {
+void solver_core(int debug_mode, int n, int j, T dataA[NCU][(N + NCU - 1) / NCU][N], T dataB[NCU][(N + NCU - 1) / NCU], T dataX[N]) {
     const int NRCU = int((N + NCU - 1) / NCU);
     int P[N];
     T dataC[NCU][(N + NCU - 1) / NCU];
     int info;
-    getrf_core<T, NRCU, N, NCU>(n, dataA, n, P);
+    
+    if(debug_mode != 2)
+    {
+    getrf_core<T, NRCU, N, NCU>(debug_mode, n, dataA, n, P);
+    }
+    
     for (int i = 0; i < n; ++i) {
 #pragma HLS pipeline
         dataC[i % NCU][i / NCU] = dataB[P[i] % NCU][P[i] / NCU];
     }
-    solver<T, N, NCU>(n, dataA, dataC, dataX);
+    
+    if(debug_mode != 3)
+    {
+    solver<T, N, NCU>(debug_mode, n, dataA, dataC, dataX);
+    }
 }
 } // namespace internal
 /**
@@ -139,7 +158,7 @@ void solver_core(int n, int j, T dataA[NCU][(N + NCU - 1) / NCU][N], T dataB[NCU
  */
 
 template <typename T, int NMAX, int NCU>
-void gelinearsolver(int n, T* A, int b, T* B, int lda, int ldb, int& info) {
+void gelinearsolver(int debug_mode, int n, T* A, int b, T* B, int lda, int ldb, int& info) {
     if (NMAX == 1)
         B[0] = B[0] / A[0];
     else {
@@ -149,7 +168,7 @@ void gelinearsolver(int n, T* A, int b, T* B, int lda, int ldb, int& info) {
 #pragma HLS array_partition variable = matB cyclic factor = NCU dim = 1
 #pragma HLS resource variable = matA core = XPM_MEMORY uram
 
-       /* for (int j = 0; j < b; j++) {
+        for (int j = 0; j < b; j++) {
         Loop_read:
             for (int r = 0; r < n; r++) {
                 for (int c = 0; c < n; c++) {
@@ -160,16 +179,20 @@ void gelinearsolver(int n, T* A, int b, T* B, int lda, int ldb, int& info) {
                         matB[r % NCU][r / NCU] = B[r * ldb + j];
                     }
                 }
-            }*/
+            }
 
-            //T dataX[NMAX];
-            //internal_gelinear::solver_core<T, NMAX, NCU>(n, j, matA, matB, dataX);
+            T dataX[NMAX];
+            
+            if(debug_mode != 1)
+            {
+            internal_gelinear::solver_core<T, NMAX, NCU>(debug_mode, n, j, matA, matB, dataX);
+            }
 
-            /*for (int r = 0; r < n; r++) {
+            for (int r = 0; r < n; r++) {
 #pragma HLS pipeline
                 B[r * ldb + j] = dataX[r];
-            }*/
-        //}
+            }
+        }
     }
 }
 
