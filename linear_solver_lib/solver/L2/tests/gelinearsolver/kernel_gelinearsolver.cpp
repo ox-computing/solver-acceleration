@@ -19,10 +19,11 @@
 #define MAXN 1000
 
 
-extern "C" void kernel_gelinearsolver_0(int num_rhs, int na, double* dataA, double* dataB) {
+extern "C" void kernel_gelinearsolver_0(int debug_mode, int num_rhs, int na, double* dataA, double* dataB) {
 #pragma HLS INTERFACE m_axi port = dataA bundle = gmem0 offset = slave
 #pragma HLS INTERFACE m_axi port = dataB bundle = gmem1 offset = slave
 
+#pragma HLS INTERFACE s_axilite port = debug_mode bundle = control
 #pragma HLS INTERFACE s_axilite port = num_rhs bundle = control
 #pragma HLS INTERFACE s_axilite port = na bundle = control
 #pragma HLS INTERFACE s_axilite port = dataA bundle = control
@@ -56,7 +57,7 @@ extern "C" void kernel_gelinearsolver_0(int num_rhs, int na, double* dataA, doub
     else
     {*/
         // General solver
-        xf::solver::gelinearsolver<double, MAXN, NCU>(na, dataA, num_rhs, dataB, na, num_rhs, info);
+        xf::solver::gelinearsolver<double, MAXN, NCU>(debug_mode, na, dataA, num_rhs, dataB, na, num_rhs, info);
     //}
 
 }

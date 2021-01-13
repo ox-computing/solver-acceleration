@@ -1,0 +1,12 @@
+
+*** Debug Mode : 0 ***
+Matrix dimension : 20 
+First transfer : 21169 
+Launch : 4059 
+Second transfer : 312 
+
+*** Debug Mode : 1 ***
+Matrix dimension : 20 
+First transfer : 342 
+Launch : 418 
+Second transfer : 261 

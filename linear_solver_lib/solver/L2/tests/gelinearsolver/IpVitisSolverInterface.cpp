@@ -66,8 +66,6 @@ namespace Ipopt
       printf("INFO: Initialising IMPL \n");
       
       // Read in xclbin path from options
-      std::string run_type;
-      //options.GetStringValue("vitis_xclbin",run_type,prefix);
       printf("INFO: Running on HW \n");
       xclbin_path = "/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/tests/gelinearsolver/build_dir.hw.xilinx_u50_gen3x16_xdma_201920_3/kernel_gelinearsolver.xclbin";
       

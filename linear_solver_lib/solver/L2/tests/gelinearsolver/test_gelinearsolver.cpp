@@ -18,10 +18,14 @@
 #include <string.h>
 #include <sys/time.h>
 #include <algorithm>
+#include <cmath>
 
 #include "xcl2.hpp"
 
-#include "matrixUtility.hpp"
+#define NUM_ROWS 20
+#define NUM_ZEROS 300
+#define MAX_MATRIX_VALUE 500
+#define NUM_ITERATIONS 50
 
 // Memory alignment
 template <typename T>
@@ -61,148 +65,13 @@ class ArgParser {
 //! Core function of Cholesky benchmark
 int main(int argc, const char* argv[]) {
 
-    // Variables to measure time
-    struct timeval tstart, tinit_parse, tplatform_setup, tbuffer_setup, tbuffer_transfer1, tkernel_setup, tkernel_launch, tbuffer_transfer2;
-
-    // Get start time
-    gettimeofday(&tstart, 0);
-
-    // Initialize parser
-    ArgParser parser(argc, argv);
-
-    // Initialize paths addresses
-    std::string xclbin_path_init;
-    std::string num_str;
-    int num_runs, dataAM, dataAN, seed;
-
-    // Read In paths addresses
-    if (!parser.getCmdOption("-xclbin", xclbin_path_init)) {
-        std::cout << "INFO:input path is not set!\n";
-    }
-    if (!parser.getCmdOption("-runs", num_str)) {
-        num_runs = 1;
-        std::cout << "INFO:number runs is not set!\n";
-    } else {
-        num_runs = std::stoi(num_str);
-    }
-    if (!parser.getCmdOption("-M", num_str)) {
-        dataAM = 4;
-        std::cout << "INFO:row size M is not set!\n";
-    } else {
-        dataAM = std::stoi(num_str);
-    }
-    if (!parser.getCmdOption("-N", num_str)) {
-        dataAN = 4;
-        std::cout << "INFO:column size N is not set!\n";
-    } else {
-        dataAN = std::stoi(num_str);
-    }
-    if (!parser.getCmdOption("-seed", num_str)) {
-        seed = 12;
-        std::cout << "INFO:seed is not set!\n";
-    } else {
-        seed = std::stoi(num_str);
-    }
-    int NB = 1;
-    
-<<<<<<< HEAD
-    /*// dataAM = dataAN is valid only for symmetric matrix
-=======
-    
-    int first_row = 0;
-    int final_row = 1;
-    
-    // Create file to store array data
-    //std::ofstream myfile;
-    //myfile.open("iteration_times.txt");
-    
-    
-    // Set dataAM and dataAN
-    dataAM = 10;
-    dataAN = 10;
+    /**************
+     Platform related operations
+     *******************/
      
-    // dataAM = dataAN is valid only for symmetric matrix
->>>>>>> ipopt_example
-    dataAM = (dataAM > dataAN) ? dataAN : dataAM;
-    dataAN = dataAM;
-    
-    // Initialization of host buffers
-
-    int inout_size = dataAM * dataAN;
-    int inoutB_size = dataAM * NB;
-    double* dataA;
-    dataA = aligned_alloc<double>(inout_size);
-    double* dataB;
-    dataB = aligned_alloc<double>(inoutB_size);
-    double* sigma;
-    sigma = aligned_alloc<double>(dataAM);
-    double* U;
-    U = aligned_alloc<double>(inout_size);
-
-    // Generate general matrix dataAM x dataAN
-    double** dataC = new double*[dataAM];
-    double** dataD = new double*[dataAM];
-    double** dataE = new double*[dataAM];
-    for (int i = 0; i < dataAM; ++i) {
-        dataC[i] = new double[dataAN];
-        dataD[i] = new double[dataAN];
-        dataE[i] = new double[dataAN];
-    }
-    triLowerMatGen<double>(dataAN, seed, dataC);
-    transposeMat<double>(dataAN, dataC, dataD);
-    MulMat<double>(dataAM, dataAN, dataAN, dataC, dataD, dataE);
-
-    for (int i = 0; i < dataAM; ++i) {
-        for (int j = 0; j < dataAN; ++j) {
-            dataA[i * dataAN + j] = dataE[i][j];
-            printf("Data A Row %d Column %d : %f \n",i,j,dataA[i * dataAN + j]);
-        }
-    }
-    for (int i = 0; i < dataAM; ++i) {
-        for (int j = 0; j < NB; ++j) {
-            dataB[i * NB + j] = i;
-            //printf("Data B Row %d Column %d : %f \n",i,j,dataB[i * NB + j]);
-        }
-<<<<<<< HEAD
-    } */
-    
-    // Test for sparse matrix
-    int num_rows = 5;
-    int matrix_size = num_rows*num_rows;
-    int b_size = num_rows;
-    
-    // Initialise matrix
-    double * dataA;
-    dataA = aligned_alloc<double>(matrix_size);
-    double * dataB;
-    dataB = aligned_alloc<double>(b_size);
-    
-    double dataA_init[matrix_size] = {2.,1.,0,0,0,1.,4.,1.,0,1.,0,1.,3.,2.,0,0,0,2.,0.,0,0,1.,0,0,2.};
-    double dataB_init[b_size] = {4.,12.,10.,4.,4.};
-    
-    for(int i = 0; i < matrix_size; i++){
-        dataA[i] = dataA_init[i];
-        printf("data A %d: %f \n",i,dataA[i]);
-    }
-    
-    for(int i = 0; i < b_size; i++){
-        dataB[i] = dataB_init[i];
-        printf("data b %d: %f \n",i,dataB[i]);
-=======
-    }
-    
-    for(int i = 0; i < inout_size; i++)
-    {
-        U[i] = 0;
-    }
-    
-    for(int i = 0; i < dataAM; i++)
-    {
-        sigma[i] = 0;
->>>>>>> ipopt_example
-    }
-    
-    // Platform related operations
+    printf("INFO: Running on HW \n");
+      std::string xclbin_path = "/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/tests/gelinearsolver/build_dir.hw.xilinx_u50_gen3x16_xdma_201920_3/kernel_gelinearsolver.xclbin";
+      
     std::vector<cl::Device> devices = xcl::get_xil_devices();
     cl::Device device = devices[0];
 
@@ -212,162 +81,179 @@ int main(int argc, const char* argv[]) {
     std::string devName = device.getInfo<CL_DEVICE_NAME>();
     printf("INFO: Found Device=%s\n", devName.c_str());
 
-    cl::Program::Binaries xclBins = xcl::import_binary_file(xclbin_path_init);
+    cl::Program::Binaries xclBins = xcl::import_binary_file(xclbin_path);
     devices.resize(1);
     cl::Program program(context, devices, xclBins);
     cl::Kernel kernel_gelinearsolver_0(program, "kernel_gelinearsolver_0");
     std::cout << "INFO: Kernel has been created" << std::endl;
+    
+    // Create vector variables
+    std::vector<std::vector<cl::Event>> kernel_evt(2);
+    kernel_evt[0].resize(1);
+    kernel_evt[1].resize(1);
+    std::vector<cl::Memory> ob_io(2);
+    std::vector<cl::Buffer> buffer(2);
 
-    // Output the inputs information
-    std::cout << "INFO: Number of kernel runs: " << num_runs << std::endl;
-    std::cout << "INFO: Matrix Row M: " << dataAM << std::endl;
-    std::cout << "INFO: Matrix Col N: " << dataAN << std::endl;
+
+    /*********************
+    Continuous Iterations
+    ********************/
+    
+    // Timing variables
+    struct timeval tstart, ttrans1, tlaunch, ttrans2;
+    
+    // Txt file open
+    FILE* fp = fopen("debug_timings.txt","w");
+    
+    
+     for(int debug_mode = 0; debug_mode <= 6; debug_mode++)
+    {
+    
+    fprintf(fp,"\n*** Debug Mode : %d ***\n", debug_mode);
+    
+    /*********************
+    Sparse symmetric matrix intialisation
+    *********************/
+    
+    // Matrix sizes and max value
+    int num_rhs = 1;
+    double divisor = 5;
+    
+    int num_rows = NUM_ROWS;
+    int num_zeros = NUM_ZEROS;
+    int max_value = MAX_MATRIX_VALUE;
+    
+    int matrix_size = num_rows*num_rows;
+    int b_size = num_rows;
+    
+    
+    // Number of nonzero values
+    int num_nonzeros = matrix_size - num_zeros;
+    
+    // Reseed the rand function to ensure the same values each time
+    srand(1);
+        
+    // Initialise matrix
+    double * dataA;
+    dataA = aligned_alloc<double>(matrix_size);
+    double * dataB;
+    dataB = aligned_alloc<double>(b_size);
+    
+    int ia[num_nonzeros];
+    int ja[num_nonzeros];
+    double matrix_values[num_nonzeros];
+    
+    for(int i = 0; i < num_nonzeros; i++)
+    {
+        ia[i] = rand() % num_rows;
+        ja[i] = rand() % num_rows;
+        matrix_values[i] = (rand() % max_value)/divisor;
+    }
+    
+    
+    // Populate the initial A array with zeros
+     for(int i = 0; i < matrix_size; i++)
+    {
+       dataA[i] = 0;   
+    }
+    
+    // Populate the array with randomly placed values
+    for(int i = 0; i < num_nonzeros; i++)
+        {   
+            if(matrix_values[i] != 0)
+            {
+                dataA[num_rows*ia[i] + ja[i]] = matrix_values[i];
+            }
+     }
+    
+     
+     // Ensure that matrix is symmetric by copying the lower triangle to the upper
+     for(int i = 0; i < num_rows; i++)
+     {
+         for(int j = 0; j < num_rows; j++)
+         {
+             dataA[num_rows*i + j] = dataA[num_rows*j + i];
+         }
+     }
+     
+     // Initialise B
+     for(int i = 0; i < b_size; i++)
+     {
+         dataB[i] = rand() % max_value;
+     }
+     
     
 
     gettimeofday(&tstart, 0);
     
     
     // Create device buffer and map dev buf to host buf
-    std::vector<cl::Buffer> buffer(2);
-
     buffer[0] = cl::Buffer(context, CL_MEM_USE_HOST_PTR | CL_MEM_READ_WRITE,
                            sizeof(double) * matrix_size, dataA, NULL);
     buffer[1] = cl::Buffer(context, CL_MEM_USE_HOST_PTR | CL_MEM_READ_WRITE,
-<<<<<<< HEAD
                            sizeof(double) * b_size, dataB, NULL);
-=======
-                           sizeof(double) * inoutB_size, dataB, NULL);
-    buffer[2] = cl::Buffer(context, CL_MEM_USE_HOST_PTR | CL_MEM_READ_WRITE,
-                           sizeof(double) * dataAM, sigma, NULL);
-    buffer[3] = cl::Buffer(context, CL_MEM_USE_HOST_PTR | CL_MEM_READ_WRITE,
-                           sizeof(double) * inout_size, U, NULL);
-                                                 
->>>>>>> ipopt_example
-                           
-    //gettimeofday(&tbuffer_setup,0);
 
     // Data transfer from host buffer to device buffer
-    std::vector<std::vector<cl::Event> > kernel_evt(2);
-    kernel_evt[0].resize(1);
-    kernel_evt[1].resize(1);
-
-    std::vector<cl::Memory> ob_io;
-    ob_io.push_back(buffer[0]);
-    ob_io.push_back(buffer[1]);
-    ob_io.push_back(buffer[2]);
-    ob_io.push_back(buffer[3]);
+    ob_io[0] = buffer[0];
+    ob_io[1] = buffer[1];
 
     q.enqueueMigrateMemObjects(ob_io, 0, nullptr, &kernel_evt[0][0]); // 0 : migrate from host to dev
     q.finish();
-    std::cout << "INFO: Finish data transfer from host to device" << std::endl;
     
-    //gettimeofday(&tbuffer_transfer1,0);
+     gettimeofday(&ttrans1,0);
+    
 
     // Setup kernel
-<<<<<<< HEAD
-    kernel_gelinearsolver_0.setArg(0, num_rows);
-    kernel_gelinearsolver_0.setArg(1, buffer[0]);
-    kernel_gelinearsolver_0.setArg(2, buffer[1]);
-=======
-    kernel_gelinearsolver_0.setArg(0, NB);
-    kernel_gelinearsolver_0.setArg(1, dataAN);
-    kernel_gelinearsolver_0.setArg(2, buffer[0]);
-    kernel_gelinearsolver_0.setArg(3, buffer[1]);
-    kernel_gelinearsolver_0.setArg(4, buffer[2]);
-    kernel_gelinearsolver_0.setArg(5, buffer[3]);
->>>>>>> ipopt_example
+    kernel_gelinearsolver_0.setArg(0, debug_mode);
+    kernel_gelinearsolver_0.setArg(1, num_rhs);
+    kernel_gelinearsolver_0.setArg(2, num_rows);
+    kernel_gelinearsolver_0.setArg(3, buffer[0]);
+    kernel_gelinearsolver_0.setArg(4, buffer[1]);
     q.finish();
-    std::cout << "INFO: Finish kernel setup" << std::endl;
-    
-    //gettimeofday(&tkernel_setup,0);
-
-    // Variables to measure time
-    //struct timeval tstart, tend;
 
     // Launch kernel and compute kernel execution time
-    //gettimeofday(&tstart, 0);
-    for (int i = 0; i < num_runs; ++i) {
-        q.enqueueTask(kernel_gelinearsolver_0, nullptr, nullptr);
-    }
+    q.enqueueTask(kernel_gelinearsolver_0, nullptr, nullptr);
     q.finish();
-    //gettimeofday(&tend, 0);
-    //std::cout << "INFO: Finish kernel execution" << std::endl;
-    //int exec_time = diff(&tend, &tstart);
-    //std::cout << "INFO: FPGA execution time of " << num_runs << " runs:" << exec_time << " us\n"
-              //<< "INFO: Average executiom per run: " << exec_time / num_runs << " us\n";
-              
-    //gettimeofday(&tkernel_launch,0);
+    
+     gettimeofday(&tlaunch,0);
+    
+    
 
     // Data transfer from device buffer to host buffer
     q.enqueueMigrateMemObjects(ob_io, 1, nullptr, nullptr); // 1 : migrate from dev to host
     q.finish();
     
-    gettimeofday(&tbuffer_transfer2,0);
-    
-    // Print the overall time value
-    //gettimeofday(&tend,0);
-    //int exec_time = diff(&tend,&tstart);
-    //printf("INFO: Overall execution time: %d us \n",exec_time);
-    
-    // Calculate the time differences and print
-    /*int parse = diff(&tinit_parse,&tstart);
-    int platform_setup = diff(&tplatform_setup,&tinit_parse);
-    int buffer_setup = diff(&tbuffer_setup,&tplatform_setup);
-    int buffer_transfer1 = diff(&tbuffer_transfer1,&tbuffer_setup);
-    int kernel_setup = diff(&tkernel_setup,&tbuffer_transfer1);
-    int kernel_launch = diff(&tkernel_launch,&tkernel_setup);
-    int buffer_transfer2 = diff(&tbuffer_transfer2,&tkernel_launch);*/
-    int overall = diff(&tbuffer_transfer2,&tstart);
-    
-    /*printf("INFO: Argument parse time: %d us \n",parse);
-    printf("INFO: Platform setup time: %d us \n",platform_setup);
-    printf("INFO: Buffer setup time: %d us \n",buffer_setup);
-    printf("INFO: Buffer transfer from host to device time: %d us \n",buffer_transfer1);
-    printf("INFO: Kernel setup time: %d us \n",kernel_setup);
-    printf("INFO: Kernel launch and run time: %d us \n",kernel_launch);
-    printf("INFO: Buffer transfer from device to host time: %d us \n",buffer_transfer2);*/
-    //printf("INFO: Overall execution time: %d us \n",overall);
+     gettimeofday(&ttrans2,0);
 
-    //myfile << overall << std::endl;
-    
-    double errA = 0;
-    for (int p = 0; p < NB; p++) {
-        double res = 0;
-        for (int i = 0; i < dataAM; i++) {
-            for (int j = 0; j < dataAN; j++) {
-                res += dataA[i * dataAN + j] * dataB[j * NB + p];
-            }
-            res -= i;
+    for(int i = 0; i < b_size; i++)
+    {
+        if(std::isnan(dataB[i]))
+        {
+            printf("INFO : Matrix singular \n");
+            fprintf(fp,"** Singular Matrix Generated ** \n");
+            break;
         }
-        errA += res * res;
-    }
-    errA = std::sqrt(errA);
+    } 
     
     free(dataA);
     free(dataB);
+    
+    // Output the time to txt file
+    int trans1 = diff(&ttrans1,&tstart);
+    int launch = diff(&tlaunch,&ttrans1);
+    int trans2 = diff(&ttrans2,&tlaunch);
 
-    std::cout << "-------------- " << std::endl;
-    if (errA > 0.0001) {
-        std::cout << "INFO: Result false" << std::endl;
-        std::cout << "-------------- " << std::endl;
-    } else {
-        std::cout << "INFO: Result correct" << std::endl;
-        std::cout << "-------------- " << std::endl;
-        return 0;
-    }
-    
-    // Print solution
-    for(int i = 0; i < b_size; i++){
-        printf("x%d : %f \n",i,dataB[i]);e
-    }
-    
-    free(sigma);
-    free(U);
+    fprintf(fp,"Matrix dimension : %d \n",num_rows);
+    fprintf(fp,"First transfer : %d \n", trans1);
+    fprintf(fp,"Launch : %d \n", launch);
+    fprintf(fp,"Second transfer : %d \n", trans2);
     
     
-    //myfile.close();
+    } // for loop
     
     
+    // Txt file close
+    fclose(fp);
     
     return 0;
 }

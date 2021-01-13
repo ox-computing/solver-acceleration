@@ -1,0 +1,45 @@
+
+*** Debug Mode : 0 ***
+Matrix dimension : 20 
+First transfer : 423 
+Launch : 3695 
+Second transfer : 126 
+
+*** Debug Mode : 1 ***
+Matrix dimension : 20 
+First transfer : 170 
+Launch : 239 
+Second transfer : 108 
+
+*** Debug Mode : 2 ***
+** Singular Matrix Generated ** 
+Matrix dimension : 20 
+First transfer : 187 
+Launch : 250 
+Second transfer : 104 
+
+*** Debug Mode : 3 ***
+** Singular Matrix Generated ** 
+Matrix dimension : 20 
+First transfer : 148 
+Launch : 3531 
+Second transfer : 132 
+
+*** Debug Mode : 4 ***
+** Singular Matrix Generated ** 
+Matrix dimension : 20 
+First transfer : 193 
+Launch : 366 
+Second transfer : 158 
+
+*** Debug Mode : 5 ***
+Matrix dimension : 20 
+First transfer : 246 
+Launch : 3611 
+Second transfer : 176 
+
+*** Debug Mode : 6 ***
+Matrix dimension : 20 
+First transfer : 243 
+Launch : 3830 
+Second transfer : 252 

@@ -3407,7 +3407,7 @@ window.onload = function () { addSorting(); }
 <center><h1>Design Guidance Report</h1></center><center><table class="header" border="0">
 <tr><td><b>Copyright</b></td><td>Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.</td></tr>
 <tr><td><b>Tool Version</b></td><td>xrcserver v.2020.1 (lin64) Build 0 </td></tr>
-<tr><td><b>Date</b></td><td>Tue Jan 12 10:52:42 2021</td></tr>
+<tr><td><b>Date</b></td><td>Wed Jan 13 14:53:29 2021</td></tr>
 <tr><td><b>Host</b></td><td>ENGS-21963 running 64-bit Ubuntu 18.04.5 LTS</td></tr>
 <tr><td><b>Command</b></td><td>v++  -t hw --platform /opt/xilinx/platforms/xilinx_u50_gen3x16_xdma_201920_3/xilinx_u50_gen3x16_xdma_201920_3.xpfm --save-temps --config conn_u50.ini -I/home/jacksoncd/solver-acceleration/linear_solver_lib/solver//L2/tests/gelinearsolver -I/home/jacksoncd/solver-acceleration/linear_solver_lib/solver//L2/include -I/home/jacksoncd/solver-acceleration/linear_solver_lib/solver//ext --temp_dir _x_temp.hw.xilinx_u50_gen3x16_xdma_201920_3 --report_dir /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/tests/gelinearsolver/reports/_x.hw.xilinx_u50_gen3x16_xdma_201920_3 -c -k kernel_gelinearsolver_0 -I/home/jacksoncd/solver-acceleration/linear_solver_lib/solver//L2/tests/gelinearsolver -o _x_temp.hw.xilinx_u50_gen3x16_xdma_201920_3/kernel_gelinearsolver_0.xo /home/jacksoncd/solver-acceleration/linear_solver_lib/solver//L2/tests/gelinearsolver/kernel_gelinearsolver.cpp </td></tr>
 </table></center><br>
@@ -3417,7 +3417,7 @@ window.onload = function () { addSorting(); }
 <tr><td><a href="#CONFIG FILE DETAILS">3 CONFIG FILE DETAILS</a></tr></td>
 </table>
 <a name="REPORT SUMMARY"></a><h1>1 REPORT SUMMARY</h1>
-<pre>Violations found: 28
+<pre>Violations found: 26
 </pre>
 <pre>Rule Specs Violated: 4
 </pre>
@@ -3474,7 +3474,7 @@ window.onload = function () { addSorting(); }
 <td align="left">Medium</td>
 <td align="left">HLS Latency Related</td>
 <td align="left">Accelerator.kernel_gelinearsolver_0.Latency</td>
-<td align="left">Cannot flatten loop 'VITIS_LOOP_152_1' (/home/jacksoncd/solver-acceleration<a href="file:///linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp#line=152">gelinearsolver.hpp</a>) in function 'xf::solver::gelinearsolver<double, 1000, 30>' more than one sub loop.
+<td align="left">Cannot flatten loop 'VITIS_LOOP_171_1' (/home/jacksoncd/solver-acceleration<a href="file:///linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp#line=171">gelinearsolver.hpp</a>) in function 'xf::solver::gelinearsolver<double, 1000, 30>' more than one sub loop.
 </td>
 <td align="left"><a href="http://www.xilinx.com/html_docs/xilinx2020_1/hls-guidance/200-960.html">See here for more help on vitis_hls 200-960 guidance.</a></td>
 </tr>
@@ -3485,7 +3485,7 @@ window.onload = function () { addSorting(); }
 <td align="left">Medium</td>
 <td align="left">HLS Interface Related</td>
 <td align="left">Accelerator.kernel_gelinearsolver_0.Interface</td>
-<td align="left">Inferring multiple bus burst read of variable length on port 'gmem0' (/home/jacksoncd/solver-acceleration<a href="file:///linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp#line=158">gelinearsolver.hpp</a>). These data requests might be further partitioned to multiple requests during RTL generation, based on max_read_burst_length or max_write_burst_length settings.
+<td align="left">Inferring multiple bus burst read of variable length on port 'gmem0' (/home/jacksoncd/solver-acceleration<a href="file:///linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp#line=177">gelinearsolver.hpp</a>). These data requests might be further partitioned to multiple requests during RTL generation, based on max_read_burst_length or max_write_burst_length settings.
 </td>
 <td align="left"></td>
 </tr>
@@ -3607,8 +3607,8 @@ window.onload = function () { addSorting(); }
 <td align="left">HLS Kernel Related</td>
 <td align="left">Accelerator.kernel_gelinearsolver_0.Kernel</td>
 <td align="left">The critical path in module 'trisolver_L_double_1000_30_s' consists of the following:	'phi' operation ('j', /home/jacksoncd/solver-acceleration<a href="file:///linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp#line=37">gelinearsolver.hpp</a>) with incoming values : ('zext_ln37', /home/jacksoncd/solver-acceleration<a href="file:///linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp#line=37">gelinearsolver.hpp</a>) ('add_ln37', /home/jacksoncd/solver-acceleration<a href="file:///linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp#line=37">gelinearsolver.hpp</a>) [74]  (0 ns)
-	'shl' operation ('empty_48', /home/jacksoncd/solver-acceleration<a href="file:///linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp#line=37">gelinearsolver.hpp</a>) [203]  (0 ns)
-	'sub' operation ('empty_50', /home/jacksoncd/solver-acceleration<a href="file:///linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp#line=37">gelinearsolver.hpp</a>) [205]  (1.15 ns)
+	'shl' operation ('empty_47', /home/jacksoncd/solver-acceleration<a href="file:///linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp#line=37">gelinearsolver.hpp</a>) [203]  (0 ns)
+	'sub' operation ('empty_49', /home/jacksoncd/solver-acceleration<a href="file:///linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp#line=37">gelinearsolver.hpp</a>) [205]  (1.15 ns)
 	'or' operation ('or_ln43', /home/jacksoncd/solver-acceleration<a href="file:///linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp#line=43">gelinearsolver.hpp</a>) [216]  (0 ns)
 	'icmp' operation ('icmp_ln43_1', /home/jacksoncd/solver-acceleration<a href="file:///linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp#line=43">gelinearsolver.hpp</a>) [217]  (1.06 ns)
 	blocking operation 1.43 ns on control path)
@@ -3645,7 +3645,7 @@ window.onload = function () { addSorting(); }
 <td align="left">Medium</td>
 <td align="left">HLS Throughput Related</td>
 <td align="left">Accelerator.kernel_gelinearsolver_0.Throughput</td>
-<td align="left">Pipelining result : Target II = 1, Final II = 1, Depth = 138.
+<td align="left">Pipelining result : Target II = 1, Final II = 1, Depth = 140.
 </td>
 <td align="left"></td>
 </tr>
@@ -3707,30 +3707,6 @@ window.onload = function () { addSorting(); }
 <tr>
 <td align="left">25</td>
 <td align="left">Kernel</td>
-<td align="left">warning</td>
-<td align="left">Medium</td>
-<td align="left">HLS Kernel Related</td>
-<td align="left">Accelerator.kernel_gelinearsolver_0.Kernel</td>
-<td align="left">Estimated clock period (2.464ns) exceeds the target (target clock period: 3.333ns, clock uncertainty: 0.9ns, effective delay budget: 2.433ns).
-</td>
-<td align="left"><a href="http://www.xilinx.com/html_docs/xilinx2020_1/hls-guidance/200-871.html">See here for more help on vitis_hls 200-871 guidance.</a></td>
-</tr>
-<tr>
-<td align="left">26</td>
-<td align="left">Kernel</td>
-<td align="left">warning</td>
-<td align="left">Medium</td>
-<td align="left">HLS Kernel Related</td>
-<td align="left">Accelerator.kernel_gelinearsolver_0.Kernel</td>
-<td align="left">The critical path in module 'gelinearsolver_double_1000_30_s' consists of the following:	'call' operation ('_ln79', /home/jacksoncd/solver-acceleration<a href="file:///linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp#line=79">gelinearsolver.hpp</a>) to 'getrf_core<double, 34, 1000, 30>' [98]  (1.48 ns)
-	blocking operation 0.981 ns on control path)
-
-</td>
-<td align="left"><a href="http://www.xilinx.com/html_docs/xilinx2020_1/hls-guidance/200-1016.html">See here for more help on vitis_hls 200-1016 guidance.</a></td>
-</tr>
-<tr>
-<td align="left">27</td>
-<td align="left">Kernel</td>
 <td align="left">advisory</td>
 <td align="left">Medium</td>
 <td align="left">HLS Kernel Related</td>
@@ -3740,7 +3716,7 @@ window.onload = function () { addSorting(); }
 <td align="left"></td>
 </tr>
 <tr>
-<td align="left">28</td>
+<td align="left">26</td>
 <td align="left">Kernel</td>
 <td align="left">advisory</td>
 <td align="left">Medium</td>
