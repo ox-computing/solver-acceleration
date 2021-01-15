@@ -31,7 +31,7 @@ namespace internalgetrf {
 
 // update submatrix
 template <typename T, int NRCU, int NCMAX>
-void subUpdate(T A[NRCU][NCMAX], T rows[NCMAX], T cols[NCMAX], int rs, int re, int cs, int ce) {
+void subUpdate(int debug_mode, T A[NRCU][NCMAX], T rows[NCMAX], T cols[NCMAX], int rs, int re, int cs, int ce) {
     T a00 = rows[cs];
 
     T Acs[NRCU];
@@ -41,12 +41,14 @@ void subUpdate(T A[NRCU][NCMAX], T rows[NCMAX], T cols[NCMAX], int rs, int re, i
 
 LoopMulSub:
     for (unsigned int i = 0; i < nrows * ncols; i++) {
-#pragma HLS pipeline
-#pragma HLS dependence variable = A inter false
-// clang-format off
-#pragma HLS loop_tripcount min = 1 max = NCMAX*NRCU
-        // clang-format on
-
+          
+         #pragma HLS pipeline
+         #pragma HLS dependence variable = A inter false
+         // clang-format off
+         #pragma HLS loop_tripcount min = 1 max = NCMAX*NRCU
+                 // clang-format on
+                 
+        
         int r = i / ncols + rs;
         int c = i % ncols + cs + 1;
 
@@ -56,7 +58,7 @@ LoopMulSub:
 
 // core part of getrf (no pivoting)
 template <typename T, int NRCU, int NCMAX, int NCU>
-void getrf_core(int m, int n, T A[NCU][NRCU][NCMAX], int pivot[NCMAX], int lda) {
+void getrf_core(int debug_mode, int m, int n, T A[NCU][NRCU][NCMAX], int pivot[NCMAX], int lda) {
 LoopSweeps:
     for (int s = 0; s < (m - 1); s++) {
         T rows[NCU][NCMAX];
@@ -120,13 +122,18 @@ LoopSweeps:
 
     LoopMat:
         for (int i = 0; i < NCU; i++) {
-#pragma HLS unroll
+            #pragma HLS unroll
+        
             int rs, re, cs, ce;
             rs = (i <= (s % NCU)) ? (s / NCU + 1) : (s / NCU);
             re = NRCU - 1;
             cs = s;
             ce = NCMAX - 1;
-            subUpdate<T, NRCU, NCMAX>(A[i], rows[i], cols[i], rs, re, cs, ce);
+            
+            if(debug_mode != 7)
+            {
+            subUpdate<T, NRCU, NCMAX>(debug_mode, A[i], rows[i], cols[i], rs, re, cs, ce);
+            }
         };
     };
 };

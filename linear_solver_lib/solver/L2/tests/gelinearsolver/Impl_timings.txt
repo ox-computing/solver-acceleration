@@ -1,0 +1,9 @@
+
+*** InitializeImpl : 1 ***
+Runtime : 76179 
+
+*** InitializeImpl : 2 ***
+Runtime : 13653 
+
+*** InitializeImpl : 3 ***
+Runtime : 13437 

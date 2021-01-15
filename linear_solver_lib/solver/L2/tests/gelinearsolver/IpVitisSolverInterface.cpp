@@ -144,13 +144,22 @@ namespace Ipopt
       bool         check_NegEVals,
       Index        numberOfNegEVals
    ){
+       
+       // Keep track of function calls
+       static int iteration_number = 0;
+       iteration_number++;
+       
+       
+       // Convert new_matrix to int
+       int new_matrix_int = new_matrix;
+       
        // Timing variables
        struct timeval tstart, tinit_array, ttrans1, tlaunch, ttrans2, tpost;
        
        gettimeofday(&tstart,0);
        
                      
-       printf("INFO : Multsolve \n");
+       //printf("INFO : Multsolve \n");
        
        /*********************
         Data Allocation
@@ -195,7 +204,7 @@ namespace Ipopt
                 dataA[matrix_dimension*ja_nonoffset[i] + ia_nonoffset[i]] = val_[i];
             }
         }
-             
+        
         
         // Allocate memory for B
         dataB_size = matrix_dimension*num_rhs;
@@ -236,11 +245,15 @@ namespace Ipopt
          
          gettimeofday(&ttrans1,0);
          
+         int debug_mode = 0;
+         
           // Setup kernel
-          kernel_gelinearsolver_0.setArg(0, num_rhs);
-          kernel_gelinearsolver_0.setArg(1, matrix_dimension);
-          kernel_gelinearsolver_0.setArg(2, buffer[0]);
-          kernel_gelinearsolver_0.setArg(3, buffer[1]);
+          kernel_gelinearsolver_0.setArg(0, new_matrix_int);
+          kernel_gelinearsolver_0.setArg(1, debug_mode);
+          kernel_gelinearsolver_0.setArg(2, num_rhs);
+          kernel_gelinearsolver_0.setArg(3, matrix_dimension);
+          kernel_gelinearsolver_0.setArg(4, buffer[0]);
+          kernel_gelinearsolver_0.setArg(5, buffer[1]);
           q.finish();
           
           
@@ -294,14 +307,21 @@ namespace Ipopt
           int trans2 = diff(&ttrans2,&tlaunch);
           int post =  diff(&tpost,&ttrans2);
           
-          static int iteration_number = 0;
-          iteration_number++;
-          
           static FILE* fp = fopen("multisolve_timings.txt","w");
           
           fprintf(fp,"\n*** Multisolve Timings : %d ***\n",iteration_number);
           
           fprintf(fp,"Matrix dimension : %d \n",matrix_dimension);
+          
+          if(new_matrix)
+          {
+              fprintf(fp,"New Matrix TRUE \n");
+          }
+          else 
+          {
+              fprintf(fp,"New Matrix FALSE \n");
+          }
+          
           fprintf(fp,"Array initialise : %d \n",array_setup);
           fprintf(fp,"First transfer : %d \n", trans1);
           fprintf(fp,"Launch : %d \n", launch);

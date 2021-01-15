@@ -1,45 +1,54 @@
 
-*** Debug Mode : 0 ***
-Matrix dimension : 20 
-First transfer : 423 
-Launch : 3695 
-Second transfer : 126 
+*** Debug Mode : 0 *** Iteration : 0***
+Matrix dimension : 398 
+First transfer : 23046 
+Launch : 59916 
+Second transfer : 1043 
 
-*** Debug Mode : 1 ***
-Matrix dimension : 20 
-First transfer : 170 
-Launch : 239 
-Second transfer : 108 
+*** Debug Mode : 1 *** Iteration : 1***
+Matrix dimension : 398 
+First transfer : 1160 
+Launch : 2814 
+Second transfer : 1013 
 
-*** Debug Mode : 2 ***
+*** Debug Mode : 2 *** Iteration : 2***
 ** Singular Matrix Generated ** 
-Matrix dimension : 20 
-First transfer : 187 
-Launch : 250 
-Second transfer : 104 
+Matrix dimension : 398 
+First transfer : 1319 
+Launch : 4319 
+Second transfer : 1064 
 
-*** Debug Mode : 3 ***
+*** Debug Mode : 3 *** Iteration : 3***
 ** Singular Matrix Generated ** 
-Matrix dimension : 20 
-First transfer : 148 
-Launch : 3531 
-Second transfer : 132 
+Matrix dimension : 398 
+First transfer : 1302 
+Launch : 58607 
+Second transfer : 1189 
 
-*** Debug Mode : 4 ***
+*** Debug Mode : 4 *** Iteration : 4***
 ** Singular Matrix Generated ** 
-Matrix dimension : 20 
-First transfer : 193 
-Launch : 366 
-Second transfer : 158 
+Matrix dimension : 398 
+First transfer : 1373 
+Launch : 4341 
+Second transfer : 1193 
 
-*** Debug Mode : 5 ***
-Matrix dimension : 20 
-First transfer : 246 
-Launch : 3611 
-Second transfer : 176 
+*** Debug Mode : 5 *** Iteration : 5***
+** Singular Matrix Generated ** 
+Matrix dimension : 398 
+First transfer : 1349 
+Launch : 59298 
+Second transfer : 1172 
 
-*** Debug Mode : 6 ***
-Matrix dimension : 20 
-First transfer : 243 
-Launch : 3830 
-Second transfer : 252 
+*** Debug Mode : 6 *** Iteration : 6***
+** Singular Matrix Generated ** 
+Matrix dimension : 398 
+First transfer : 1557 
+Launch : 59427 
+Second transfer : 1283 
+
+*** Debug Mode : 7 *** Iteration : 7***
+** Singular Matrix Generated ** 
+Matrix dimension : 398 
+First transfer : 1389 
+Launch : 8223 
+Second transfer : 1141 

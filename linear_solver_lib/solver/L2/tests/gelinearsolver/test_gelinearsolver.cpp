@@ -22,8 +22,8 @@
 
 #include "xcl2.hpp"
 
-#define NUM_ROWS 20
-#define NUM_ZEROS 300
+#define NUM_ROWS 398
+#define NUM_ZEROS 30000
 #define MAX_MATRIX_VALUE 500
 #define NUM_ITERATIONS 50
 
@@ -106,10 +106,13 @@ int main(int argc, const char* argv[]) {
     FILE* fp = fopen("debug_timings.txt","w");
     
     
-     for(int debug_mode = 0; debug_mode <= 6; debug_mode++)
+     for(int iteration = 0; iteration <= 7; iteration++)
     {
     
-    fprintf(fp,"\n*** Debug Mode : %d ***\n", debug_mode);
+    // Set debug mode and print to txt
+    int debug_mode = iteration;
+    
+    fprintf(fp,"\n*** Debug Mode : %d *** Iteration : %d***\n", debug_mode,iteration);
     
     /*********************
     Sparse symmetric matrix intialisation

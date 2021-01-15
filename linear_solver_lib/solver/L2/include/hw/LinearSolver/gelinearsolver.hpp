@@ -79,7 +79,7 @@ void getrf_core(int debug_mode, int n, T A[NCU][NRCU][NMAX], int lda, int P[NMAX
     
     if(debug_mode != 4)
     {
-    internalgetrf::getrf_core<T, NRCU, NMAX, NCU>(n, n, A, P, n);
+    internalgetrf::getrf_core<T, NRCU, NMAX, NCU>(debug_mode, n, n, A, P, n);
     }
 };
 template <typename T, int N, int NCU>
@@ -114,15 +114,18 @@ void solver(int debug_mode, int n, T dataA[NCU][(N + NCU - 1) / NCU][N], T dataB
 }
 
 template <typename T, int N, int NCU>
-void solver_core(int debug_mode, int n, int j, T dataA[NCU][(N + NCU - 1) / NCU][N], T dataB[NCU][(N + NCU - 1) / NCU], T dataX[N]) {
+void solver_core(int new_matrix, int debug_mode, int n, int j, T dataA[NCU][(N + NCU - 1) / NCU][N], T dataB[NCU][(N + NCU - 1) / NCU], T dataX[N]) {
     const int NRCU = int((N + NCU - 1) / NCU);
     int P[N];
     T dataC[NCU][(N + NCU - 1) / NCU];
     int info;
     
+    if(new_matrx == 1)
+    {
     if(debug_mode != 2)
     {
     getrf_core<T, NRCU, N, NCU>(debug_mode, n, dataA, n, P);
+    }
     }
     
     for (int i = 0; i < n; ++i) {
@@ -158,42 +161,45 @@ void solver_core(int debug_mode, int n, int j, T dataA[NCU][(N + NCU - 1) / NCU]
  */
 
 template <typename T, int NMAX, int NCU>
-void gelinearsolver(int debug_mode, int n, T* A, int b, T* B, int lda, int ldb, int& info) {
+void gelinearsolver(int new_matrix, int debug_mode, int n, T* A, int b, T* B, int lda, int ldb, int& info) {
     if (NMAX == 1)
         B[0] = B[0] / A[0];
     else {
-        static T matA[NCU][(NMAX + NCU - 1) / NCU][NMAX];
-        static T matB[NCU][(NMAX + NCU - 1) / NCU];
-#pragma HLS array_partition variable = matA cyclic factor = NCU dim = 1
-#pragma HLS array_partition variable = matB cyclic factor = NCU dim = 1
-#pragma HLS resource variable = matA core = XPM_MEMORY uram
-
-        for (int j = 0; j < b; j++) {
-        Loop_read:
-            for (int r = 0; r < n; r++) {
-                for (int c = 0; c < n; c++) {
-#pragma HLS pipeline
-#pragma HLS dependence variable = A inter false
-                    matA[r % NCU][r / NCU][c] = A[r * lda + c];
-                    if (c == 0) {
-                        matB[r % NCU][r / NCU] = B[r * ldb + j];
-                    }
-                }
-            }
-
-            T dataX[NMAX];
-            
-            if(debug_mode != 1)
-            {
-            internal_gelinear::solver_core<T, NMAX, NCU>(debug_mode, n, j, matA, matB, dataX);
-            }
-
-            for (int r = 0; r < n; r++) {
-#pragma HLS pipeline
-                B[r * ldb + j] = dataX[r];
-            }
-        }
-    }
+             static T matA[NCU][(NMAX + NCU - 1) / NCU][NMAX];
+             static T matB[NCU][(NMAX + NCU - 1) / NCU];
+             #pragma HLS array_partition variable = matA cyclic factor = NCU dim = 1
+             #pragma HLS array_partition variable = matB cyclic factor = NCU dim = 1
+             #pragma HLS resource variable = matA core = XPM_MEMORY uram
+     
+             for (int j = 0; j < b; j++) {
+             Loop_read:
+                 for (int r = 0; r < n; r++) {
+                     for (int c = 0; c < n; c++) {
+                         #pragma HLS pipeline
+                         #pragma HLS dependence variable = A inter false
+                         if(new_matrix == 1)
+                         {
+                         matA[r % NCU][r / NCU][c] = A[r * lda + c];
+                         }
+                         if (c == 0) {
+                             matB[r % NCU][r / NCU] = B[r * ldb + j];
+                         }
+                     }
+                 }
+     
+                 T dataX[NMAX];
+                 
+                 if(debug_mode != 1)
+                 {
+                 internal_gelinear::solver_core<T, NMAX, NCU>(new_matrix, debug_mode, n, j, matA, matB, dataX);
+                 }
+     
+                 for (int r = 0; r < n; r++) {
+                     #pragma HLS pipeline
+                     B[r * ldb + j] = dataX[r];
+                 }
+             }
+         }
 }
 
 } // namespace solver

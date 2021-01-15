@@ -19,10 +19,11 @@
 #define MAXN 1000
 
 
-extern "C" void kernel_gelinearsolver_0(int debug_mode, int num_rhs, int na, double* dataA, double* dataB) {
+extern "C" void kernel_gelinearsolver_0(int new_matrix, int debug_mode, int num_rhs, int na, double* dataA, double* dataB) {
 #pragma HLS INTERFACE m_axi port = dataA bundle = gmem0 offset = slave
 #pragma HLS INTERFACE m_axi port = dataB bundle = gmem1 offset = slave
 
+#pragma HLS INTERFACE s_axilite port = new_matrix bundle = control
 #pragma HLS INTERFACE s_axilite port = debug_mode bundle = control
 #pragma HLS INTERFACE s_axilite port = num_rhs bundle = control
 #pragma HLS INTERFACE s_axilite port = na bundle = control
@@ -32,32 +33,45 @@ extern "C" void kernel_gelinearsolver_0(int debug_mode, int num_rhs, int na, dou
 
     int info;
     
-    // Determine if matrix is definite
-    
-    // Find eigenvalues    
-    /*xf::solver::syevj<double, MAXN, NCU>(na, dataA, na, sigma, U, na, info);
-    
-    // Determine if any are all positive
-    bool positive_definite = true;
-    
-    for(int i = 0; i < na; i++)
+   /* if(debug_mode == 20)
     {
-        if(sigma[i] <= 0)
-        {
-            positive_definite = false;
-            break;
-        }
-    }
     
-    if(positive_definite)
-    {
-        // SPD solver
-        xf::solver::polinearsolver<double, MAXN, NCU>(na, dataA, num_rhs, dataB, na, num_rhs, info);
+       // Determine if matrix is definite
+       double sigma[MAXN];
+       double U[MAXN];
+       
+       // Find eigenvalues    
+       xf::solver::syevj<double, MAXN, NCU>(na, dataA, na, sigma, U, na, info);
+       
+       // Determine if any are all positive
+       bool positive_definite = true;
+       
+       for(int i = 0; i < na; i++)
+       {
+           if(sigma[i] <= 0)
+           {
+               positive_definite = false;
+               break;
+           }
+       }
+       
+       if(positive_definite)
+       {
+           // SPD solver
+           xf::solver::polinearsolver<double, MAXN, NCU>(na, dataA, num_rhs, dataB, na, num_rhs, info);
+       }
+       else
+       {
+           // General solver
+           xf::solver::gelinearsolver<double, MAXN, NCU>(debug_mode, na, dataA, num_rhs, dataB, na, num_rhs, info);
+       }
+    
     }
-    else
-    {*/
-        // General solver
-        xf::solver::gelinearsolver<double, MAXN, NCU>(debug_mode, na, dataA, num_rhs, dataB, na, num_rhs, info);
+    else 
+    { */
+       // General solver
+       xf::solver::gelinearsolver<double, MAXN, NCU>(new_matrix, debug_mode, na, dataA, num_rhs, dataB, na, num_rhs, info);
     //}
+    
 
 }

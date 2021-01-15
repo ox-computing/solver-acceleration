@@ -3,7 +3,7 @@
 ================================================================
 == Vitis HLS Report for 'kernel_gelinearsolver_0'
 ================================================================
-* Date:           Wed Jan 13 14:52:32 2021
+* Date:           Fri Jan 15 14:57:32 2021
 
 * Version:        2020.1 (Build 2902540 on Wed May 27 20:16:15 MDT 2020)
 * Project:        kernel_gelinearsolver_0
@@ -38,7 +38,7 @@
         |                                            |                                 |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
         |                  Instance                  |              Module             |   min   |   max   |    min   |    max   | min | max |   Type  |
         +--------------------------------------------+---------------------------------+---------+---------+----------+----------+-----+-----+---------+
-        |grp_gelinearsolver_double_1000_30_s_fu_210  |gelinearsolver_double_1000_30_s  |        ?|        ?|         ?|         ?|    ?|    ?|   none  |
+        |grp_gelinearsolver_double_1000_30_s_fu_220  |gelinearsolver_double_1000_30_s  |        ?|        ?|         ?|         ?|    ?|    ?|   none  |
         +--------------------------------------------+---------------------------------+---------+---------+----------+----------+-----+-----+---------+
 
         * Loop: 
@@ -56,12 +56,12 @@
 |DSP                  |        -|     -|        -|       -|    -|
 |Expression           |        -|     -|        0|       8|    -|
 |FIFO                 |        -|     -|        -|       -|    -|
-|Instance             |      329|   463|    89922|   64704|  270|
+|Instance             |      329|   463|    89918|   64941|  270|
 |Memory               |        -|     -|        -|       -|    -|
 |Multiplexer          |        -|     -|        -|      93|    -|
 |Register             |        -|     -|      139|       -|    -|
 +---------------------+---------+------+---------+--------+-----+
-|Total                |      329|   463|    90061|   64805|  270|
+|Total                |      329|   463|    90057|   65042|  270|
 +---------------------+---------+------+---------+--------+-----+
 |Available SLR        |     1344|  2976|   871680|  435840|  320|
 +---------------------+---------+------+---------+--------+-----+
@@ -77,12 +77,12 @@
     +--------------------------------------------+---------------------------------+---------+-----+-------+-------+-----+
     |                  Instance                  |              Module             | BRAM_18K| DSP |   FF  |  LUT  | URAM|
     +--------------------------------------------+---------------------------------+---------+-----+-------+-------+-----+
-    |control_s_axi_U                             |control_s_axi                    |        0|    0|    290|    488|    0|
-    |grp_gelinearsolver_double_1000_30_s_fu_210  |gelinearsolver_double_1000_30_s  |      321|  463|  88500|  62684|  270|
+    |control_s_axi_U                             |control_s_axi                    |        0|    0|    328|    552|    0|
+    |grp_gelinearsolver_double_1000_30_s_fu_220  |gelinearsolver_double_1000_30_s  |      321|  463|  88458|  62857|  270|
     |gmem0_m_axi_U                               |gmem0_m_axi                      |        4|    0|    566|    766|    0|
     |gmem1_m_axi_U                               |gmem1_m_axi                      |        4|    0|    566|    766|    0|
     +--------------------------------------------+---------------------------------+---------+-----+-------+-------+-----+
-    |Total                                       |                                 |      329|  463|  89922|  64704|  270|
+    |Total                                       |                                 |      329|  463|  89918|  64941|  270|
     +--------------------------------------------+---------------------------------+---------+-----+-------+-------+-----+
 
     * DSP: 
@@ -135,9 +135,9 @@
     |ap_rst_reg_1                                             |   1|   0|    1|          0|
     |ap_rst_reg_2                                             |   1|   0|    1|          0|
     |ap_str_blocking_n_reg                                    |   1|   0|    1|          0|
-    |dataA_read_reg_348                                       |  64|   0|   64|          0|
-    |dataB_read_reg_343                                       |  64|   0|   64|          0|
-    |grp_gelinearsolver_double_1000_30_s_fu_210_ap_start_reg  |   1|   0|    1|          0|
+    |dataA_read_reg_359                                       |  64|   0|   64|          0|
+    |dataB_read_reg_354                                       |  64|   0|   64|          0|
+    |grp_gelinearsolver_double_1000_30_s_fu_220_ap_start_reg  |   1|   0|    1|          0|
     +---------------------------------------------------------+----+----+-----+-----------+
     |Total                                                    | 139|   0|  139|          0|
     +---------------------------------------------------------+----+----+-----+-----------+
@@ -153,14 +153,14 @@
 +-----------------------+-----+-----+---------------+-------------------------+--------------+
 |s_axi_control_AWVALID  |  in |    1|     s_axi     |         control         |  return void |
 |s_axi_control_AWREADY  | out |    1|     s_axi     |         control         |  return void |
-|s_axi_control_AWADDR   |  in |    6|     s_axi     |         control         |  return void |
+|s_axi_control_AWADDR   |  in |    7|     s_axi     |         control         |  return void |
 |s_axi_control_WVALID   |  in |    1|     s_axi     |         control         |  return void |
 |s_axi_control_WREADY   | out |    1|     s_axi     |         control         |  return void |
 |s_axi_control_WDATA    |  in |   32|     s_axi     |         control         |  return void |
 |s_axi_control_WSTRB    |  in |    4|     s_axi     |         control         |  return void |
 |s_axi_control_ARVALID  |  in |    1|     s_axi     |         control         |  return void |
 |s_axi_control_ARREADY  | out |    1|     s_axi     |         control         |  return void |
-|s_axi_control_ARADDR   |  in |    6|     s_axi     |         control         |  return void |
+|s_axi_control_ARADDR   |  in |    7|     s_axi     |         control         |  return void |
 |s_axi_control_RVALID   | out |    1|     s_axi     |         control         |  return void |
 |s_axi_control_RREADY   |  in |    1|     s_axi     |         control         |  return void |
 |s_axi_control_RDATA    | out |   32|     s_axi     |         control         |  return void |

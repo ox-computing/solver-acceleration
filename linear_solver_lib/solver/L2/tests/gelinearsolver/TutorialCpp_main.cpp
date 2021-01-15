@@ -49,7 +49,7 @@ int main(
     {   
 
    // Number of variables
-   Index N = 200;
+   Index N = 400;
    
    printf("N : %d \n",N);
 
