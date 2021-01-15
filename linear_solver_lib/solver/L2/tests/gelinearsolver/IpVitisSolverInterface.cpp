@@ -97,7 +97,7 @@ namespace Ipopt
       static int iteration_number = 0;
       iteration_number++;
       
-      static FILE* fk = fopen("Impl_timings.txt","w");
+      static FILE* fk = fopen("impl_timings_interface.txt","w");
       
       fprintf(fk,"\n*** InitializeImpl : %d ***\n", iteration_number);
       fprintf(fk,"Runtime : %d \n",time);
@@ -307,7 +307,7 @@ namespace Ipopt
           int trans2 = diff(&ttrans2,&tlaunch);
           int post =  diff(&tpost,&ttrans2);
           
-          static FILE* fp = fopen("multisolve_timings.txt","w");
+          static FILE* fp = fopen("multisolve_timings_interface.txt","w");
           
           fprintf(fp,"\n*** Multisolve Timings : %d ***\n",iteration_number);
           

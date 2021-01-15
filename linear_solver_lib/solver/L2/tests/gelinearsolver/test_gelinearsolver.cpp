@@ -103,7 +103,7 @@ int main(int argc, const char* argv[]) {
     struct timeval tstart, ttrans1, tlaunch, ttrans2;
     
     // Txt file open
-    FILE* fp = fopen("debug_timings.txt","w");
+    FILE* fp = fopen("debug_timings_non_interface.txt","w");
     
     
      for(int iteration = 0; iteration <= 7; iteration++)
@@ -204,9 +204,12 @@ int main(int argc, const char* argv[]) {
     q.finish();
     
      gettimeofday(&ttrans1,0);
+     
+     int new_matrix = 1;
     
 
     // Setup kernel
+    kernel_gelinearsolver_0.setArg(0, new_matrix);
     kernel_gelinearsolver_0.setArg(0, debug_mode);
     kernel_gelinearsolver_0.setArg(1, num_rhs);
     kernel_gelinearsolver_0.setArg(2, num_rows);
