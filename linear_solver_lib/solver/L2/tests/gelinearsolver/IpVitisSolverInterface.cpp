@@ -153,6 +153,7 @@ namespace Ipopt
        // Convert new_matrix to int
        int new_matrix_int = new_matrix;
        
+       
        // Timing variables
        struct timeval tstart, tinit_array, ttrans1, tlaunch, ttrans2, tpost;
        
@@ -174,35 +175,53 @@ namespace Ipopt
        }
          
         // Allocate memory for A
-        dataA_size = matrix_dimension*matrix_dimension;  
-        double * dataA;
-        dataA = aligned_alloc<double>(dataA_size);      
-        
-        /************
-         Convert A from Triplet to array
-        *****************/
-        
-        // Populate the initial A array with zeros
-         for(int i = 0; i < dataA_size; i++)
+        if(new_matrix_int == 1)
         {
-           dataA[i] = 0;   
+            dataA_size = matrix_dimension*matrix_dimension;
+        }
+        else
+        {
+            dataA_size = 1;
         }
         
-        // Use the triplet format originally for MA27
-        Index ia_nonoffset[matrix_nonzeros];
-        Index ja_nonoffset[matrix_nonzeros];
+        double * dataA;
+        dataA = aligned_alloc<double>(dataA_size);
         
-        // Convert to 0 offset and populate matrix
-        for(int i = 0; i < matrix_nonzeros; i++)
+        if(new_matrix_int == 1)
         {
-            ia_nonoffset[i] = ia[i] - 1;
-            ja_nonoffset[i] = ja[i] - 1;
-            
-            if(val_[i] != 0)
-            {
-                dataA[matrix_dimension*ia_nonoffset[i] + ja_nonoffset[i]] = val_[i];
-                dataA[matrix_dimension*ja_nonoffset[i] + ia_nonoffset[i]] = val_[i];
-            }
+        
+           /************
+            Convert A from Triplet to array
+           *****************/
+        
+           // Populate the initial A array with zeros
+            for(int i = 0; i < dataA_size; i++)
+           {
+              dataA[i] = 0;   
+           }
+           
+           // Use the triplet format originally for MA27
+           Index ia_nonoffset[matrix_nonzeros];
+           Index ja_nonoffset[matrix_nonzeros];
+           
+           // Convert to 0 offset and populate matrix
+           for(int i = 0; i < matrix_nonzeros; i++)
+           {
+               ia_nonoffset[i] = ia[i] - 1;
+               ja_nonoffset[i] = ja[i] - 1;
+               
+               if(val_[i] != 0)
+               {
+                   dataA[matrix_dimension*ia_nonoffset[i] + ja_nonoffset[i]] = val_[i];
+                   dataA[matrix_dimension*ja_nonoffset[i] + ia_nonoffset[i]] = val_[i];
+               }
+           }
+           
+        }
+        
+        else
+        {
+            dataA[0] = 0;
         }
         
         
@@ -234,13 +253,12 @@ namespace Ipopt
                             sizeof(double) * dataA_size, dataA, NULL);
          buffer[1] = cl::Buffer(context, CL_MEM_USE_HOST_PTR | CL_MEM_READ_WRITE,
                             sizeof(double) * dataB_size, dataB, NULL);
+         
                             
          
          // Data transfer from host to device
-         ob_io[0] = buffer[0];
-         ob_io[1] = buffer[1];
          
-         q.enqueueMigrateMemObjects(ob_io, 0, nullptr, &kernel_evt[0][0]); // 0 : migrate from host to dev
+         q.enqueueMigrateMemObjects({buffer[0], buffer[1]}, 0, nullptr, &kernel_evt[0][0]); // 0 : migrate from host to dev
          q.finish();
          
          gettimeofday(&ttrans1,0);
@@ -264,10 +282,12 @@ namespace Ipopt
           gettimeofday(&tlaunch,0);
           
           // Transfer data back to host
-          q.enqueueMigrateMemObjects(ob_io, 1, nullptr, nullptr); // 1 : migrate from dev to host
+          
+          q.enqueueMigrateMemObjects({buffer[1]}, 1, nullptr, nullptr); // 1 : migrate from dev to host
           q.finish();
           
           gettimeofday(&ttrans2,0);
+          
         
           // Return the value of the solution to rhs_values
           counter = 0;

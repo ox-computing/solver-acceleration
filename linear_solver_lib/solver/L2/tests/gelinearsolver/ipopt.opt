@@ -1,3 +1,2 @@
-# Options
 
-linear_solver custom
+linear_solver ma57

@@ -33,45 +33,8 @@ extern "C" void kernel_gelinearsolver_0(int new_matrix, int debug_mode, int num_
 
     int info;
     
-   /* if(debug_mode == 20)
-    {
-    
-       // Determine if matrix is definite
-       double sigma[MAXN];
-       double U[MAXN];
-       
-       // Find eigenvalues    
-       xf::solver::syevj<double, MAXN, NCU>(na, dataA, na, sigma, U, na, info);
-       
-       // Determine if any are all positive
-       bool positive_definite = true;
-       
-       for(int i = 0; i < na; i++)
-       {
-           if(sigma[i] <= 0)
-           {
-               positive_definite = false;
-               break;
-           }
-       }
-       
-       if(positive_definite)
-       {
-           // SPD solver
-           xf::solver::polinearsolver<double, MAXN, NCU>(na, dataA, num_rhs, dataB, na, num_rhs, info);
-       }
-       else
-       {
-           // General solver
-           xf::solver::gelinearsolver<double, MAXN, NCU>(debug_mode, na, dataA, num_rhs, dataB, na, num_rhs, info);
-       }
-    
-    }
-    else 
-    { */
-       // General solver
+  
+       // General linear solver
        xf::solver::gelinearsolver<double, MAXN, NCU>(new_matrix, debug_mode, na, dataA, num_rhs, dataB, na, num_rhs, info);
-    //}
     
-
 }

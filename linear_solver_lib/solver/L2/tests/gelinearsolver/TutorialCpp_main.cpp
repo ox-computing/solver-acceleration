@@ -42,23 +42,30 @@ int main(
    char* argc[]
 )
 {
+    /***********
+    Store timing values
+    **************/
+    struct timeval tstart, tend;
     
-    int number_iterations = 1;
+    FILE* file = fopen("tutorial_iterations_timings.txt","w");
     
-    for(int i = 1; i <= number_iterations; i++)
+    int number_iterations = 40;
+    
+    for(int iteration = 1; iteration <= number_iterations; iteration++)
     {   
 
    // Number of variables
-   Index N = 400;
+   Index N = 10*iteration;
    
-   printf("N : %d \n",N);
+   fprintf(file," %d ",N);
+   
+   gettimeofday(&tstart,0);
 
    // constant terms in the constraints
    Number* a = new double[N - 2];
    for( Index i = 0; i < N - 2; i++ )
    {
       a[i] = (double(i + 2)) / (double) N;
-      //printf("Constant value : %f \n",a[i]);
    }
 
    // Create a new instance of your nlp
@@ -97,6 +104,11 @@ int main(
    // However, we created the Number array for a here and have to delete it
    delete[] a;
 
+   gettimeofday(&tend,0);
+   
+   int time_diff = diff(&tend,&tstart);
+   
+   fprintf(file," %d \n",time_diff);
    
    } //for loop
 
