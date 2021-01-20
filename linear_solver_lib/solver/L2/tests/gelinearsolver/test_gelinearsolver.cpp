@@ -22,7 +22,7 @@
 
 #include "xcl2.hpp"
 
-#define NUM_ROWS 398
+#define NUM_ROWS 600
 #define NUM_ZEROS 30000
 #define MAX_MATRIX_VALUE 500
 #define NUM_ITERATIONS 50
@@ -91,7 +91,6 @@ int main(int argc, const char* argv[]) {
     std::vector<std::vector<cl::Event>> kernel_evt(2);
     kernel_evt[0].resize(1);
     kernel_evt[1].resize(1);
-    std::vector<cl::Memory> ob_io(2);
     std::vector<cl::Buffer> buffer(2);
 
 
@@ -106,7 +105,7 @@ int main(int argc, const char* argv[]) {
     FILE* fp = fopen("debug_timings_non_interface.txt","w");
     
     
-     for(int iteration = 0; iteration <= 7; iteration++)
+     for(int iteration = 0; iteration <= 1; iteration++)
     {
     
     // Set debug mode and print to txt
@@ -197,10 +196,7 @@ int main(int argc, const char* argv[]) {
                            sizeof(double) * b_size, dataB, NULL);
 
     // Data transfer from host buffer to device buffer
-    ob_io[0] = buffer[0];
-    ob_io[1] = buffer[1];
-
-    q.enqueueMigrateMemObjects(ob_io, 0, nullptr, &kernel_evt[0][0]); // 0 : migrate from host to dev
+    q.enqueueMigrateMemObjects({buffer[0],buffer[1]}, 0, nullptr, &kernel_evt[0][0]); // 0 : migrate from host to dev
     q.finish();
     
      gettimeofday(&ttrans1,0);
@@ -210,11 +206,11 @@ int main(int argc, const char* argv[]) {
 
     // Setup kernel
     kernel_gelinearsolver_0.setArg(0, new_matrix);
-    kernel_gelinearsolver_0.setArg(0, debug_mode);
-    kernel_gelinearsolver_0.setArg(1, num_rhs);
-    kernel_gelinearsolver_0.setArg(2, num_rows);
-    kernel_gelinearsolver_0.setArg(3, buffer[0]);
-    kernel_gelinearsolver_0.setArg(4, buffer[1]);
+    kernel_gelinearsolver_0.setArg(1, debug_mode);
+    kernel_gelinearsolver_0.setArg(2, num_rhs);
+    kernel_gelinearsolver_0.setArg(3, num_rows);
+    kernel_gelinearsolver_0.setArg(4, buffer[0]);
+    kernel_gelinearsolver_0.setArg(5, buffer[1]);
     q.finish();
 
     // Launch kernel and compute kernel execution time
@@ -226,7 +222,7 @@ int main(int argc, const char* argv[]) {
     
 
     // Data transfer from device buffer to host buffer
-    q.enqueueMigrateMemObjects(ob_io, 1, nullptr, nullptr); // 1 : migrate from dev to host
+    q.enqueueMigrateMemObjects({buffer[1]}, 1, nullptr, nullptr); // 1 : migrate from dev to host
     q.finish();
     
      gettimeofday(&ttrans2,0);

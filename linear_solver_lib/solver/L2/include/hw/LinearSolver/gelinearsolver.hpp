@@ -77,19 +77,15 @@ void getrf_core(int debug_mode, int n, T A[NCU][NRCU][NMAX], int lda, int P[NMAX
         P[r] = r;
     }
     
-    if(debug_mode != 4)
-    {
     internalgetrf::getrf_core<T, NRCU, NMAX, NCU>(debug_mode, n, n, A, P, n);
-    }
 };
 template <typename T, int N, int NCU>
 void solver(int debug_mode, int n, T dataA[NCU][(N + NCU - 1) / NCU][N], T dataB[NCU][(N + NCU - 1) / NCU], T dataX[N]) {
     T buf[N], buf_i[NCU][(N + NCU - 1) / NCU], buf_o[N];
 
-    if(debug_mode != 5)
-    {
+
     trisolver_L<T, N, NCU>(n, dataA, dataB, buf);
-    }
+    
 
     for (int i = 0; i < (N + NCU - 1) / NCU; i++) {
         for (int k = 0; k < NCU; k++) {
@@ -102,10 +98,9 @@ void solver(int debug_mode, int n, T dataA[NCU][(N + NCU - 1) / NCU][N], T dataB
         }
     }
 
-    if(debug_mode != 6)
-    {
+ 
     trisolver_U<T, N, NCU>(n, dataA, buf_i, buf_o);
-    }
+    
 
     for (int i = 0; i < N; i++) {
 #pragma HLS pipeline
@@ -122,10 +117,7 @@ void solver_core(int new_matrix, int debug_mode, int n, int j, T dataA[NCU][(N +
     
     if(new_matrx == 1)
     {
-    if(debug_mode != 2)
-    {
     getrf_core<T, NRCU, N, NCU>(debug_mode, n, dataA, n, P);
-    }
     }
     
     for (int i = 0; i < n; ++i) {
@@ -133,10 +125,7 @@ void solver_core(int new_matrix, int debug_mode, int n, int j, T dataA[NCU][(N +
         dataC[i % NCU][i / NCU] = dataB[P[i] % NCU][P[i] / NCU];
     }
     
-    if(debug_mode != 3)
-    {
     solver<T, N, NCU>(debug_mode, n, dataA, dataC, dataX);
-    }
 }
 } // namespace internal
 /**
@@ -189,10 +178,9 @@ void gelinearsolver(int new_matrix, int debug_mode, int n, T* A, int b, T* B, in
      
                  T dataX[NMAX];
                  
-                 if(debug_mode != 1)
-                 {
+                 
                  internal_gelinear::solver_core<T, NMAX, NCU>(new_matrix, debug_mode, n, j, matA, matB, dataX);
-                 }
+
      
                  for (int r = 0; r < n; r++) {
                      #pragma HLS pipeline

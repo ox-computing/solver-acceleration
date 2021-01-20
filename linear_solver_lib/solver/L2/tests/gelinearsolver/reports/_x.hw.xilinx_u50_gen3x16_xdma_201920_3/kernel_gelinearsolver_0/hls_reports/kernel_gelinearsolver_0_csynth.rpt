@@ -3,7 +3,7 @@
 ================================================================
 == Vitis HLS Report for 'kernel_gelinearsolver_0'
 ================================================================
-* Date:           Fri Jan 15 21:21:38 2021
+* Date:           Wed Jan 20 11:00:21 2021
 
 * Version:        2020.1 (Build 2902540 on Wed May 27 20:16:15 MDT 2020)
 * Project:        kernel_gelinearsolver_0
@@ -54,36 +54,36 @@
 |         Name        | BRAM_18K|  DSP |    FF   |   LUT  | URAM|
 +---------------------+---------+------+---------+--------+-----+
 |DSP                  |        -|     -|        -|       -|    -|
-|Expression           |        -|     -|        0|       8|    -|
+|Expression           |        -|     -|        0|       2|    -|
 |FIFO                 |        -|     -|        -|       -|    -|
-|Instance             |      329|   463|    89918|   64941|  270|
+|Instance             |      329|   823|   142933|  100593|  270|
 |Memory               |        -|     -|        -|       -|    -|
 |Multiplexer          |        -|     -|        -|      93|    -|
-|Register             |        -|     -|      139|       -|    -|
+|Register             |        -|     -|      136|       -|    -|
 +---------------------+---------+------+---------+--------+-----+
-|Total                |      329|   463|    90057|   65042|  270|
+|Total                |      329|   823|   143069|  100688|  270|
 +---------------------+---------+------+---------+--------+-----+
 |Available SLR        |     1344|  2976|   871680|  435840|  320|
 +---------------------+---------+------+---------+--------+-----+
-|Utilization SLR (%)  |       24|    15|       10|      14|   84|
+|Utilization SLR (%)  |       24|    27|       16|      23|   84|
 +---------------------+---------+------+---------+--------+-----+
 |Available            |     2688|  5952|  1743360|  871680|  640|
 +---------------------+---------+------+---------+--------+-----+
-|Utilization (%)      |       12|     7|        5|       7|   42|
+|Utilization (%)      |       12|    13|        8|      11|   42|
 +---------------------+---------+------+---------+--------+-----+
 
 + Detail: 
     * Instance: 
-    +--------------------------------------------+---------------------------------+---------+-----+-------+-------+-----+
-    |                  Instance                  |              Module             | BRAM_18K| DSP |   FF  |  LUT  | URAM|
-    +--------------------------------------------+---------------------------------+---------+-----+-------+-------+-----+
-    |control_s_axi_U                             |control_s_axi                    |        0|    0|    328|    552|    0|
-    |grp_gelinearsolver_double_1000_30_s_fu_220  |gelinearsolver_double_1000_30_s  |      321|  463|  88458|  62857|  270|
-    |gmem0_m_axi_U                               |gmem0_m_axi                      |        4|    0|    566|    766|    0|
-    |gmem1_m_axi_U                               |gmem1_m_axi                      |        4|    0|    566|    766|    0|
-    +--------------------------------------------+---------------------------------+---------+-----+-------+-------+-----+
-    |Total                                       |                                 |      329|  463|  89918|  64941|  270|
-    +--------------------------------------------+---------------------------------+---------+-----+-------+-------+-----+
+    +--------------------------------------------+---------------------------------+---------+-----+--------+-------+-----+
+    |                  Instance                  |              Module             | BRAM_18K| DSP |   FF   |  LUT  | URAM|
+    +--------------------------------------------+---------------------------------+---------+-----+--------+-------+-----+
+    |control_s_axi_U                             |control_s_axi                    |        0|    0|     328|    552|    0|
+    |grp_gelinearsolver_double_1000_30_s_fu_220  |gelinearsolver_double_1000_30_s  |      321|  823|  141473|  98509|  270|
+    |gmem0_m_axi_U                               |gmem0_m_axi                      |        4|    0|     566|    766|    0|
+    |gmem1_m_axi_U                               |gmem1_m_axi                      |        4|    0|     566|    766|    0|
+    +--------------------------------------------+---------------------------------+---------+-----+--------+-------+-----+
+    |Total                                       |                                 |      329|  823|  142933| 100593|  270|
+    +--------------------------------------------+---------------------------------+---------+-----+--------+-------+-----+
 
     * DSP: 
     N/A
@@ -95,16 +95,13 @@
     N/A
 
     * Expression: 
-    +-------------------+----------+----+---+----+------------+------------+
-    |   Variable Name   | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
-    +-------------------+----------+----+---+----+------------+------------+
-    |ap_ext_blocking_n  |    and   |   0|  0|   2|           1|           2|
-    |ap_int_blocking_n  |    and   |   0|  0|   2|           1|           2|
-    |ap_str_blocking_n  |    and   |   0|  0|   2|           1|           2|
-    |ap_block_state1    |    or    |   0|  0|   2|           1|           1|
-    +-------------------+----------+----+---+----+------------+------------+
-    |Total              |          |   0|  0|   8|           4|           7|
-    +-------------------+----------+----+---+----+------------+------------+
+    +-----------------+----------+----+---+----+------------+------------+
+    |  Variable Name  | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +-----------------+----------+----+---+----+------------+------------+
+    |ap_block_state1  |    or    |   0|  0|   2|           1|           1|
+    +-----------------+----------+----+---+----+------------+------------+
+    |Total            |          |   0|  0|   2|           1|           1|
+    +-----------------+----------+----+---+----+------------+------------+
 
     * Multiplexer: 
     +---------------+----+-----------+-----+-----------+
@@ -129,17 +126,14 @@
     +---------------------------------------------------------+----+----+-----+-----------+
     |ap_CS_fsm                                                |   3|   0|    3|          0|
     |ap_done_reg                                              |   1|   0|    1|          0|
-    |ap_ext_blocking_n_reg                                    |   1|   0|    1|          0|
-    |ap_int_blocking_n_reg                                    |   1|   0|    1|          0|
     |ap_rst_n_inv                                             |   1|   0|    1|          0|
     |ap_rst_reg_1                                             |   1|   0|    1|          0|
     |ap_rst_reg_2                                             |   1|   0|    1|          0|
-    |ap_str_blocking_n_reg                                    |   1|   0|    1|          0|
     |dataA_read_reg_359                                       |  64|   0|   64|          0|
     |dataB_read_reg_354                                       |  64|   0|   64|          0|
     |grp_gelinearsolver_double_1000_30_s_fu_220_ap_start_reg  |   1|   0|    1|          0|
     +---------------------------------------------------------+----+----+-----+-----------+
-    |Total                                                    | 139|   0|  139|          0|
+    |Total                                                    | 136|   0|  136|          0|
     +---------------------------------------------------------+----+----+-----+-----------+
 
 
@@ -170,15 +164,7 @@
 |s_axi_control_BRESP    | out |    2|     s_axi     |         control         |  return void |
 |ap_clk                 |  in |    1| ap_ctrl_chain | kernel_gelinearsolver_0 | return value |
 |ap_rst_n               |  in |    1| ap_ctrl_chain | kernel_gelinearsolver_0 | return value |
-|event_done             | out |    1| ap_ctrl_chain | kernel_gelinearsolver_0 | return value |
 |interrupt              | out |    1| ap_ctrl_chain | kernel_gelinearsolver_0 | return value |
-|event_start            | out |    1| ap_ctrl_chain | kernel_gelinearsolver_0 | return value |
-|stall_start_ext        | out |    1| ap_ctrl_chain | kernel_gelinearsolver_0 | return value |
-|stall_done_ext         | out |    1| ap_ctrl_chain | kernel_gelinearsolver_0 | return value |
-|stall_start_str        | out |    1| ap_ctrl_chain | kernel_gelinearsolver_0 | return value |
-|stall_done_str         | out |    1| ap_ctrl_chain | kernel_gelinearsolver_0 | return value |
-|stall_start_int        | out |    1| ap_ctrl_chain | kernel_gelinearsolver_0 | return value |
-|stall_done_int         | out |    1| ap_ctrl_chain | kernel_gelinearsolver_0 | return value |
 |m_axi_gmem0_AWVALID    | out |    1|     m_axi     |          gmem0          |    pointer   |
 |m_axi_gmem0_AWREADY    |  in |    1|     m_axi     |          gmem0          |    pointer   |
 |m_axi_gmem0_AWADDR     | out |   64|     m_axi     |          gmem0          |    pointer   |

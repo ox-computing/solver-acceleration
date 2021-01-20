@@ -3407,7 +3407,7 @@ window.onload = function () { addSorting(); }
 <center><h1>Design Guidance Report</h1></center><center><table class="header" border="0">
 <tr><td><b>Copyright</b></td><td>Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.</td></tr>
 <tr><td><b>Tool Version</b></td><td>xrcserver v.2020.1 (lin64) Build 0 </td></tr>
-<tr><td><b>Date</b></td><td>Fri Jan 15 21:22:35 2021</td></tr>
+<tr><td><b>Date</b></td><td>Wed Jan 20 11:01:15 2021</td></tr>
 <tr><td><b>Host</b></td><td>ENGS-21963 running 64-bit Ubuntu 18.04.5 LTS</td></tr>
 <tr><td><b>Command</b></td><td>v++  -t hw --platform /opt/xilinx/platforms/xilinx_u50_gen3x16_xdma_201920_3/xilinx_u50_gen3x16_xdma_201920_3.xpfm --save-temps --config conn_u50.ini -I/home/jacksoncd/solver-acceleration/linear_solver_lib/solver//L2/tests/gelinearsolver -I/home/jacksoncd/solver-acceleration/linear_solver_lib/solver//L2/include -I/home/jacksoncd/solver-acceleration/linear_solver_lib/solver//ext --temp_dir _x_temp.hw.xilinx_u50_gen3x16_xdma_201920_3 --report_dir /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/tests/gelinearsolver/reports/_x.hw.xilinx_u50_gen3x16_xdma_201920_3 -c -k kernel_gelinearsolver_0 -I/home/jacksoncd/solver-acceleration/linear_solver_lib/solver//L2/tests/gelinearsolver -o _x_temp.hw.xilinx_u50_gen3x16_xdma_201920_3/kernel_gelinearsolver_0.xo /home/jacksoncd/solver-acceleration/linear_solver_lib/solver//L2/tests/gelinearsolver/kernel_gelinearsolver.cpp </td></tr>
 </table></center><br>
@@ -3441,7 +3441,7 @@ window.onload = function () { addSorting(); }
 <td align="left">Medium</td>
 <td align="left">HLS Latency Related</td>
 <td align="left">Accelerator.kernel_gelinearsolver_0.Latency</td>
-<td align="left">Cannot flatten loop 'LoopSweeps' (/home/jacksoncd/solver-acceleration<a href="file:///linear_solver_lib/solver/L2/include/hw/MatrixDecomposition/getrf.hpp#line=63">getrf.hpp</a>) in function 'xf::solver::internalgetrf::getrf_core<double, 34, 1000, 30>' more than one sub loop.
+<td align="left">Cannot flatten loop 'LoopSweeps' (/home/jacksoncd/solver-acceleration<a href="file:///linear_solver_lib/solver/L2/include/hw/MatrixDecomposition/getrf.hpp#line=81">getrf.hpp</a>) in function 'xf::solver::internalgetrf::getrf_core<double, 34, 1000, 30>' more than one sub loop.
 </td>
 <td align="left"><a href="http://www.xilinx.com/html_docs/xilinx2020_1/hls-guidance/200-960.html">See here for more help on vitis_hls 200-960 guidance.</a></td>
 </tr>
@@ -3474,7 +3474,7 @@ window.onload = function () { addSorting(); }
 <td align="left">Medium</td>
 <td align="left">HLS Latency Related</td>
 <td align="left">Accelerator.kernel_gelinearsolver_0.Latency</td>
-<td align="left">Cannot flatten loop 'VITIS_LOOP_174_1' (/home/jacksoncd/solver-acceleration<a href="file:///linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp#line=174">gelinearsolver.hpp</a>) in function 'xf::solver::gelinearsolver<double, 1000, 30>' more than one sub loop.
+<td align="left">Cannot flatten loop 'VITIS_LOOP_163_1' (/home/jacksoncd/solver-acceleration<a href="file:///linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp#line=163">gelinearsolver.hpp</a>) in function 'xf::solver::gelinearsolver<double, 1000, 30>' more than one sub loop.
 </td>
 <td align="left"><a href="http://www.xilinx.com/html_docs/xilinx2020_1/hls-guidance/200-960.html">See here for more help on vitis_hls 200-960 guidance.</a></td>
 </tr>
@@ -3485,7 +3485,7 @@ window.onload = function () { addSorting(); }
 <td align="left">Medium</td>
 <td align="left">HLS Throughput Related</td>
 <td align="left">Accelerator.kernel_gelinearsolver_0.Throughput</td>
-<td align="left">Pipelining result : Target II = 1, Final II = 1, Depth = 55.
+<td align="left">Pipelining result : Target II = 1, Final II = 1, Depth = 59.
 </td>
 <td align="left"></td>
 </tr>
@@ -3496,7 +3496,7 @@ window.onload = function () { addSorting(); }
 <td align="left">Medium</td>
 <td align="left">HLS Throughput Related</td>
 <td align="left">Accelerator.kernel_gelinearsolver_0.Throughput</td>
-<td align="left">The II Violation in module 'getrf_core_double_34_1000_30_s' (Loop: LoopPivot): Unable to enforce a carried dependence constraint (II = 1, distance = 1, offset = 1) between 'and' operation ('and_ln85_1', /home/jacksoncd/solver-acceleration<a href="file:///linear_solver_lib/solver/L2/include/hw/MatrixDecomposition/getrf.hpp#line=85">getrf.hpp</a>) and 'dcmp' operation ('tmp_5', /home/jacksoncd/solver-acceleration<a href="file:///linear_solver_lib/solver/L2/include/hw/MatrixDecomposition/getrf.hpp#line=85">getrf.hpp</a>).
+<td align="left">The II Violation in module 'getrf_core_double_34_1000_30_s' (Loop: LoopPivot): Unable to enforce a carried dependence constraint (II = 1, distance = 1, offset = 1) between 'and' operation ('and_ln103_1', /home/jacksoncd/solver-acceleration<a href="file:///linear_solver_lib/solver/L2/include/hw/MatrixDecomposition/getrf.hpp#line=103">getrf.hpp</a>) and 'dcmp' operation ('tmp_8', /home/jacksoncd/solver-acceleration<a href="file:///linear_solver_lib/solver/L2/include/hw/MatrixDecomposition/getrf.hpp#line=103">getrf.hpp</a>).
 </td>
 <td align="left"><a href="http://www.xilinx.com/html_docs/xilinx2020_1/hls-guidance/200-880.html">See here for more help on vitis_hls 200-880 guidance.</a></td>
 </tr>
@@ -3507,7 +3507,7 @@ window.onload = function () { addSorting(); }
 <td align="left">Medium</td>
 <td align="left">HLS Throughput Related</td>
 <td align="left">Accelerator.kernel_gelinearsolver_0.Throughput</td>
-<td align="left">The II Violation in module 'getrf_core_double_34_1000_30_s' (Loop: LoopPivot): Unable to enforce a carried dependence constraint (II = 2, distance = 1, offset = 1) between 'select' operation ('pmax', /home/jacksoncd/solver-acceleration<a href="file:///linear_solver_lib/solver/L2/include/hw/MatrixDecomposition/getrf.hpp#line=85">getrf.hpp</a>) and 'dcmp' operation ('tmp_5', /home/jacksoncd/solver-acceleration<a href="file:///linear_solver_lib/solver/L2/include/hw/MatrixDecomposition/getrf.hpp#line=85">getrf.hpp</a>).
+<td align="left">The II Violation in module 'getrf_core_double_34_1000_30_s' (Loop: LoopPivot): Unable to enforce a carried dependence constraint (II = 2, distance = 1, offset = 1) between 'select' operation ('pmax', /home/jacksoncd/solver-acceleration<a href="file:///linear_solver_lib/solver/L2/include/hw/MatrixDecomposition/getrf.hpp#line=103">getrf.hpp</a>) and 'dcmp' operation ('tmp_8', /home/jacksoncd/solver-acceleration<a href="file:///linear_solver_lib/solver/L2/include/hw/MatrixDecomposition/getrf.hpp#line=103">getrf.hpp</a>).
 </td>
 <td align="left"><a href="http://www.xilinx.com/html_docs/xilinx2020_1/hls-guidance/200-880.html">See here for more help on vitis_hls 200-880 guidance.</a></td>
 </tr>
@@ -3529,7 +3529,7 @@ window.onload = function () { addSorting(); }
 <td align="left">Medium</td>
 <td align="left">HLS Kernel Related</td>
 <td align="left">Accelerator.kernel_gelinearsolver_0.Kernel</td>
-<td align="left">Unable to schedule 'store' operation ('matA_28_addr_write_ln106', /home/jacksoncd/solver-acceleration<a href="file:///linear_solver_lib/solver/L2/include/hw/MatrixDecomposition/getrf.hpp#line=106">getrf.hpp</a>) of variable 'tmp_7', /home/jacksoncd/solver-acceleration<a href="file:///linear_solver_lib/solver/L2/include/hw/MatrixDecomposition/getrf.hpp#line=106">getrf.hpp</a> on array 'matA_28' due to limited memory ports. Please consider using a memory core with more ports or partitioning the array 'matA_28'.
+<td align="left">Unable to schedule 'store' operation ('matA_28_addr_write_ln124', /home/jacksoncd/solver-acceleration<a href="file:///linear_solver_lib/solver/L2/include/hw/MatrixDecomposition/getrf.hpp#line=124">getrf.hpp</a>) of variable 'tmp_s', /home/jacksoncd/solver-acceleration<a href="file:///linear_solver_lib/solver/L2/include/hw/MatrixDecomposition/getrf.hpp#line=124">getrf.hpp</a> on array 'matA_28' due to limited memory ports. Please consider using a memory core with more ports or partitioning the array 'matA_28'.
 </td>
 <td align="left"><a href="http://www.xilinx.com/html_docs/xilinx2020_1/hls-guidance/200-885.html">See here for more help on vitis_hls 200-885 guidance.</a></td>
 </tr>
@@ -3730,9 +3730,9 @@ window.onload = function () { addSorting(); }
 <td align="left">conn_u50.ini
 </td>
 <td align="left">
-debug=1
-save-temps=1
-profile_kernel=data:all:all:all
+#debug=1
+#save-temps=1
+#profile_kernel=data:all:all:all
 
 [connectivity] 
 #nk = kernel_gelinearsolver_0:1:kernel_gelinearsolver_0_1

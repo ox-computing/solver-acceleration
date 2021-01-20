@@ -1,0 +1,12 @@
+
+*** Debug Mode : 0 *** Iteration : 0***
+Matrix dimension : 600 
+First transfer : 2535 
+Launch : 75025 
+Second transfer : 301 
+
+*** Debug Mode : 1 *** Iteration : 1***
+Matrix dimension : 600 
+First transfer : 2298 
+Launch : 75090 
+Second transfer : 196 
