@@ -1,360 +1,360 @@
 
 *** InitializeImpl : 1 ***
-Runtime : 74415 
+Runtime : 51672 
 
 *** InitializeImpl : 2 ***
-Runtime : 12671 
+Runtime : 12344 
 
 *** InitializeImpl : 3 ***
-Runtime : 12512 
+Runtime : 11982 
 
 *** InitializeImpl : 4 ***
-Runtime : 61480 
+Runtime : 39843 
 
 *** InitializeImpl : 5 ***
-Runtime : 12426 
+Runtime : 12013 
 
 *** InitializeImpl : 6 ***
-Runtime : 12385 
+Runtime : 12037 
 
 *** InitializeImpl : 7 ***
-Runtime : 57810 
+Runtime : 37784 
 
 *** InitializeImpl : 8 ***
-Runtime : 12393 
+Runtime : 12161 
 
 *** InitializeImpl : 9 ***
-Runtime : 12330 
+Runtime : 12092 
 
 *** InitializeImpl : 10 ***
-Runtime : 58419 
+Runtime : 38213 
 
 *** InitializeImpl : 11 ***
-Runtime : 12744 
+Runtime : 12309 
 
 *** InitializeImpl : 12 ***
-Runtime : 12407 
+Runtime : 12032 
 
 *** InitializeImpl : 13 ***
-Runtime : 58747 
+Runtime : 48164 
 
 *** InitializeImpl : 14 ***
-Runtime : 12470 
+Runtime : 13472 
 
 *** InitializeImpl : 15 ***
-Runtime : 13058 
+Runtime : 12559 
 
 *** InitializeImpl : 16 ***
-Runtime : 60979 
+Runtime : 49407 
 
 *** InitializeImpl : 17 ***
-Runtime : 12399 
+Runtime : 12243 
 
 *** InitializeImpl : 18 ***
-Runtime : 12863 
+Runtime : 12014 
 
 *** InitializeImpl : 19 ***
-Runtime : 57149 
+Runtime : 42347 
 
 *** InitializeImpl : 20 ***
-Runtime : 12306 
+Runtime : 12151 
 
 *** InitializeImpl : 21 ***
-Runtime : 12207 
+Runtime : 12244 
 
 *** InitializeImpl : 22 ***
-Runtime : 59139 
+Runtime : 42474 
 
 *** InitializeImpl : 23 ***
-Runtime : 12316 
+Runtime : 12189 
 
 *** InitializeImpl : 24 ***
-Runtime : 12245 
+Runtime : 12053 
 
 *** InitializeImpl : 25 ***
-Runtime : 57562 
+Runtime : 52962 
 
 *** InitializeImpl : 26 ***
-Runtime : 12365 
+Runtime : 12665 
 
 *** InitializeImpl : 27 ***
-Runtime : 12287 
+Runtime : 12282 
 
 *** InitializeImpl : 28 ***
-Runtime : 59480 
+Runtime : 35769 
 
 *** InitializeImpl : 29 ***
-Runtime : 12356 
+Runtime : 12549 
 
 *** InitializeImpl : 30 ***
-Runtime : 12570 
+Runtime : 12052 
 
 *** InitializeImpl : 31 ***
-Runtime : 58554 
+Runtime : 42739 
 
 *** InitializeImpl : 32 ***
-Runtime : 12503 
+Runtime : 15523 
 
 *** InitializeImpl : 33 ***
-Runtime : 12681 
+Runtime : 13937 
 
 *** InitializeImpl : 34 ***
-Runtime : 57942 
+Runtime : 53826 
 
 *** InitializeImpl : 35 ***
-Runtime : 12371 
+Runtime : 12698 
 
 *** InitializeImpl : 36 ***
-Runtime : 12274 
+Runtime : 13116 
 
 *** InitializeImpl : 37 ***
-Runtime : 58163 
+Runtime : 36343 
 
 *** InitializeImpl : 38 ***
-Runtime : 12355 
+Runtime : 12124 
 
 *** InitializeImpl : 39 ***
-Runtime : 12249 
+Runtime : 11971 
 
 *** InitializeImpl : 40 ***
-Runtime : 69378 
+Runtime : 51606 
 
 *** InitializeImpl : 41 ***
-Runtime : 12434 
+Runtime : 12105 
 
 *** InitializeImpl : 42 ***
-Runtime : 12185 
+Runtime : 12035 
 
 *** InitializeImpl : 43 ***
-Runtime : 53544 
+Runtime : 37604 
 
 *** InitializeImpl : 44 ***
-Runtime : 12817 
+Runtime : 12118 
 
 *** InitializeImpl : 45 ***
-Runtime : 13485 
+Runtime : 12075 
 
 *** InitializeImpl : 46 ***
-Runtime : 57224 
+Runtime : 44236 
 
 *** InitializeImpl : 47 ***
-Runtime : 12668 
+Runtime : 12112 
 
 *** InitializeImpl : 48 ***
-Runtime : 12775 
+Runtime : 11972 
 
 *** InitializeImpl : 49 ***
-Runtime : 60254 
+Runtime : 40389 
 
 *** InitializeImpl : 50 ***
-Runtime : 12375 
+Runtime : 12452 
 
 *** InitializeImpl : 51 ***
-Runtime : 12192 
+Runtime : 12151 
 
 *** InitializeImpl : 52 ***
-Runtime : 58423 
+Runtime : 49975 
 
 *** InitializeImpl : 53 ***
-Runtime : 12580 
+Runtime : 12149 
 
 *** InitializeImpl : 54 ***
-Runtime : 13132 
+Runtime : 12005 
 
 *** InitializeImpl : 55 ***
-Runtime : 56824 
+Runtime : 39490 
 
 *** InitializeImpl : 56 ***
-Runtime : 12371 
+Runtime : 12407 
 
 *** InitializeImpl : 57 ***
-Runtime : 12352 
+Runtime : 11985 
 
 *** InitializeImpl : 58 ***
-Runtime : 55694 
+Runtime : 50361 
 
 *** InitializeImpl : 59 ***
-Runtime : 12371 
+Runtime : 11995 
 
 *** InitializeImpl : 60 ***
-Runtime : 12387 
+Runtime : 12367 
 
 *** InitializeImpl : 61 ***
-Runtime : 56690 
+Runtime : 41541 
 
 *** InitializeImpl : 62 ***
-Runtime : 12901 
+Runtime : 12262 
 
 *** InitializeImpl : 63 ***
-Runtime : 12485 
+Runtime : 12120 
 
 *** InitializeImpl : 64 ***
-Runtime : 56958 
+Runtime : 52101 
 
 *** InitializeImpl : 65 ***
-Runtime : 12406 
+Runtime : 13340 
 
 *** InitializeImpl : 66 ***
-Runtime : 12742 
+Runtime : 12052 
 
 *** InitializeImpl : 67 ***
-Runtime : 55696 
+Runtime : 44055 
 
 *** InitializeImpl : 68 ***
-Runtime : 12213 
+Runtime : 12094 
 
 *** InitializeImpl : 69 ***
-Runtime : 12286 
+Runtime : 12002 
 
 *** InitializeImpl : 70 ***
-Runtime : 57388 
+Runtime : 48968 
 
 *** InitializeImpl : 71 ***
-Runtime : 12323 
+Runtime : 12350 
 
 *** InitializeImpl : 72 ***
-Runtime : 12372 
+Runtime : 12206 
 
 *** InitializeImpl : 73 ***
-Runtime : 56184 
+Runtime : 54675 
 
 *** InitializeImpl : 74 ***
-Runtime : 12271 
+Runtime : 13970 
 
 *** InitializeImpl : 75 ***
-Runtime : 12272 
+Runtime : 13425 
 
 *** InitializeImpl : 76 ***
-Runtime : 56911 
+Runtime : 48041 
 
 *** InitializeImpl : 77 ***
-Runtime : 12281 
+Runtime : 12492 
 
 *** InitializeImpl : 78 ***
-Runtime : 12603 
+Runtime : 12540 
 
 *** InitializeImpl : 79 ***
-Runtime : 57138 
+Runtime : 45543 
 
 *** InitializeImpl : 80 ***
-Runtime : 12284 
+Runtime : 12082 
 
 *** InitializeImpl : 81 ***
-Runtime : 12716 
+Runtime : 12058 
 
 *** InitializeImpl : 82 ***
-Runtime : 55893 
+Runtime : 45937 
 
 *** InitializeImpl : 83 ***
-Runtime : 12336 
+Runtime : 11970 
 
 *** InitializeImpl : 84 ***
-Runtime : 12354 
+Runtime : 11974 
 
 *** InitializeImpl : 85 ***
-Runtime : 58297 
+Runtime : 43141 
 
 *** InitializeImpl : 86 ***
-Runtime : 12563 
+Runtime : 13135 
 
 *** InitializeImpl : 87 ***
-Runtime : 12947 
+Runtime : 12112 
 
 *** InitializeImpl : 88 ***
-Runtime : 60847 
+Runtime : 44659 
 
 *** InitializeImpl : 89 ***
-Runtime : 12708 
+Runtime : 12039 
 
 *** InitializeImpl : 90 ***
-Runtime : 12293 
+Runtime : 12026 
 
 *** InitializeImpl : 91 ***
-Runtime : 57391 
+Runtime : 54627 
 
 *** InitializeImpl : 92 ***
-Runtime : 12435 
+Runtime : 12966 
 
 *** InitializeImpl : 93 ***
-Runtime : 12739 
+Runtime : 13890 
 
 *** InitializeImpl : 94 ***
-Runtime : 59304 
+Runtime : 53069 
 
 *** InitializeImpl : 95 ***
-Runtime : 12290 
+Runtime : 12624 
 
 *** InitializeImpl : 96 ***
-Runtime : 12404 
+Runtime : 11984 
 
 *** InitializeImpl : 97 ***
-Runtime : 57231 
+Runtime : 47400 
 
 *** InitializeImpl : 98 ***
-Runtime : 12415 
+Runtime : 12152 
 
 *** InitializeImpl : 99 ***
-Runtime : 12379 
+Runtime : 12206 
 
 *** InitializeImpl : 100 ***
-Runtime : 56708 
+Runtime : 51800 
 
 *** InitializeImpl : 101 ***
-Runtime : 12261 
+Runtime : 12032 
 
 *** InitializeImpl : 102 ***
-Runtime : 12219 
+Runtime : 12008 
 
 *** InitializeImpl : 103 ***
-Runtime : 58094 
+Runtime : 47378 
 
 *** InitializeImpl : 104 ***
-Runtime : 12300 
+Runtime : 12232 
 
 *** InitializeImpl : 105 ***
-Runtime : 12313 
+Runtime : 12341 
 
 *** InitializeImpl : 106 ***
-Runtime : 57401 
+Runtime : 52983 
 
 *** InitializeImpl : 107 ***
-Runtime : 12272 
+Runtime : 13857 
 
 *** InitializeImpl : 108 ***
-Runtime : 12379 
+Runtime : 13275 
 
 *** InitializeImpl : 109 ***
-Runtime : 58380 
+Runtime : 54744 
 
 *** InitializeImpl : 110 ***
-Runtime : 12427 
+Runtime : 13437 
 
 *** InitializeImpl : 111 ***
-Runtime : 12613 
+Runtime : 12091 
 
 *** InitializeImpl : 112 ***
-Runtime : 56613 
+Runtime : 45511 
 
 *** InitializeImpl : 113 ***
-Runtime : 12381 
+Runtime : 12029 
 
 *** InitializeImpl : 114 ***
-Runtime : 12458 
+Runtime : 12035 
 
 *** InitializeImpl : 115 ***
-Runtime : 57378 
+Runtime : 51641 
 
 *** InitializeImpl : 116 ***
-Runtime : 12224 
+Runtime : 12060 
 
 *** InitializeImpl : 117 ***
-Runtime : 12284 
+Runtime : 11969 
 
 *** InitializeImpl : 118 ***
-Runtime : 56787 
+Runtime : 51510 
 
 *** InitializeImpl : 119 ***
-Runtime : 12401 
+Runtime : 12297 
 
 *** InitializeImpl : 120 ***
-Runtime : 12421 
+Runtime : 11956 

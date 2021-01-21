@@ -52,18 +52,8 @@ LoopMulSub:
         int r = i / ncols + rs;
         int c = i % ncols + cs + 1;
 
-        if(debug_mode == 0)
-        {
-            A[r][c] = A[r][c] - cols[r] * rows[c];    
-        }
+        A[r][c] = A[r][c] - cols[r] * rows[c];    
         
-        if(debug_mode == 1)
-        {
-            if((cols[r] != 0) && (rows[c] != 0))
-            {
-                A[r][c] = A[r][c] - cols[r] * rows[c];
-            }
-        }
         
         
         // Make use of the symmetry and vectors

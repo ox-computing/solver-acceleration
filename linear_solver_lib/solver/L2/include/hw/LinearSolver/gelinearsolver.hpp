@@ -160,21 +160,34 @@ void gelinearsolver(int new_matrix, int debug_mode, int n, T* A, int b, T* B, in
              #pragma HLS array_partition variable = matB cyclic factor = NCU dim = 1
              #pragma HLS resource variable = matA core = XPM_MEMORY uram
      
-             for (int j = 0; j < b; j++) {
-             Loop_read:
-                 for (int r = 0; r < n; r++) {
-                     for (int c = 0; c < n; c++) {
-                         #pragma HLS pipeline
-                         #pragma HLS dependence variable = A inter false
-                         if(new_matrix == 1)
-                         {
-                         matA[r % NCU][r / NCU][c] = A[r * lda + c];
-                         }
-                         if (c == 0) {
-                             matB[r % NCU][r / NCU] = B[r * ldb + j];
-                         }
-                     }
-                 }
+                for (int j = 0; j < b; j++) {
+                   
+                   if(new_matrix == 1)
+                   {
+                       Loop_read_1:
+                       for (int r = 0; r < n; r++) {
+                           for (int c = 0; c < n; c++) {
+                               #pragma HLS pipeline
+                               #pragma HLS dependence variable = A inter false
+                       
+                               matA[r % NCU][r / NCU][c] = A[r * lda + c];
+                             
+                               if (c == 0) {
+                                   matB[r % NCU][r / NCU] = B[r * ldb + j];
+                               }
+                           }
+                       }
+                   }
+                   else
+                   {
+                       Loop_read_2:
+                       for (int r = 0; r < n; r++) {
+                               #pragma HLS pipeline
+                               #pragma HLS dependence variable = A inter false
+                             
+                                   matB[r % NCU][r / NCU] = B[r * ldb + j];
+                           }
+                    }
      
                  T dataX[NMAX];
                  

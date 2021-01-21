@@ -299,6 +299,7 @@ namespace Ipopt
               }
           }
           
+          
           free(dataA);
           free(dataB);
           
