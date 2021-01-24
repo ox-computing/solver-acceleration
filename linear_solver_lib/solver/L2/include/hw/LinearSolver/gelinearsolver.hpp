@@ -169,6 +169,7 @@ void gelinearsolver(int new_matrix, int debug_mode, int n, T* A, int b, T* B, in
                            for (int c = 0; c < n; c++) {
                                #pragma HLS pipeline
                                #pragma HLS dependence variable = A inter false
+                               #pragma HLS dependence variable = B inter false
                        
                                matA[r % NCU][r / NCU][c] = A[r * lda + c];
                              
@@ -184,6 +185,7 @@ void gelinearsolver(int new_matrix, int debug_mode, int n, T* A, int b, T* B, in
                        for (int r = 0; r < n; r++) {
                                #pragma HLS pipeline
                                #pragma HLS dependence variable = A inter false
+                               #pragma HLS dependence variable = B inter false
                              
                                    matB[r % NCU][r / NCU] = B[r * ldb + j];
                            }
