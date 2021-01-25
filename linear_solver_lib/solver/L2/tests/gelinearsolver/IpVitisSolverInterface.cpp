@@ -61,12 +61,18 @@ namespace Ipopt
       // Time variables
       struct timeval tstart, tend;
       
+      // Variable to measure number of times InitialiseImpl executed
+      static int times_run = 0;
+      times_run++;
+      
       gettimeofday(&tstart,0);
       
       printf("INFO: Initialising IMPL \n");
       
+      if((times_run % 3) == 1){
+      
       // Read in xclbin path from options
-      printf("INFO: Running on HW \n");
+      printf("INFO: Loading xclbin \n");
       xclbin_path = "/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/tests/gelinearsolver/build_dir.hw.xilinx_u50_gen3x16_xdma_201920_3/kernel_gelinearsolver.xclbin";
       
       /********************
@@ -90,16 +96,18 @@ namespace Ipopt
       kernel_gelinearsolver_0 = cl::Kernel(program, "kernel_gelinearsolver_0");
       std::cout << "INFO: Kernel has been created" << std::endl;
       
+      }
+      
       gettimeofday(&tend,0);
       
       int time = diff(&tend, &tstart);
       
-      static int iteration_number = 0;
-      iteration_number++;
+      static int impl_iteration = 0;
+      impl_iteration++;
       
       static FILE* fk = fopen("impl_timings_interface.txt","w");
       
-      fprintf(fk,"\n*** InitializeImpl : %d ***\n", iteration_number);
+      fprintf(fk,"\n*** InitializeImpl : %d ***\n", impl_iteration);
       fprintf(fk,"Runtime : %d \n",time);
       
     
@@ -117,6 +125,12 @@ namespace Ipopt
        // Store variables and pointers for later use
        matrix_dimension = dim;
        matrix_nonzeros = nonzeros;
+       
+       if(matrix_dimension > MAXN)
+       {
+           printf("ERROR : Matrix size of %d exceed maximum \n",matrix_dimension);
+           return SYMSOLVER_FATAL_ERROR;
+       }
        
        // Create the array to store the values
        if( val_ != NULL )
@@ -146,12 +160,8 @@ namespace Ipopt
    ){
        
        // Keep track of function calls
-       static int iteration_number = 0;
-       iteration_number++;
-       
-       
-       // Convert new_matrix to int
-       int new_matrix_int = new_matrix;
+       static int multisolve_iteration = 0;
+       multisolve_iteration++;
        
        
        // Timing variables
@@ -175,7 +185,7 @@ namespace Ipopt
        }
          
         // Allocate memory for A
-        if(new_matrix_int == 1)
+        if(new_matrix)
         {
             dataA_size = matrix_dimension*matrix_dimension;
         }
@@ -187,7 +197,7 @@ namespace Ipopt
         double * dataA;
         dataA = aligned_alloc<double>(dataA_size);
         
-        if(new_matrix_int == 1)
+        if(new_matrix)
         {
         
            /************
@@ -264,6 +274,7 @@ namespace Ipopt
          gettimeofday(&ttrans1,0);
          
          int debug_mode = 0;
+         int new_matrix_int = new_matrix;
          
           // Setup kernel
           kernel_gelinearsolver_0.setArg(0, new_matrix_int);
@@ -311,12 +322,15 @@ namespace Ipopt
           
           
           // Check if singular
+          bool solver_singular = false;
+          
           for(int i = 0; i < dataB_size; i++)
           {
               if(std::isnan(rhs_vals[i]))
               {
                   printf("INFO : Matrix singular \n");
-                  return SYMSOLVER_SINGULAR;
+                  solver_singular = true;
+                  break;
               }
           } 
           
@@ -330,7 +344,12 @@ namespace Ipopt
           
           static FILE* fp = fopen("multisolve_timings_interface.txt","w");
           
-          fprintf(fp,"\n*** Multisolve Timings : %d ***\n",iteration_number);
+          fprintf(fp,"\n*** Multisolve Timings : %d ***\n",multisolve_iteration);
+          
+          if(solver_singular)
+          {
+              fprintf(fp,"** Matrix singular ** \n");
+          }
           
           fprintf(fp,"Matrix dimension : %d \n",matrix_dimension);
           
@@ -348,6 +367,11 @@ namespace Ipopt
           fprintf(fp,"Launch : %d \n", launch);
           fprintf(fp,"Second transfer : %d \n", trans2);
           fprintf(fp,"Post : %d \n", post);
+          
+          if(solver_singular)
+          {
+              return SYMSOLVER_SINGULAR;
+          }
           
           return SYMSOLVER_SUCCESS;
 }

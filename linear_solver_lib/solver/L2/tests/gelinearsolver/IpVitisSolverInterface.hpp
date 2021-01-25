@@ -19,6 +19,8 @@ Base class is SparseSymLinearSolver
 
 #include "IpSparseSymLinearSolverInterface.hpp"
 
+#define MAXN 886
+
 namespace Ipopt
 {
 class VitisSolverInterface: public SparseSymLinearSolverInterface
