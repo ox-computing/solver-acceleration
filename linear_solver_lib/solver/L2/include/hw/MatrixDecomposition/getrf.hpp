@@ -32,9 +32,9 @@ namespace internalgetrf {
 // update submatrix
 template <typename T, int NRCU, int NCMAX>
 void subUpdate(int debug_mode, T A[NRCU][NCMAX], T rows[NCMAX], T cols[NCMAX], int rs, int re, int cs, int ce) {
-    T a00 = rows[cs];
+    //T a00 = rows[cs];
 
-    T Acs[NRCU];
+    //T Acs[NRCU];
 
     int nrows = re - rs + 1;
     int ncols = ce - cs;

@@ -3407,7 +3407,7 @@ window.onload = function () { addSorting(); }
 <center><h1>Design Guidance Report</h1></center><center><table class="header" border="0">
 <tr><td><b>Copyright</b></td><td>Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.</td></tr>
 <tr><td><b>Tool Version</b></td><td>xrcserver v.2020.1 (lin64) Build 0 </td></tr>
-<tr><td><b>Date</b></td><td>Sun Jan 24 14:51:50 2021</td></tr>
+<tr><td><b>Date</b></td><td>Wed Jan 27 11:25:28 2021</td></tr>
 <tr><td><b>Host</b></td><td>ENGS-21963 running 64-bit Ubuntu 18.04.5 LTS</td></tr>
 <tr><td><b>Command</b></td><td>v++  -t hw --platform /opt/xilinx/platforms/xilinx_u50_gen3x16_xdma_201920_3/xilinx_u50_gen3x16_xdma_201920_3.xpfm --save-temps --config conn_u50.ini -I/home/jacksoncd/solver-acceleration/linear_solver_lib/solver//L2/tests/gelinearsolver -I/home/jacksoncd/solver-acceleration/linear_solver_lib/solver//L2/include -I/home/jacksoncd/solver-acceleration/linear_solver_lib/solver//ext --temp_dir _x_temp.hw.xilinx_u50_gen3x16_xdma_201920_3 --report_dir /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/tests/gelinearsolver/reports/_x.hw.xilinx_u50_gen3x16_xdma_201920_3 -c -k kernel_gelinearsolver_0 -I/home/jacksoncd/solver-acceleration/linear_solver_lib/solver//L2/tests/gelinearsolver -o _x_temp.hw.xilinx_u50_gen3x16_xdma_201920_3/kernel_gelinearsolver_0.xo /home/jacksoncd/solver-acceleration/linear_solver_lib/solver//L2/tests/gelinearsolver/kernel_gelinearsolver.cpp </td></tr>
 </table></center><br>
@@ -3417,9 +3417,9 @@ window.onload = function () { addSorting(); }
 <tr><td><a href="#CONFIG FILE DETAILS">3 CONFIG FILE DETAILS</a></tr></td>
 </table>
 <a name="REPORT SUMMARY"></a><h1>1 REPORT SUMMARY</h1>
-<pre>Violations found: 27
+<pre>Violations found: 30
 </pre>
-<pre>Rule Specs Violated: 4
+<pre>Rule Specs Violated: 3
 </pre>
 <a name="VIOLATION DETAILS"></a><h1>2 VIOLATION DETAILS</h1>
 <table border="1">
@@ -3435,7 +3435,18 @@ window.onload = function () { addSorting(); }
 <th align="left" width="380">Resolution</th>
 </tr>
 <tr>
-<td align="left">14</td>
+<td align="left">12</td>
+<td align="left">Kernel</td>
+<td align="left">warning</td>
+<td align="left">Medium</td>
+<td align="left">HLS Kernel Related</td>
+<td align="left">Accelerator.kernel_gelinearsolver_0.Kernel</td>
+<td align="left">Unable to schedule 'load' operation ('dataB_load_35', /home/jacksoncd/solver-acceleration<a href="file:///linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp#line=44">gelinearsolver.hpp</a>) on array 'dataB' due to limited memory ports. Please consider using a memory core with more ports or partitioning the array 'dataB'.
+</td>
+<td align="left"><a href="http://www.xilinx.com/html_docs/xilinx2020_1/hls-guidance/200-885.html">See here for more help on vitis_hls 200-885 guidance.</a></td>
+</tr>
+<tr>
+<td align="left">13</td>
 <td align="left">Throughput</td>
 <td align="left">advisory</td>
 <td align="left">Medium</td>
@@ -3446,7 +3457,7 @@ window.onload = function () { addSorting(); }
 <td align="left"></td>
 </tr>
 <tr>
-<td align="left">15</td>
+<td align="left">14</td>
 <td align="left">Kernel</td>
 <td align="left">warning</td>
 <td align="left">Medium</td>
@@ -3457,7 +3468,7 @@ window.onload = function () { addSorting(); }
 <td align="left"><a href="http://www.xilinx.com/html_docs/xilinx2020_1/hls-guidance/200-871.html">See here for more help on vitis_hls 200-871 guidance.</a></td>
 </tr>
 <tr>
-<td align="left">16</td>
+<td align="left">15</td>
 <td align="left">Kernel</td>
 <td align="left">warning</td>
 <td align="left">Medium</td>
@@ -3474,7 +3485,7 @@ window.onload = function () { addSorting(); }
 <td align="left"><a href="http://www.xilinx.com/html_docs/xilinx2020_1/hls-guidance/200-1016.html">See here for more help on vitis_hls 200-1016 guidance.</a></td>
 </tr>
 <tr>
-<td align="left">17</td>
+<td align="left">16</td>
 <td align="left">Kernel</td>
 <td align="left">warning</td>
 <td align="left">Medium</td>
@@ -3485,7 +3496,7 @@ window.onload = function () { addSorting(); }
 <td align="left"><a href="http://www.xilinx.com/html_docs/xilinx2020_1/hls-guidance/200-885.html">See here for more help on vitis_hls 200-885 guidance.</a></td>
 </tr>
 <tr>
-<td align="left">18</td>
+<td align="left">17</td>
 <td align="left">Throughput</td>
 <td align="left">advisory</td>
 <td align="left">Medium</td>
@@ -3496,15 +3507,26 @@ window.onload = function () { addSorting(); }
 <td align="left"></td>
 </tr>
 <tr>
-<td align="left">19</td>
+<td align="left">18</td>
 <td align="left">Throughput</td>
-<td align="left">advisory</td>
+<td align="left">warning</td>
 <td align="left">Medium</td>
 <td align="left">HLS Throughput Related</td>
 <td align="left">Accelerator.kernel_gelinearsolver_0.Throughput</td>
-<td align="left">Pipelining result : Target II = 1, Final II = 1, Depth = 73.
+<td align="left">The II Violation in module 'gelinearsolver_double_886_30_s' (Loop: Loop_read_1): Unable to enforce a carried dependence constraint (II = 1, distance = 1, offset = 1) between 'store' operation ('matA_0_addr_3_write_ln207', /home/jacksoncd/solver-acceleration<a href="file:///linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp#line=207">gelinearsolver.hpp</a>) of variable 'bitcast_ln206', /home/jacksoncd/solver-acceleration<a href="file:///linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp#line=206">gelinearsolver.hpp</a> on array 'matA_0' and 'store' operation ('matA_0_addr_write_ln206', /home/jacksoncd/solver-acceleration<a href="file:///linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp#line=206">gelinearsolver.hpp</a>) of variable 'bitcast_ln206', /home/jacksoncd/solver-acceleration<a href="file:///linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp#line=206">gelinearsolver.hpp</a> on array 'matA_0'.
 </td>
-<td align="left"></td>
+<td align="left"><a href="http://www.xilinx.com/html_docs/xilinx2020_1/hls-guidance/200-880.html">See here for more help on vitis_hls 200-880 guidance.</a></td>
+</tr>
+<tr>
+<td align="left">19</td>
+<td align="left">Kernel</td>
+<td align="left">warning</td>
+<td align="left">Medium</td>
+<td align="left">HLS Kernel Related</td>
+<td align="left">Accelerator.kernel_gelinearsolver_0.Kernel</td>
+<td align="left">Unable to schedule bus request on port 'gmem0' (/home/jacksoncd/solver-acceleration<a href="file:///linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp#line=206">gelinearsolver.hpp</a>) due to limited memory ports. Please consider using a memory core with more ports or partitioning the array.
+</td>
+<td align="left"><a href="http://www.xilinx.com/html_docs/xilinx2020_1/hls-guidance/200-885.html">See here for more help on vitis_hls 200-885 guidance.</a></td>
 </tr>
 <tr>
 <td align="left">20</td>
@@ -3513,7 +3535,7 @@ window.onload = function () { addSorting(); }
 <td align="left">Medium</td>
 <td align="left">HLS Throughput Related</td>
 <td align="left">Accelerator.kernel_gelinearsolver_0.Throughput</td>
-<td align="left">Pipelining result : Target II = 1, Final II = 1, Depth = 138.
+<td align="left">Pipelining result : Target II = 1, Final II = 3, Depth = 110.
 </td>
 <td align="left"></td>
 </tr>
@@ -3524,7 +3546,7 @@ window.onload = function () { addSorting(); }
 <td align="left">Medium</td>
 <td align="left">HLS Throughput Related</td>
 <td align="left">Accelerator.kernel_gelinearsolver_0.Throughput</td>
-<td align="left">Pipelining result : Target II = 1, Final II = 1, Depth = 1.
+<td align="left">Pipelining result : Target II = 1, Final II = 1, Depth = 73.
 </td>
 <td align="left"></td>
 </tr>
@@ -3535,7 +3557,7 @@ window.onload = function () { addSorting(); }
 <td align="left">Medium</td>
 <td align="left">HLS Throughput Related</td>
 <td align="left">Accelerator.kernel_gelinearsolver_0.Throughput</td>
-<td align="left">Pipelining result : Target II = 1, Final II = 1, Depth = 16.
+<td align="left">Pipelining result : Target II = 1, Final II = 1, Depth = 1.
 </td>
 <td align="left"></td>
 </tr>
@@ -3546,7 +3568,7 @@ window.onload = function () { addSorting(); }
 <td align="left">Medium</td>
 <td align="left">HLS Throughput Related</td>
 <td align="left">Accelerator.kernel_gelinearsolver_0.Throughput</td>
-<td align="left">Pipelining result : Target II = 1, Final II = 1, Depth = 4.
+<td align="left">Pipelining result : Target II = 1, Final II = 1, Depth = 16.
 </td>
 <td align="left"></td>
 </tr>
@@ -3557,7 +3579,7 @@ window.onload = function () { addSorting(); }
 <td align="left">Medium</td>
 <td align="left">HLS Throughput Related</td>
 <td align="left">Accelerator.kernel_gelinearsolver_0.Throughput</td>
-<td align="left">Pipelining result : Target II = 1, Final II = 1, Depth = 2.
+<td align="left">Pipelining result : Target II = 1, Final II = 1, Depth = 4.
 </td>
 <td align="left"></td>
 </tr>
@@ -3568,12 +3590,47 @@ window.onload = function () { addSorting(); }
 <td align="left">Medium</td>
 <td align="left">HLS Throughput Related</td>
 <td align="left">Accelerator.kernel_gelinearsolver_0.Throughput</td>
-<td align="left">Pipelining result : Target II = 1, Final II = 1, Depth = 71.
+<td align="left">Pipelining result : Target II = 1, Final II = 1, Depth = 2.
 </td>
 <td align="left"></td>
 </tr>
 <tr>
 <td align="left">26</td>
+<td align="left">Throughput</td>
+<td align="left">advisory</td>
+<td align="left">Medium</td>
+<td align="left">HLS Throughput Related</td>
+<td align="left">Accelerator.kernel_gelinearsolver_0.Throughput</td>
+<td align="left">Pipelining result : Target II = 1, Final II = 1, Depth = 71.
+</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">27</td>
+<td align="left">Kernel</td>
+<td align="left">warning</td>
+<td align="left">Medium</td>
+<td align="left">HLS Kernel Related</td>
+<td align="left">Accelerator.kernel_gelinearsolver_0.Kernel</td>
+<td align="left">Estimated clock period (2.445ns) exceeds the target (target clock period: 3.333ns, clock uncertainty: 0.9ns, effective delay budget: 2.433ns).
+</td>
+<td align="left"><a href="http://www.xilinx.com/html_docs/xilinx2020_1/hls-guidance/200-871.html">See here for more help on vitis_hls 200-871 guidance.</a></td>
+</tr>
+<tr>
+<td align="left">28</td>
+<td align="left">Kernel</td>
+<td align="left">warning</td>
+<td align="left">Medium</td>
+<td align="left">HLS Kernel Related</td>
+<td align="left">Accelerator.kernel_gelinearsolver_0.Kernel</td>
+<td align="left">The critical path in module 'gelinearsolver_double_886_30_s' consists of the following:	'srem' operation ('srem_ln206', /home/jacksoncd/solver-acceleration<a href="file:///linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp#line=206">gelinearsolver.hpp</a>) [141]  (1.17 ns)
+	blocking operation 1.28 ns on control path)
+
+</td>
+<td align="left"><a href="http://www.xilinx.com/html_docs/xilinx2020_1/hls-guidance/200-1016.html">See here for more help on vitis_hls 200-1016 guidance.</a></td>
+</tr>
+<tr>
+<td align="left">29</td>
 <td align="left">Kernel</td>
 <td align="left">advisory</td>
 <td align="left">Medium</td>
@@ -3584,7 +3641,7 @@ window.onload = function () { addSorting(); }
 <td align="left"></td>
 </tr>
 <tr>
-<td align="left">27</td>
+<td align="left">30</td>
 <td align="left">Kernel</td>
 <td align="left">advisory</td>
 <td align="left">Medium</td>
@@ -3640,17 +3697,6 @@ window.onload = function () { addSorting(); }
 </tr>
 <tr>
 <td align="left">5</td>
-<td align="left">Interface</td>
-<td align="left">advisory</td>
-<td align="left">Medium</td>
-<td align="left">HLS Interface Related</td>
-<td align="left">Accelerator.kernel_gelinearsolver_0.Interface</td>
-<td align="left">Inferring multiple bus burst read of variable length on port 'gmem0' (/home/jacksoncd/solver-acceleration<a href="file:///linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp#line=174">gelinearsolver.hpp</a>). These data requests might be further partitioned to multiple requests during RTL generation, based on max_read_burst_length or max_write_burst_length settings.
-</td>
-<td align="left"></td>
-</tr>
-<tr>
-<td align="left">6</td>
 <td align="left">Throughput</td>
 <td align="left">advisory</td>
 <td align="left">Medium</td>
@@ -3661,7 +3707,7 @@ window.onload = function () { addSorting(); }
 <td align="left"></td>
 </tr>
 <tr>
-<td align="left">7</td>
+<td align="left">6</td>
 <td align="left">Throughput</td>
 <td align="left">warning</td>
 <td align="left">Medium</td>
@@ -3672,7 +3718,7 @@ window.onload = function () { addSorting(); }
 <td align="left"><a href="http://www.xilinx.com/html_docs/xilinx2020_1/hls-guidance/200-880.html">See here for more help on vitis_hls 200-880 guidance.</a></td>
 </tr>
 <tr>
-<td align="left">8</td>
+<td align="left">7</td>
 <td align="left">Throughput</td>
 <td align="left">warning</td>
 <td align="left">Medium</td>
@@ -3683,7 +3729,7 @@ window.onload = function () { addSorting(); }
 <td align="left"><a href="http://www.xilinx.com/html_docs/xilinx2020_1/hls-guidance/200-880.html">See here for more help on vitis_hls 200-880 guidance.</a></td>
 </tr>
 <tr>
-<td align="left">9</td>
+<td align="left">8</td>
 <td align="left">Throughput</td>
 <td align="left">advisory</td>
 <td align="left">Medium</td>
@@ -3694,7 +3740,7 @@ window.onload = function () { addSorting(); }
 <td align="left"></td>
 </tr>
 <tr>
-<td align="left">10</td>
+<td align="left">9</td>
 <td align="left">Kernel</td>
 <td align="left">warning</td>
 <td align="left">Medium</td>
@@ -3705,7 +3751,7 @@ window.onload = function () { addSorting(); }
 <td align="left"><a href="http://www.xilinx.com/html_docs/xilinx2020_1/hls-guidance/200-885.html">See here for more help on vitis_hls 200-885 guidance.</a></td>
 </tr>
 <tr>
-<td align="left">11</td>
+<td align="left">10</td>
 <td align="left">Throughput</td>
 <td align="left">advisory</td>
 <td align="left">Medium</td>
@@ -3716,7 +3762,7 @@ window.onload = function () { addSorting(); }
 <td align="left"></td>
 </tr>
 <tr>
-<td align="left">12</td>
+<td align="left">11</td>
 <td align="left">Throughput</td>
 <td align="left">advisory</td>
 <td align="left">Medium</td>
@@ -3725,17 +3771,6 @@ window.onload = function () { addSorting(); }
 <td align="left">Pipelining result : Target II = 1, Final II = 1, Depth = 68.
 </td>
 <td align="left"></td>
-</tr>
-<tr>
-<td align="left">13</td>
-<td align="left">Kernel</td>
-<td align="left">warning</td>
-<td align="left">Medium</td>
-<td align="left">HLS Kernel Related</td>
-<td align="left">Accelerator.kernel_gelinearsolver_0.Kernel</td>
-<td align="left">Unable to schedule 'load' operation ('dataB_load_35', /home/jacksoncd/solver-acceleration<a href="file:///linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp#line=44">gelinearsolver.hpp</a>) on array 'dataB' due to limited memory ports. Please consider using a memory core with more ports or partitioning the array 'dataB'.
-</td>
-<td align="left"><a href="http://www.xilinx.com/html_docs/xilinx2020_1/hls-guidance/200-885.html">See here for more help on vitis_hls 200-885 guidance.</a></td>
 </tr>
 </table>
 <br>

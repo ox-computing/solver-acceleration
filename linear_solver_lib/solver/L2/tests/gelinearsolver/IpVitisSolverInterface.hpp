@@ -66,7 +66,10 @@ private:
   cl::Kernel kernel_gelinearsolver_0; // Device kernel
   
   std::vector<cl::Device> devices; // Vector of devices
-  std::vector<cl::Buffer> buffer; // Device buffer vector
+  cl::Buffer buffer_ia; // Ia buffer
+  cl::Buffer buffer_ja; // Ja buffer
+  cl::Buffer buffer_A_vals; // A_vals buffer
+  cl::Buffer buffer_dataB; // DataB buffer
   std::vector<std::vector<cl::Event>> kernel_evt; // Kernel event vector
   
   // Time variables
@@ -78,10 +81,8 @@ public:
 
 
   // Constructor
-  VitisSolverInterface():val_(NULL),devices(1),buffer(2),kernel_evt(2)
+  VitisSolverInterface():val_(NULL),devices(1)
   {
-      kernel_evt[0].resize(1);
-      kernel_evt[1].resize(1);
   };
   
   static void RegisterOptions(
