@@ -1,10 +1,9 @@
 
 *** Multisolve Timings : 1 ***
-** Matrix singular ** 
 Matrix dimension : 5 
 New Matrix TRUE 
-Array initialise : 26 
-First transfer : 385 
-Launch : 762 
-Second transfer : 109 
-Post : 36 
+Array initialise : 10 
+First transfer : 505 
+Launch : 19991 
+Second transfer : 255 
+Post : 15 

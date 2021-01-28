@@ -133,7 +133,7 @@ namespace Ipopt
        }
        
        // Create the array to store the values
-       if( val_ != NULL )
+       if( val_ != nullptr )
        {
           delete[] val_;
        }
@@ -258,12 +258,9 @@ namespace Ipopt
            
            for(int i = 0; i < matrix_nonzeros; i++)
            {
-               if(val_[i] != 0)
-               {
                A_vals[i] = val_[i];
-               ia_alloc[i] = ia[i];
-               ja_alloc[i] = ja[i];
-               }
+               ia_alloc[i] = ia[i] - 1;
+               ja_alloc[i] = ja[i] - 1;
            }
         }
         
@@ -273,12 +270,6 @@ namespace Ipopt
             ia_alloc[0] = 0;
             ja_alloc[0] = 0;
         }
-        
-        for(int i = 0; i < matrix_nonzeros; i++)
-          {
-              printf("Ia : %d \n", ia_alloc[i]);
-          }
-       
         
         // Allocate memory for B
         dataB_size = matrix_dimension*num_rhs;
@@ -323,7 +314,7 @@ namespace Ipopt
          
          // Data transfer from host to device
          
-         q.enqueueMigrateMemObjects({buffer_ia, buffer_ja, buffer_A_vals, buffer_dataB}, 0, nullptr, 0); // 0 : migrate from host to dev
+         q.enqueueMigrateMemObjects({buffer_ia, buffer_ja, buffer_A_vals, buffer_dataB}, 0); // 0 : migrate from host to dev
          q.finish();
          
          gettimeofday(&ttrans1,0);
@@ -350,15 +341,11 @@ namespace Ipopt
           
           // Transfer data back to host
           
-          q.enqueueMigrateMemObjects({buffer_ia, buffer_dataB}, 1, nullptr, nullptr); // 1 : migrate from dev to host
+          q.enqueueMigrateMemObjects({buffer_dataB}, 1); // 1 : migrate from dev to host
           q.finish();
           
           gettimeofday(&ttrans2,0);
           
-          for(int i = 0; i < matrix_nonzeros; i++)
-          {
-              printf("Ia : %d \n", ia_alloc[i]);
-          }
         
           // Return the value of the solution to rhs_values
           counter = 0;

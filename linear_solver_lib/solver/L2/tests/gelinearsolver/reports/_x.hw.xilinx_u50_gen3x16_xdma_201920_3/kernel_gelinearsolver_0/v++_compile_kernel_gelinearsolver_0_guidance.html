@@ -3407,7 +3407,7 @@ window.onload = function () { addSorting(); }
 <center><h1>Design Guidance Report</h1></center><center><table class="header" border="0">
 <tr><td><b>Copyright</b></td><td>Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.</td></tr>
 <tr><td><b>Tool Version</b></td><td>xrcserver v.2020.1 (lin64) Build 0 </td></tr>
-<tr><td><b>Date</b></td><td>Wed Jan 27 11:25:28 2021</td></tr>
+<tr><td><b>Date</b></td><td>Thu Jan 28 13:58:09 2021</td></tr>
 <tr><td><b>Host</b></td><td>ENGS-21963 running 64-bit Ubuntu 18.04.5 LTS</td></tr>
 <tr><td><b>Command</b></td><td>v++  -t hw --platform /opt/xilinx/platforms/xilinx_u50_gen3x16_xdma_201920_3/xilinx_u50_gen3x16_xdma_201920_3.xpfm --save-temps --config conn_u50.ini -I/home/jacksoncd/solver-acceleration/linear_solver_lib/solver//L2/tests/gelinearsolver -I/home/jacksoncd/solver-acceleration/linear_solver_lib/solver//L2/include -I/home/jacksoncd/solver-acceleration/linear_solver_lib/solver//ext --temp_dir _x_temp.hw.xilinx_u50_gen3x16_xdma_201920_3 --report_dir /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/tests/gelinearsolver/reports/_x.hw.xilinx_u50_gen3x16_xdma_201920_3 -c -k kernel_gelinearsolver_0 -I/home/jacksoncd/solver-acceleration/linear_solver_lib/solver//L2/tests/gelinearsolver -o _x_temp.hw.xilinx_u50_gen3x16_xdma_201920_3/kernel_gelinearsolver_0.xo /home/jacksoncd/solver-acceleration/linear_solver_lib/solver//L2/tests/gelinearsolver/kernel_gelinearsolver.cpp </td></tr>
 </table></center><br>
@@ -3417,7 +3417,7 @@ window.onload = function () { addSorting(); }
 <tr><td><a href="#CONFIG FILE DETAILS">3 CONFIG FILE DETAILS</a></tr></td>
 </table>
 <a name="REPORT SUMMARY"></a><h1>1 REPORT SUMMARY</h1>
-<pre>Violations found: 30
+<pre>Violations found: 24
 </pre>
 <pre>Rule Specs Violated: 3
 </pre>
@@ -3435,230 +3435,13 @@ window.onload = function () { addSorting(); }
 <th align="left" width="380">Resolution</th>
 </tr>
 <tr>
-<td align="left">12</td>
-<td align="left">Kernel</td>
-<td align="left">warning</td>
-<td align="left">Medium</td>
-<td align="left">HLS Kernel Related</td>
-<td align="left">Accelerator.kernel_gelinearsolver_0.Kernel</td>
-<td align="left">Unable to schedule 'load' operation ('dataB_load_35', /home/jacksoncd/solver-acceleration<a href="file:///linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp#line=44">gelinearsolver.hpp</a>) on array 'dataB' due to limited memory ports. Please consider using a memory core with more ports or partitioning the array 'dataB'.
-</td>
-<td align="left"><a href="http://www.xilinx.com/html_docs/xilinx2020_1/hls-guidance/200-885.html">See here for more help on vitis_hls 200-885 guidance.</a></td>
-</tr>
-<tr>
-<td align="left">13</td>
-<td align="left">Throughput</td>
-<td align="left">advisory</td>
-<td align="left">Medium</td>
-<td align="left">HLS Throughput Related</td>
-<td align="left">Accelerator.kernel_gelinearsolver_0.Throughput</td>
-<td align="left">Pipelining result : Target II = 1, Final II = 30, Depth = 60.
-</td>
-<td align="left"></td>
-</tr>
-<tr>
-<td align="left">14</td>
-<td align="left">Kernel</td>
-<td align="left">warning</td>
-<td align="left">Medium</td>
-<td align="left">HLS Kernel Related</td>
-<td align="left">Accelerator.kernel_gelinearsolver_0.Kernel</td>
-<td align="left">Estimated clock period (3.643ns) exceeds the target (target clock period: 3.333ns, clock uncertainty: 0.9ns, effective delay budget: 2.433ns).
-</td>
-<td align="left"><a href="http://www.xilinx.com/html_docs/xilinx2020_1/hls-guidance/200-871.html">See here for more help on vitis_hls 200-871 guidance.</a></td>
-</tr>
-<tr>
-<td align="left">15</td>
-<td align="left">Kernel</td>
-<td align="left">warning</td>
-<td align="left">Medium</td>
-<td align="left">HLS Kernel Related</td>
-<td align="left">Accelerator.kernel_gelinearsolver_0.Kernel</td>
-<td align="left">The critical path in module 'trisolver_L_double_886_30_s' consists of the following:	'phi' operation ('j', /home/jacksoncd/solver-acceleration<a href="file:///linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp#line=37">gelinearsolver.hpp</a>) with incoming values : ('zext_ln37', /home/jacksoncd/solver-acceleration<a href="file:///linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp#line=37">gelinearsolver.hpp</a>) ('add_ln37', /home/jacksoncd/solver-acceleration<a href="file:///linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp#line=37">gelinearsolver.hpp</a>) [74]  (0 ns)
-	'shl' operation ('empty_51', /home/jacksoncd/solver-acceleration<a href="file:///linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp#line=37">gelinearsolver.hpp</a>) [203]  (0 ns)
-	'sub' operation ('empty_53', /home/jacksoncd/solver-acceleration<a href="file:///linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp#line=37">gelinearsolver.hpp</a>) [205]  (1.15 ns)
-	'or' operation ('or_ln43', /home/jacksoncd/solver-acceleration<a href="file:///linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp#line=43">gelinearsolver.hpp</a>) [216]  (0 ns)
-	'icmp' operation ('icmp_ln43_1', /home/jacksoncd/solver-acceleration<a href="file:///linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp#line=43">gelinearsolver.hpp</a>) [217]  (1.06 ns)
-	blocking operation 1.43 ns on control path)
-
-</td>
-<td align="left"><a href="http://www.xilinx.com/html_docs/xilinx2020_1/hls-guidance/200-1016.html">See here for more help on vitis_hls 200-1016 guidance.</a></td>
-</tr>
-<tr>
-<td align="left">16</td>
-<td align="left">Kernel</td>
-<td align="left">warning</td>
-<td align="left">Medium</td>
-<td align="left">HLS Kernel Related</td>
-<td align="left">Accelerator.kernel_gelinearsolver_0.Kernel</td>
-<td align="left">Unable to schedule 'load' operation ('dataB_load_2', /home/jacksoncd/solver-acceleration<a href="file:///linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp#line=66">gelinearsolver.hpp</a>) on array 'dataB' due to limited memory ports. Please consider using a memory core with more ports or partitioning the array 'dataB'.
-</td>
-<td align="left"><a href="http://www.xilinx.com/html_docs/xilinx2020_1/hls-guidance/200-885.html">See here for more help on vitis_hls 200-885 guidance.</a></td>
-</tr>
-<tr>
-<td align="left">17</td>
-<td align="left">Throughput</td>
-<td align="left">advisory</td>
-<td align="left">Medium</td>
-<td align="left">HLS Throughput Related</td>
-<td align="left">Accelerator.kernel_gelinearsolver_0.Throughput</td>
-<td align="left">Pipelining result : Target II = 1, Final II = 30, Depth = 60.
-</td>
-<td align="left"></td>
-</tr>
-<tr>
-<td align="left">18</td>
-<td align="left">Throughput</td>
-<td align="left">warning</td>
-<td align="left">Medium</td>
-<td align="left">HLS Throughput Related</td>
-<td align="left">Accelerator.kernel_gelinearsolver_0.Throughput</td>
-<td align="left">The II Violation in module 'gelinearsolver_double_886_30_s' (Loop: Loop_read_1): Unable to enforce a carried dependence constraint (II = 1, distance = 1, offset = 1) between 'store' operation ('matA_0_addr_3_write_ln207', /home/jacksoncd/solver-acceleration<a href="file:///linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp#line=207">gelinearsolver.hpp</a>) of variable 'bitcast_ln206', /home/jacksoncd/solver-acceleration<a href="file:///linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp#line=206">gelinearsolver.hpp</a> on array 'matA_0' and 'store' operation ('matA_0_addr_write_ln206', /home/jacksoncd/solver-acceleration<a href="file:///linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp#line=206">gelinearsolver.hpp</a>) of variable 'bitcast_ln206', /home/jacksoncd/solver-acceleration<a href="file:///linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp#line=206">gelinearsolver.hpp</a> on array 'matA_0'.
-</td>
-<td align="left"><a href="http://www.xilinx.com/html_docs/xilinx2020_1/hls-guidance/200-880.html">See here for more help on vitis_hls 200-880 guidance.</a></td>
-</tr>
-<tr>
-<td align="left">19</td>
-<td align="left">Kernel</td>
-<td align="left">warning</td>
-<td align="left">Medium</td>
-<td align="left">HLS Kernel Related</td>
-<td align="left">Accelerator.kernel_gelinearsolver_0.Kernel</td>
-<td align="left">Unable to schedule bus request on port 'gmem0' (/home/jacksoncd/solver-acceleration<a href="file:///linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp#line=206">gelinearsolver.hpp</a>) due to limited memory ports. Please consider using a memory core with more ports or partitioning the array.
-</td>
-<td align="left"><a href="http://www.xilinx.com/html_docs/xilinx2020_1/hls-guidance/200-885.html">See here for more help on vitis_hls 200-885 guidance.</a></td>
-</tr>
-<tr>
-<td align="left">20</td>
-<td align="left">Throughput</td>
-<td align="left">advisory</td>
-<td align="left">Medium</td>
-<td align="left">HLS Throughput Related</td>
-<td align="left">Accelerator.kernel_gelinearsolver_0.Throughput</td>
-<td align="left">Pipelining result : Target II = 1, Final II = 3, Depth = 110.
-</td>
-<td align="left"></td>
-</tr>
-<tr>
-<td align="left">21</td>
-<td align="left">Throughput</td>
-<td align="left">advisory</td>
-<td align="left">Medium</td>
-<td align="left">HLS Throughput Related</td>
-<td align="left">Accelerator.kernel_gelinearsolver_0.Throughput</td>
-<td align="left">Pipelining result : Target II = 1, Final II = 1, Depth = 73.
-</td>
-<td align="left"></td>
-</tr>
-<tr>
-<td align="left">22</td>
-<td align="left">Throughput</td>
-<td align="left">advisory</td>
-<td align="left">Medium</td>
-<td align="left">HLS Throughput Related</td>
-<td align="left">Accelerator.kernel_gelinearsolver_0.Throughput</td>
-<td align="left">Pipelining result : Target II = 1, Final II = 1, Depth = 1.
-</td>
-<td align="left"></td>
-</tr>
-<tr>
-<td align="left">23</td>
-<td align="left">Throughput</td>
-<td align="left">advisory</td>
-<td align="left">Medium</td>
-<td align="left">HLS Throughput Related</td>
-<td align="left">Accelerator.kernel_gelinearsolver_0.Throughput</td>
-<td align="left">Pipelining result : Target II = 1, Final II = 1, Depth = 16.
-</td>
-<td align="left"></td>
-</tr>
-<tr>
-<td align="left">24</td>
-<td align="left">Throughput</td>
-<td align="left">advisory</td>
-<td align="left">Medium</td>
-<td align="left">HLS Throughput Related</td>
-<td align="left">Accelerator.kernel_gelinearsolver_0.Throughput</td>
-<td align="left">Pipelining result : Target II = 1, Final II = 1, Depth = 4.
-</td>
-<td align="left"></td>
-</tr>
-<tr>
-<td align="left">25</td>
-<td align="left">Throughput</td>
-<td align="left">advisory</td>
-<td align="left">Medium</td>
-<td align="left">HLS Throughput Related</td>
-<td align="left">Accelerator.kernel_gelinearsolver_0.Throughput</td>
-<td align="left">Pipelining result : Target II = 1, Final II = 1, Depth = 2.
-</td>
-<td align="left"></td>
-</tr>
-<tr>
-<td align="left">26</td>
-<td align="left">Throughput</td>
-<td align="left">advisory</td>
-<td align="left">Medium</td>
-<td align="left">HLS Throughput Related</td>
-<td align="left">Accelerator.kernel_gelinearsolver_0.Throughput</td>
-<td align="left">Pipelining result : Target II = 1, Final II = 1, Depth = 71.
-</td>
-<td align="left"></td>
-</tr>
-<tr>
-<td align="left">27</td>
-<td align="left">Kernel</td>
-<td align="left">warning</td>
-<td align="left">Medium</td>
-<td align="left">HLS Kernel Related</td>
-<td align="left">Accelerator.kernel_gelinearsolver_0.Kernel</td>
-<td align="left">Estimated clock period (2.445ns) exceeds the target (target clock period: 3.333ns, clock uncertainty: 0.9ns, effective delay budget: 2.433ns).
-</td>
-<td align="left"><a href="http://www.xilinx.com/html_docs/xilinx2020_1/hls-guidance/200-871.html">See here for more help on vitis_hls 200-871 guidance.</a></td>
-</tr>
-<tr>
-<td align="left">28</td>
-<td align="left">Kernel</td>
-<td align="left">warning</td>
-<td align="left">Medium</td>
-<td align="left">HLS Kernel Related</td>
-<td align="left">Accelerator.kernel_gelinearsolver_0.Kernel</td>
-<td align="left">The critical path in module 'gelinearsolver_double_886_30_s' consists of the following:	'srem' operation ('srem_ln206', /home/jacksoncd/solver-acceleration<a href="file:///linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp#line=206">gelinearsolver.hpp</a>) [141]  (1.17 ns)
-	blocking operation 1.28 ns on control path)
-
-</td>
-<td align="left"><a href="http://www.xilinx.com/html_docs/xilinx2020_1/hls-guidance/200-1016.html">See here for more help on vitis_hls 200-1016 guidance.</a></td>
-</tr>
-<tr>
-<td align="left">29</td>
-<td align="left">Kernel</td>
-<td align="left">advisory</td>
-<td align="left">Medium</td>
-<td align="left">HLS Kernel Related</td>
-<td align="left">Accelerator.kernel_gelinearsolver_0.Kernel</td>
-<td align="left">**** Loop Constraint Status: All loop constraints were NOT satisfied.
-</td>
-<td align="left"></td>
-</tr>
-<tr>
-<td align="left">30</td>
-<td align="left">Kernel</td>
-<td align="left">advisory</td>
-<td align="left">Medium</td>
-<td align="left">HLS Kernel Related</td>
-<td align="left">Accelerator.kernel_gelinearsolver_0.Kernel</td>
-<td align="left">**** Estimated Fmax: 274.50 MHz
-</td>
-<td align="left"></td>
-</tr>
-<tr>
 <td align="left">1</td>
 <td align="left">Latency</td>
 <td align="left">warning</td>
 <td align="left">Medium</td>
 <td align="left">HLS Latency Related</td>
 <td align="left">Accelerator.kernel_gelinearsolver_0.Latency</td>
-<td align="left">Cannot flatten loop 'LoopSweeps' (/home/jacksoncd/solver-acceleration<a href="file:///linear_solver_lib/solver/L2/include/hw/MatrixDecomposition/getrf.hpp#line=71">getrf.hpp</a>) in function 'xf::solver::internalgetrf::getrf_core<double, 30, 886, 30>' more than one sub loop.
+<td align="left">Cannot flatten loop 'LoopSweeps' (/home/jacksoncd/solver-acceleration<a href="file:///linear_solver_lib/solver/L2/include/hw/MatrixDecomposition/getrf.hpp#line=71">getrf.hpp</a>) in function 'xf::solver::internalgetrf::getrf_core<double, 886, 886, 1>' more than one sub loop.
 </td>
 <td align="left"><a href="http://www.xilinx.com/html_docs/xilinx2020_1/hls-guidance/200-960.html">See here for more help on vitis_hls 200-960 guidance.</a></td>
 </tr>
@@ -3669,7 +3452,7 @@ window.onload = function () { addSorting(); }
 <td align="left">Medium</td>
 <td align="left">HLS Latency Related</td>
 <td align="left">Accelerator.kernel_gelinearsolver_0.Latency</td>
-<td align="left">Cannot flatten loop 'Loop_row' (/home/jacksoncd/solver-acceleration<a href="file:///linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp#line=58">gelinearsolver.hpp</a>) in function 'xf::solver::internal_gelinear::trisolver_U<double, 886, 30>' the outer loop is not a perfect loop because there is nontrivial logic in the loop latch.
+<td align="left">Cannot flatten loop 'Loop_row' (/home/jacksoncd/solver-acceleration<a href="file:///linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp#line=58">gelinearsolver.hpp</a>) in function 'xf::solver::internal_gelinear::trisolver_U<double, 886, 1>' the outer loop is not a perfect loop because there is nontrivial logic in the loop latch.
 </td>
 <td align="left"><a href="http://www.xilinx.com/html_docs/xilinx2020_1/hls-guidance/200-960.html">See here for more help on vitis_hls 200-960 guidance.</a></td>
 </tr>
@@ -3680,7 +3463,7 @@ window.onload = function () { addSorting(); }
 <td align="left">Medium</td>
 <td align="left">HLS Latency Related</td>
 <td align="left">Accelerator.kernel_gelinearsolver_0.Latency</td>
-<td align="left">Cannot flatten loop 'Loop_row' (/home/jacksoncd/solver-acceleration<a href="file:///linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp#line=35">gelinearsolver.hpp</a>) in function 'xf::solver::internal_gelinear::trisolver_L<double, 886, 30>' the outer loop is not a perfect loop because there is nontrivial logic in the loop latch.
+<td align="left">Cannot flatten loop 'Loop_row' (/home/jacksoncd/solver-acceleration<a href="file:///linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp#line=35">gelinearsolver.hpp</a>) in function 'xf::solver::internal_gelinear::trisolver_L<double, 886, 1>' the outer loop is not a perfect loop because there is nontrivial logic in the loop latch.
 </td>
 <td align="left"><a href="http://www.xilinx.com/html_docs/xilinx2020_1/hls-guidance/200-960.html">See here for more help on vitis_hls 200-960 guidance.</a></td>
 </tr>
@@ -3691,20 +3474,20 @@ window.onload = function () { addSorting(); }
 <td align="left">Medium</td>
 <td align="left">HLS Latency Related</td>
 <td align="left">Accelerator.kernel_gelinearsolver_0.Latency</td>
-<td align="left">Cannot flatten loop 'VITIS_LOOP_163_1' (/home/jacksoncd/solver-acceleration<a href="file:///linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp#line=163">gelinearsolver.hpp</a>) in function 'xf::solver::gelinearsolver<double, 886, 30>' more than one sub loop.
+<td align="left">Cannot flatten loop 'VITIS_LOOP_163_1' (/home/jacksoncd/solver-acceleration<a href="file:///linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp#line=163">gelinearsolver.hpp</a>) in function 'xf::solver::gelinearsolver<double, 886, 1>' more than one sub loop.
 </td>
 <td align="left"><a href="http://www.xilinx.com/html_docs/xilinx2020_1/hls-guidance/200-960.html">See here for more help on vitis_hls 200-960 guidance.</a></td>
 </tr>
 <tr>
 <td align="left">5</td>
 <td align="left">Throughput</td>
-<td align="left">advisory</td>
+<td align="left">warning</td>
 <td align="left">Medium</td>
 <td align="left">HLS Throughput Related</td>
 <td align="left">Accelerator.kernel_gelinearsolver_0.Throughput</td>
-<td align="left">Pipelining result : Target II = 1, Final II = 1, Depth = 55.
+<td align="left">The II Violation in module 'getrf_core_double_886_886_1_s' (Loop: LoopPivot): Unable to enforce a carried dependence constraint (II = 1, distance = 1, offset = 1) between 'and' operation ('and_ln93_1', /home/jacksoncd/solver-acceleration<a href="file:///linear_solver_lib/solver/L2/include/hw/MatrixDecomposition/getrf.hpp#line=93">getrf.hpp</a>) and 'dcmp' operation ('tmp_4', /home/jacksoncd/solver-acceleration<a href="file:///linear_solver_lib/solver/L2/include/hw/MatrixDecomposition/getrf.hpp#line=93">getrf.hpp</a>).
 </td>
-<td align="left"></td>
+<td align="left"><a href="http://www.xilinx.com/html_docs/xilinx2020_1/hls-guidance/200-880.html">See here for more help on vitis_hls 200-880 guidance.</a></td>
 </tr>
 <tr>
 <td align="left">6</td>
@@ -3713,45 +3496,34 @@ window.onload = function () { addSorting(); }
 <td align="left">Medium</td>
 <td align="left">HLS Throughput Related</td>
 <td align="left">Accelerator.kernel_gelinearsolver_0.Throughput</td>
-<td align="left">The II Violation in module 'getrf_core_double_30_886_30_s' (Loop: LoopPivot): Unable to enforce a carried dependence constraint (II = 1, distance = 1, offset = 1) between 'and' operation ('and_ln93_1', /home/jacksoncd/solver-acceleration<a href="file:///linear_solver_lib/solver/L2/include/hw/MatrixDecomposition/getrf.hpp#line=93">getrf.hpp</a>) and 'dcmp' operation ('tmp_5', /home/jacksoncd/solver-acceleration<a href="file:///linear_solver_lib/solver/L2/include/hw/MatrixDecomposition/getrf.hpp#line=93">getrf.hpp</a>).
+<td align="left">The II Violation in module 'getrf_core_double_886_886_1_s' (Loop: LoopPivot): Unable to enforce a carried dependence constraint (II = 2, distance = 1, offset = 1) between 'select' operation ('pmax', /home/jacksoncd/solver-acceleration<a href="file:///linear_solver_lib/solver/L2/include/hw/MatrixDecomposition/getrf.hpp#line=93">getrf.hpp</a>) and 'dcmp' operation ('tmp_4', /home/jacksoncd/solver-acceleration<a href="file:///linear_solver_lib/solver/L2/include/hw/MatrixDecomposition/getrf.hpp#line=93">getrf.hpp</a>).
 </td>
 <td align="left"><a href="http://www.xilinx.com/html_docs/xilinx2020_1/hls-guidance/200-880.html">See here for more help on vitis_hls 200-880 guidance.</a></td>
 </tr>
 <tr>
 <td align="left">7</td>
 <td align="left">Throughput</td>
-<td align="left">warning</td>
-<td align="left">Medium</td>
-<td align="left">HLS Throughput Related</td>
-<td align="left">Accelerator.kernel_gelinearsolver_0.Throughput</td>
-<td align="left">The II Violation in module 'getrf_core_double_30_886_30_s' (Loop: LoopPivot): Unable to enforce a carried dependence constraint (II = 2, distance = 1, offset = 1) between 'select' operation ('pmax', /home/jacksoncd/solver-acceleration<a href="file:///linear_solver_lib/solver/L2/include/hw/MatrixDecomposition/getrf.hpp#line=93">getrf.hpp</a>) and 'dcmp' operation ('tmp_5', /home/jacksoncd/solver-acceleration<a href="file:///linear_solver_lib/solver/L2/include/hw/MatrixDecomposition/getrf.hpp#line=93">getrf.hpp</a>).
-</td>
-<td align="left"><a href="http://www.xilinx.com/html_docs/xilinx2020_1/hls-guidance/200-880.html">See here for more help on vitis_hls 200-880 guidance.</a></td>
-</tr>
-<tr>
-<td align="left">8</td>
-<td align="left">Throughput</td>
 <td align="left">advisory</td>
 <td align="left">Medium</td>
 <td align="left">HLS Throughput Related</td>
 <td align="left">Accelerator.kernel_gelinearsolver_0.Throughput</td>
-<td align="left">Pipelining result : Target II = 1, Final II = 3, Depth = 39.
+<td align="left">Pipelining result : Target II = 1, Final II = 3, Depth = 9.
 </td>
 <td align="left"></td>
 </tr>
 <tr>
-<td align="left">9</td>
+<td align="left">8</td>
 <td align="left">Kernel</td>
 <td align="left">warning</td>
 <td align="left">Medium</td>
 <td align="left">HLS Kernel Related</td>
 <td align="left">Accelerator.kernel_gelinearsolver_0.Kernel</td>
-<td align="left">Unable to schedule 'store' operation ('matA_28_addr_write_ln114', /home/jacksoncd/solver-acceleration<a href="file:///linear_solver_lib/solver/L2/include/hw/MatrixDecomposition/getrf.hpp#line=114">getrf.hpp</a>) of variable 'tmp_7', /home/jacksoncd/solver-acceleration<a href="file:///linear_solver_lib/solver/L2/include/hw/MatrixDecomposition/getrf.hpp#line=114">getrf.hpp</a> on array 'matA_28' due to limited memory ports. Please consider using a memory core with more ports or partitioning the array 'matA_28'.
+<td align="left">Unable to schedule 'store' operation ('matA_0_addr_1_write_ln114', /home/jacksoncd/solver-acceleration<a href="file:///linear_solver_lib/solver/L2/include/hw/MatrixDecomposition/getrf.hpp#line=114">getrf.hpp</a>) of variable 'matA_0_load_1', /home/jacksoncd/solver-acceleration<a href="file:///linear_solver_lib/solver/L2/include/hw/MatrixDecomposition/getrf.hpp#line=114">getrf.hpp</a> on array 'matA_0' due to limited memory ports. Please consider using a memory core with more ports or partitioning the array 'matA_0'.
 </td>
 <td align="left"><a href="http://www.xilinx.com/html_docs/xilinx2020_1/hls-guidance/200-885.html">See here for more help on vitis_hls 200-885 guidance.</a></td>
 </tr>
 <tr>
-<td align="left">10</td>
+<td align="left">9</td>
 <td align="left">Throughput</td>
 <td align="left">advisory</td>
 <td align="left">Medium</td>
@@ -3762,13 +3534,167 @@ window.onload = function () { addSorting(); }
 <td align="left"></td>
 </tr>
 <tr>
+<td align="left">10</td>
+<td align="left">Throughput</td>
+<td align="left">advisory</td>
+<td align="left">Medium</td>
+<td align="left">HLS Throughput Related</td>
+<td align="left">Accelerator.kernel_gelinearsolver_0.Throughput</td>
+<td align="left">Pipelining result : Target II = 1, Final II = 1, Depth = 38.
+</td>
+<td align="left"></td>
+</tr>
+<tr>
 <td align="left">11</td>
 <td align="left">Throughput</td>
 <td align="left">advisory</td>
 <td align="left">Medium</td>
 <td align="left">HLS Throughput Related</td>
 <td align="left">Accelerator.kernel_gelinearsolver_0.Throughput</td>
-<td align="left">Pipelining result : Target II = 1, Final II = 1, Depth = 68.
+<td align="left">Pipelining result : Target II = 1, Final II = 1, Depth = 55.
+</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">12</td>
+<td align="left">Throughput</td>
+<td align="left">advisory</td>
+<td align="left">Medium</td>
+<td align="left">HLS Throughput Related</td>
+<td align="left">Accelerator.kernel_gelinearsolver_0.Throughput</td>
+<td align="left">Pipelining result : Target II = 1, Final II = 1, Depth = 23.
+</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">13</td>
+<td align="left">Throughput</td>
+<td align="left">advisory</td>
+<td align="left">Medium</td>
+<td align="left">HLS Throughput Related</td>
+<td align="left">Accelerator.kernel_gelinearsolver_0.Throughput</td>
+<td align="left">Pipelining result : Target II = 1, Final II = 1, Depth = 23.
+</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">14</td>
+<td align="left">Throughput</td>
+<td align="left">warning</td>
+<td align="left">Medium</td>
+<td align="left">HLS Throughput Related</td>
+<td align="left">Accelerator.kernel_gelinearsolver_0.Throughput</td>
+<td align="left">The II Violation in module 'gelinearsolver_double_886_1_s' (Loop: Loop_read_1): Unable to enforce a carried dependence constraint (II = 1, distance = 1, offset = 1) between 'store' operation ('matA_0_addr_5_write_ln210', /home/jacksoncd/solver-acceleration<a href="file:///linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp#line=210">gelinearsolver.hpp</a>) of variable 'bitcast_ln209', /home/jacksoncd/solver-acceleration<a href="file:///linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp#line=209">gelinearsolver.hpp</a> on array 'matA_0' and 'store' operation ('matA_0_addr_write_ln209', /home/jacksoncd/solver-acceleration<a href="file:///linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp#line=209">gelinearsolver.hpp</a>) of variable 'bitcast_ln209', /home/jacksoncd/solver-acceleration<a href="file:///linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp#line=209">gelinearsolver.hpp</a> on array 'matA_0'.
+</td>
+<td align="left"><a href="http://www.xilinx.com/html_docs/xilinx2020_1/hls-guidance/200-880.html">See here for more help on vitis_hls 200-880 guidance.</a></td>
+</tr>
+<tr>
+<td align="left">15</td>
+<td align="left">Kernel</td>
+<td align="left">warning</td>
+<td align="left">Medium</td>
+<td align="left">HLS Kernel Related</td>
+<td align="left">Accelerator.kernel_gelinearsolver_0.Kernel</td>
+<td align="left">Unable to schedule bus request on port 'gmem0' (/home/jacksoncd/solver-acceleration<a href="file:///linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp#line=209">gelinearsolver.hpp</a>) due to limited memory ports. Please consider using a memory core with more ports or partitioning the array.
+</td>
+<td align="left"><a href="http://www.xilinx.com/html_docs/xilinx2020_1/hls-guidance/200-885.html">See here for more help on vitis_hls 200-885 guidance.</a></td>
+</tr>
+<tr>
+<td align="left">16</td>
+<td align="left">Throughput</td>
+<td align="left">advisory</td>
+<td align="left">Medium</td>
+<td align="left">HLS Throughput Related</td>
+<td align="left">Accelerator.kernel_gelinearsolver_0.Throughput</td>
+<td align="left">Pipelining result : Target II = 1, Final II = 3, Depth = 78.
+</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">17</td>
+<td align="left">Throughput</td>
+<td align="left">advisory</td>
+<td align="left">Medium</td>
+<td align="left">HLS Throughput Related</td>
+<td align="left">Accelerator.kernel_gelinearsolver_0.Throughput</td>
+<td align="left">Pipelining result : Target II = 1, Final II = 1, Depth = 73.
+</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">18</td>
+<td align="left">Throughput</td>
+<td align="left">advisory</td>
+<td align="left">Medium</td>
+<td align="left">HLS Throughput Related</td>
+<td align="left">Accelerator.kernel_gelinearsolver_0.Throughput</td>
+<td align="left">Pipelining result : Target II = 1, Final II = 1, Depth = 1.
+</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">19</td>
+<td align="left">Throughput</td>
+<td align="left">advisory</td>
+<td align="left">Medium</td>
+<td align="left">HLS Throughput Related</td>
+<td align="left">Accelerator.kernel_gelinearsolver_0.Throughput</td>
+<td align="left">Pipelining result : Target II = 1, Final II = 1, Depth = 3.
+</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">20</td>
+<td align="left">Throughput</td>
+<td align="left">advisory</td>
+<td align="left">Medium</td>
+<td align="left">HLS Throughput Related</td>
+<td align="left">Accelerator.kernel_gelinearsolver_0.Throughput</td>
+<td align="left">Pipelining result : Target II = 1, Final II = 1, Depth = 3.
+</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">21</td>
+<td align="left">Throughput</td>
+<td align="left">advisory</td>
+<td align="left">Medium</td>
+<td align="left">HLS Throughput Related</td>
+<td align="left">Accelerator.kernel_gelinearsolver_0.Throughput</td>
+<td align="left">Pipelining result : Target II = 1, Final II = 1, Depth = 2.
+</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">22</td>
+<td align="left">Throughput</td>
+<td align="left">advisory</td>
+<td align="left">Medium</td>
+<td align="left">HLS Throughput Related</td>
+<td align="left">Accelerator.kernel_gelinearsolver_0.Throughput</td>
+<td align="left">Pipelining result : Target II = 1, Final II = 1, Depth = 71.
+</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">23</td>
+<td align="left">Kernel</td>
+<td align="left">advisory</td>
+<td align="left">Medium</td>
+<td align="left">HLS Kernel Related</td>
+<td align="left">Accelerator.kernel_gelinearsolver_0.Kernel</td>
+<td align="left">**** Loop Constraint Status: All loop constraints were NOT satisfied.
+</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">24</td>
+<td align="left">Kernel</td>
+<td align="left">advisory</td>
+<td align="left">Medium</td>
+<td align="left">HLS Kernel Related</td>
+<td align="left">Accelerator.kernel_gelinearsolver_0.Kernel</td>
+<td align="left">**** Estimated Fmax: 411.02 MHz
 </td>
 <td align="left"></td>
 </tr>

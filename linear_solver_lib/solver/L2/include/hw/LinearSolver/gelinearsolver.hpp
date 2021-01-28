@@ -155,7 +155,7 @@ void gelinearsolver(int num_nonzeros, int new_matrix, int n, int num_rhs, int* i
         B[0] = B[0] / A[0];
     else {
              static T matA[NCU][(NMAX + NCU - 1) / NCU][NMAX] = {};
-             static T matB[NCU][(NMAX + NCU - 1) / NCU];
+             static T matB[NCU][(NMAX + NCU - 1) / NCU] = {};
              #pragma HLS array_partition variable = matA cyclic factor = NCU dim = 1
              #pragma HLS array_partition variable = matB cyclic factor = NCU dim = 1
              #pragma HLS resource variable = matA core = XPM_MEMORY uram
@@ -192,12 +192,15 @@ void gelinearsolver(int num_nonzeros, int new_matrix, int n, int num_rhs, int* i
                     }*****/
                     
                     
-                /******* 
-                Pass raw data to matA
-                ********/
+               /********
+               Fill matA with values
+               *********/
                 
                 if(new_matrix == 1)
                 {
+                    
+                    
+                    // Fill matA
                     Loop_read_1:
                     for(int r = 0; r < num_nonzeros; r++)
                     {
@@ -209,6 +212,7 @@ void gelinearsolver(int num_nonzeros, int new_matrix, int n, int num_rhs, int* i
                 
                 }
                 
+                // Fill matB
                 Loop_read_2:
                 for (int r = 0; r < n; r++) 
                 {

@@ -70,7 +70,6 @@ private:
   cl::Buffer buffer_ja; // Ja buffer
   cl::Buffer buffer_A_vals; // A_vals buffer
   cl::Buffer buffer_dataB; // DataB buffer
-  std::vector<std::vector<cl::Event>> kernel_evt; // Kernel event vector
   
   // Time variables
   //struct timeval tstart, tinit_parse, tplatform_setup, tbuffer_setup, tbuffer_transfer1, tkernel_setup, tkernel_launch, tbuffer_transfer2; // Variables to measure time
@@ -81,7 +80,7 @@ public:
 
 
   // Constructor
-  VitisSolverInterface():val_(NULL),devices(1)
+  VitisSolverInterface():val_(nullptr),devices(1)
   {
   };
   

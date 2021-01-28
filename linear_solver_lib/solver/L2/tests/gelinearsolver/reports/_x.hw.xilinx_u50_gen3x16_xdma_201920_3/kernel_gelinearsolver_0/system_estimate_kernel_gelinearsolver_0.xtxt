@@ -2,7 +2,7 @@
 Version:    v++ v2020.1 (64-bit)
 Build:      SW Build 2902540 on Wed May 27 19:54:35 MDT 2020
 Copyright:  Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
-Created:    Wed Jan 27 11:25:28 2021
+Created:    Thu Jan 28 13:58:09 2021
 ===============================================================================
 
 -------------------------------------------------------------------------------
@@ -23,32 +23,29 @@ OpenCL Binary:     kernel_gelinearsolver_0
 Kernels mapped to: clc_region
 
 Timing Information (MHz)
-Compute Unit               Kernel Name              Module Name                     Target Frequency  Estimated Frequency
--------------------------  -----------------------  ------------------------------  ----------------  -------------------
-kernel_gelinearsolver_0_1  kernel_gelinearsolver_0  subUpdate_double_30_886_s       300.300293        430.477844
-kernel_gelinearsolver_0_1  kernel_gelinearsolver_0  getrf_core_double_30_886_30_s   300.300293        411.015198
-kernel_gelinearsolver_0_1  kernel_gelinearsolver_0  trisolver_L_double_886_30_s     300.300293        274.499054
-kernel_gelinearsolver_0_1  kernel_gelinearsolver_0  trisolver_U_double_886_30_s     300.300293        323.72937
-kernel_gelinearsolver_0_1  kernel_gelinearsolver_0  gelinearsolver_double_886_30_s  300.300293        274.499054
-kernel_gelinearsolver_0_1  kernel_gelinearsolver_0  kernel_gelinearsolver_0         300.300293        274.499054
+Compute Unit               Kernel Name              Module Name                    Target Frequency  Estimated Frequency
+-------------------------  -----------------------  -----------------------------  ----------------  -------------------
+kernel_gelinearsolver_0_1  kernel_gelinearsolver_0  getrf_core_double_886_886_1_s  300.300293        423.728821
+kernel_gelinearsolver_0_1  kernel_gelinearsolver_0  trisolver_L_double_886_1_s     300.300293        430.477844
+kernel_gelinearsolver_0_1  kernel_gelinearsolver_0  trisolver_U_double_886_1_s     300.300293        424.808807
+kernel_gelinearsolver_0_1  kernel_gelinearsolver_0  gelinearsolver_double_886_1_s  300.300293        411.015198
+kernel_gelinearsolver_0_1  kernel_gelinearsolver_0  kernel_gelinearsolver_0        300.300293        411.015198
 
 Latency Information
-Compute Unit               Kernel Name              Module Name                     Start Interval  Best (cycles)  Avg (cycles)  Worst (cycles)  Best (absolute)  Avg (absolute)  Worst (absolute)
--------------------------  -----------------------  ------------------------------  --------------  -------------  ------------  --------------  ---------------  --------------  ----------------
-kernel_gelinearsolver_0_1  kernel_gelinearsolver_0  subUpdate_double_30_886_s       59 ~ 26638      59             13348         26638           0.197 us         44.489 us       88.784 us
-kernel_gelinearsolver_0_1  kernel_gelinearsolver_0  getrf_core_double_30_886_30_s   undef           undef          undef         undef           undef            undef           undef
-kernel_gelinearsolver_0_1  kernel_gelinearsolver_0  trisolver_L_double_886_30_s     undef           undef          undef         undef           undef            undef           undef
-kernel_gelinearsolver_0_1  kernel_gelinearsolver_0  trisolver_U_double_886_30_s     undef           undef          undef         undef           undef            undef           undef
-kernel_gelinearsolver_0_1  kernel_gelinearsolver_0  gelinearsolver_double_886_30_s  undef           undef          undef         undef           undef            undef           undef
-kernel_gelinearsolver_0_1  kernel_gelinearsolver_0  kernel_gelinearsolver_0         undef           undef          undef         undef           undef            undef           undef
+Compute Unit               Kernel Name              Module Name                    Start Interval  Best (cycles)  Avg (cycles)  Worst (cycles)  Best (absolute)  Avg (absolute)  Worst (absolute)
+-------------------------  -----------------------  -----------------------------  --------------  -------------  ------------  --------------  ---------------  --------------  ----------------
+kernel_gelinearsolver_0_1  kernel_gelinearsolver_0  getrf_core_double_886_886_1_s  undef           undef          undef         undef           undef            undef           undef
+kernel_gelinearsolver_0_1  kernel_gelinearsolver_0  trisolver_L_double_886_1_s     undef           undef          undef         undef           undef            undef           undef
+kernel_gelinearsolver_0_1  kernel_gelinearsolver_0  trisolver_U_double_886_1_s     undef           undef          undef         undef           undef            undef           undef
+kernel_gelinearsolver_0_1  kernel_gelinearsolver_0  gelinearsolver_double_886_1_s  undef           undef          undef         undef           undef            undef           undef
+kernel_gelinearsolver_0_1  kernel_gelinearsolver_0  kernel_gelinearsolver_0        undef           undef          undef         undef           undef            undef           undef
 
 Area Information
-Compute Unit               Kernel Name              Module Name                     FF     LUT    DSP  BRAM  URAM
--------------------------  -----------------------  ------------------------------  -----  -----  ---  ----  ----
-kernel_gelinearsolver_0_1  kernel_gelinearsolver_0  subUpdate_double_30_886_s       1921   1119   0    0     0
-kernel_gelinearsolver_0_1  kernel_gelinearsolver_0  getrf_core_double_30_886_30_s   67523  42477  0    240   0
-kernel_gelinearsolver_0_1  kernel_gelinearsolver_0  trisolver_L_double_886_30_s     8210   5906   0    0     0
-kernel_gelinearsolver_0_1  kernel_gelinearsolver_0  trisolver_U_double_886_30_s     8799   7394   0    0     0
-kernel_gelinearsolver_0_1  kernel_gelinearsolver_0  gelinearsolver_double_886_30_s  87923  63351  0    321   210
-kernel_gelinearsolver_0_1  kernel_gelinearsolver_0  kernel_gelinearsolver_0         89220  64996  0    325   210
+Compute Unit               Kernel Name              Module Name                    FF     LUT   DSP  BRAM  URAM
+-------------------------  -----------------------  -----------------------------  -----  ----  ---  ----  ----
+kernel_gelinearsolver_0_1  kernel_gelinearsolver_0  getrf_core_double_886_886_1_s  3460   2315  0    8     0
+kernel_gelinearsolver_0_1  kernel_gelinearsolver_0  trisolver_L_double_886_1_s     1804   1264  0    0     0
+kernel_gelinearsolver_0_1  kernel_gelinearsolver_0  trisolver_U_double_886_1_s     2145   1545  0    0     0
+kernel_gelinearsolver_0_1  kernel_gelinearsolver_0  gelinearsolver_double_886_1_s  9321   7529  0    33    192
+kernel_gelinearsolver_0_1  kernel_gelinearsolver_0  kernel_gelinearsolver_0        10618  9174  0    37    192
 -------------------------------------------------------------------------------
