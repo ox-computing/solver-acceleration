@@ -213,6 +213,7 @@ namespace Ipopt
         Index * ja_alloc;
         ja_alloc = aligned_alloc<Index>(ja_size);
         
+        
         if(new_matrix)
         {
         
@@ -271,6 +272,7 @@ namespace Ipopt
             ja_alloc[0] = 0;
         }
         
+        
         // Allocate memory for B
         dataB_size = matrix_dimension*num_rhs;
         double * dataB;
@@ -287,7 +289,7 @@ namespace Ipopt
         
         }
         
-        
+       
         
         gettimeofday(&tinit_array,0);
         
@@ -296,21 +298,20 @@ namespace Ipopt
          ************/
          
          // Setup buffers
-         buffer_ia = cl::Buffer(context, CL_MEM_USE_HOST_PTR | CL_MEM_READ_WRITE,
+         cl::Buffer buffer_ia = cl::Buffer(context, CL_MEM_USE_HOST_PTR | CL_MEM_READ_WRITE,
                             sizeof(Index) * ia_size, ia_alloc, NULL);
                             
          
-         buffer_ja = cl::Buffer(context, CL_MEM_USE_HOST_PTR | CL_MEM_READ_WRITE,
+         cl::Buffer buffer_ja = cl::Buffer(context, CL_MEM_USE_HOST_PTR | CL_MEM_READ_WRITE,
                             sizeof(Index) * ja_size, ja_alloc, NULL);
                             
          
-         buffer_A_vals = cl::Buffer(context, CL_MEM_USE_HOST_PTR | CL_MEM_READ_WRITE,
+         cl::Buffer buffer_A_vals = cl::Buffer(context, CL_MEM_USE_HOST_PTR | CL_MEM_READ_WRITE,
                             sizeof(double) * vals_size, A_vals, NULL);
                             
          
-         buffer_dataB = cl::Buffer(context, CL_MEM_USE_HOST_PTR | CL_MEM_READ_WRITE,
+         cl::Buffer buffer_dataB = cl::Buffer(context, CL_MEM_USE_HOST_PTR | CL_MEM_READ_WRITE,
                             sizeof(double) * dataB_size, dataB, NULL);
-         
          
          // Data transfer from host to device
          

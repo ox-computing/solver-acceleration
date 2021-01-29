@@ -15,14 +15,14 @@
  */
 
 #include "xf_solver_L2.hpp"
-#define NCU 1
+#define NCU 30
 #define MAXN 886
 
 
 extern "C" void kernel_gelinearsolver_0(int num_nonzeros, int new_matrix, int n, int num_rhs, int* A_rows, int* A_cols, double* A_vals, double* dataB) {
 #pragma HLS INTERFACE m_axi port = A_rows bundle = gmem0 offset = slave
-#pragma HLS INTERFACE m_axi port = A_cols bundle = gmem0 offset = slave
-#pragma HLS INTERFACE m_axi port = A_vals bundle = gmem0 offset = slave
+#pragma HLS INTERFACE m_axi port = A_cols bundle = gmem1 offset = slave
+#pragma HLS INTERFACE m_axi port = A_vals bundle = gmem2 offset = slave
 #pragma HLS INTERFACE m_axi port = dataB bundle = gmem0 offset = slave
 
 #pragma HLS INTERFACE s_axilite port = num_nonzeros bundle = control

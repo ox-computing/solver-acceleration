@@ -1,9 +1,1547 @@
 
 *** Multisolve Timings : 1 ***
-Matrix dimension : 5 
+Matrix dimension : 18 
 New Matrix TRUE 
-Array initialise : 10 
-First transfer : 505 
-Launch : 19991 
+Array initialise : 16 
+First transfer : 403 
+Launch : 87617 
+Second transfer : 292 
+Post : 14 
+
+*** Multisolve Timings : 2 ***
+Matrix dimension : 18 
+New Matrix TRUE 
+Array initialise : 15 
+First transfer : 393 
+Launch : 87605 
+Second transfer : 313 
+Post : 10 
+
+*** Multisolve Timings : 3 ***
+Matrix dimension : 18 
+New Matrix FALSE 
+Array initialise : 17 
+First transfer : 441 
+Launch : 348 
+Second transfer : 221 
+Post : 6 
+
+*** Multisolve Timings : 4 ***
+Matrix dimension : 18 
+New Matrix FALSE 
+Array initialise : 20 
+First transfer : 249 
+Launch : 194 
+Second transfer : 115 
+Post : 4 
+
+*** Multisolve Timings : 5 ***
+Matrix dimension : 18 
+New Matrix FALSE 
+Array initialise : 21 
+First transfer : 211 
+Launch : 161 
+Second transfer : 70 
+Post : 4 
+
+*** Multisolve Timings : 6 ***
+Matrix dimension : 18 
+New Matrix TRUE 
+Array initialise : 15 
+First transfer : 141 
+Launch : 87445 
+Second transfer : 353 
+Post : 11 
+
+*** Multisolve Timings : 7 ***
+Matrix dimension : 18 
+New Matrix FALSE 
+Array initialise : 23 
+First transfer : 446 
+Launch : 363 
+Second transfer : 226 
+Post : 8 
+
+*** Multisolve Timings : 8 ***
+Matrix dimension : 18 
+New Matrix FALSE 
+Array initialise : 25 
+First transfer : 301 
+Launch : 247 
+Second transfer : 105 
+Post : 5 
+
+*** Multisolve Timings : 9 ***
+Matrix dimension : 18 
+New Matrix TRUE 
+Array initialise : 25 
+First transfer : 237 
+Launch : 87596 
+Second transfer : 326 
+Post : 12 
+
+*** Multisolve Timings : 10 ***
+Matrix dimension : 18 
+New Matrix FALSE 
+Array initialise : 22 
+First transfer : 440 
+Launch : 361 
 Second transfer : 255 
+Post : 8 
+
+*** Multisolve Timings : 11 ***
+Matrix dimension : 18 
+New Matrix FALSE 
+Array initialise : 19 
+First transfer : 300 
+Launch : 252 
+Second transfer : 243 
+Post : 8 
+
+*** Multisolve Timings : 12 ***
+Matrix dimension : 18 
+New Matrix FALSE 
+Array initialise : 22 
+First transfer : 331 
+Launch : 205 
+Second transfer : 161 
+Post : 8 
+
+*** Multisolve Timings : 13 ***
+Matrix dimension : 18 
+New Matrix FALSE 
+Array initialise : 26 
+First transfer : 252 
+Launch : 174 
+Second transfer : 88 
+Post : 5 
+
+*** Multisolve Timings : 14 ***
+Matrix dimension : 18 
+New Matrix FALSE 
+Array initialise : 19 
+First transfer : 167 
+Launch : 148 
+Second transfer : 64 
+Post : 5 
+
+*** Multisolve Timings : 15 ***
+Matrix dimension : 18 
+New Matrix FALSE 
+Array initialise : 26 
+First transfer : 153 
+Launch : 137 
+Second transfer : 53 
+Post : 5 
+
+*** Multisolve Timings : 16 ***
+Matrix dimension : 18 
+New Matrix FALSE 
+Array initialise : 17 
+First transfer : 132 
+Launch : 134 
+Second transfer : 45 
+Post : 5 
+
+*** Multisolve Timings : 17 ***
+Matrix dimension : 18 
+New Matrix FALSE 
+Array initialise : 13 
+First transfer : 128 
+Launch : 137 
+Second transfer : 49 
+Post : 5 
+
+*** Multisolve Timings : 18 ***
+Matrix dimension : 18 
+New Matrix FALSE 
+Array initialise : 13 
+First transfer : 129 
+Launch : 131 
+Second transfer : 45 
+Post : 5 
+
+*** Multisolve Timings : 19 ***
+Matrix dimension : 18 
+New Matrix FALSE 
+Array initialise : 16 
+First transfer : 134 
+Launch : 136 
+Second transfer : 50 
+Post : 5 
+
+*** Multisolve Timings : 20 ***
+Matrix dimension : 18 
+New Matrix TRUE 
+Array initialise : 25 
+First transfer : 182 
+Launch : 87581 
+Second transfer : 333 
+Post : 11 
+
+*** Multisolve Timings : 21 ***
+Matrix dimension : 18 
+New Matrix FALSE 
+Array initialise : 28 
+First transfer : 445 
+Launch : 366 
+Second transfer : 226 
+Post : 8 
+
+*** Multisolve Timings : 22 ***
+Matrix dimension : 18 
+New Matrix FALSE 
+Array initialise : 18 
+First transfer : 303 
+Launch : 248 
+Second transfer : 102 
+Post : 6 
+
+*** Multisolve Timings : 23 ***
+Matrix dimension : 18 
+New Matrix FALSE 
+Array initialise : 21 
+First transfer : 228 
+Launch : 186 
+Second transfer : 102 
+Post : 6 
+
+*** Multisolve Timings : 24 ***
+Matrix dimension : 18 
+New Matrix FALSE 
+Array initialise : 23 
+First transfer : 183 
+Launch : 187 
+Second transfer : 85 
+Post : 5 
+
+*** Multisolve Timings : 25 ***
+Matrix dimension : 18 
+New Matrix FALSE 
+Array initialise : 14 
+First transfer : 209 
+Launch : 162 
+Second transfer : 61 
+Post : 5 
+
+*** Multisolve Timings : 26 ***
+Matrix dimension : 18 
+New Matrix FALSE 
+Array initialise : 15 
+First transfer : 212 
+Launch : 178 
+Second transfer : 74 
+Post : 5 
+
+*** Multisolve Timings : 27 ***
+Matrix dimension : 18 
+New Matrix FALSE 
+Array initialise : 17 
+First transfer : 209 
+Launch : 144 
+Second transfer : 63 
+Post : 5 
+
+*** Multisolve Timings : 28 ***
+Matrix dimension : 18 
+New Matrix FALSE 
+Array initialise : 17 
+First transfer : 161 
+Launch : 133 
+Second transfer : 48 
+Post : 5 
+
+*** Multisolve Timings : 29 ***
+Matrix dimension : 18 
+New Matrix FALSE 
+Array initialise : 22 
+First transfer : 157 
+Launch : 132 
+Second transfer : 48 
+Post : 5 
+
+*** Multisolve Timings : 30 ***
+Matrix dimension : 18 
+New Matrix FALSE 
+Array initialise : 14 
+First transfer : 155 
+Launch : 132 
+Second transfer : 46 
+Post : 5 
+
+*** Multisolve Timings : 31 ***
+Matrix dimension : 18 
+New Matrix FALSE 
+Array initialise : 24 
+First transfer : 155 
+Launch : 131 
+Second transfer : 48 
+Post : 5 
+
+*** Multisolve Timings : 32 ***
+Matrix dimension : 18 
+New Matrix FALSE 
+Array initialise : 9 
+First transfer : 154 
+Launch : 131 
+Second transfer : 45 
+Post : 5 
+
+*** Multisolve Timings : 33 ***
+Matrix dimension : 18 
+New Matrix TRUE 
+Array initialise : 22 
+First transfer : 221 
+Launch : 87580 
+Second transfer : 329 
+Post : 11 
+
+*** Multisolve Timings : 34 ***
+Matrix dimension : 18 
+New Matrix FALSE 
+Array initialise : 25 
+First transfer : 348 
+Launch : 275 
+Second transfer : 248 
+Post : 10 
+
+*** Multisolve Timings : 35 ***
+Matrix dimension : 18 
+New Matrix FALSE 
+Array initialise : 9 
+First transfer : 301 
+Launch : 222 
+Second transfer : 102 
+Post : 5 
+
+*** Multisolve Timings : 36 ***
+Matrix dimension : 18 
+New Matrix FALSE 
+Array initialise : 19 
+First transfer : 229 
+Launch : 196 
+Second transfer : 99 
+Post : 6 
+
+*** Multisolve Timings : 37 ***
+Matrix dimension : 18 
+New Matrix FALSE 
+Array initialise : 13 
+First transfer : 166 
+Launch : 173 
+Second transfer : 83 
+Post : 5 
+
+*** Multisolve Timings : 38 ***
+Matrix dimension : 18 
+New Matrix FALSE 
+Array initialise : 20 
+First transfer : 160 
+Launch : 157 
+Second transfer : 74 
+Post : 5 
+
+*** Multisolve Timings : 39 ***
+Matrix dimension : 18 
+New Matrix FALSE 
+Array initialise : 13 
+First transfer : 243 
+Launch : 199 
+Second transfer : 57 
+Post : 8 
+
+*** Multisolve Timings : 40 ***
+Matrix dimension : 18 
+New Matrix FALSE 
+Array initialise : 16 
+First transfer : 217 
+Launch : 168 
+Second transfer : 50 
+Post : 5 
+
+*** Multisolve Timings : 41 ***
+Matrix dimension : 18 
+New Matrix FALSE 
+Array initialise : 9 
+First transfer : 202 
+Launch : 134 
+Second transfer : 46 
+Post : 5 
+
+*** Multisolve Timings : 42 ***
+Matrix dimension : 18 
+New Matrix FALSE 
+Array initialise : 17 
+First transfer : 161 
+Launch : 132 
+Second transfer : 46 
+Post : 4 
+
+*** Multisolve Timings : 43 ***
+Matrix dimension : 18 
+New Matrix FALSE 
+Array initialise : 14 
+First transfer : 158 
+Launch : 134 
+Second transfer : 46 
+Post : 5 
+
+*** Multisolve Timings : 44 ***
+Matrix dimension : 18 
+New Matrix TRUE 
+Array initialise : 18 
+First transfer : 170 
+Launch : 87612 
+Second transfer : 277 
 Post : 15 
+
+*** Multisolve Timings : 45 ***
+Matrix dimension : 18 
+New Matrix FALSE 
+Array initialise : 14 
+First transfer : 497 
+Launch : 334 
+Second transfer : 305 
+Post : 11 
+
+*** Multisolve Timings : 46 ***
+Matrix dimension : 18 
+New Matrix FALSE 
+Array initialise : 14 
+First transfer : 386 
+Launch : 268 
+Second transfer : 203 
+Post : 11 
+
+*** Multisolve Timings : 47 ***
+Matrix dimension : 18 
+New Matrix FALSE 
+Array initialise : 25 
+First transfer : 396 
+Launch : 248 
+Second transfer : 135 
+Post : 9 
+
+*** Multisolve Timings : 48 ***
+Matrix dimension : 18 
+New Matrix FALSE 
+Array initialise : 25 
+First transfer : 248 
+Launch : 228 
+Second transfer : 108 
+Post : 7 
+
+*** Multisolve Timings : 49 ***
+Matrix dimension : 18 
+New Matrix FALSE 
+Array initialise : 23 
+First transfer : 249 
+Launch : 203 
+Second transfer : 91 
+Post : 7 
+
+*** Multisolve Timings : 50 ***
+Matrix dimension : 18 
+New Matrix FALSE 
+Array initialise : 18 
+First transfer : 351 
+Launch : 290 
+Second transfer : 125 
+Post : 10 
+
+*** Multisolve Timings : 51 ***
+Matrix dimension : 18 
+New Matrix TRUE 
+Array initialise : 46 
+First transfer : 329 
+Launch : 87691 
+Second transfer : 368 
+Post : 15 
+
+*** Multisolve Timings : 52 ***
+Matrix dimension : 18 
+New Matrix FALSE 
+Array initialise : 36 
+First transfer : 442 
+Launch : 330 
+Second transfer : 302 
+Post : 10 
+
+*** Multisolve Timings : 53 ***
+Matrix dimension : 18 
+New Matrix FALSE 
+Array initialise : 15 
+First transfer : 534 
+Launch : 407 
+Second transfer : 318 
+Post : 12 
+
+*** Multisolve Timings : 54 ***
+Matrix dimension : 18 
+New Matrix FALSE 
+Array initialise : 22 
+First transfer : 491 
+Launch : 304 
+Second transfer : 144 
+Post : 15 
+
+*** Multisolve Timings : 55 ***
+Matrix dimension : 18 
+New Matrix FALSE 
+Array initialise : 26 
+First transfer : 306 
+Launch : 238 
+Second transfer : 211 
+Post : 12 
+
+*** Multisolve Timings : 56 ***
+Matrix dimension : 18 
+New Matrix TRUE 
+Array initialise : 35 
+First transfer : 248 
+Launch : 87700 
+Second transfer : 438 
+Post : 17 
+
+*** Multisolve Timings : 57 ***
+Matrix dimension : 18 
+New Matrix FALSE 
+Array initialise : 14 
+First transfer : 542 
+Launch : 469 
+Second transfer : 298 
+Post : 12 
+
+*** Multisolve Timings : 58 ***
+Matrix dimension : 18 
+New Matrix FALSE 
+Array initialise : 14 
+First transfer : 401 
+Launch : 323 
+Second transfer : 400 
+Post : 12 
+
+*** Multisolve Timings : 59 ***
+Matrix dimension : 18 
+New Matrix FALSE 
+Array initialise : 26 
+First transfer : 361 
+Launch : 337 
+Second transfer : 231 
+Post : 13 
+
+*** Multisolve Timings : 60 ***
+Matrix dimension : 38 
+New Matrix TRUE 
+Array initialise : 18 
+First transfer : 382 
+Launch : 185935 
+Second transfer : 276 
+Post : 11 
+
+*** Multisolve Timings : 61 ***
+Matrix dimension : 38 
+New Matrix TRUE 
+Array initialise : 12 
+First transfer : 360 
+Launch : 186015 
+Second transfer : 276 
+Post : 14 
+
+*** Multisolve Timings : 62 ***
+Matrix dimension : 38 
+New Matrix FALSE 
+Array initialise : 11 
+First transfer : 355 
+Launch : 307 
+Second transfer : 269 
+Post : 9 
+
+*** Multisolve Timings : 63 ***
+Matrix dimension : 38 
+New Matrix FALSE 
+Array initialise : 11 
+First transfer : 337 
+Launch : 260 
+Second transfer : 182 
+Post : 10 
+
+*** Multisolve Timings : 64 ***
+Matrix dimension : 38 
+New Matrix FALSE 
+Array initialise : 12 
+First transfer : 273 
+Launch : 226 
+Second transfer : 112 
+Post : 7 
+
+*** Multisolve Timings : 65 ***
+Matrix dimension : 38 
+New Matrix TRUE 
+Array initialise : 12 
+First transfer : 194 
+Launch : 185959 
+Second transfer : 246 
+Post : 14 
+
+*** Multisolve Timings : 66 ***
+Matrix dimension : 38 
+New Matrix FALSE 
+Array initialise : 14 
+First transfer : 395 
+Launch : 318 
+Second transfer : 268 
+Post : 10 
+
+*** Multisolve Timings : 67 ***
+Matrix dimension : 38 
+New Matrix FALSE 
+Array initialise : 11 
+First transfer : 334 
+Launch : 257 
+Second transfer : 249 
+Post : 10 
+
+*** Multisolve Timings : 68 ***
+Matrix dimension : 38 
+New Matrix TRUE 
+Array initialise : 15 
+First transfer : 312 
+Launch : 185996 
+Second transfer : 193 
+Post : 13 
+
+*** Multisolve Timings : 69 ***
+Matrix dimension : 38 
+New Matrix FALSE 
+Array initialise : 14 
+First transfer : 350 
+Launch : 309 
+Second transfer : 323 
+Post : 9 
+
+*** Multisolve Timings : 70 ***
+Matrix dimension : 38 
+New Matrix FALSE 
+Array initialise : 12 
+First transfer : 468 
+Launch : 301 
+Second transfer : 162 
+Post : 9 
+
+*** Multisolve Timings : 71 ***
+Matrix dimension : 38 
+New Matrix FALSE 
+Array initialise : 11 
+First transfer : 303 
+Launch : 263 
+Second transfer : 97 
+Post : 6 
+
+*** Multisolve Timings : 72 ***
+Matrix dimension : 38 
+New Matrix TRUE 
+Array initialise : 14 
+First transfer : 194 
+Launch : 185961 
+Second transfer : 344 
+Post : 15 
+
+*** Multisolve Timings : 73 ***
+Matrix dimension : 38 
+New Matrix FALSE 
+Array initialise : 15 
+First transfer : 478 
+Launch : 418 
+Second transfer : 271 
+Post : 10 
+
+*** Multisolve Timings : 74 ***
+Matrix dimension : 38 
+New Matrix FALSE 
+Array initialise : 11 
+First transfer : 328 
+Launch : 246 
+Second transfer : 152 
+Post : 8 
+
+*** Multisolve Timings : 75 ***
+Matrix dimension : 38 
+New Matrix TRUE 
+Array initialise : 14 
+First transfer : 270 
+Launch : 186008 
+Second transfer : 323 
+Post : 14 
+
+*** Multisolve Timings : 76 ***
+Matrix dimension : 38 
+New Matrix FALSE 
+Array initialise : 13 
+First transfer : 482 
+Launch : 411 
+Second transfer : 248 
+Post : 10 
+
+*** Multisolve Timings : 77 ***
+Matrix dimension : 38 
+New Matrix FALSE 
+Array initialise : 13 
+First transfer : 338 
+Launch : 289 
+Second transfer : 98 
+Post : 7 
+
+*** Multisolve Timings : 78 ***
+Matrix dimension : 38 
+New Matrix FALSE 
+Array initialise : 12 
+First transfer : 290 
+Launch : 254 
+Second transfer : 118 
+Post : 8 
+
+*** Multisolve Timings : 79 ***
+Matrix dimension : 38 
+New Matrix FALSE 
+Array initialise : 12 
+First transfer : 256 
+Launch : 254 
+Second transfer : 149 
+Post : 9 
+
+*** Multisolve Timings : 80 ***
+Matrix dimension : 38 
+New Matrix FALSE 
+Array initialise : 13 
+First transfer : 209 
+Launch : 227 
+Second transfer : 123 
+Post : 9 
+
+*** Multisolve Timings : 81 ***
+Matrix dimension : 38 
+New Matrix FALSE 
+Array initialise : 13 
+First transfer : 197 
+Launch : 193 
+Second transfer : 64 
+Post : 6 
+
+*** Multisolve Timings : 82 ***
+Matrix dimension : 38 
+New Matrix FALSE 
+Array initialise : 24 
+First transfer : 246 
+Launch : 194 
+Second transfer : 105 
+Post : 10 
+
+*** Multisolve Timings : 83 ***
+Matrix dimension : 38 
+New Matrix FALSE 
+Array initialise : 13 
+First transfer : 213 
+Launch : 219 
+Second transfer : 87 
+Post : 9 
+
+*** Multisolve Timings : 84 ***
+Matrix dimension : 38 
+New Matrix FALSE 
+Array initialise : 13 
+First transfer : 176 
+Launch : 170 
+Second transfer : 50 
+Post : 6 
+
+*** Multisolve Timings : 85 ***
+Matrix dimension : 38 
+New Matrix FALSE 
+Array initialise : 13 
+First transfer : 181 
+Launch : 167 
+Second transfer : 55 
+Post : 5 
+
+*** Multisolve Timings : 86 ***
+Matrix dimension : 38 
+New Matrix FALSE 
+Array initialise : 12 
+First transfer : 186 
+Launch : 190 
+Second transfer : 54 
+Post : 5 
+
+*** Multisolve Timings : 87 ***
+Matrix dimension : 38 
+New Matrix TRUE 
+Array initialise : 14 
+First transfer : 191 
+Launch : 185953 
+Second transfer : 251 
+Post : 13 
+
+*** Multisolve Timings : 88 ***
+Matrix dimension : 38 
+New Matrix FALSE 
+Array initialise : 11 
+First transfer : 356 
+Launch : 308 
+Second transfer : 266 
+Post : 10 
+
+*** Multisolve Timings : 89 ***
+Matrix dimension : 38 
+New Matrix FALSE 
+Array initialise : 12 
+First transfer : 338 
+Launch : 288 
+Second transfer : 190 
+Post : 10 
+
+*** Multisolve Timings : 90 ***
+Matrix dimension : 38 
+New Matrix FALSE 
+Array initialise : 13 
+First transfer : 374 
+Launch : 240 
+Second transfer : 119 
+Post : 7 
+
+*** Multisolve Timings : 91 ***
+Matrix dimension : 38 
+New Matrix FALSE 
+Array initialise : 26 
+First transfer : 243 
+Launch : 209 
+Second transfer : 101 
+Post : 6 
+
+*** Multisolve Timings : 92 ***
+Matrix dimension : 38 
+New Matrix FALSE 
+Array initialise : 20 
+First transfer : 196 
+Launch : 181 
+Second transfer : 88 
+Post : 7 
+
+*** Multisolve Timings : 93 ***
+Matrix dimension : 38 
+New Matrix FALSE 
+Array initialise : 21 
+First transfer : 186 
+Launch : 177 
+Second transfer : 71 
+Post : 6 
+
+*** Multisolve Timings : 94 ***
+Matrix dimension : 38 
+New Matrix FALSE 
+Array initialise : 17 
+First transfer : 168 
+Launch : 166 
+Second transfer : 56 
+Post : 6 
+
+*** Multisolve Timings : 95 ***
+Matrix dimension : 38 
+New Matrix FALSE 
+Array initialise : 18 
+First transfer : 166 
+Launch : 163 
+Second transfer : 53 
+Post : 6 
+
+*** Multisolve Timings : 96 ***
+Matrix dimension : 38 
+New Matrix FALSE 
+Array initialise : 17 
+First transfer : 158 
+Launch : 160 
+Second transfer : 49 
+Post : 6 
+
+*** Multisolve Timings : 97 ***
+Matrix dimension : 38 
+New Matrix FALSE 
+Array initialise : 18 
+First transfer : 235 
+Launch : 194 
+Second transfer : 58 
+Post : 6 
+
+*** Multisolve Timings : 98 ***
+Matrix dimension : 38 
+New Matrix TRUE 
+Array initialise : 22 
+First transfer : 193 
+Launch : 186002 
+Second transfer : 393 
+Post : 17 
+
+*** Multisolve Timings : 99 ***
+Matrix dimension : 38 
+New Matrix FALSE 
+Array initialise : 16 
+First transfer : 556 
+Launch : 486 
+Second transfer : 301 
+Post : 12 
+
+*** Multisolve Timings : 100 ***
+Matrix dimension : 38 
+New Matrix FALSE 
+Array initialise : 14 
+First transfer : 417 
+Launch : 344 
+Second transfer : 381 
+Post : 12 
+
+*** Multisolve Timings : 101 ***
+Matrix dimension : 38 
+New Matrix FALSE 
+Array initialise : 15 
+First transfer : 457 
+Launch : 285 
+Second transfer : 285 
+Post : 12 
+
+*** Multisolve Timings : 102 ***
+Matrix dimension : 38 
+New Matrix FALSE 
+Array initialise : 29 
+First transfer : 529 
+Launch : 358 
+Second transfer : 378 
+Post : 12 
+
+*** Multisolve Timings : 103 ***
+Matrix dimension : 38 
+New Matrix FALSE 
+Array initialise : 32 
+First transfer : 444 
+Launch : 427 
+Second transfer : 266 
+Post : 12 
+
+*** Multisolve Timings : 104 ***
+Matrix dimension : 38 
+New Matrix FALSE 
+Array initialise : 27 
+First transfer : 440 
+Launch : 295 
+Second transfer : 145 
+Post : 13 
+
+*** Multisolve Timings : 105 ***
+Matrix dimension : 38 
+New Matrix TRUE 
+Array initialise : 28 
+First transfer : 455 
+Launch : 185995 
+Second transfer : 241 
+Post : 12 
+
+*** Multisolve Timings : 106 ***
+Matrix dimension : 38 
+New Matrix FALSE 
+Array initialise : 10 
+First transfer : 305 
+Launch : 328 
+Second transfer : 358 
+Post : 12 
+
+*** Multisolve Timings : 107 ***
+Matrix dimension : 38 
+New Matrix FALSE 
+Array initialise : 15 
+First transfer : 494 
+Launch : 337 
+Second transfer : 184 
+Post : 10 
+
+*** Multisolve Timings : 108 ***
+Matrix dimension : 38 
+New Matrix FALSE 
+Array initialise : 13 
+First transfer : 338 
+Launch : 279 
+Second transfer : 115 
+Post : 7 
+
+*** Multisolve Timings : 109 ***
+Matrix dimension : 38 
+New Matrix FALSE 
+Array initialise : 36 
+First transfer : 299 
+Launch : 307 
+Second transfer : 155 
+Post : 11 
+
+*** Multisolve Timings : 110 ***
+Matrix dimension : 58 
+New Matrix TRUE 
+Array initialise : 6 
+First transfer : 323 
+Launch : 279828 
+Second transfer : 346 
+Post : 14 
+
+*** Multisolve Timings : 111 ***
+Matrix dimension : 58 
+New Matrix TRUE 
+Array initialise : 16 
+First transfer : 462 
+Launch : 279870 
+Second transfer : 335 
+Post : 15 
+
+*** Multisolve Timings : 112 ***
+Matrix dimension : 58 
+New Matrix FALSE 
+Array initialise : 13 
+First transfer : 460 
+Launch : 441 
+Second transfer : 250 
+Post : 10 
+
+*** Multisolve Timings : 113 ***
+Matrix dimension : 58 
+New Matrix FALSE 
+Array initialise : 11 
+First transfer : 338 
+Launch : 286 
+Second transfer : 117 
+Post : 7 
+
+*** Multisolve Timings : 114 ***
+Matrix dimension : 58 
+New Matrix FALSE 
+Array initialise : 11 
+First transfer : 209 
+Launch : 245 
+Second transfer : 116 
+Post : 6 
+
+*** Multisolve Timings : 115 ***
+Matrix dimension : 58 
+New Matrix FALSE 
+Array initialise : 11 
+First transfer : 250 
+Launch : 277 
+Second transfer : 177 
+Post : 11 
+
+*** Multisolve Timings : 116 ***
+Matrix dimension : 58 
+New Matrix TRUE 
+Array initialise : 16 
+First transfer : 342 
+Launch : 279834 
+Second transfer : 251 
+Post : 13 
+
+*** Multisolve Timings : 117 ***
+Matrix dimension : 58 
+New Matrix FALSE 
+Array initialise : 13 
+First transfer : 284 
+Launch : 305 
+Second transfer : 323 
+Post : 9 
+
+*** Multisolve Timings : 118 ***
+Matrix dimension : 58 
+New Matrix FALSE 
+Array initialise : 9 
+First transfer : 388 
+Launch : 392 
+Second transfer : 224 
+Post : 10 
+
+*** Multisolve Timings : 119 ***
+Matrix dimension : 58 
+New Matrix FALSE 
+Array initialise : 10 
+First transfer : 266 
+Launch : 265 
+Second transfer : 112 
+Post : 6 
+
+*** Multisolve Timings : 120 ***
+Matrix dimension : 58 
+New Matrix TRUE 
+Array initialise : 14 
+First transfer : 206 
+Launch : 279682 
+Second transfer : 213 
+Post : 15 
+
+*** Multisolve Timings : 121 ***
+Matrix dimension : 58 
+New Matrix FALSE 
+Array initialise : 16 
+First transfer : 308 
+Launch : 277 
+Second transfer : 120 
+Post : 9 
+
+*** Multisolve Timings : 122 ***
+Matrix dimension : 58 
+New Matrix FALSE 
+Array initialise : 17 
+First transfer : 302 
+Launch : 231 
+Second transfer : 98 
+Post : 10 
+
+*** Multisolve Timings : 123 ***
+Matrix dimension : 58 
+New Matrix FALSE 
+Array initialise : 14 
+First transfer : 221 
+Launch : 197 
+Second transfer : 79 
+Post : 6 
+
+*** Multisolve Timings : 124 ***
+Matrix dimension : 58 
+New Matrix TRUE 
+Array initialise : 14 
+First transfer : 164 
+Launch : 279887 
+Second transfer : 381 
+Post : 19 
+
+*** Multisolve Timings : 125 ***
+Matrix dimension : 58 
+New Matrix FALSE 
+Array initialise : 22 
+First transfer : 468 
+Launch : 572 
+Second transfer : 247 
+Post : 14 
+
+*** Multisolve Timings : 126 ***
+Matrix dimension : 58 
+New Matrix FALSE 
+Array initialise : 17 
+First transfer : 353 
+Launch : 277 
+Second transfer : 190 
+Post : 13 
+
+*** Multisolve Timings : 127 ***
+Matrix dimension : 58 
+New Matrix TRUE 
+Array initialise : 20 
+First transfer : 347 
+Launch : 279981 
+Second transfer : 395 
+Post : 22 
+
+*** Multisolve Timings : 128 ***
+Matrix dimension : 58 
+New Matrix FALSE 
+Array initialise : 21 
+First transfer : 568 
+Launch : 637 
+Second transfer : 445 
+Post : 15 
+
+*** Multisolve Timings : 129 ***
+Matrix dimension : 58 
+New Matrix FALSE 
+Array initialise : 22 
+First transfer : 478 
+Launch : 364 
+Second transfer : 195 
+Post : 16 
+
+*** Multisolve Timings : 130 ***
+Matrix dimension : 58 
+New Matrix FALSE 
+Array initialise : 22 
+First transfer : 338 
+Launch : 431 
+Second transfer : 268 
+Post : 16 
+
+*** Multisolve Timings : 131 ***
+Matrix dimension : 58 
+New Matrix FALSE 
+Array initialise : 19 
+First transfer : 388 
+Launch : 523 
+Second transfer : 184 
+Post : 12 
+
+*** Multisolve Timings : 132 ***
+Matrix dimension : 58 
+New Matrix FALSE 
+Array initialise : 20 
+First transfer : 463 
+Launch : 455 
+Second transfer : 195 
+Post : 13 
+
+*** Multisolve Timings : 133 ***
+Matrix dimension : 58 
+New Matrix FALSE 
+Array initialise : 21 
+First transfer : 516 
+Launch : 499 
+Second transfer : 263 
+Post : 15 
+
+*** Multisolve Timings : 134 ***
+Matrix dimension : 58 
+New Matrix FALSE 
+Array initialise : 18 
+First transfer : 331 
+Launch : 373 
+Second transfer : 212 
+Post : 16 
+
+*** Multisolve Timings : 135 ***
+Matrix dimension : 58 
+New Matrix FALSE 
+Array initialise : 20 
+First transfer : 308 
+Launch : 358 
+Second transfer : 174 
+Post : 15 
+
+*** Multisolve Timings : 136 ***
+Matrix dimension : 58 
+New Matrix FALSE 
+Array initialise : 19 
+First transfer : 313 
+Launch : 295 
+Second transfer : 173 
+Post : 16 
+
+*** Multisolve Timings : 137 ***
+Matrix dimension : 58 
+New Matrix TRUE 
+Array initialise : 23 
+First transfer : 255 
+Launch : 279773 
+Second transfer : 253 
+Post : 20 
+
+*** Multisolve Timings : 138 ***
+Matrix dimension : 58 
+New Matrix FALSE 
+Array initialise : 9 
+First transfer : 257 
+Launch : 260 
+Second transfer : 99 
+Post : 6 
+
+*** Multisolve Timings : 139 ***
+Matrix dimension : 58 
+New Matrix FALSE 
+Array initialise : 8 
+First transfer : 263 
+Launch : 291 
+Second transfer : 98 
+Post : 7 
+
+*** Multisolve Timings : 140 ***
+Matrix dimension : 58 
+New Matrix FALSE 
+Array initialise : 12 
+First transfer : 220 
+Launch : 212 
+Second transfer : 151 
+Post : 8 
+
+*** Multisolve Timings : 141 ***
+Matrix dimension : 58 
+New Matrix FALSE 
+Array initialise : 11 
+First transfer : 183 
+Launch : 240 
+Second transfer : 83 
+Post : 6 
+
+*** Multisolve Timings : 142 ***
+Matrix dimension : 58 
+New Matrix FALSE 
+Array initialise : 10 
+First transfer : 173 
+Launch : 170 
+Second transfer : 79 
+Post : 8 
+
+*** Multisolve Timings : 143 ***
+Matrix dimension : 58 
+New Matrix FALSE 
+Array initialise : 11 
+First transfer : 175 
+Launch : 200 
+Second transfer : 51 
+Post : 7 
+
+*** Multisolve Timings : 144 ***
+Matrix dimension : 58 
+New Matrix FALSE 
+Array initialise : 11 
+First transfer : 142 
+Launch : 193 
+Second transfer : 62 
+Post : 6 
+
+*** Multisolve Timings : 145 ***
+Matrix dimension : 58 
+New Matrix FALSE 
+Array initialise : 19 
+First transfer : 150 
+Launch : 196 
+Second transfer : 47 
+Post : 5 
+
+*** Multisolve Timings : 146 ***
+Matrix dimension : 58 
+New Matrix FALSE 
+Array initialise : 9 
+First transfer : 153 
+Launch : 181 
+Second transfer : 63 
+Post : 6 
+
+*** Multisolve Timings : 147 ***
+Matrix dimension : 58 
+New Matrix FALSE 
+Array initialise : 14 
+First transfer : 152 
+Launch : 180 
+Second transfer : 41 
+Post : 5 
+
+*** Multisolve Timings : 148 ***
+Matrix dimension : 58 
+New Matrix FALSE 
+Array initialise : 9 
+First transfer : 149 
+Launch : 181 
+Second transfer : 61 
+Post : 5 
+
+*** Multisolve Timings : 149 ***
+Matrix dimension : 58 
+New Matrix FALSE 
+Array initialise : 7 
+First transfer : 153 
+Launch : 165 
+Second transfer : 39 
+Post : 6 
+
+*** Multisolve Timings : 150 ***
+Matrix dimension : 58 
+New Matrix TRUE 
+Array initialise : 18 
+First transfer : 145 
+Launch : 279825 
+Second transfer : 380 
+Post : 16 
+
+*** Multisolve Timings : 151 ***
+Matrix dimension : 58 
+New Matrix FALSE 
+Array initialise : 15 
+First transfer : 398 
+Launch : 413 
+Second transfer : 155 
+Post : 11 
+
+*** Multisolve Timings : 152 ***
+Matrix dimension : 58 
+New Matrix FALSE 
+Array initialise : 14 
+First transfer : 272 
+Launch : 303 
+Second transfer : 199 
+Post : 11 
+
+*** Multisolve Timings : 153 ***
+Matrix dimension : 58 
+New Matrix FALSE 
+Array initialise : 13 
+First transfer : 419 
+Launch : 285 
+Second transfer : 99 
+Post : 9 
+
+*** Multisolve Timings : 154 ***
+Matrix dimension : 58 
+New Matrix FALSE 
+Array initialise : 29 
+First transfer : 206 
+Launch : 263 
+Second transfer : 115 
+Post : 11 
+
+*** Multisolve Timings : 155 ***
+Matrix dimension : 58 
+New Matrix FALSE 
+Array initialise : 23 
+First transfer : 191 
+Launch : 233 
+Second transfer : 100 
+Post : 8 
+
+*** Multisolve Timings : 156 ***
+Matrix dimension : 58 
+New Matrix FALSE 
+Array initialise : 12 
+First transfer : 168 
+Launch : 260 
+Second transfer : 105 
+Post : 10 
+
+*** Multisolve Timings : 157 ***
+Matrix dimension : 58 
+New Matrix FALSE 
+Array initialise : 18 
+First transfer : 164 
+Launch : 214 
+Second transfer : 94 
+Post : 8 
+
+*** Multisolve Timings : 158 ***
+Matrix dimension : 58 
+New Matrix FALSE 
+Array initialise : 20 
+First transfer : 162 
+Launch : 205 
+Second transfer : 94 
+Post : 7 
+
+*** Multisolve Timings : 159 ***
+Matrix dimension : 58 
+New Matrix TRUE 
+Array initialise : 18 
+First transfer : 232 
+Launch : 279828 
+Second transfer : 281 
+Post : 16 
+
+*** Multisolve Timings : 160 ***
+Matrix dimension : 58 
+New Matrix FALSE 
+Array initialise : 15 
+First transfer : 431 
+Launch : 416 
+Second transfer : 152 
+Post : 11 
+
+*** Multisolve Timings : 161 ***
+Matrix dimension : 58 
+New Matrix FALSE 
+Array initialise : 14 
+First transfer : 266 
+Launch : 302 
+Second transfer : 109 
+Post : 11 
+
+*** Multisolve Timings : 162 ***
+Matrix dimension : 58 
+New Matrix FALSE 
+Array initialise : 26 
+First transfer : 349 
+Launch : 245 
+Second transfer : 105 
+Post : 9 
+
+*** Multisolve Timings : 163 ***
+Matrix dimension : 58 
+New Matrix FALSE 
+Array initialise : 23 
+First transfer : 211 
+Launch : 323 
+Second transfer : 122 
+Post : 11 
+
+*** Multisolve Timings : 164 ***
+Matrix dimension : 58 
+New Matrix FALSE 
+Array initialise : 31 
+First transfer : 256 
+Launch : 306 
+Second transfer : 161 
+Post : 11 
+
+*** Multisolve Timings : 165 ***
+Matrix dimension : 58 
+New Matrix TRUE 
+Array initialise : 40 
+First transfer : 281 
+Launch : 279876 
+Second transfer : 362 
+Post : 20 
+
+*** Multisolve Timings : 166 ***
+Matrix dimension : 58 
+New Matrix FALSE 
+Array initialise : 18 
+First transfer : 548 
+Launch : 489 
+Second transfer : 257 
+Post : 14 
+
+*** Multisolve Timings : 167 ***
+Matrix dimension : 58 
+New Matrix FALSE 
+Array initialise : 19 
+First transfer : 444 
+Launch : 412 
+Second transfer : 176 
+Post : 13 
+
+*** Multisolve Timings : 168 ***
+Matrix dimension : 58 
+New Matrix FALSE 
+Array initialise : 17 
+First transfer : 426 
+Launch : 394 
+Second transfer : 176 
+Post : 14 
+
+*** Multisolve Timings : 169 ***
+Matrix dimension : 78 
+New Matrix TRUE 
+Array initialise : 6 
+First transfer : 212 
+Launch : 369312 
+Second transfer : 283 
+Post : 16 
+
+*** Multisolve Timings : 170 ***
+Matrix dimension : 78 
+New Matrix TRUE 
+Array initialise : 15 
+First transfer : 400 
+Launch : 369349 
+Second transfer : 352 
+Post : 16 
+
+*** Multisolve Timings : 171 ***
+Matrix dimension : 78 
+New Matrix FALSE 
+Array initialise : 12 
+First transfer : 485 
+Launch : 549 
+Second transfer : 213 
+Post : 12 
+
+*** Multisolve Timings : 172 ***
+Matrix dimension : 78 
+New Matrix FALSE 
+Array initialise : 13 
+First transfer : 340 
+Launch : 378 
+Second transfer : 2

@@ -49,7 +49,7 @@ int main(
     
     FILE* file = fopen("tutorial_iterations_timings.txt","w");
     
-    int number_iterations = 30;
+    int number_iterations = 10;
     
     for(int iteration = 1; iteration <= number_iterations; iteration++)
     {   

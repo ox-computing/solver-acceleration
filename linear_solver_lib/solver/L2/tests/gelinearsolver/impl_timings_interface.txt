@@ -1,3 +1,0 @@
-
-*** InitializeImpl : 1 ***
-Runtime : 53954 

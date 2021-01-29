@@ -160,36 +160,10 @@ void gelinearsolver(int num_nonzeros, int new_matrix, int n, int num_rhs, int* i
              #pragma HLS array_partition variable = matB cyclic factor = NCU dim = 1
              #pragma HLS resource variable = matA core = XPM_MEMORY uram
              
+             //#pragma HLS bind_storage variable = matA type = ram_t2p impl = uram
+
+             
                 for (int j = 0; j < num_rhs; j++) {
-                   
-                   /****if(new_matrix == 1)
-                   {
-                       Loop_read_1:
-                       for (int r = 0; r < n; r++) {
-                           for (int c = 0; c < n; c++) {
-                               #pragma HLS pipeline
-                               #pragma HLS dependence variable = A inter false
-                               #pragma HLS dependence variable = B inter false
-                       
-                               matA[r % NCU][r / NCU][c] = A[r * lda + c];
-                             
-                               if (c == 0) {
-                                   matB[r % NCU][r / NCU] = B[r * ldb + j];
-                               }
-                           }
-                       }
-                   }
-                   else
-                   {
-                       Loop_read_2:
-                       for (int r = 0; r < n; r++) {
-                               #pragma HLS pipeline
-                               #pragma HLS dependence variable = A inter false
-                               #pragma HLS dependence variable = B inter false
-                             
-                                   matB[r % NCU][r / NCU] = B[r * ldb + j];
-                           }
-                    }*****/
                     
                     
                /********
@@ -198,7 +172,17 @@ void gelinearsolver(int num_nonzeros, int new_matrix, int n, int num_rhs, int* i
                 
                 if(new_matrix == 1)
                 {
-                    
+                    // Set the value of matA to zero
+                    Loop_reset_1:
+                    for(int r = 0; r < n; r++)
+                    {
+                        for(int c = 0; c < n; c++)
+                        {
+                            #pragma HLS pipeline
+                            #pragma HLS dependence variable = matA inter false
+                            matA[r % NCU][r / NCU][c] = 0;
+                        }
+                    }
                     
                     // Fill matA
                     Loop_read_1:
@@ -206,6 +190,9 @@ void gelinearsolver(int num_nonzeros, int new_matrix, int n, int num_rhs, int* i
                     {
                         #pragma HLS pipeline
                         #pragma HLS dependence variable = A inter false
+                        #pragma HLS dependence variable = A intra false
+                        #pragma HLS dependence variable = matA intra false
+                        #pragma HLS dependence variable = matA inter false
                         matA[ia[r] % NCU][ia[r] / NCU][ja[r]] = A[r];
                         matA[ja[r] % NCU][ja[r] / NCU][ia[r]] = A[r];
                     }
