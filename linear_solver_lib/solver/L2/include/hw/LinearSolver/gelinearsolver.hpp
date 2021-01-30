@@ -115,7 +115,7 @@ void solver_core(int new_matrix, int debug_mode, int n, int j, T dataA[NCU][(N +
     T dataC[NCU][(N + NCU - 1) / NCU];
     int info;
     
-    if(new_matrx == 1)
+    if((new_matrx == 1) && (j==0))
     {
     getrf_core<T, NRCU, N, NCU>(debug_mode, n, dataA, n, P);
     }
@@ -162,15 +162,13 @@ void gelinearsolver(int num_nonzeros, int new_matrix, int n, int num_rhs, int* i
              
              //#pragma HLS bind_storage variable = matA type = ram_t2p impl = uram
 
-             
-                for (int j = 0; j < num_rhs; j++) {
-                    
-                    
-               /********
-               Fill matA with values
-               *********/
-                
-                if(new_matrix == 1)
+              
+              /*********
+              Fill matrix A with data
+              *************/
+              
+              
+             if(new_matrix == 1)
                 {
                     // Set the value of matA to zero
                     Loop_reset_1:
@@ -198,6 +196,9 @@ void gelinearsolver(int num_nonzeros, int new_matrix, int n, int num_rhs, int* i
                     }
                 
                 }
+             
+                for (int j = 0; j < num_rhs; j++) {
+                
                 
                 // Fill matB
                 Loop_read_2:
