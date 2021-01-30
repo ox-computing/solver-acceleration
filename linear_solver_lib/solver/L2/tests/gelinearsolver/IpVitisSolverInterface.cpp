@@ -403,6 +403,8 @@ namespace Ipopt
           
           fprintf(fp,"Matrix dimension : %d \n",matrix_dimension);
           
+          fprintf(fp,"Number of RHS : %d \n",num_rhs);
+          
           if(new_matrix)
           {
               fprintf(fp,"New Matrix TRUE \n");

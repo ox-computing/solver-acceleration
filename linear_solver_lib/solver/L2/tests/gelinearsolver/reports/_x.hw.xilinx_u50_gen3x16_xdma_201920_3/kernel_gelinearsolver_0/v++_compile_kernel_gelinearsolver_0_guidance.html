@@ -3407,7 +3407,7 @@ window.onload = function () { addSorting(); }
 <center><h1>Design Guidance Report</h1></center><center><table class="header" border="0">
 <tr><td><b>Copyright</b></td><td>Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.</td></tr>
 <tr><td><b>Tool Version</b></td><td>xrcserver v.2020.1 (lin64) Build 0 </td></tr>
-<tr><td><b>Date</b></td><td>Sat Jan 30 14:06:17 2021</td></tr>
+<tr><td><b>Date</b></td><td>Sat Jan 30 14:28:01 2021</td></tr>
 <tr><td><b>Host</b></td><td>ENGS-21963 running 64-bit Ubuntu 18.04.5 LTS</td></tr>
 <tr><td><b>Command</b></td><td>v++  -t hw --platform /opt/xilinx/platforms/xilinx_u50_gen3x16_xdma_201920_3/xilinx_u50_gen3x16_xdma_201920_3.xpfm --save-temps --config conn_u50.ini -I/home/jacksoncd/solver-acceleration/linear_solver_lib/solver//L2/tests/gelinearsolver -I/home/jacksoncd/solver-acceleration/linear_solver_lib/solver//L2/include -I/home/jacksoncd/solver-acceleration/linear_solver_lib/solver//ext --temp_dir _x_temp.hw.xilinx_u50_gen3x16_xdma_201920_3 --report_dir /home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/tests/gelinearsolver/reports/_x.hw.xilinx_u50_gen3x16_xdma_201920_3 -c -k kernel_gelinearsolver_0 -I/home/jacksoncd/solver-acceleration/linear_solver_lib/solver//L2/tests/gelinearsolver -o _x_temp.hw.xilinx_u50_gen3x16_xdma_201920_3/kernel_gelinearsolver_0.xo /home/jacksoncd/solver-acceleration/linear_solver_lib/solver//L2/tests/gelinearsolver/kernel_gelinearsolver.cpp </td></tr>
 </table></center><br>
@@ -3435,13 +3435,68 @@ window.onload = function () { addSorting(); }
 <th align="left" width="380">Resolution</th>
 </tr>
 <tr>
+<td align="left">32</td>
+<td align="left">Kernel</td>
+<td align="left">advisory</td>
+<td align="left">Medium</td>
+<td align="left">HLS Kernel Related</td>
+<td align="left">Accelerator.kernel_gelinearsolver_0.Kernel</td>
+<td align="left">**** Estimated Fmax: 274.50 MHz
+</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">1</td>
+<td align="left">Latency</td>
+<td align="left">warning</td>
+<td align="left">Medium</td>
+<td align="left">HLS Latency Related</td>
+<td align="left">Accelerator.kernel_gelinearsolver_0.Latency</td>
+<td align="left">Cannot flatten loop 'LoopSweeps' (/home/jacksoncd/solver-acceleration<a href="file:///linear_solver_lib/solver/L2/include/hw/MatrixDecomposition/getrf.hpp#line=71">getrf.hpp</a>) in function 'xf::solver::internalgetrf::getrf_core<double, 30, 886, 30>' more than one sub loop.
+</td>
+<td align="left"><a href="http://www.xilinx.com/html_docs/xilinx2020_1/hls-guidance/200-960.html">See here for more help on vitis_hls 200-960 guidance.</a></td>
+</tr>
+<tr>
+<td align="left">2</td>
+<td align="left">Latency</td>
+<td align="left">warning</td>
+<td align="left">Medium</td>
+<td align="left">HLS Latency Related</td>
+<td align="left">Accelerator.kernel_gelinearsolver_0.Latency</td>
+<td align="left">Cannot flatten loop 'Loop_row' (/home/jacksoncd/solver-acceleration<a href="file:///linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp#line=58">gelinearsolver.hpp</a>) in function 'xf::solver::internal_gelinear::trisolver_U<double, 886, 30>' the outer loop is not a perfect loop because there is nontrivial logic in the loop latch.
+</td>
+<td align="left"><a href="http://www.xilinx.com/html_docs/xilinx2020_1/hls-guidance/200-960.html">See here for more help on vitis_hls 200-960 guidance.</a></td>
+</tr>
+<tr>
+<td align="left">3</td>
+<td align="left">Latency</td>
+<td align="left">warning</td>
+<td align="left">Medium</td>
+<td align="left">HLS Latency Related</td>
+<td align="left">Accelerator.kernel_gelinearsolver_0.Latency</td>
+<td align="left">Cannot flatten loop 'Loop_row' (/home/jacksoncd/solver-acceleration<a href="file:///linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp#line=35">gelinearsolver.hpp</a>) in function 'xf::solver::internal_gelinear::trisolver_L<double, 886, 30>' the outer loop is not a perfect loop because there is nontrivial logic in the loop latch.
+</td>
+<td align="left"><a href="http://www.xilinx.com/html_docs/xilinx2020_1/hls-guidance/200-960.html">See here for more help on vitis_hls 200-960 guidance.</a></td>
+</tr>
+<tr>
+<td align="left">4</td>
+<td align="left">Latency</td>
+<td align="left">warning</td>
+<td align="left">Medium</td>
+<td align="left">HLS Latency Related</td>
+<td align="left">Accelerator.kernel_gelinearsolver_0.Latency</td>
+<td align="left">Cannot flatten loop 'VITIS_LOOP_200_2' (/home/jacksoncd/solver-acceleration<a href="file:///linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp#line=200">gelinearsolver.hpp</a>) in function 'xf::solver::gelinearsolver<double, 886, 30>' more than one sub loop.
+</td>
+<td align="left"><a href="http://www.xilinx.com/html_docs/xilinx2020_1/hls-guidance/200-960.html">See here for more help on vitis_hls 200-960 guidance.</a></td>
+</tr>
+<tr>
 <td align="left">5</td>
 <td align="left">Interface</td>
 <td align="left">advisory</td>
 <td align="left">Medium</td>
 <td align="left">HLS Interface Related</td>
 <td align="left">Accelerator.kernel_gelinearsolver_0.Interface</td>
-<td align="left">Inferring multiple bus burst read of variable length on port 'gmem0' (/home/jacksoncd/solver-acceleration<a href="file:///linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp#line=196">gelinearsolver.hpp</a>). These data requests might be further partitioned to multiple requests during RTL generation, based on max_read_burst_length or max_write_burst_length settings.
+<td align="left">Inferring multiple bus burst read of variable length on port 'gmem0' (/home/jacksoncd/solver-acceleration<a href="file:///linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp#line=194">gelinearsolver.hpp</a>). These data requests might be further partitioned to multiple requests during RTL generation, based on max_read_burst_length or max_write_burst_length settings.
 </td>
 <td align="left"></td>
 </tr>
@@ -3452,7 +3507,7 @@ window.onload = function () { addSorting(); }
 <td align="left">Medium</td>
 <td align="left">HLS Interface Related</td>
 <td align="left">Accelerator.kernel_gelinearsolver_0.Interface</td>
-<td align="left">Inferring multiple bus burst read of variable length on port 'gmem1' (/home/jacksoncd/solver-acceleration<a href="file:///linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp#line=196">gelinearsolver.hpp</a>). These data requests might be further partitioned to multiple requests during RTL generation, based on max_read_burst_length or max_write_burst_length settings.
+<td align="left">Inferring multiple bus burst read of variable length on port 'gmem1' (/home/jacksoncd/solver-acceleration<a href="file:///linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp#line=194">gelinearsolver.hpp</a>). These data requests might be further partitioned to multiple requests during RTL generation, based on max_read_burst_length or max_write_burst_length settings.
 </td>
 <td align="left"></td>
 </tr>
@@ -3463,7 +3518,7 @@ window.onload = function () { addSorting(); }
 <td align="left">Medium</td>
 <td align="left">HLS Interface Related</td>
 <td align="left">Accelerator.kernel_gelinearsolver_0.Interface</td>
-<td align="left">Inferring multiple bus burst read of variable length on port 'gmem2' (/home/jacksoncd/solver-acceleration<a href="file:///linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp#line=196">gelinearsolver.hpp</a>). These data requests might be further partitioned to multiple requests during RTL generation, based on max_read_burst_length or max_write_burst_length settings.
+<td align="left">Inferring multiple bus burst read of variable length on port 'gmem2' (/home/jacksoncd/solver-acceleration<a href="file:///linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp#line=194">gelinearsolver.hpp</a>). These data requests might be further partitioned to multiple requests during RTL generation, based on max_read_burst_length or max_write_burst_length settings.
 </td>
 <td align="left"></td>
 </tr>
@@ -3722,7 +3777,7 @@ window.onload = function () { addSorting(); }
 <td align="left">Medium</td>
 <td align="left">HLS Kernel Related</td>
 <td align="left">Accelerator.kernel_gelinearsolver_0.Kernel</td>
-<td align="left">The critical path in module 'gelinearsolver_double_886_30_s' consists of the following:	'urem' operation ('urem_ln177', /home/jacksoncd/solver-acceleration<a href="file:///linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp#line=177">gelinearsolver.hpp</a>) [139]  (1.17 ns)
+<td align="left">The critical path in module 'gelinearsolver_double_886_30_s' consists of the following:	'urem' operation ('urem_ln175', /home/jacksoncd/solver-acceleration<a href="file:///linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp#line=175">gelinearsolver.hpp</a>) [119]  (1.17 ns)
 	blocking operation 1.28 ns on control path)
 
 </td>
@@ -3738,61 +3793,6 @@ window.onload = function () { addSorting(); }
 <td align="left">**** Loop Constraint Status: All loop constraints were NOT satisfied.
 </td>
 <td align="left"></td>
-</tr>
-<tr>
-<td align="left">32</td>
-<td align="left">Kernel</td>
-<td align="left">advisory</td>
-<td align="left">Medium</td>
-<td align="left">HLS Kernel Related</td>
-<td align="left">Accelerator.kernel_gelinearsolver_0.Kernel</td>
-<td align="left">**** Estimated Fmax: 274.50 MHz
-</td>
-<td align="left"></td>
-</tr>
-<tr>
-<td align="left">1</td>
-<td align="left">Latency</td>
-<td align="left">warning</td>
-<td align="left">Medium</td>
-<td align="left">HLS Latency Related</td>
-<td align="left">Accelerator.kernel_gelinearsolver_0.Latency</td>
-<td align="left">Cannot flatten loop 'LoopSweeps' (/home/jacksoncd/solver-acceleration<a href="file:///linear_solver_lib/solver/L2/include/hw/MatrixDecomposition/getrf.hpp#line=71">getrf.hpp</a>) in function 'xf::solver::internalgetrf::getrf_core<double, 30, 886, 30>' more than one sub loop.
-</td>
-<td align="left"><a href="http://www.xilinx.com/html_docs/xilinx2020_1/hls-guidance/200-960.html">See here for more help on vitis_hls 200-960 guidance.</a></td>
-</tr>
-<tr>
-<td align="left">2</td>
-<td align="left">Latency</td>
-<td align="left">warning</td>
-<td align="left">Medium</td>
-<td align="left">HLS Latency Related</td>
-<td align="left">Accelerator.kernel_gelinearsolver_0.Latency</td>
-<td align="left">Cannot flatten loop 'Loop_row' (/home/jacksoncd/solver-acceleration<a href="file:///linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp#line=58">gelinearsolver.hpp</a>) in function 'xf::solver::internal_gelinear::trisolver_U<double, 886, 30>' the outer loop is not a perfect loop because there is nontrivial logic in the loop latch.
-</td>
-<td align="left"><a href="http://www.xilinx.com/html_docs/xilinx2020_1/hls-guidance/200-960.html">See here for more help on vitis_hls 200-960 guidance.</a></td>
-</tr>
-<tr>
-<td align="left">3</td>
-<td align="left">Latency</td>
-<td align="left">warning</td>
-<td align="left">Medium</td>
-<td align="left">HLS Latency Related</td>
-<td align="left">Accelerator.kernel_gelinearsolver_0.Latency</td>
-<td align="left">Cannot flatten loop 'Loop_row' (/home/jacksoncd/solver-acceleration<a href="file:///linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp#line=35">gelinearsolver.hpp</a>) in function 'xf::solver::internal_gelinear::trisolver_L<double, 886, 30>' the outer loop is not a perfect loop because there is nontrivial logic in the loop latch.
-</td>
-<td align="left"><a href="http://www.xilinx.com/html_docs/xilinx2020_1/hls-guidance/200-960.html">See here for more help on vitis_hls 200-960 guidance.</a></td>
-</tr>
-<tr>
-<td align="left">4</td>
-<td align="left">Latency</td>
-<td align="left">warning</td>
-<td align="left">Medium</td>
-<td align="left">HLS Latency Related</td>
-<td align="left">Accelerator.kernel_gelinearsolver_0.Latency</td>
-<td align="left">Cannot flatten loop 'VITIS_LOOP_166_1' (/home/jacksoncd/solver-acceleration<a href="file:///linear_solver_lib/solver/L2/include/hw/LinearSolver/gelinearsolver.hpp#line=166">gelinearsolver.hpp</a>) in function 'xf::solver::gelinearsolver<double, 886, 30>' more than one sub loop.
-</td>
-<td align="left"><a href="http://www.xilinx.com/html_docs/xilinx2020_1/hls-guidance/200-960.html">See here for more help on vitis_hls 200-960 guidance.</a></td>
 </tr>
 </table>
 <br>
