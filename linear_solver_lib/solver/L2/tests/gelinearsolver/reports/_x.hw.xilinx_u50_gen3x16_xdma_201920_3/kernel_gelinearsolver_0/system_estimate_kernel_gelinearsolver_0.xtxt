@@ -2,7 +2,7 @@
 Version:    v++ v2020.1 (64-bit)
 Build:      SW Build 2902540 on Wed May 27 19:54:35 MDT 2020
 Copyright:  Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
-Created:    Fri Jan 29 11:30:50 2021
+Created:    Sat Jan 30 14:06:17 2021
 ===============================================================================
 
 -------------------------------------------------------------------------------
@@ -49,6 +49,6 @@ kernel_gelinearsolver_0_1  kernel_gelinearsolver_0  subUpdate_double_30_886_s   
 kernel_gelinearsolver_0_1  kernel_gelinearsolver_0  getrf_core_double_30_886_30_s   67523  42477  0    240   0
 kernel_gelinearsolver_0_1  kernel_gelinearsolver_0  trisolver_L_double_886_30_s     8210   5906   0    0     0
 kernel_gelinearsolver_0_1  kernel_gelinearsolver_0  trisolver_U_double_886_30_s     8799   7394   0    0     0
-kernel_gelinearsolver_0_1  kernel_gelinearsolver_0  gelinearsolver_double_886_30_s  88737  65128  0    321   210
-kernel_gelinearsolver_0_1  kernel_gelinearsolver_0  kernel_gelinearsolver_0         91113  68161  0    331   210
+kernel_gelinearsolver_0_1  kernel_gelinearsolver_0  gelinearsolver_double_886_30_s  88566  64842  0    321   210
+kernel_gelinearsolver_0_1  kernel_gelinearsolver_0  kernel_gelinearsolver_0         91454  68473  0    333   210
 -------------------------------------------------------------------------------
