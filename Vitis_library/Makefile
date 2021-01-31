@@ -17,6 +17,7 @@ CXXFLAGS += -I$(IP_DIR)/Common
 CXXFLAGS += -I$(IP_DIR)/Algorithm
 CXXFLAGS += -I$(IP_DIR)/Interfaces
 CXXFLAGS += -I$(IP_DIR)/LinAlg
+CXXFLAGS += -O3
 
 .PHONY: shared
 shared: $(LIBFILE)
