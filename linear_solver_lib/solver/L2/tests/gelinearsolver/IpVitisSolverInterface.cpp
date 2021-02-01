@@ -33,12 +33,6 @@ namespace Ipopt
       delete[] val_;
   }
   
-  int VitisSolverInterface::SetBinaryPath(std::string binary_path){
-      xclbin_path = binary_path;
-      std::cout << "Xclbin Path : " << xclbin_path << std::endl;
-      return 0;
-  }
-  
   void VitisSolverInterface::RegisterOptions(
    SmartPtr<RegisteredOptions> roptions
   ){
@@ -73,26 +67,27 @@ namespace Ipopt
       
       // Read in xclbin path from options
       printf("INFO: Loading xclbin \n");
-      xclbin_path = "/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/tests/gelinearsolver/build_dir.hw.xilinx_u50_gen3x16_xdma_201920_3/kernel_gelinearsolver.xclbin";
+      std::string xclbin_path = "/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/tests/gelinearsolver/build_dir.hw.xilinx_u50_gen3x16_xdma_201920_3/kernel_gelinearsolver.xclbin";
       
       /********************
       Device setup
       **************/
       
       // Find platform
-      devices = xcl::get_xil_devices();
-      device = devices[0];
+      std::vector<cl::Device> devices = xcl::get_xil_devices();
+      cl::Device device = devices[0];
       
       
       // Create context and queue
       context = cl::Context(device);
       q = cl::CommandQueue(context, device, CL_QUEUE_PROFILING_ENABLE | CL_QUEUE_OUT_OF_ORDER_EXEC_MODE_ENABLE);
-      devName = device.getInfo<CL_DEVICE_NAME>();
+      std::string devName = device.getInfo<CL_DEVICE_NAME>();
       printf("INFO: Found Device=%s\n", devName.c_str());
       
       // Binary file
-      xclBins = xcl::import_binary_file(xclbin_path); 
-      program = cl::Program(context, devices, xclBins);
+      cl::Program::Binaries xclBins = xcl::import_binary_file(xclbin_path);
+      devices.resize(1); 
+      cl::Program program = cl::Program(context, devices, xclBins);
       kernel_gelinearsolver_0 = cl::Kernel(program, "kernel_gelinearsolver_0");
       std::cout << "INFO: Kernel has been created" << std::endl;
       
@@ -164,6 +159,10 @@ namespace Ipopt
        multisolve_iteration++;
        
        
+       // Number of RHS
+       Index num_rhs = nrhs;
+       
+       
        // Timing variables
        struct timeval tstart, tinit_array, ttrans1, tlaunch, ttrans2, tpost;
        
@@ -175,9 +174,7 @@ namespace Ipopt
        /*********************
         Data Allocation
         *******************/
-        
-       // Number of RHS
-       num_rhs = nrhs;
+       
        
        if( HaveIpData() )
        {
@@ -191,8 +188,6 @@ namespace Ipopt
        
         if(new_matrix)
         {
-            //dataA_size = matrix_dimension*matrix_dimension;
-            
             vals_size = matrix_nonzeros;
             ia_size = matrix_nonzeros;
             ja_size = matrix_nonzeros;
@@ -213,50 +208,9 @@ namespace Ipopt
         Index * ja_alloc;
         ja_alloc = aligned_alloc<Index>(ja_size);
         
-        
+        // Assign arrays
         if(new_matrix)
-        {
-        
-           /************
-            Convert A from Triplet to array
-           *****************/
-        
-          /* // Populate the initial A array with zeros
-            for(int i = 0; i < dataA_size; i++)
-           {
-              dataA[i] = 0;   
-           }
-           
-           // Use the triplet format originally for MA27
-           Index ia_nonoffset[matrix_nonzeros];
-           Index ja_nonoffset[matrix_nonzeros];
-           
-           // Convert to 0 offset and populate matrix
-           for(int i = 0; i < matrix_nonzeros; i++)
-           {
-               ia_nonoffset[i] = ia[i] - 1;
-               ja_nonoffset[i] = ja[i] - 1;
-               
-               if(val_[i] != 0)
-               {
-                   dataA[matrix_dimension*ia_nonoffset[i] + ja_nonoffset[i]] = val_[i];
-                   dataA[matrix_dimension*ja_nonoffset[i] + ia_nonoffset[i]] = val_[i];
-               }
-           }
-           
-           Index ia_nonoffset[matrix_nonzeros];
-           Index ja_nonoffset[matrix_nonzeros];
-           
-           for(int i = 0; i < matrix_nonzeros; i++)
-           {
-               ia_nonoffset[i] = ia[i] - 1;
-               ja_nonoffset[i] = ja[i] - 1;
-               
-               dataA[(3 * i)] = ia_nonoffset[i];
-               dataA[(3 * i) + 1] = ja_nonoffset[i];
-               dataA[(3 * i) + 2] = val_[i];
-           }*/
-           
+        {  
            for(int i = 0; i < matrix_nonzeros; i++)
            {
                A_vals[i] = val_[i];
@@ -274,7 +228,7 @@ namespace Ipopt
         
         
         // Allocate memory for B
-        dataB_size = matrix_dimension*num_rhs;
+        int dataB_size = matrix_dimension*num_rhs;
         double * dataB;
         dataB = aligned_alloc<double>(dataB_size);
    
@@ -314,28 +268,32 @@ namespace Ipopt
                             sizeof(double) * dataB_size, dataB, NULL);
          
          // Data transfer from host to device
-         
+        
          q.enqueueMigrateMemObjects({buffer_ia, buffer_ja, buffer_A_vals, buffer_dataB}, 0); // 0 : migrate from host to dev
          q.finish();
          
          gettimeofday(&ttrans1,0);
          
-         int new_matrix_int = new_matrix;
+         bool A_singular = false;
+         
+         bool matrix_flag = new_matrix;
+         
          
           // Setup kernel
           kernel_gelinearsolver_0.setArg(0, matrix_nonzeros);
-          kernel_gelinearsolver_0.setArg(1, new_matrix_int);
+          kernel_gelinearsolver_0.setArg(1, matrix_flag);
           kernel_gelinearsolver_0.setArg(2, matrix_dimension);
           kernel_gelinearsolver_0.setArg(3, num_rhs);
           kernel_gelinearsolver_0.setArg(4, buffer_ia);
           kernel_gelinearsolver_0.setArg(5, buffer_ja);
           kernel_gelinearsolver_0.setArg(6, buffer_A_vals);
           kernel_gelinearsolver_0.setArg(7, buffer_dataB);
+          kernel_gelinearsolver_0.setArg(8, A_singular);
           q.finish();
           
           
           // Launch kernel
-          q.enqueueTask(kernel_gelinearsolver_0, nullptr, nullptr);
+          q.enqueueTask(kernel_gelinearsolver_0);
           q.finish();
           
           gettimeofday(&tlaunch,0);
@@ -371,19 +329,6 @@ namespace Ipopt
           }
           
           
-          // Check if singular
-          bool solver_singular = false;
-          
-          for(int i = 0; i < dataB_size; i++)
-          {
-              if(std::isnan(rhs_vals[i]))
-              {
-                  printf("INFO : Matrix singular \n");
-                  solver_singular = true;
-                  break;
-              }
-          } 
-          
           gettimeofday(&tpost,0);
           
           int array_setup = diff(&tinit_array,&tstart);
@@ -396,8 +341,9 @@ namespace Ipopt
           
           fprintf(fp,"\n*** Multisolve Timings : %d ***\n",multisolve_iteration);
           
-          if(solver_singular)
+          if(A_singular)
           {
+              printf("INFO : Matrix singular \n");
               fprintf(fp,"** Matrix singular ** \n");
           }
           
@@ -420,7 +366,7 @@ namespace Ipopt
           fprintf(fp,"Second transfer : %d \n", trans2);
           fprintf(fp,"Post : %d \n", post);
           
-          if(solver_singular)
+          if(A_singular)
           {
               return SYMSOLVER_SINGULAR;
           }

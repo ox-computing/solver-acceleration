@@ -50,8 +50,10 @@ Loop_row:
 }
 
 template <typename T, int N, int NCU>
-void trisolver_U(int n, T dataA[NCU][(N + NCU - 1) / NCU][N], T dataB[NCU][(N + NCU - 1) / NCU], T dataX[N]) {
+bool trisolver_U(int n, T dataA[NCU][(N + NCU - 1) / NCU][N], T dataB[NCU][(N + NCU - 1) / NCU], T dataX[N]) {
 #pragma HLS inline off
+
+    bool A_singular = false;
 
     dataX[n - 1] = dataB[(n - 1) % NCU][(n - 1) / NCU] / dataA[(n - 1) % NCU][(n - 1) / NCU][n - 1];
 Loop_row:
@@ -66,8 +68,18 @@ Loop_row:
                 if ((j * NCU + k) < n - 1) dataB[k][j] -= dataA[k][j][i + 1] * dataX[i + 1];
             }
         }
+        if((dataA[i % NCU][i / NCU][i]) == 0)
+        {
+            A_singular = true;
+            break;
+        }
+        else
+        {
         dataX[i] = dataB[i % NCU][i / NCU] / dataA[i % NCU][i / NCU][i];
+        }
     }
+    
+    return A_singular;
 }
 
 template <typename T, int NRCU, int NMAX, int NCU>
@@ -80,7 +92,7 @@ void getrf_core(int debug_mode, int n, T A[NCU][NRCU][NMAX], int lda, int P[NMAX
     internalgetrf::getrf_core<T, NRCU, NMAX, NCU>(debug_mode, n, n, A, P, n);
 };
 template <typename T, int N, int NCU>
-void solver(int debug_mode, int n, T dataA[NCU][(N + NCU - 1) / NCU][N], T dataB[NCU][(N + NCU - 1) / NCU], T dataX[N]) {
+bool solver(int debug_mode, int n, T dataA[NCU][(N + NCU - 1) / NCU][N], T dataB[NCU][(N + NCU - 1) / NCU], T dataX[N]) {
     T buf[N], buf_i[NCU][(N + NCU - 1) / NCU], buf_o[N];
 
 
@@ -99,23 +111,28 @@ void solver(int debug_mode, int n, T dataA[NCU][(N + NCU - 1) / NCU][N], T dataB
     }
 
  
-    trisolver_U<T, N, NCU>(n, dataA, buf_i, buf_o);
+    bool A_singular = trisolver_U<T, N, NCU>(n, dataA, buf_i, buf_o);
     
-
+    
+    if(!A_singular)
+    {
     for (int i = 0; i < N; i++) {
 #pragma HLS pipeline
         dataX[i] = buf_o[i];
     }
+    }
+    
+    return A_singular;
 }
 
 template <typename T, int N, int NCU>
-void solver_core(int new_matrix, int debug_mode, int n, int j, T dataA[NCU][(N + NCU - 1) / NCU][N], T dataB[NCU][(N + NCU - 1) / NCU], T dataX[N]) {
+bool solver_core(bool new_matrix, int debug_mode, int n, int j, T dataA[NCU][(N + NCU - 1) / NCU][N], T dataB[NCU][(N + NCU - 1) / NCU], T dataX[N]) {
     const int NRCU = int((N + NCU - 1) / NCU);
     int P[N];
     T dataC[NCU][(N + NCU - 1) / NCU];
     int info;
     
-    if((new_matrx == 1) && (j==0))
+    if((new_matrix) && (j==0))
     {
     getrf_core<T, NRCU, N, NCU>(debug_mode, n, dataA, n, P);
     }
@@ -125,7 +142,9 @@ void solver_core(int new_matrix, int debug_mode, int n, int j, T dataA[NCU][(N +
         dataC[i % NCU][i / NCU] = dataB[P[i] % NCU][P[i] / NCU];
     }
     
-    solver<T, N, NCU>(debug_mode, n, dataA, dataC, dataX);
+    bool A_singular = solver<T, N, NCU>(debug_mode, n, dataA, dataC, dataX);
+    
+    return A_singular;
 }
 } // namespace internal
 /**
@@ -150,12 +169,17 @@ void solver_core(int new_matrix, int debug_mode, int n, int j, T dataA[NCU][(N +
  */
 
 template <typename T, int NMAX, int NCU>
-void gelinearsolver(int num_nonzeros, int new_matrix, int n, int num_rhs, int* ia, int* ja, T* A, T* B) {
+bool gelinearsolver(int num_nonzeros, bool new_matrix, int n, int num_rhs, int* ia, int* ja, T* A, T* B) {
+    
+    // Singular matrix flag
+    bool A_singular = false;
+    
     if (NMAX == 1)
         B[0] = B[0] / A[0];
     else {
              static T matA[NCU][(NMAX + NCU - 1) / NCU][NMAX] = {};
              static T matB[NCU][(NMAX + NCU - 1) / NCU] = {};
+    
              #pragma HLS array_partition variable = matA cyclic factor = NCU dim = 1
              #pragma HLS array_partition variable = matB cyclic factor = NCU dim = 1
              #pragma HLS resource variable = matA core = XPM_MEMORY uram
@@ -168,7 +192,7 @@ void gelinearsolver(int num_nonzeros, int new_matrix, int n, int num_rhs, int* i
               *************/
               
               
-             if(new_matrix == 1)
+             if(new_matrix)
                 {
                     // Set the value of matA to zero
                     Loop_reset_1:
@@ -215,7 +239,12 @@ void gelinearsolver(int num_nonzeros, int new_matrix, int n, int num_rhs, int* i
                  
                  int debug_mode = 0;
                  
-                 internal_gelinear::solver_core<T, NMAX, NCU>(new_matrix, debug_mode, n, j, matA, matB, dataX);
+                 A_singular = internal_gelinear::solver_core<T, NMAX, NCU>(new_matrix, debug_mode, n, j, matA, matB, dataX);
+                 
+                 if(A_singular)
+                 {
+                     break;
+                 }
 
      
                  for (int r = 0; r < n; r++) {
@@ -224,6 +253,8 @@ void gelinearsolver(int num_nonzeros, int new_matrix, int n, int num_rhs, int* i
                  }
              }
          }
+         
+         return A_singular;
 }
 
 } // namespace solver

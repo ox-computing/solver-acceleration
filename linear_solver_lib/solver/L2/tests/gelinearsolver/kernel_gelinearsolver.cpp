@@ -19,7 +19,7 @@
 #define MAXN 886
 
 
-extern "C" void kernel_gelinearsolver_0(int num_nonzeros, int new_matrix, int n, int num_rhs, int* A_rows, int* A_cols, double* A_vals, double* dataB) {
+extern "C" void kernel_gelinearsolver_0(int num_nonzeros, bool new_matrix, int n, int num_rhs, int* A_rows, int* A_cols, double* A_vals, double* dataB, bool A_singular) {
 #pragma HLS INTERFACE m_axi port = A_rows bundle = gmem0 offset = slave
 #pragma HLS INTERFACE m_axi port = A_cols bundle = gmem1 offset = slave
 #pragma HLS INTERFACE m_axi port = A_vals bundle = gmem2 offset = slave
@@ -33,12 +33,13 @@ extern "C" void kernel_gelinearsolver_0(int num_nonzeros, int new_matrix, int n,
 #pragma HLS INTERFACE s_axilite port = A_cols bundle = control
 #pragma HLS INTERFACE s_axilite port = A_vals bundle = control
 #pragma HLS INTERFACE s_axilite port = dataB bundle = control
+#pragma HLS INTERFACE s_axilite port = A_singular bundle = control
 #pragma HLS INTERFACE s_axilite port = return bundle = control
 
     
     int debug_mode = 0;
   
        // General linear solver
-       xf::solver::gelinearsolver<double, MAXN, NCU>(num_nonzeros, new_matrix, n, num_rhs, A_rows, A_cols, A_vals, dataB);
+       A_singular = xf::solver::gelinearsolver<double, MAXN, NCU>(num_nonzeros, new_matrix, n, num_rhs, A_rows, A_cols, A_vals, dataB);
     
 }

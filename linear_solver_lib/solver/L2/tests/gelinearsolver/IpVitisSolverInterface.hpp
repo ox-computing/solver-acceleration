@@ -49,25 +49,13 @@ private:
   
   Index matrix_nonzeros; // Number of non zeros values in A
   Index matrix_dimension; // Dimension of A
-  Index num_rhs;     // The number of different RHS we are solving
-  int dataA_size;    // Size of array A
-  int dataB_size;    // Size of array B
   
   // OpenCL variables
-  std::string xclbin_path; // Path for FPGA binary file
-  cl::Device device; // Chosen device
   
   cl::Context context; // OpenCL context
   cl::CommandQueue q; // OpenCL q
-  std::string devName; // Device name string
   
-  cl::Program::Binaries xclBins; // OpenCL binaries
-  cl::Program program; // OpenCL programme
   cl::Kernel kernel_gelinearsolver_0; // Device kernel
-  
-  std::vector<cl::Device> devices; // Vector of devices
-  
-
   
   // Time variables
   //struct timeval tstart, tinit_parse, tplatform_setup, tbuffer_setup, tbuffer_transfer1, tkernel_setup, tkernel_launch, tbuffer_transfer2; // Variables to measure time
@@ -78,7 +66,7 @@ public:
 
 
   // Constructor
-  VitisSolverInterface():val_(nullptr),devices(1)
+  VitisSolverInterface():val_(nullptr)
   {
   };
   
@@ -89,9 +77,6 @@ public:
   
   // Destructor
   ~VitisSolverInterface();
-  
-  // Set xclbin path
-  int SetBinaryPath(std::string binary_path);
   
   
   

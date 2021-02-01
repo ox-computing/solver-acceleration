@@ -124,7 +124,7 @@ endif
 ############################## Setting up Kernel Variables ##############################
 # Kernel compiler global settings
 VPP_FLAGS += -t $(TARGET) --platform $(XPLATFORM) --save-temps
-LDCLFLAGS += --optimize 2 --jobs 8
+LDCLFLAGS += --jobs 8
 ifneq (,$(shell echo $(XPLATFORM) | awk '/u280/'))
 # U280
 VPP_FLAGS += --config conn_u280.ini
@@ -154,6 +154,7 @@ endif
 VPP_FLAGS += -I$(XFLIB_DIR)/L2/tests/gelinearsolver
 VPP_FLAGS += -I$(XFLIB_DIR)/L2/include
 VPP_FLAGS += -I$(XFLIB_DIR)/ext
+VPP_FLAGS += --optimize 3
 
 
 ############################## Declaring Binary Containers ##############################
