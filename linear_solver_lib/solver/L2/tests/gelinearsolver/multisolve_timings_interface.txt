@@ -3,223 +3,444 @@
 Matrix dimension : 18 
 Number of RHS : 1 
 New Matrix TRUE 
-Array initialise : 5 
-First transfer : 452 
-Launch : 2313 
-Second transfer : 116 
-Post : 5 
+Array initialise : 7 
+First transfer : 304 
+Launch : 2370 
+Second transfer : 153 
+Post : 18 
 
 *** Multisolve Timings : 2 ***
 Matrix dimension : 18 
 Number of RHS : 1 
 New Matrix TRUE 
-Array initialise : 3 
-First transfer : 157 
-Launch : 2235 
-Second transfer : 117 
-Post : 3 
+Array initialise : 7 
+First transfer : 531 
+Launch : 2624 
+Second transfer : 391 
+Post : 12 
 
 *** Multisolve Timings : 3 ***
 Matrix dimension : 18 
 Number of RHS : 1 
 New Matrix FALSE 
-Array initialise : 2 
-First transfer : 161 
-Launch : 125 
-Second transfer : 41 
-Post : 3 
+Array initialise : 8 
+First transfer : 363 
+Launch : 295 
+Second transfer : 211 
+Post : 8 
 
 *** Multisolve Timings : 4 ***
 Matrix dimension : 18 
 Number of RHS : 1 
 New Matrix FALSE 
-Array initialise : 3 
-First transfer : 156 
-Launch : 85 
-Second transfer : 38 
-Post : 3 
+Array initialise : 8 
+First transfer : 466 
+Launch : 406 
+Second transfer : 215 
+Post : 9 
 
 *** Multisolve Timings : 5 ***
 Matrix dimension : 18 
 Number of RHS : 1 
 New Matrix FALSE 
-Array initialise : 4 
-First transfer : 96 
-Launch : 81 
-Second transfer : 35 
-Post : 3 
+Array initialise : 10 
+First transfer : 417 
+Launch : 382 
+Second transfer : 140 
+Post : 6 
 
 *** Multisolve Timings : 6 ***
 Matrix dimension : 18 
 Number of RHS : 1 
-New Matrix FALSE 
-Array initialise : 4 
-First transfer : 78 
-Launch : 81 
-Second transfer : 47 
-Post : 2 
+New Matrix TRUE 
+Array initialise : 11 
+First transfer : 344 
+Launch : 2439 
+Second transfer : 299 
+Post : 7 
 
 *** Multisolve Timings : 7 ***
 Matrix dimension : 18 
 Number of RHS : 1 
-New Matrix TRUE 
-Array initialise : 4 
-First transfer : 73 
-Launch : 2187 
-Second transfer : 39 
-Post : 2 
+New Matrix FALSE 
+Array initialise : 8 
+First transfer : 269 
+Launch : 383 
+Second transfer : 248 
+Post : 8 
 
 *** Multisolve Timings : 8 ***
 Matrix dimension : 18 
 Number of RHS : 1 
 New Matrix FALSE 
-Array initialise : 3 
-First transfer : 173 
-Launch : 303 
-Second transfer : 161 
-Post : 3 
+Array initialise : 8 
+First transfer : 282 
+Launch : 304 
+Second transfer : 159 
+Post : 7 
 
 *** Multisolve Timings : 9 ***
 Matrix dimension : 18 
 Number of RHS : 1 
-New Matrix FALSE 
-Array initialise : 4 
-First transfer : 318 
-Launch : 130 
-Second transfer : 59 
-Post : 2 
+New Matrix TRUE 
+Array initialise : 9 
+First transfer : 264 
+Launch : 2545 
+Second transfer : 245 
+Post : 8 
 
 *** Multisolve Timings : 10 ***
 Matrix dimension : 18 
 Number of RHS : 1 
 New Matrix FALSE 
-Array initialise : 3 
-First transfer : 108 
-Launch : 97 
-Second transfer : 46 
-Post : 2 
+Array initialise : 9 
+First transfer : 401 
+Launch : 263 
+Second transfer : 212 
+Post : 9 
 
 *** Multisolve Timings : 11 ***
 Matrix dimension : 18 
 Number of RHS : 1 
-New Matrix TRUE 
-Array initialise : 4 
-First transfer : 92 
-Launch : 2189 
-Second transfer : 50 
-Post : 2 
+New Matrix FALSE 
+Array initialise : 12 
+First transfer : 313 
+Launch : 307 
+Second transfer : 136 
+Post : 8 
 
 *** Multisolve Timings : 12 ***
 Matrix dimension : 18 
 Number of RHS : 1 
 New Matrix FALSE 
-Array initialise : 3 
-First transfer : 176 
-Launch : 290 
-Second transfer : 148 
-Post : 2 
+Array initialise : 11 
+First transfer : 234 
+Launch : 230 
+Second transfer : 93 
+Post : 8 
 
 *** Multisolve Timings : 13 ***
 Matrix dimension : 18 
 Number of RHS : 1 
 New Matrix FALSE 
-Array initialise : 4 
-First transfer : 220 
-Launch : 115 
-Second transfer : 63 
-Post : 3 
+Array initialise : 10 
+First transfer : 230 
+Launch : 230 
+Second transfer : 191 
+Post : 8 
 
 *** Multisolve Timings : 14 ***
 Matrix dimension : 18 
 Number of RHS : 1 
 New Matrix FALSE 
-Array initialise : 6 
-First transfer : 104 
-Launch : 96 
-Second transfer : 58 
-Post : 3 
+Array initialise : 10 
+First transfer : 288 
+Launch : 325 
+Second transfer : 278 
+Post : 8 
 
 *** Multisolve Timings : 15 ***
 Matrix dimension : 18 
 Number of RHS : 1 
-New Matrix TRUE 
-Array initialise : 16 
-First transfer : 105 
-Launch : 2213 
-Second transfer : 65 
-Post : 3 
+New Matrix FALSE 
+Array initialise : 8 
+First transfer : 428 
+Launch : 284 
+Second transfer : 108 
+Post : 6 
 
 *** Multisolve Timings : 16 ***
 Matrix dimension : 18 
 Number of RHS : 1 
 New Matrix FALSE 
-Array initialise : 9 
-First transfer : 136 
-Launch : 204 
-Second transfer : 43 
-Post : 3 
+Array initialise : 16 
+First transfer : 182 
+Launch : 185 
+Second transfer : 59 
+Post : 4 
 
 *** Multisolve Timings : 17 ***
 Matrix dimension : 18 
 Number of RHS : 1 
 New Matrix FALSE 
-Array initialise : 10 
-First transfer : 154 
-Launch : 126 
-Second transfer : 47 
-Post : 3 
+Array initialise : 22 
+First transfer : 196 
+Launch : 177 
+Second transfer : 75 
+Post : 5 
 
 *** Multisolve Timings : 18 ***
 Matrix dimension : 18 
 Number of RHS : 1 
 New Matrix FALSE 
 Array initialise : 12 
-First transfer : 99 
-Launch : 117 
-Second transfer : 41 
-Post : 3 
+First transfer : 203 
+Launch : 151 
+Second transfer : 68 
+Post : 5 
 
 *** Multisolve Timings : 19 ***
 Matrix dimension : 18 
 Number of RHS : 1 
-New Matrix TRUE 
-Array initialise : 13 
-First transfer : 155 
-Launch : 2301 
-Second transfer : 173 
-Post : 4 
+New Matrix FALSE 
+Array initialise : 12 
+First transfer : 128 
+Launch : 137 
+Second transfer : 57 
+Post : 5 
 
 *** Multisolve Timings : 20 ***
 Matrix dimension : 18 
 Number of RHS : 1 
-New Matrix FALSE 
-Array initialise : 16 
-First transfer : 355 
-Launch : 327 
-Second transfer : 75 
-Post : 4 
+New Matrix TRUE 
+Array initialise : 20 
+First transfer : 143 
+Launch : 2332 
+Second transfer : 107 
+Post : 5 
 
 *** Multisolve Timings : 21 ***
 Matrix dimension : 18 
 Number of RHS : 1 
 New Matrix FALSE 
-Array initialise : 18 
-First transfer : 264 
-Launch : 175 
-Second transfer : 84 
-Post : 5 
+Array initialise : 20 
+First transfer : 259 
+Launch : 367 
+Second transfer : 139 
+Post : 6 
 
 *** Multisolve Timings : 22 ***
 Matrix dimension : 18 
 Number of RHS : 1 
 New Matrix FALSE 
-Array initialise : 15 
-First transfer : 132 
-Launch : 182 
-Second transfer : 65 
-Post : 4 
+Array initialise : 19 
+First transfer : 346 
+Launch : 278 
+Second transfer : 111 
+Post : 5 
 
 *** Multisolve Timings : 23 ***
 Matrix dimension : 18 
 Number of RHS : 1 
-Ne
+New Matrix FALSE 
+Array initialise : 42 
+First transfer : 197 
+Launch : 194 
+Second transfer : 105 
+Post : 7 
+
+*** Multisolve Timings : 24 ***
+Matrix dimension : 18 
+Number of RHS : 1 
+New Matrix FALSE 
+Array initialise : 22 
+First transfer : 156 
+Launch : 150 
+Second transfer : 47 
+Post : 5 
+
+*** Multisolve Timings : 25 ***
+Matrix dimension : 18 
+Number of RHS : 1 
+New Matrix FALSE 
+Array initialise : 19 
+First transfer : 123 
+Launch : 139 
+Second transfer : 54 
+Post : 5 
+
+*** Multisolve Timings : 26 ***
+Matrix dimension : 18 
+Number of RHS : 1 
+New Matrix FALSE 
+Array initialise : 16 
+First transfer : 120 
+Launch : 137 
+Second transfer : 45 
+Post : 5 
+
+*** Multisolve Timings : 27 ***
+Matrix dimension : 18 
+Number of RHS : 1 
+New Matrix FALSE 
+Array initialise : 16 
+First transfer : 119 
+Launch : 135 
+Second transfer : 54 
+Post : 5 
+
+*** Multisolve Timings : 28 ***
+Matrix dimension : 18 
+Number of RHS : 1 
+New Matrix FALSE 
+Array initialise : 31 
+First transfer : 121 
+Launch : 136 
+Second transfer : 44 
+Post : 5 
+
+*** Multisolve Timings : 29 ***
+Matrix dimension : 18 
+Number of RHS : 1 
+New Matrix FALSE 
+Array initialise : 14 
+First transfer : 121 
+Launch : 139 
+Second transfer : 56 
+Post : 4 
+
+*** Multisolve Timings : 30 ***
+Matrix dimension : 18 
+Number of RHS : 1 
+New Matrix FALSE 
+Array initialise : 16 
+First transfer : 124 
+Launch : 137 
+Second transfer : 62 
+Post : 5 
+
+*** Multisolve Timings : 31 ***
+Matrix dimension : 18 
+Number of RHS : 1 
+New Matrix FALSE 
+Array initialise : 15 
+First transfer : 129 
+Launch : 153 
+Second transfer : 55 
+Post : 4 
+
+*** Multisolve Timings : 32 ***
+Matrix dimension : 18 
+Number of RHS : 1 
+New Matrix FALSE 
+Array initialise : 8 
+First transfer : 119 
+Launch : 170 
+Second transfer : 39 
+Post : 4 
+
+*** Multisolve Timings : 33 ***
+Matrix dimension : 18 
+Number of RHS : 1 
+New Matrix TRUE 
+Array initialise : 17 
+First transfer : 131 
+Launch : 2336 
+Second transfer : 85 
+Post : 4 
+
+*** Multisolve Timings : 34 ***
+Matrix dimension : 18 
+Number of RHS : 1 
+New Matrix FALSE 
+Array initialise : 13 
+First transfer : 207 
+Launch : 241 
+Second transfer : 150 
+Post : 5 
+
+*** Multisolve Timings : 35 ***
+Matrix dimension : 18 
+Number of RHS : 1 
+New Matrix FALSE 
+Array initialise : 8 
+First transfer : 159 
+Launch : 158 
+Second transfer : 56 
+Post : 4 
+
+*** Multisolve Timings : 36 ***
+Matrix dimension : 18 
+Number of RHS : 1 
+New Matrix FALSE 
+Array initialise : 19 
+First transfer : 166 
+Launch : 132 
+Second transfer : 41 
+Post : 4 
+
+*** Multisolve Timings : 37 ***
+Matrix dimension : 18 
+Number of RHS : 1 
+New Matrix FALSE 
+Array initialise : 17 
+First transfer : 101 
+Launch : 123 
+Second transfer : 47 
+Post : 4 
+
+*** Multisolve Timings : 38 ***
+Matrix dimension : 18 
+Number of RHS : 1 
+New Matrix FALSE 
+Array initialise : 14 
+First transfer : 102 
+Launch : 121 
+Second transfer : 36 
+Post : 4 
+
+*** Multisolve Timings : 39 ***
+Matrix dimension : 18 
+Number of RHS : 1 
+New Matrix FALSE 
+Array initialise : 11 
+First transfer : 98 
+Launch : 121 
+Second transfer : 44 
+Post : 4 
+
+*** Multisolve Timings : 40 ***
+Matrix dimension : 18 
+Number of RHS : 1 
+New Matrix FALSE 
+Array initialise : 11 
+First transfer : 97 
+Launch : 122 
+Second transfer : 36 
+Post : 4 
+
+*** Multisolve Timings : 41 ***
+Matrix dimension : 18 
+Number of RHS : 1 
+New Matrix FALSE 
+Array initialise : 14 
+First transfer : 97 
+Launch : 120 
+Second transfer : 43 
+Post : 4 
+
+*** Multisolve Timings : 42 ***
+Matrix dimension : 18 
+Number of RHS : 1 
+New Matrix FALSE 
+Array initialise : 14 
+First transfer : 95 
+Launch : 119 
+Second transfer : 35 
+Post : 4 
+
+*** Multisolve Timings : 43 ***
+Matrix dimension : 18 
+Number of RHS : 1 
+New Matrix FALSE 
+Array initialise : 13 
+First transfer : 95 
+Launch : 121 
+Second transfer : 38 
+Post : 3 
+
+*** Multisolve Timings : 44 ***
+Matrix dimension : 18 
+Number of RHS : 1 
+New Matrix TRUE 
+Array initialise : 20 
+First transfer : 104 
+Launch : 2326 
+Second transfer : 85 
+Post : 5 
+
+*** Multisolve Timings : 45 ***
+Matrix dimension : 18 
+Number of RHS : 1 
+New Matrix FALSE 
+Array i
