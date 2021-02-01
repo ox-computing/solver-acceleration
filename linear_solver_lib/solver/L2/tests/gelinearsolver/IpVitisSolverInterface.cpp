@@ -216,46 +216,6 @@ namespace Ipopt
         
         if(new_matrix)
         {
-        
-           /************
-            Convert A from Triplet to array
-           *****************/
-        
-          /* // Populate the initial A array with zeros
-            for(int i = 0; i < dataA_size; i++)
-           {
-              dataA[i] = 0;   
-           }
-           
-           // Use the triplet format originally for MA27
-           Index ia_nonoffset[matrix_nonzeros];
-           Index ja_nonoffset[matrix_nonzeros];
-           
-           // Convert to 0 offset and populate matrix
-           for(int i = 0; i < matrix_nonzeros; i++)
-           {
-               ia_nonoffset[i] = ia[i] - 1;
-               ja_nonoffset[i] = ja[i] - 1;
-               
-               if(val_[i] != 0)
-               {
-                   dataA[matrix_dimension*ia_nonoffset[i] + ja_nonoffset[i]] = val_[i];
-                   dataA[matrix_dimension*ja_nonoffset[i] + ia_nonoffset[i]] = val_[i];
-               }
-           }
-           
-           Index ia_nonoffset[matrix_nonzeros];
-           Index ja_nonoffset[matrix_nonzeros];
-           
-           for(int i = 0; i < matrix_nonzeros; i++)
-           {
-               ia_nonoffset[i] = ia[i] - 1;
-               ja_nonoffset[i] = ja[i] - 1;
-               
-               dataA[(3 * i)] = ia_nonoffset[i];
-               dataA[(3 * i) + 1] = ja_nonoffset[i];
-               dataA[(3 * i) + 2] = val_[i];
-           }*/
            
            for(int i = 0; i < matrix_nonzeros; i++)
            {
