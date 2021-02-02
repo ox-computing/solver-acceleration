@@ -334,15 +334,12 @@ namespace Ipopt
           // Check if singular
           bool solver_singular = false;
           
-          for(int i = 0; i < dataB_size; i++)
-          {
-              if(std::isnan(rhs_vals[i]))
-              {
-                  printf("INFO : Matrix singular \n");
-                  solver_singular = true;
-                  break;
-              }
-          } 
+          if(std::isnan(rhs_vals[2]))
+            {
+                printf("INFO : Matrix singular \n");
+                solver_singular = true;
+            }
+             
           
           gettimeofday(&tpost,0);
           

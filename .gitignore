@@ -35,6 +35,7 @@
 *.log
 *.run_summary
 *.csv
+*.txt
 
 # Directories
 .metadata/
@@ -54,3 +55,4 @@
 **/build_dir.hw.xilinx_u50_gen3x16_xdma_201920_3
 **/build_dir.hw_emu.xilinx_u50_gen3x16_xdma_201920_3
 **/build_dir.sw_emu.xilinx_u50_gen3x16_xdma_201920_3
+**/reports
