@@ -40,6 +40,19 @@ void subUpdate(int debug_mode, T A[NRCU][NCMAX], T rows[NCMAX], T cols[NCMAX], i
     int ncols = ce - cs;
 
 LoopMulSub:
+
+    /*for(int i = 0; i < num_nonzero_cols; i++)
+    {
+        if(col_location[i][0] == cu)
+        {   
+            for(int j = 0; j < num_nonzero_rows; j++)
+            {
+                 A[row_location[j]][col_location[i][1]] = A[row_location[j]][col_location[i][1]] - cols[row_location[j]] - rows[col_location[i][1]];
+            }
+        }
+    }*/
+    
+
     for (unsigned int i = 0; i < nrows * ncols; i++) {
           
          #pragma HLS pipeline
@@ -51,9 +64,10 @@ LoopMulSub:
         
         int r = i / ncols + rs;
         int c = i % ncols + cs + 1;
-
-        A[r][c] = A[r][c] - cols[r] * rows[c];    
         
+        
+    
+        A[r][c] = A[r][c] - cols[r] * rows[c];   
         
         
         // Make use of the symmetry and vectors
@@ -67,10 +81,11 @@ LoopMulSub:
 // core part of getrf (no pivoting)
 template <typename T, int NRCU, int NCMAX, int NCU>
 void getrf_core(int debug_mode, int m, int n, T A[NCU][NRCU][NCMAX], int pivot[NCMAX], int lda) {
-LoopSweeps:
+/*LoopSweeps:
     for (int s = 0; s < (m - 1); s++) {
         T rows[NCU][NCMAX];
         T cols[NCU][NCMAX];
+        
 #pragma HLS array_partition variable = rows dim = 1
 #pragma HLS array_partition variable = cols dim = 1
 #pragma HLS resource variable = rows core = RAM_2P_BRAM
@@ -103,6 +118,9 @@ LoopSweeps:
         int ptmp = pivot[s];
         pivot[s] = pivot[prow];
         pivot[prow] = ptmp;
+        
+        // Counter for storing values
+        int counter = 0;
 
     LoopRows:
         for (int k = 0; k < n; k++) {
@@ -113,11 +131,16 @@ LoopSweeps:
 #pragma HLS unroll
                 rows[r][k] = A[pidcu][pidrow][k];
             };
+            
+            
             A[pidcu][pidrow][k] = A[idscu][idsrow][k];
             A[idscu][idsrow][k] = rows[0][k];
         };
 
         T a00 = rows[0][s];
+        
+        // Counter for storing values
+        counter = 0;
 
     LoopDiv:
         for (int j = s + 1; j < m; j++) {
@@ -128,6 +151,7 @@ LoopSweeps:
             int r = j / NCU;
             A[i][r][s] = A[i][r][s] / a00;
             cols[i][r] = A[i][r][s];
+
         };
 
     LoopMat:
@@ -140,11 +164,107 @@ LoopSweeps:
             cs = s;
             ce = NCMAX - 1;
             
+            
+            
+            
             subUpdate<T, NRCU, NCMAX>(debug_mode, A[i], rows[i], cols[i], rs, re, cs, ce);
 
-        };
-    };
-};
+        }
+    }*/
+    
+    
+    
+    // Implement the Doolittle algorithm
+    T lower[NRCU][NCMAX];
+    T upper[NRCU][NCMAX];
+    
+    int cu = 0;
+    
+    LoopOverall:
+    for (int i = 0; i < n; i++) 
+    {
+    #pragma HLS pipeline
+    
+    
+        // Upper Triangular
+        
+        LoopUpper:
+        for (int k = i; k < n; k++)
+        {
+        #pragma HLS pipeline
+        
+            // Summation of L(i, j) * U(j, k)
+            int sum = 0;
+            
+            LoopSum1:
+            for (int j = 0; j < i; j++)
+            {
+            
+            #pragma HLS pipeline
+                sum += (lower[i][j] * upper[j][k]);
+            }
+ 
+            // Evaluating U(i, k)
+            upper[i][k] = A[cu][i][k] - sum;
+        }
+ 
+ 
+ 
+        // Lower Triangular
+        LoopLower:
+        for (int k = i; k < n; k++) 
+        {
+        
+        #pragma HLS pipeline
+            if (i == k)
+                lower[i][i] = 1; // Diagonal as 1
+            else
+            {
+                // Summation of L(k, j) * U(j, i)
+                int sum = 0;
+                
+                LoopSum2:
+                for (int j = 0; j < i; j++)
+                {
+                
+                #pragma HLS pipeline
+                
+                    sum += (lower[k][j] * upper[j][i]);
+                    
+                }
+ 
+                // Evaluating L(k, i)
+                lower[k][i] = (A[cu][k][i] - sum) / upper[i][i];
+            }
+        }
+    }
+    
+    
+    // Combine the lower and upper matricies together
+    
+    for(int i = 0; i < n; i++)
+    {
+        for(int j = 0; j < i; j++)
+        {
+           // Copy lower
+           A[cu][i][j] = lower[i][j];
+           
+           // Copy upper
+           A[cu][i][n - j] = upper[i][n - j];
+        }
+        
+    }
+    
+    
+    
+ 
+ 
+ 
+ 
+ 
+ 
+    
+}
 
 }; // end of namespace internalgetrf
 
