@@ -81,7 +81,7 @@ LoopMulSub:
 // core part of getrf (no pivoting)
 template <typename T, int NRCU, int NCMAX, int NCU>
 void getrf_core(int debug_mode, int m, int n, T A[NCU][NRCU][NCMAX], int pivot[NCMAX], int lda) {
-/*LoopSweeps:
+LoopSweeps:
     for (int s = 0; s < (m - 1); s++) {
         T rows[NCU][NCMAX];
         T cols[NCU][NCMAX];
@@ -119,8 +119,6 @@ void getrf_core(int debug_mode, int m, int n, T A[NCU][NRCU][NCMAX], int pivot[N
         pivot[s] = pivot[prow];
         pivot[prow] = ptmp;
         
-        // Counter for storing values
-        int counter = 0;
 
     LoopRows:
         for (int k = 0; k < n; k++) {
@@ -139,8 +137,6 @@ void getrf_core(int debug_mode, int m, int n, T A[NCU][NRCU][NCMAX], int pivot[N
 
         T a00 = rows[0][s];
         
-        // Counter for storing values
-        counter = 0;
 
     LoopDiv:
         for (int j = s + 1; j < m; j++) {
@@ -170,11 +166,11 @@ void getrf_core(int debug_mode, int m, int n, T A[NCU][NRCU][NCMAX], int pivot[N
             subUpdate<T, NRCU, NCMAX>(debug_mode, A[i], rows[i], cols[i], rs, re, cs, ce);
 
         }
-    }*/
+    }
     
     
     
-    // Implement the Doolittle algorithm
+   /* // Implement the Doolittle algorithm
     T lower[NRCU][NCMAX];
     T upper[NRCU][NCMAX];
     
@@ -253,7 +249,7 @@ void getrf_core(int debug_mode, int m, int n, T A[NCU][NRCU][NCMAX], int pivot[N
            A[cu][i][n - j] = upper[i][n - j];
         }
         
-    }
+    }*/
     
     
     
