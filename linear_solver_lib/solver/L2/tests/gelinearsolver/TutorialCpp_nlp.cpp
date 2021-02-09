@@ -344,26 +344,39 @@ void TutorialCpp_NLP::finalize_solution(
    // to a file, etc so we could use the solution.
 
    printf("\nWriting solution file solution.txt\n");
-   FILE* fp = fopen("solution.txt", "w");
+   static FILE* fprimal = fopen("primal_solution.txt", "w");
+   
+   static FILE* fob = fopen("objective_solution.txt","w");
 
    // For this example, we write the solution to the console
-   fprintf(fp, "\n\nSolution of the primal variables, x\n");
+   //fprintf(fp, "\n\nSolution of the primal variables, x\n");
    for( Index i = 0; i < n; i++ )
    {
-      fprintf(fp, "x[%d] = %e\n", i, x[i]);
+      fprintf(fprimal, "%e, ",x[i]);
    }
+   
+   fprintf(fprimal, "\n");
+   
+   //fprintf(fp, "\n\nSolution of the bound multipliers, z_L and z_U\n");
+  /* for( Index i = 0; i < n; i++ )
+   {
+      fprintf(fp, "%e\n",z_L[i]);
+   }
+   
+   fprintf(fp, "\n");
+   
+   for( Index i = 0; i < n; i++ )
+   {
+      fprintf(fp, "%e\n",z_U[i]);
+   }*/
 
-   fprintf(fp, "\n\nSolution of the bound multipliers, z_L and z_U\n");
-   for( Index i = 0; i < n; i++ )
-   {
-      fprintf(fp, "z_L[%d] = %e\n", i, z_L[i]);
-   }
-   for( Index i = 0; i < n; i++ )
-   {
-      fprintf(fp, "z_U[%d] = %e\n", i, z_U[i]);
-   }
+   //fprintf(fp, "\n\nObjective value\n");
+   
+   //fprintf(fp, "\n \n");
+   
+   
+   fprintf(fob, "%e\n", obj_value);
+   
+   //fprintf(fp, "\n \n");
 
-   fprintf(fp, "\n\nObjective value\n");
-   fprintf(fp, "f(x*) = %e\n", obj_value);
-   fclose(fp);
 }

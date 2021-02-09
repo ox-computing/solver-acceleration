@@ -22,10 +22,10 @@
 
 #include "xcl2.hpp"
 
-#define NUM_ROWS 600
-#define NUM_ZEROS 30000
+#define NUM_ROWS 500
+#define NUM_ZEROS 7000
 #define MAX_MATRIX_VALUE 500
-#define NUM_ITERATIONS 50
+#define NUM_ITERATIONS 1
 
 // Memory alignment
 template <typename T>
@@ -102,16 +102,14 @@ int main(int argc, const char* argv[]) {
     struct timeval tstart, ttrans1, tlaunch, ttrans2;
     
     // Txt file open
-    FILE* fp = fopen("debug_timings_non_interface.txt","w");
+    FILE* fp = fopen("matrix_values.txt","w");
     
     
-     for(int iteration = 0; iteration <= 1; iteration++)
+     for(int iteration = 0; iteration <= 0; iteration++)
     {
     
     // Set debug mode and print to txt
-    int debug_mode = iteration;
-    
-    fprintf(fp,"\n*** Debug Mode : %d *** Iteration : %d***\n", debug_mode,iteration);
+    //int debug_mode = iteration;
     
     /*********************
     Sparse symmetric matrix intialisation
@@ -184,6 +182,26 @@ int main(int argc, const char* argv[]) {
          dataB[i] = rand() % max_value;
      }
      
+     // Print dataA and dataB to txt file
+     for(int i = 0; i < num_rows; i++)
+     {
+         for(int j = 0; j < num_rows; j++)
+         {
+             fprintf(fp,"%f ", dataA[i*num_rows + j]);
+         }
+         
+         fprintf(fp,"\n");
+     }
+     
+     fprintf(fp,"\n \n");
+     
+     for(int i = 0; i < b_size; i++)
+     {
+         fprintf(fp, "%f ", dataB[i]);
+     }
+     
+     fprintf(fp, "\n \n");
+     
     
 
     gettimeofday(&tstart, 0);
@@ -205,6 +223,8 @@ int main(int argc, const char* argv[]) {
     
 
     // Setup kernel
+    int debug_mode = 0;
+    
     kernel_gelinearsolver_0.setArg(0, new_matrix);
     kernel_gelinearsolver_0.setArg(1, debug_mode);
     kernel_gelinearsolver_0.setArg(2, num_rhs);
@@ -222,7 +242,7 @@ int main(int argc, const char* argv[]) {
     
 
     // Data transfer from device buffer to host buffer
-    q.enqueueMigrateMemObjects({buffer[1]}, 1, nullptr, nullptr); // 1 : migrate from dev to host
+    q.enqueueMigrateMemObjects({buffer[0], buffer[1]}, 1, nullptr, nullptr); // 1 : migrate from dev to host
     q.finish();
     
      gettimeofday(&ttrans2,0);
@@ -232,10 +252,19 @@ int main(int argc, const char* argv[]) {
         if(std::isnan(dataB[i]))
         {
             printf("INFO : Matrix singular \n");
-            fprintf(fp,"** Singular Matrix Generated ** \n");
             break;
         }
     } 
+    
+    for(int i = 0; i < b_size; i++)
+     {
+         fprintf(fp, "%f ", dataB[i]);
+     }
+     
+    
+    
+    
+    
     
     free(dataA);
     free(dataB);
@@ -245,10 +274,10 @@ int main(int argc, const char* argv[]) {
     int launch = diff(&tlaunch,&ttrans1);
     int trans2 = diff(&ttrans2,&tlaunch);
 
-    fprintf(fp,"Matrix dimension : %d \n",num_rows);
-    fprintf(fp,"First transfer : %d \n", trans1);
-    fprintf(fp,"Launch : %d \n", launch);
-    fprintf(fp,"Second transfer : %d \n", trans2);
+    //fprintf(fp,"Matrix dimension : %d \n",num_rows);
+    //fprintf(fp,"First transfer : %d \n", trans1);
+    //fprintf(fp,"Launch : %d \n", launch);
+    //fprintf(fp,"Second transfer : %d \n", trans2);
     
     
     } // for loop

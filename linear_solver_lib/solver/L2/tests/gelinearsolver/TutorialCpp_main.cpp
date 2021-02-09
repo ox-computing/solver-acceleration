@@ -49,13 +49,13 @@ int main(
     
     FILE* file = fopen("tutorial_iterations_timings.txt","w");
     
-    int number_iterations = 1;
+    int number_iterations = 40;
     
     for(int iteration = 1; iteration <= number_iterations; iteration++)
     {   
 
    // Number of variables
-   Index N = 10;
+   Index N = 10*iteration;
    
    fprintf(file," %d ",N);
    
