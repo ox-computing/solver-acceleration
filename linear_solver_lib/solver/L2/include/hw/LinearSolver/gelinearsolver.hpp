@@ -150,7 +150,7 @@ void solver_core(int new_matrix, int debug_mode, int n, int j, T dataA[NCU][(N +
  */
 
 template <typename T, int NMAX, int NCU>
-void gelinearsolver(int debug_mode, int num_nonzeros, int new_matrix, int n, int num_rhs, int* ia, int* ja, T* A, T* B) {
+void gelinearsolver(int num_nonzeros, int new_matrix, int n, int num_rhs, int* ia, int* ja, T* A, T* B) {
     if (NMAX == 1)
         B[0] = B[0] / A[0];
     else {
@@ -216,7 +216,7 @@ void gelinearsolver(int debug_mode, int num_nonzeros, int new_matrix, int n, int
      
                  T dataX[NMAX];
                  
-                 
+                 int debug_mode = 0;
                  internal_gelinear::solver_core<T, NMAX, NCU>(new_matrix, debug_mode, n, j, matA, matB, dataX);
 
      
