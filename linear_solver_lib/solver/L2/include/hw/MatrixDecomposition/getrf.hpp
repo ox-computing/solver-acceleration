@@ -81,7 +81,8 @@ LoopMulSub:
 // core part of getrf (no pivoting)
 template <typename T, int NRCU, int NCMAX, int NCU>
 void getrf_core(int debug_mode, int m, int n, T A[NCU][NRCU][NCMAX], int pivot[NCMAX], int lda) {
-LoopSweeps:
+
+/*LoopSweeps:
     for (int s = 0; s < (m - 1); s++) {
         T rows[NCU][NCMAX];
         T cols[NCU][NCMAX];
@@ -166,20 +167,26 @@ LoopSweeps:
             subUpdate<T, NRCU, NCMAX>(debug_mode, A[i], rows[i], cols[i], rs, re, cs, ce);
 
         }
-    }
+    }*/
     
     
     
-   /* // Implement the Doolittle algorithm
-    T lower[NRCU][NCMAX];
-    T upper[NRCU][NCMAX];
+    // Implement the Doolittle algorithm
+    T lower[NCMAX][NCMAX];
+    T upper[NCMAX][NCMAX];
     
-    int cu = 0;
+    #pragma HLS bind_storage variable = upper type = ram_t2p impl = bram
+    #pragma HLS bind_storage variable = lower type = ram_t2p impl = bram
+
+    
     
     LoopOverall:
     for (int i = 0; i < n; i++) 
     {
     #pragma HLS pipeline
+    
+    int a = i % NCU;
+    int b = i / NCU;
     
     
         // Upper Triangular
@@ -201,7 +208,7 @@ LoopSweeps:
             }
  
             // Evaluating U(i, k)
-            upper[i][k] = A[cu][i][k] - sum;
+            upper[i][k] = A[a][b][k] - sum;
         }
  
  
@@ -230,7 +237,7 @@ LoopSweeps:
                 }
  
                 // Evaluating L(k, i)
-                lower[k][i] = (A[cu][k][i] - sum) / upper[i][i];
+                lower[k][i] = (A[a][b][i] - sum) / upper[i][i];
             }
         }
     }
@@ -240,24 +247,21 @@ LoopSweeps:
     
     for(int i = 0; i < n; i++)
     {
+      int a = i % NCU;
+      int b = i / NCU;
+      
         for(int j = 0; j < i; j++)
         {
-           // Copy lower
-           A[cu][i][j] = lower[i][j];
-           
-           // Copy upper
-           A[cu][i][n - j] = upper[i][n - j];
+            if(j >= i)
+            {
+           A[a][b][j] = upper[i][j]
+           }
+           else
+           {
+           A[a][b][j] = lower[i][j];
+           }
         }
-        
-    }*/
-    
-    
-    
- 
- 
- 
- 
- 
+    }
  
     
 }

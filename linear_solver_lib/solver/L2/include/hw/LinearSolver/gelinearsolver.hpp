@@ -175,18 +175,16 @@ void gelinearsolver(int debug_mode, int num_nonzeros, int new_matrix, int n, int
                 {
                     // Set the value of matA to zero
                     Loop_reset_1:
-                    for(int r = 0; r < n/2; r++)
+                    for(int r = 0; r < n; r++)
                     {
-                        for(int c = 0; c < n/2; c++)
+                        for(int c = 0; c < n; c++)
                         {
                             #pragma HLS pipeline
                             #pragma HLS dependence variable = matA inter false
                             matA[r % NCU][r / NCU][c] = 0.0;
-                            matA[(n - r) % NCU][(n - r)/ NCU][n - c] = 0.0;
                         }
                     }
                     
-                    matA[(n/2) % NCU][(n/2) / NCU][n/2] = 0.0;
                     
                     // Fill matA
                     Loop_read_1:
