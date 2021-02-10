@@ -86,11 +86,8 @@ public:
       SmartPtr<RegisteredOptions> roptions
    );
   
-  
-  // Destructor
   ~VitisSolverInterface();
   
-  // Set xclbin path
   int SetBinaryPath(std::string binary_path);
   
   
@@ -99,7 +96,6 @@ public:
       const OptionsList& options,
       const std::string& prefix
    );
-   
    
    ESymSolverStatus InitializeStructure(
       Index        dim,
@@ -122,30 +118,27 @@ public:
    
    
    
-   
+   // Retrive number of eigenvalues (unused)
    Index NumberOfNegEVals() const
    {
       return numneg_;
    }
-   //@}
-
-
-   //* @name Options of Linear solver */
-   //@{
+   
+   // IPOPT calling for increased quality of solution (unused)
    bool IncreaseQuality()
    {
      return false;
    }
 
    
-   
+   // If solver provides inertia
    bool ProvidesInertia() const
    {
       return false;
    }
 
    
-   
+   // Set Triplet format
    EMatrixFormat MatrixFormat() const
    {
       return Triplet_Format;
@@ -154,16 +147,14 @@ public:
 
 
 
-   /** @name Methods related to the detection of linearly dependent
-    *  rows in a matrix */
-   //@{
+   // If solver provides degeneracy detection
    bool ProvidesDegeneracyDetection() const
    {
       return false;
    }
 
 
-
+   // If solver determines dependant rows
    ESymSolverStatus DetermineDependentRows(
       const Index*      /*ia*/,
       const Index*      /*ja*/,

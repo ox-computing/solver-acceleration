@@ -158,10 +158,10 @@ void gelinearsolver(int num_nonzeros, int new_matrix, int n, int num_rhs, int* i
              static T matB[NCU][(NMAX + NCU - 1) / NCU] = {};
              #pragma HLS array_partition variable = matA cyclic factor = NCU dim = 1
              #pragma HLS array_partition variable = matB cyclic factor = NCU dim = 1
-             //#pragma HLS resource variable = matA core = XPM_MEMORY uram
+             #pragma HLS resource variable = matA core = XPM_MEMORY uram
              
-             #pragma HLS bind_storage variable = matA type = ram_t2p impl = uram
-             #pragma HLS bind_storage variable = matB type = ram_t2p impl = uram
+             //#pragma HLS bind_storage variable = matA type = ram_t2p impl = uram
+             //#pragma HLS bind_storage variable = matB type = ram_t2p impl = uram
 
              
                 for (int j = 0; j < num_rhs; j++) {
@@ -171,22 +171,38 @@ void gelinearsolver(int num_nonzeros, int new_matrix, int n, int num_rhs, int* i
                Fill matA with values
                *********/
                 
+                // Only edit matA if new matrix flag set
                 if(new_matrix == 1)
                 {
                     // Set the value of matA to zero
+                    int a = 0;
+                    
                     Loop_reset_1:
-                    for(int r = 0; r < n/2; r++)
+                    for(int r = 0; r < n; r++)
                     {
-                        for(int c = 0; c < n/2; c++)
+                        for(int c = 0; c < n; c++)
                         {
                             #pragma HLS pipeline
                             #pragma HLS dependence variable = matA inter false
+                            /*if((r == ia[a]) && (c == ja[a]))
+                            {
+                                matA[ia[a] % NCU][ia[a] / NCU][ja[a]] = A[a];
+                                matA[ja[a] % NCU][ja[a] / NCU][ia[a]] = A[a];
+                                
+                                a++;
+                            
+                            }
+                            else
+                            {
+                                matA[r % NCU][r/NCU][c] = 0.0;
+                            }*/
+                            
                             matA[r % NCU][r / NCU][c] = 0.0;
-                            matA[(n - r) % NCU][(n - r)/ NCU][n - c] = 0.0;
+                            
+                        
                         }
                     }
-                    
-                    matA[(n/2) % NCU][(n/2) / NCU][n/2] = 0.0;
+                
                     
                     // Fill matA
                     Loop_read_1:
@@ -219,7 +235,7 @@ void gelinearsolver(int num_nonzeros, int new_matrix, int n, int num_rhs, int* i
                  int debug_mode = 0;
                  internal_gelinear::solver_core<T, NMAX, NCU>(new_matrix, debug_mode, n, j, matA, matB, dataX);
 
-     
+                  // Return the result to B
                  for (int r = 0; r < n; r++) {
                      #pragma HLS pipeline
                      B[r * num_rhs + j] = dataX[r];
