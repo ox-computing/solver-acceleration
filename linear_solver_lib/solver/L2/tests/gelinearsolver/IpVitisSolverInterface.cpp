@@ -69,7 +69,12 @@ namespace Ipopt
       
       printf("INFO: Initialising IMPL \n");
       
+      // Only initialise device every three function calls
       if((times_run % 3) == 1){
+      
+      /********************
+      Device setup
+      **************/
       
       // Read in xclbin path from options
       printf("INFO: Loading xclbin \n");
@@ -102,6 +107,10 @@ namespace Ipopt
       
       int time = diff(&tend, &tstart);
       
+      /*****
+      Store timing values
+      *******/
+      
       static int impl_iteration = 0;
       impl_iteration++;
       
@@ -115,7 +124,7 @@ namespace Ipopt
       
    }
    
-   
+   // Initialise A structure
   ESymSolverStatus VitisSolverInterface::InitializeStructure(
       Index        dim,
       Index        nonzeros,
@@ -142,9 +151,8 @@ namespace Ipopt
        return SYMSOLVER_SUCCESS;
    }
    
-   
+   // IPOPT calls to find pointer to array to fill with vals
    double* VitisSolverInterface::GetValuesArrayPtr(){
-       //printf("INFO : IPOPT requesting values \n");
        return val_;
    }
    
@@ -159,7 +167,7 @@ namespace Ipopt
       Index        numberOfNegEVals
    ){
        
-       // Keep track of function calls
+       // Keep track of number of function calls
        static int multisolve_iteration = 0;
        multisolve_iteration++;
        
@@ -169,22 +177,23 @@ namespace Ipopt
        
        gettimeofday(&tstart,0);
        
-                     
-       //printf("INFO : Multsolve \n");
-       
        /*********************
         Data Allocation
         *******************/
         
-       // Number of RHS
+       // Number of RHS store in interface
        num_rhs = nrhs;
        
        if( HaveIpData() )
        {
          IpData().TimingStats().LinearSystemBackSolve().Start();
        }
+         /**********
+         Data allocation
+         **********/
          
-        // Allocate memory for A
+         
+        // Allocate memory for A depending on whether new matrix flag set
         if(new_matrix)
         {
             dataA_size = matrix_dimension*matrix_dimension;
@@ -194,15 +203,12 @@ namespace Ipopt
             dataA_size = 1;
         }
         
+        // Allocate pointer
         double * dataA;
         dataA = aligned_alloc<double>(dataA_size);
         
         if(new_matrix)
         {
-        
-           /************
-            Convert A from Triplet to array
-           *****************/
         
            // Populate the initial A array with zeros
             for(int i = 0; i < dataA_size; i++)
@@ -240,7 +246,7 @@ namespace Ipopt
         double * dataB;
         dataB = aligned_alloc<double>(dataB_size);
    
-        // Assign the values of B
+        // Assign the values of B by transposing array provided by IPOPT
         int counter = 0;
         for(int i = 0; i < matrix_dimension; i++){
             for(int k = 0; k < num_rhs; k++)
@@ -300,7 +306,7 @@ namespace Ipopt
           gettimeofday(&ttrans2,0);
           
         
-          // Return the value of the solution to rhs_values
+          // Return the value of the solution to rhs_values after transposing
           counter = 0;
           for(int i = 0; i < nrhs; i++){
               for(int k = 0; k < matrix_dimension; k++)
@@ -311,6 +317,7 @@ namespace Ipopt
           }
           
           
+          // Free allocated memory
           free(dataA);
           free(dataB);
           
@@ -335,6 +342,10 @@ namespace Ipopt
           } 
           
           gettimeofday(&tpost,0);
+          
+          /********
+          Store timing data
+          **********/
           
           int array_setup = diff(&tinit_array,&tstart);
           int trans1 = diff(&ttrans1,&tinit_array);

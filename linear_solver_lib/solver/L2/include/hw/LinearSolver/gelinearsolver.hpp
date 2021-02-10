@@ -162,6 +162,7 @@ void gelinearsolver(int new_matrix, int debug_mode, int n, T* A, int b, T* B, in
      
                 for (int j = 0; j < b; j++) {
                    
+                   // Only modify matA if new matrix flag set
                    if(new_matrix == 1)
                    {
                        Loop_read_1:
@@ -172,7 +173,8 @@ void gelinearsolver(int new_matrix, int debug_mode, int n, T* A, int b, T* B, in
                                #pragma HLS dependence variable = B inter false
                        
                                matA[r % NCU][r / NCU][c] = A[r * lda + c];
-                             
+                               
+                               // Assign matB
                                if (c == 0) {
                                    matB[r % NCU][r / NCU] = B[r * ldb + j];
                                }
@@ -196,7 +198,7 @@ void gelinearsolver(int new_matrix, int debug_mode, int n, T* A, int b, T* B, in
                  
                  internal_gelinear::solver_core<T, NMAX, NCU>(new_matrix, debug_mode, n, j, matA, matB, dataX);
 
-     
+                  // Assign result back to B
                  for (int r = 0; r < n; r++) {
                      #pragma HLS pipeline
                      B[r * ldb + j] = dataX[r];

@@ -124,48 +124,40 @@ public:
    
    
    
-   
+   // Return number of negative eigenvalues (unused)
    Index NumberOfNegEVals() const
    {
       return numneg_;
    }
-   //@}
-
-
-   //* @name Options of Linear solver */
-   //@{
+   
+   // Increase quality of solution (solver cannot)
    bool IncreaseQuality()
    {
      return false;
    }
 
    
-   
+   // Solver does not provide inertia
    bool ProvidesInertia() const
    {
       return false;
    }
 
    
-   
+   // Solver requires data in Triplet format
    EMatrixFormat MatrixFormat() const
    {
       return Triplet_Format;
    }
-   //@}
-
-
-
-   /** @name Methods related to the detection of linearly dependent
-    *  rows in a matrix */
-   //@{
+ 
+   // Solver does not provide degeneracy detection
    bool ProvidesDegeneracyDetection() const
    {
       return false;
    }
 
 
-
+   // Solver does not determine dependant rows
    ESymSolverStatus DetermineDependentRows(
       const Index*      /*ia*/,
       const Index*      /*ja*/,
