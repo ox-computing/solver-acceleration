@@ -62,7 +62,7 @@ private:
   std::string devName; // Device name string
   
   cl::Program::Binaries xclBins; // OpenCL binaries
-  cl::Program program; // OpenCL programme
+  cl::Program program; // OpenCL program
   cl::Kernel kernel_gelinearsolver_0; // Device kernel
   
   std::vector<cl::Device> devices; // Vector of devices
