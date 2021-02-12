@@ -173,10 +173,7 @@ void gelinearsolver(int num_nonzeros, int new_matrix, int n, int num_rhs, int* i
                 
                 // Only edit matA if new matrix flag set
                 if(new_matrix == 1)
-                {
-                    // Set the value of matA to zero
-                    int a = 0;
-                    
+                {   
                     Loop_reset_1:
                     for(int r = 0; r < n; r++)
                     {
