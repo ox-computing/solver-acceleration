@@ -226,11 +226,10 @@ namespace Ipopt
                ia_nonoffset[i] = ia[i] - 1;
                ja_nonoffset[i] = ja[i] - 1;
                
-               if(val_[i] != 0)
-               {
-                   dataA[matrix_dimension*ia_nonoffset[i] + ja_nonoffset[i]] = val_[i];
-                   dataA[matrix_dimension*ja_nonoffset[i] + ia_nonoffset[i]] = val_[i];
-               }
+              
+               dataA[matrix_dimension*ia_nonoffset[i] + ja_nonoffset[i]] = val_[i];
+               dataA[matrix_dimension*ja_nonoffset[i] + ia_nonoffset[i]] = val_[i];
+               
            }
            
         }
