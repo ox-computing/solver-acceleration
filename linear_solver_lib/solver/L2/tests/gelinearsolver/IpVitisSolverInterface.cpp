@@ -332,7 +332,8 @@ namespace Ipopt
           {
             if(std::isnan(rhs_vals[i]))
             {
-                printf("INFO : Matrix singular \n");
+                Jnlst().Printf(J_DETAILED, J_LINEAR_ALGEBRA,
+                           "Vitis : Matrix Singular \n");
                 solver_singular = true;
                 break;
             }

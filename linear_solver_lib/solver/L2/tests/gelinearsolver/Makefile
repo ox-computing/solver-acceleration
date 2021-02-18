@@ -123,7 +123,7 @@ ifneq ($(HOST_ARCH), x86)
 endif
 ############################## Setting up Kernel Variables ##############################
 # Kernel compiler global settings
-VPP_FLAGS += -t $(TARGET) --platform $(XPLATFORM) --save-temps
+VPP_FLAGS += -t $(TARGET) --platform $(XPLATFORM) --save-temps -g
 LDCLFLAGS += --jobs 8
 ifneq (,$(shell echo $(XPLATFORM) | awk '/u280/'))
 # U280
@@ -156,6 +156,7 @@ VPP_FLAGS += -I$(XFLIB_DIR)/L2/include
 VPP_FLAGS += -I$(XFLIB_DIR)/ext
 
 VPP_FLAGS += --optimize 3
+VPP_FLAGS += --kernel_frequency 500
 
 
 ############################## Declaring Binary Containers ##############################
