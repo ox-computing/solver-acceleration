@@ -79,7 +79,7 @@ int main(
    // Change some options
    // Note: The following choices are only examples, they might not be
    //       suitable for your optimization problem.
-   app->Options()->SetNumericValue("tol", 1e-4);
+   app->Options()->SetNumericValue("tol", 1e-9);
    app->Options()->SetStringValue("mu_strategy", "adaptive");
 
    // Intialize the IpoptApplication and process the options

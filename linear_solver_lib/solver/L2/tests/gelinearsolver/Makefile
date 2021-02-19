@@ -156,7 +156,7 @@ VPP_FLAGS += -I$(XFLIB_DIR)/L2/include
 VPP_FLAGS += -I$(XFLIB_DIR)/ext
 
 VPP_FLAGS += --optimize 3
-VPP_FLAGS += --kernel_frequency 500
+VPP_FLAGS += --kernel_frequency 300
 
 
 ############################## Declaring Binary Containers ##############################

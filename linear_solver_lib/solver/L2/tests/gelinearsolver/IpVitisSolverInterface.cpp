@@ -153,7 +153,9 @@ namespace Ipopt
       bool         check_NegEVals,
       Index        numberOfNegEVals
    ){
-       
+       Jnlst().Printf(J_DETAILED, J_LINEAR_ALGEBRA,
+                           "Vitis : Multisolve \n");
+                           
        // Keep track of number of function calls
        static int multisolve_iteration = 0;
        multisolve_iteration++;
@@ -266,26 +268,27 @@ namespace Ipopt
          
          cl::Buffer buffer_dataB = cl::Buffer(context, CL_MEM_USE_HOST_PTR | CL_MEM_READ_WRITE,
                             sizeof(double) * dataB_size, dataB, NULL);
+                            
+         // Setup kernel variables
+         int new_matrix_int = new_matrix;
          
+         kernel_gelinearsolver_0.setArg(0, matrix_nonzeros);
+         kernel_gelinearsolver_0.setArg(1, new_matrix_int);
+         kernel_gelinearsolver_0.setArg(2, matrix_dimension);
+         kernel_gelinearsolver_0.setArg(3, num_rhs);
+         kernel_gelinearsolver_0.setArg(4, buffer_ia);
+         kernel_gelinearsolver_0.setArg(5, buffer_ja);
+         kernel_gelinearsolver_0.setArg(6, buffer_A_vals);
+         kernel_gelinearsolver_0.setArg(7, buffer_dataB);
+        
          
          // Data transfer from host to device
          q.enqueueMigrateMemObjects({buffer_ia, buffer_ja, buffer_A_vals, buffer_dataB}, 0); // 0 : migrate from host to dev
          q.finish();
          
          gettimeofday(&ttrans1,0);
+
          
-         int new_matrix_int = new_matrix;
-         
-          // Setup kernel variables
-          kernel_gelinearsolver_0.setArg(0, matrix_nonzeros);
-          kernel_gelinearsolver_0.setArg(1, new_matrix_int);
-          kernel_gelinearsolver_0.setArg(2, matrix_dimension);
-          kernel_gelinearsolver_0.setArg(3, num_rhs);
-          kernel_gelinearsolver_0.setArg(4, buffer_ia);
-          kernel_gelinearsolver_0.setArg(5, buffer_ja);
-          kernel_gelinearsolver_0.setArg(6, buffer_A_vals);
-          kernel_gelinearsolver_0.setArg(7, buffer_dataB);
-          q.finish();
           
           
           // Launch kernel
@@ -317,7 +320,7 @@ namespace Ipopt
           free(ia_alloc);
           free(ja_alloc);
           free(dataB);
-          
+        
           // IPOPT timing
           if( HaveIpData() )
           {

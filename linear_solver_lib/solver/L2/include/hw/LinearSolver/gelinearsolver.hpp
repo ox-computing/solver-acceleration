@@ -115,7 +115,7 @@ void solver_core(int new_matrix, int debug_mode, int n, int j, T dataA[NCU][(N +
     T dataC[NCU][(N + NCU - 1) / NCU];
     int info;
     
-    if(new_matrx == 1)
+    if(new_matrix == 1)
     {
     getrf_core<T, NRCU, N, NCU>(debug_mode, n, dataA, n, P);
     }
@@ -210,8 +210,19 @@ void gelinearsolver(int num_nonzeros, int new_matrix, int n, int num_rhs, int* i
                         #pragma HLS dependence variable = A intra false
                         #pragma HLS dependence variable = matA intra false
                         #pragma HLS dependence variable = matA inter false
-                        matA[ia[r] % NCU][ia[r] / NCU][ja[r]] = A[r];
-                        matA[ja[r] % NCU][ja[r] / NCU][ia[r]] = A[r];
+                        
+                        // If not on diagonal
+                        if(ia[r] != ja[r])
+                        {  
+                          // Fill both sides
+                          matA[ia[r] % NCU][ia[r] / NCU][ja[r]] += A[r];
+                          matA[ja[r] % NCU][ja[r] / NCU][ia[r]] += A[r];
+                        }
+                        else
+                        {
+                            // Only fill diagonal
+                            matA[ia[r] % NCU][ia[r] / NCU][ja[r]] += A[r];
+                        }
                     }
                 
                 }
