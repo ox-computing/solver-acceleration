@@ -1,3 +1,6 @@
-# Main branch with array processing still on the host
 
-- Array is formed on the host and then transmitted to the device
+# Main Array Offloaded
+
+- Array processing occuring on the device through edit of the gelinearsolver.cpp file
+- The interface has also been edited to change the input arguments to the kernel so that they match with the alternate format
+

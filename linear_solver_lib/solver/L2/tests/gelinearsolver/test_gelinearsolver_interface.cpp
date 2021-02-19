@@ -106,7 +106,9 @@ int main(int argc, const char* argv[]) {
       bool check_eigenvalues = false;
       Index eigenvalues = 0;
       
-      solver_interface->MultiSolve(new_matrix,ia_ptr,ja_ptr,nrhs,rhs_values_ptr,check_eigenvalues,eigenvalues);
+      ESymSolverStatus result = solver_interface->MultiSolve(new_matrix,ia_ptr,ja_ptr,nrhs,rhs_values_ptr,check_eigenvalues,eigenvalues);
+      
+      printf("Result : %d \n", result);
       
       // Print the result
       for(int i = 0; i < rhs_values_size; i++)

@@ -77,6 +77,7 @@ EMU_DIR := $(SDCARD)/data/emulation
 
 ############################## Setting up Host Variables ##############################
 #Include Required Host Source Files
+#HOST_SRCS += test_gelinearsolver_interface.cpp
 #HOST_SRCS += test_gelinearsolver.cpp
 HOST_SRCS += TutorialCpp_main.cpp
 #HOST_SRCS += $(XFLIB_DIR)/ext/xcl2/xcl2.cpp
@@ -109,6 +110,7 @@ CXXLINKFLAGS += -L/usr/local/lib -lipopt -lvitislibrary
 CXXFLAGS += -fmessage-length=0 -O2 -DNDEBUG -g
 #CXXFLAGS += -g -O0
 
+#EXE_FILE := test_gelinearsolver_interface.exe
 #EXE_FILE := test_gelinearsolver.exe
 EXE_FILE := TutorialCpp_main.exe
 SOC_HOST_ARGS :=  -xclbin $(BUILD_DIR)/kernel_gelinearsolver.xclbin
@@ -154,6 +156,7 @@ VPP_FLAGS += -I$(XFLIB_DIR)/L2/include
 VPP_FLAGS += -I$(XFLIB_DIR)/ext
 
 VPP_FLAGS += --optimize 3
+VPP_FLAGS += --kernel_frequency 300
 
 
 ############################## Declaring Binary Containers ##############################

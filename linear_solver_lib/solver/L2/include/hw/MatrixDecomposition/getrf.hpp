@@ -32,9 +32,9 @@ namespace internalgetrf {
 // update submatrix
 template <typename T, int NRCU, int NCMAX>
 void subUpdate(int debug_mode, T A[NRCU][NCMAX], T rows[NCMAX], T cols[NCMAX], int rs, int re, int cs, int ce) {
-    T a00 = rows[cs];
+    //T a00 = rows[cs];
 
-    T Acs[NRCU];
+    //T Acs[NRCU];
 
     int nrows = re - rs + 1;
     int ncols = ce - cs;
@@ -75,6 +75,8 @@ LoopSweeps:
 #pragma HLS array_partition variable = cols dim = 1
 #pragma HLS resource variable = rows core = RAM_2P_BRAM
 #pragma HLS resource variable = cols core = RAM_2P_BRAM
+//#pragma HLS bind_storage variable = rows type = ram_t2p impl = bram
+//#pragma HLS bind_storage variable = cols type = ram_t2p impl = bram
 
         int idscu = s % NCU;
         int idsrow = s / NCU;

@@ -49,13 +49,15 @@ int main(
     
     FILE* file = fopen("tutorial_iterations_timings.txt","w");
     
-    int number_iterations = 40;
+
+    int number_iterations = 1;
+
     
     for(int iteration = 1; iteration <= number_iterations; iteration++)
     {   
 
    // Number of variables
-   Index N = 10*iteration;
+   Index N = 300;
    
    fprintf(file," %d ",N);
    
@@ -79,7 +81,7 @@ int main(
    // Change some options
    // Note: The following choices are only examples, they might not be
    //       suitable for your optimization problem.
-   app->Options()->SetNumericValue("tol", 1e-4);
+   app->Options()->SetNumericValue("tol", 1e-9);
    app->Options()->SetStringValue("mu_strategy", "adaptive");
 
    // Intialize the IpoptApplication and process the options
