@@ -178,27 +178,16 @@ void gelinearsolver(int num_nonzeros, int new_matrix, int n, int num_rhs, int* i
                     Loop_reset_1:
                     for(int r = 0; r < n; r++)
                     {
+                        #pragma HLS dependence variable = B inter false
+                        matB[r % NCU][r / NCU] = B[r * num_rhs + j];
+                        
                         for(int c = 0; c < n; c++)
                         {
                             #pragma HLS pipeline
                             #pragma HLS dependence variable = matA inter false
-                            /*if((r == ia[a]) && (c == ja[a]))
-                            {
-                                matA[ia[a] % NCU][ia[a] / NCU][ja[a]] = A[a];
-                                matA[ja[a] % NCU][ja[a] / NCU][ia[a]] = A[a];
-                                
-                                a++;
-                            
-                            }
-                            else
-                            {
-                                matA[r % NCU][r/NCU][c] = 0.0;
-                            }*/
-                            
                             matA[r % NCU][r / NCU][c] = 0.0;
-                            
-                        
-                        }
+                           
+                        }     
                     }
                 
                     
@@ -228,13 +217,16 @@ void gelinearsolver(int num_nonzeros, int new_matrix, int n, int num_rhs, int* i
                 
                 }
                 
-                // Fill matB
-                Loop_read_2:
-                for (int r = 0; r < n; r++) 
+                else
                 {
-                       #pragma HLS pipeline
-                       #pragma HLS dependence variable = B inter false
-                       matB[r % NCU][r / NCU] = B[r * num_rhs + j];
+                    // Fill matB
+                    Loop_read_2:
+                    for (int r = 0; r < n; r++) 
+                    {
+                           #pragma HLS pipeline
+                           #pragma HLS dependence variable = B inter false
+                           matB[r % NCU][r / NCU] = B[r * num_rhs + j];
+                    }
                 }
                 
                 
