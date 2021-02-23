@@ -15,7 +15,7 @@
  */
 
 #include "xf_solver_L2.hpp"
-#define NCU 32
+#define NCU 34
 #define MAXN 886
 
 
