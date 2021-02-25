@@ -251,7 +251,7 @@ namespace Ipopt
                             sizeof(double) * dataB_size, dataB, NULL);
                             
          // Setup kernel variables
-         int new_matrix_int = new_matrix;
+         //int new_matrix_int = new_matrix;
          
         
          kernel_gelinearsolver_0.setArg(0, num_rhs);

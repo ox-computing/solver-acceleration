@@ -109,7 +109,7 @@ void solver(int debug_mode, int n, T dataA[NCU][(N + NCU - 1) / NCU][N], T dataB
 }
 
 template <typename T, int N, int NCU>
-void solver_core(int new_matrix, int debug_mode, int n, int j, T dataA[NCU][(N + NCU - 1) / NCU][N], T dataB[NCU][(N + NCU - 1) / NCU], T dataX[N]) {
+void solver_core(int debug_mode, int n, int j, T dataA[NCU][(N + NCU - 1) / NCU][N], T dataB[NCU][(N + NCU - 1) / NCU], T dataX[N]) {
     const int NRCU = int((N + NCU - 1) / NCU);
     int P[N];
     T dataC[NCU][(N + NCU - 1) / NCU];
@@ -176,9 +176,11 @@ void gelinearsolver(int n, int num_rhs, T* A, T* B) {
                     }
                 }
             }
+            
+            int debug_mode = 0;
 
             T dataX[NMAX];
-            internal_gelinear::solver_core<T, NMAX, NCU>(n, j, matA, matB, dataX);
+            internal_gelinear::solver_core<T, NMAX, NCU>(debug_mode, n, j, matA, matB, dataX);
 
             for (int r = 0; r < n; r++) {
 #pragma HLS pipeline

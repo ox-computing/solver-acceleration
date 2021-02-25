@@ -25,7 +25,8 @@ extern "C" void kernel_gelinearsolver_0(int num_rhs, int n, double* dataA, doubl
 #pragma HLS INTERFACE m_axi port = dataB bundle = gmem1 offset = slave num_read_outstanding = \
     16 max_read_burst_length = 32
 
-#pragma HLS INTERFACE s_axilite port = na bundle = control
+#pragma HLS INTERFACE s_axilite port = num_rhs bundle = control
+#pragma HLS INTERFACE s_axilite port = n bundle = control
 #pragma HLS INTERFACE s_axilite port = dataA bundle = control
 #pragma HLS INTERFACE s_axilite port = dataB bundle = control
 #pragma HLS INTERFACE s_axilite port = return bundle = control
