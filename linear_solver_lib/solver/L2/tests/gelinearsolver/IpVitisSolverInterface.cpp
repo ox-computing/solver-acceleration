@@ -191,55 +191,29 @@ namespace Ipopt
          Data allocation
          **********/
          
-       
-       // Allocate memory for ia, ja and the values
-       int vals_size;
-       int ia_size;
-       int ja_size;
-       
-        // Set size as nonzeros if new matrix flag or one otherwise
-        if(new_matrix)
-        {   
-            vals_size = matrix_nonzeros;
-            ia_size = matrix_nonzeros;
-            ja_size = matrix_nonzeros;
-        }
-        else
-        {
-            vals_size = 1;
-            ia_size = 1;
-            ja_size = 1;
-        }
-        
-
-        // Initilialise and allocate pointers
-        double * A_vals;
-        A_vals = aligned_alloc<double>(vals_size);
-        
-        Index * ia_alloc;
-        ia_alloc = aligned_alloc<Index>(ia_size);
-        
-        Index * ja_alloc;
-        ja_alloc = aligned_alloc<Index>(ja_size);
-        
-        
-        // Assign values provided by IPOPT to allocated
-        if(new_matrix)
-        {
-           for(int i = 0; i < matrix_nonzeros; i++)
-           {
-               A_vals[i] = val_[i];
-               ia_alloc[i] = ia[i] - 1;
-               ja_alloc[i] = ja[i] - 1;
-           }
-        }
-        
-        else
-        {
-            A_vals[0] = 0;
-            ia_alloc[0] = 0;
-            ja_alloc[0] = 0;
-        }
+         dataA_size = matrix_dimension*matrix_dimension;
+         double  * dataA;
+         dataA = aligned_alloc<double>(dataA_size);
+         
+         // Set matrix to zero
+         for(int i = 0; i < dataA_size; i++)
+         {
+             dataA[i] = 0;
+         }
+         
+         for(int i = 0; i < matrix_nonzeros; i++)
+         {
+             if(ia[i] != ja[i])
+             {
+                 dataA[ia[i]*matrix_dimension + ja[i]] = val_[i];
+                 dataA[ja[i]*matrix_dimension + ia[i]] = val_[i];
+             }
+             else
+             {
+                 dataA[ia[i]*matrix_dimension + ja[i]] = val_[i];
+             }
+         
+         }
         
         
         // Allocate memory for B
@@ -268,16 +242,9 @@ namespace Ipopt
          ************/
          
          // Setup buffers
-         cl::Buffer buffer_ia = cl::Buffer(context, CL_MEM_USE_HOST_PTR | CL_MEM_READ_WRITE,
-                            sizeof(Index) * ia_size, ia_alloc, NULL);
-                            
          
-         cl::Buffer buffer_ja = cl::Buffer(context, CL_MEM_USE_HOST_PTR | CL_MEM_READ_WRITE,
-                            sizeof(Index) * ja_size, ja_alloc, NULL);
-                            
-         
-         cl::Buffer buffer_A_vals = cl::Buffer(context, CL_MEM_USE_HOST_PTR | CL_MEM_READ_WRITE,
-                            sizeof(double) * vals_size, A_vals, NULL);
+         cl::Buffer buffer_dataA = cl::Buffer(context, CL_MEM_USE_HOST_PTR | CL_MEM_READ_WRITE,
+                            sizeof(double) * dataA_size, dataA, NULL);
                             
          
          cl::Buffer buffer_dataB = cl::Buffer(context, CL_MEM_USE_HOST_PTR | CL_MEM_READ_WRITE,
@@ -286,18 +253,15 @@ namespace Ipopt
          // Setup kernel variables
          int new_matrix_int = new_matrix;
          
-         kernel_gelinearsolver_0.setArg(0, matrix_nonzeros);
-         kernel_gelinearsolver_0.setArg(1, new_matrix_int);
-         kernel_gelinearsolver_0.setArg(2, matrix_dimension);
-         kernel_gelinearsolver_0.setArg(3, num_rhs);
-         kernel_gelinearsolver_0.setArg(4, buffer_ia);
-         kernel_gelinearsolver_0.setArg(5, buffer_ja);
-         kernel_gelinearsolver_0.setArg(6, buffer_A_vals);
-         kernel_gelinearsolver_0.setArg(7, buffer_dataB);
+        
+         kernel_gelinearsolver_0.setArg(0, num_rhs);
+         kernel_gelinearsolver_0.setArg(1, matrix_dimension);
+         kernel_gelinearsolver_0.setArg(2, buffer_dataA);
+         kernel_gelinearsolver_0.setArg(3, buffer_dataB);
         
          
          // Data transfer from host to device
-         q.enqueueMigrateMemObjects({buffer_ia, buffer_ja, buffer_A_vals, buffer_dataB}, 0); // 0 : migrate from host to dev
+         q.enqueueMigrateMemObjects({buffer_dataA, buffer_dataB}, 0); // 0 : migrate from host to dev
          q.finish();
          
          gettimeofday(&ttrans1,0);
@@ -332,9 +296,7 @@ namespace Ipopt
           
 
           // Free allocated variables
-          free(A_vals);
-          free(ia_alloc);
-          free(ja_alloc);
+          free(dataA);
           free(dataB);
         
           // IPOPT timing
