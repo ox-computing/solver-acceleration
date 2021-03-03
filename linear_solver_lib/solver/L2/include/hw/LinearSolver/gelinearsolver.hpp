@@ -115,7 +115,7 @@ void solver_core(int new_matrix, int debug_mode, int n, int j, T dataA[NCU][(N +
     T dataC[NCU][(N + NCU - 1) / NCU];
     int info;
     
-    if(new_matrix == 1)
+    if((new_matrix == 1) && (j == 0))
     {
     getrf_core<T, NRCU, N, NCU>(debug_mode, n, dataA, n, P);
     }
@@ -173,7 +173,7 @@ void gelinearsolver(int num_nonzeros, int new_matrix, int n, int num_rhs, int* i
                *********/
                 
                 // Only edit matA if new matrix flag set
-                if(new_matrix == 1)
+                if((new_matrix == 1) && (j == 0))
                 {   
                     Loop_reset_1:
                     for(int r = 0; r < n; r++)

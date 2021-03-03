@@ -351,6 +351,7 @@ namespace Ipopt
           {
             if(std::isnan(rhs_vals[i]))
             {
+                //printf("Vitis : Matrix Singular");
                 Jnlst().Printf(J_DETAILED, J_LINEAR_ALGEBRA,
                            "Vitis : Matrix Singular \n");
                 solver_singular = true;
@@ -372,7 +373,12 @@ namespace Ipopt
           int trans2 = diff(&ttrans2,&tlaunch);
           int post =  diff(&tpost,&ttrans2);
           
-          static FILE* fp = fopen("multisolve_timings_interface.txt","w");
+          FILE* fp = fopen("multisolve_timings_interface_iters.txt","a");
+          
+          if(multisolve_iteration == 1)
+          {
+              fprintf(fp,"\n \n ***** New Run ******* \n \n");
+          }
           
           fprintf(fp,"\n*** Multisolve Timings : %d ***\n",multisolve_iteration);
           
@@ -382,6 +388,10 @@ namespace Ipopt
           }
           
           fprintf(fp,"Matrix dimension : %d \n",matrix_dimension);
+          
+          fprintf(fp,"Matrix Nonzeros : %d \n",matrix_nonzeros);
+          
+          fprintf(fp,"Num RHS : %d \n", nrhs);
           
           if(new_matrix)
           {
@@ -397,6 +407,8 @@ namespace Ipopt
           fprintf(fp,"Launch : %d \n", launch);
           fprintf(fp,"Second transfer : %d \n", trans2);
           fprintf(fp,"Post : %d \n", post);
+          
+          fclose(fp);
           
           if(solver_singular)
           {
