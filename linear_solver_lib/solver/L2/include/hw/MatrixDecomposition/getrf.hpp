@@ -73,10 +73,10 @@ LoopSweeps:
         T cols[NCU][NCMAX];
 #pragma HLS array_partition variable = rows dim = 1
 #pragma HLS array_partition variable = cols dim = 1
-#pragma HLS resource variable = rows core = RAM_2P_BRAM
-#pragma HLS resource variable = cols core = RAM_2P_BRAM
-//#pragma HLS bind_storage variable = rows type = ram_t2p impl = bram
-//#pragma HLS bind_storage variable = cols type = ram_t2p impl = bram
+//#pragma HLS resource variable = rows core = RAM_2P_BRAM
+//#pragma HLS resource variable = cols core = RAM_2P_BRAM
+#pragma HLS bind_storage variable = rows type = ram_t2p impl = bram
+#pragma HLS bind_storage variable = cols type = ram_t2p impl = bram
 
         int idscu = s % NCU;
         int idsrow = s / NCU;
