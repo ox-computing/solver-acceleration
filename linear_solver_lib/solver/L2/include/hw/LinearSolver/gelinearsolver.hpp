@@ -220,9 +220,12 @@ void gelinearsolver(int num_nonzeros, int new_matrix, int n, int num_rhs, int* i
       //#pragma HLS resource variable = matA2 core = XPM_MEMORY uram
 
       
-      //#pragma HLS bind_storage variable = matA1 type = ram_t2p impl = uram
-      //#pragma HLS bind_storage variable = matA2 type = ram_t2p impl = uram
-      //#pragma HLS bind_storage variable = matB type = ram_t2p impl = uram
+      #pragma HLS bind_storage variable = matA1 type = ram_2p impl = uram
+      #pragma HLS bind_storage variable = matA2 type = ram_2p impl = uram
+      #pragma HLS bind_storage variable = matB type = ram_2p impl = bram
+      
+      //#pragma HLS INTERFACE m_axi port = matA1 bundle = gmem2 offset = slave 
+      //#pragma HLS INTERFACE m_axi port = matA2 bundle = gmem2 offset = slave
       
       
          for (int j = 0; j < num_rhs; j++) {
