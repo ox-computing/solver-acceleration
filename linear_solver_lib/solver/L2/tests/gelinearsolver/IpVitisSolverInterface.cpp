@@ -286,14 +286,17 @@ namespace Ipopt
          // Setup kernel variables
          int new_matrix_int = new_matrix;
          
-         kernel_gelinearsolver_0.setArg(0, matrix_nonzeros);
-         kernel_gelinearsolver_0.setArg(1, new_matrix_int);
-         kernel_gelinearsolver_0.setArg(2, matrix_dimension);
-         kernel_gelinearsolver_0.setArg(3, num_rhs);
-         kernel_gelinearsolver_0.setArg(4, buffer_ia);
-         kernel_gelinearsolver_0.setArg(5, buffer_ja);
-         kernel_gelinearsolver_0.setArg(6, buffer_A_vals);
-         kernel_gelinearsolver_0.setArg(7, buffer_dataB);
+         int debug_mode = 0;
+         
+         kernel_gelinearsolver_0.setArg(0, debug_mode);
+         kernel_gelinearsolver_0.setArg(1, matrix_nonzeros);
+         kernel_gelinearsolver_0.setArg(2, new_matrix_int);
+         kernel_gelinearsolver_0.setArg(3, matrix_dimension);
+         kernel_gelinearsolver_0.setArg(4, num_rhs);
+         kernel_gelinearsolver_0.setArg(5, buffer_ia);
+         kernel_gelinearsolver_0.setArg(6, buffer_ja);
+         kernel_gelinearsolver_0.setArg(7, buffer_A_vals);
+         kernel_gelinearsolver_0.setArg(8, buffer_dataB);
         
          
          // Data transfer from host to device
