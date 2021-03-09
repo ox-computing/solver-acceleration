@@ -247,6 +247,9 @@ void gelinearsolver(int num_nonzeros, int new_matrix, int n, int num_rhs, int* i
                   
                   // Zero the other array
                   internal_gelinear::reset_array<T, NCU, NMAX>(n, matA2);
+                  
+                  // Fill B
+                  internal_gelinear::fill_B<T, NCU, NMAX>(j, num_rhs, n, matB, B);
              }
              else
              {
@@ -255,14 +258,19 @@ void gelinearsolver(int num_nonzeros, int new_matrix, int n, int num_rhs, int* i
                   
                   // Zero the other array
                   internal_gelinear::reset_array<T, NCU, NMAX>(n, matA1);
+                  
+                  // Fill B
+                  internal_gelinear::fill_B<T, NCU, NMAX>(j, num_rhs, n, matB, B);
              }
          
          }
+         else
+         {
          
           // Fill B
           internal_gelinear::fill_B<T, NCU, NMAX>(j, num_rhs, n, matB, B);
              
-         
+         }
 
           T dataX[NMAX];
           

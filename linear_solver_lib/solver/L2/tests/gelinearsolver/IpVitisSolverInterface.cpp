@@ -88,23 +88,23 @@ namespace Ipopt
       
       gettimeofday(&tend,0);
       
-      int time = diff(&tend, &tstart);
+      //int time = diff(&tend, &tstart);
       
       /*****
       Store timing values
       *******/
       
-      static int impl_iteration = 0;
-      impl_iteration++;
+      //static int impl_iteration = 0;
+      //impl_iteration++;
       
       /*******
       Store timings
       *********/
       
-      static FILE* fk = fopen("impl_timings_interface.txt","w");
+      /*static FILE* fk = fopen("impl_timings_interface.txt","w");
       
       fprintf(fk,"\n*** InitializeImpl : %d ***\n", impl_iteration);
-      fprintf(fk,"Runtime : %d \n",time);
+      fprintf(fk,"Runtime : %d \n",time);*/
       
     
       return true;
@@ -367,7 +367,7 @@ namespace Ipopt
           Storing timing data to txt file
           *************/
           
-          /*int array_setup = diff(&tinit_array,&tstart);
+          int array_setup = diff(&tinit_array,&tstart);
           int trans1 = diff(&ttrans1,&tinit_array);
           int launch = diff(&tlaunch,&ttrans1);
           int trans2 = diff(&ttrans2,&tlaunch);
@@ -408,7 +408,7 @@ namespace Ipopt
           fprintf(fp,"Second transfer : %d \n", trans2);
           fprintf(fp,"Post : %d \n", post);
           
-          fclose(fp);*/
+          fclose(fp);
           
           if(solver_singular)
           {
