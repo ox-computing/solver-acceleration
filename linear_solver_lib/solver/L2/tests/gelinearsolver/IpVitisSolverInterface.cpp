@@ -286,7 +286,7 @@ namespace Ipopt
          // Setup kernel variables
          int new_matrix_int = new_matrix;
          
-         int debug_mode = 0;
+         int debug_mode = 1;
          
          kernel_gelinearsolver_0.setArg(0, debug_mode);
          kernel_gelinearsolver_0.setArg(1, matrix_nonzeros);
