@@ -159,7 +159,7 @@ void gelinearsolver(int num_nonzeros, int new_matrix, int n, int num_rhs, int* i
       #pragma HLS resource variable = matA core = XPM_MEMORY uram
 
       
-      //#pragma HLS bind_storage variable = matA type = ram_t2p impl = uram
+      //#pragma HLS bind_storage variable = matA type = ram_2p impl = bram
       //#pragma HLS bind_storage variable = matB type = ram_t2p impl = uram
 
       
