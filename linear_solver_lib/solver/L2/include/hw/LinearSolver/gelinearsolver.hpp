@@ -173,48 +173,44 @@ void gelinearsolver(int num_nonzeros, int new_matrix, int n, int num_rhs, int* i
          // Only edit matA if new matrix flag set
          if((new_matrix == 1) && (j == 0))
          {   
+         
+             int counter = 0;
+             
              Loop_reset_1:
              for(int r = 0; r < n; r++)
              {
                  #pragma HLS dependence variable = B inter false
-                 matB[r % NCU][r / NCU] = B[r * num_rhs + j];
+                 matB[c % NCU][c / NCU] = B[c * num_rhs + j];
                  
-                 for(int c = 0; c < n; c++)
+                 // Zero the remainder of the matrix
+                 for(int c = 0; c <= r; c++)
                  {
                      #pragma HLS pipeline
                      #pragma HLS dependence variable = matA inter false
+                     
                      matA[r % NCU][r / NCU][c] = 0.0;
-                    
+                     matA[c % NCU][c / NCU][r] = 0.0;
+                     
+                     if((ia[counter] <= r) && (ja[counter] <= c))
+                     {
+                         // If not on diagonal
+                         if(ia[counter] != ja[counter])
+                         {  
+                           // Fill both sides
+                           matA[ia[counter] % NCU][ia[counter] / NCU][ja[counter]] += A[counter];
+                           matA[ja[counter] % NCU][ja[counter] / NCU][ia[counter]] += A[counter];
+                         }
+                         else
+                         {
+                             // Only fill diagonal
+                             matA[ia[counter] % NCU][ia[counter] / NCU][ja[counter]] += A[counter];
+                         }
+                         
+                         counter++;
+                     }
                  }     
              }
-         
-             
-             // Fill matA
-             Loop_read_1:
-             for(int r = 0; r < num_nonzeros; r++)
-             {
-                 #pragma HLS pipeline
-                 #pragma HLS dependence variable = A inter false
-                 #pragma HLS dependence variable = A intra false
-                 #pragma HLS dependence variable = matA intra false
-                 #pragma HLS dependence variable = matA inter false
-                 
-                 // If not on diagonal
-                 if(ia[r] != ja[r])
-                 {  
-                   // Fill both sides
-                   matA[ia[r] % NCU][ia[r] / NCU][ja[r]] += A[r];
-                   matA[ja[r] % NCU][ja[r] / NCU][ia[r]] += A[r];
-                 }
-                 else
-                 {
-                     // Only fill diagonal
-                     matA[ia[r] % NCU][ia[r] / NCU][ja[r]] += A[r];
-                 }
-             }
-         
          }
-         
          else
          {
              // Fill matB
