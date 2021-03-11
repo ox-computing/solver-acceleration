@@ -82,6 +82,7 @@ void getrf_core(int debug_mode, int n, T A[NCU][NRCU][NMAX], int lda, int P[NMAX
 template <typename T, int N, int NCU>
 void solver(int debug_mode, int n, T dataA[NCU][(N + NCU - 1) / NCU][N], T dataB[NCU][(N + NCU - 1) / NCU], T dataX[N]) {
     T buf[N], buf_i[NCU][(N + NCU - 1) / NCU], buf_o[N];
+    //#pragma HLS resource variable = buf_i core = RAM_2P_BRAM
 
 
     trisolver_L<T, N, NCU>(n, dataA, dataB, buf);
@@ -113,6 +114,8 @@ void solver_core(int new_matrix, int debug_mode, int n, int j, T dataA[NCU][(N +
     const int NRCU = int((N + NCU - 1) / NCU);
     int P[N];
     T dataC[NCU][(N + NCU - 1) / NCU];
+    //#pragma HLS resource variable = dataC core = RAM_2P_BRAM
+    
     int info;
     
     if((new_matrix == 1) && (j == 0))
@@ -180,7 +183,7 @@ void gelinearsolver(int num_nonzeros, int new_matrix, int n, int num_rhs, int* i
              for(int r = 0; r < n; r++)
              {
                  #pragma HLS dependence variable = B inter false
-                 matB[c % NCU][c / NCU] = B[c * num_rhs + j];
+                 matB[r % NCU][r / NCU] = B[r * num_rhs + j];
                  
                  // Zero the remainder of the matrix
                  for(int c = 0; c <= r; c++)
@@ -191,7 +194,7 @@ void gelinearsolver(int num_nonzeros, int new_matrix, int n, int num_rhs, int* i
                      matA[r % NCU][r / NCU][c] = 0.0;
                      matA[c % NCU][c / NCU][r] = 0.0;
                      
-                     if((ia[counter] <= r) && (ja[counter] <= c))
+                     if((ia[counter] <= r) && (ja[counter] <= c) && (counter < num_nonzeros))
                      {
                          // If not on diagonal
                          if(ia[counter] != ja[counter])
