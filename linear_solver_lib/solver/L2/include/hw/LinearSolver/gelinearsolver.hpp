@@ -179,11 +179,14 @@ void gelinearsolver(int num_nonzeros, int new_matrix, int n, int num_rhs, int* i
                  #pragma HLS dependence variable = B inter false
                  matB[r % NCU][r / NCU] = B[r * num_rhs + j];
                  
-                 for(int c = 0; c < n; c++)
+                 matA[r % NCU][r / NCU][r] = 0.0;
+                 
+                 for(int c = 0; c < r; c++)
                  {
                      #pragma HLS pipeline
                      #pragma HLS dependence variable = matA inter false
                      matA[r % NCU][r / NCU][c] = 0.0;
+                     matA[c % NCU][c / NCU][r] = 0.0;
                     
                  }     
              }
