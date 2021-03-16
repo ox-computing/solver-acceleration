@@ -213,15 +213,19 @@ void gelinearsolver(int num_nonzeros, int new_matrix, int n, int num_rhs, int* i
       static T matB[NCU][(NMAX + NCU - 1) / NCU] = {};
       
       static int iter = 0;
+      int debug_mode = 0;
+      
+      T dataX[NMAX];
+      
       #pragma HLS array_partition variable = matA1 cyclic factor = NCU dim = 1
       #pragma HLS array_partition variable = matA2 cyclic factor = NCU dim = 1
       #pragma HLS array_partition variable = matB cyclic factor = NCU dim = 1
-      //#pragma HLS resource variable = matA1 core = XPM_MEMORY uram
-      //#pragma HLS resource variable = matA2 core = XPM_MEMORY uram
+      #pragma HLS resource variable = matA1 core = XPM_MEMORY uram
+      #pragma HLS resource variable = matA2 core = XPM_MEMORY uram
 
       
-      #pragma HLS bind_storage variable = matA1 type = ram_2p impl = uram
-      #pragma HLS bind_storage variable = matA2 type = ram_2p impl = uram
+      //#pragma HLS bind_storage variable = matA1 type = ram_2p impl = uram
+      //#pragma HLS bind_storage variable = matA2 type = ram_2p impl = uram
       #pragma HLS bind_storage variable = matB type = ram_2p impl = bram
       
       //#pragma HLS INTERFACE m_axi port = matA1 bundle = gmem2 offset = slave 
@@ -242,49 +246,52 @@ void gelinearsolver(int num_nonzeros, int new_matrix, int n, int num_rhs, int* i
          
              if((iter % 2) != 0)
              {
-                  // Fill the array we are using
-                  internal_gelinear::fill_A<T, NCU, NMAX>(ia, ja, A, matA1, num_nonzeros);
-                  
+                   #pragma HLS dataflow
                   // Zero the other array
                   internal_gelinear::reset_array<T, NCU, NMAX>(n, matA2);
                   
+                  // Fill the array we are using
+                  internal_gelinear::fill_A<T, NCU, NMAX>(ia, ja, A, matA1, num_nonzeros);
+                  
                   // Fill B
                   internal_gelinear::fill_B<T, NCU, NMAX>(j, num_rhs, n, matB, B);
+                  
+                  // Carry out solve
+                  internal_gelinear::solver_core<T, NMAX, NCU>(new_matrix, debug_mode, n, j, matA1, matB, dataX);
              }
              else
              {
+                     #pragma HLS dataflow
+                   // Zero the other array
+                  internal_gelinear::reset_array<T, NCU, NMAX>(n, matA1);
+                  
                    // Fill the array we are using
                   internal_gelinear::fill_A<T, NCU, NMAX>(ia, ja, A, matA2, num_nonzeros);
                   
-                  // Zero the other array
-                  internal_gelinear::reset_array<T, NCU, NMAX>(n, matA1);
-                  
                   // Fill B
                   internal_gelinear::fill_B<T, NCU, NMAX>(j, num_rhs, n, matB, B);
+                  
+                  // Carry out solve
+                  internal_gelinear::solver_core<T, NMAX, NCU>(new_matrix, debug_mode, n, j, matA2, matB, dataX);
              }
          
          }
          else
          {
-         
-          // Fill B
-          internal_gelinear::fill_B<T, NCU, NMAX>(j, num_rhs, n, matB, B);
-             
+              // Fill B
+              internal_gelinear::fill_B<T, NCU, NMAX>(j, num_rhs, n, matB, B);
+              
+              if((iter % 2) != 0)
+              {
+                   internal_gelinear::solver_core<T, NMAX, NCU>(new_matrix, debug_mode, n, j, matA1, matB, dataX);
+              }
+              else
+              {
+                   internal_gelinear::solver_core<T, NMAX, NCU>(new_matrix, debug_mode, n, j, matA2, matB, dataX);
+              }
+                 
          }
-
-          T dataX[NMAX];
           
-          int debug_mode = 0;
-          
-          if((iter % 2) != 0)
-          {
-               internal_gelinear::solver_core<T, NMAX, NCU>(new_matrix, debug_mode, n, j, matA1, matB, dataX);
-          }
-          else
-          {
-               internal_gelinear::solver_core<T, NMAX, NCU>(new_matrix, debug_mode, n, j, matA2, matB, dataX);
-          }
-
 
            // Return the result to B
           for (int r = 0; r < n; r++) {
