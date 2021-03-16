@@ -115,11 +115,18 @@ LoopSweeps:
             };
             A[pidcu][pidrow][k] = A[idscu][idsrow][k];
             A[idscu][idsrow][k] = rows[0][k];
+            
+            if(k >= s + 1)
+            {
+                T a00 = rows[0][s];
+                int i = k % NCU;
+                int c = k / NCU;
+                A[i][c][s] = A[i][c][s] / a00;
+                cols[i][c] = A[i][c][s];
+            }
         };
 
-        T a00 = rows[0][s];
-
-    LoopDiv:
+    /*LoopDiv:
         for (int j = s + 1; j < m; j++) {
 #pragma HLS pipeline
 #pragma HLS dependence variable = A inter false
@@ -128,7 +135,7 @@ LoopSweeps:
             int r = j / NCU;
             A[i][r][s] = A[i][r][s] / a00;
             cols[i][r] = A[i][r][s];
-        };
+        };*/
 
     LoopMat:
         for (int i = 0; i < NCU; i++) {
