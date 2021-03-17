@@ -190,10 +190,13 @@ namespace Ipopt
          /**********
          Data allocation
          **********/
+
+         
          
          dataA_size = matrix_dimension*matrix_dimension;
          double  * dataA;
          dataA = aligned_alloc<double>(dataA_size);
+         
          
          // Set matrix to zero
          for(int i = 0; i < dataA_size; i++)
@@ -201,16 +204,17 @@ namespace Ipopt
              dataA[i] = 0;
          }
          
+         
          for(int i = 0; i < matrix_nonzeros; i++)
          {
-             if(ia[i] != ja[i])
+             if((ia[i]-1) != (ja[i]-1))
              {
-                 dataA[ia[i]*matrix_dimension + ja[i]] = val_[i];
-                 dataA[ja[i]*matrix_dimension + ia[i]] = val_[i];
+                 dataA[(ia[i]-1)*matrix_dimension + (ja[i]-1)] += val_[i];
+                 dataA[(ja[i]-1)*matrix_dimension + (ia[i]-1)] += val_[i];
              }
              else
              {
-                 dataA[ia[i]*matrix_dimension + ja[i]] = val_[i];
+                 dataA[(ia[i]-1)*matrix_dimension + (ja[i]-1)] += val_[i];
              }
          
          }
@@ -232,6 +236,8 @@ namespace Ipopt
             }
         
         }
+        
+        printf("B allocated \n");                
         
        
         
@@ -334,7 +340,7 @@ namespace Ipopt
           int trans2 = diff(&ttrans2,&tlaunch);
           int post =  diff(&tpost,&ttrans2);
           
-          static FILE* fp = fopen("multisolve_timings_interface.txt","w");
+          FILE* fp = fopen("multisolve_timings_interface.txt","a");
           
           fprintf(fp,"\n*** Multisolve Timings : %d ***\n",multisolve_iteration);
           
@@ -359,6 +365,8 @@ namespace Ipopt
           fprintf(fp,"Launch : %d \n", launch);
           fprintf(fp,"Second transfer : %d \n", trans2);
           fprintf(fp,"Post : %d \n", post);
+          
+          fclose(fp);
           
           if(solver_singular)
           {
