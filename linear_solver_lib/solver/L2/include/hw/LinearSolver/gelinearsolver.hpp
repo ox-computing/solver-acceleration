@@ -171,26 +171,26 @@ void gelinearsolver(int debug_mode, int num_nonzeros, int new_matrix, int n, int
         *********/
          
          // Only edit matA if new matrix flag set
-         if((new_matrix == 1) && (j == 0))
+         if((new_matrix == 1) && (j == 0) && (debug_mode != 1))
          {   
-             if(debug_mode != 1)
+             if(debug_mode != 2)
              {
-                 Loop_reset_1:
-                 for(int r = 0; r < n; r++)
-                 {        
-                     for(int c = 0; c < n; c++)
-                     {
-                         #pragma HLS pipeline
-                         #pragma HLS dependence variable = matA inter false
-                         matA[r % NCU][r / NCU][c] = 0.0;
-                        
-                     }     
-                 }
+                Loop_reset_1:
+                for(int r = 0; r < n; r++)
+                {        
+                    for(int c = 0; c < n; c++)
+                    {
+                        #pragma HLS pipeline
+                        #pragma HLS dependence variable = matA inter false
+                        matA[r % NCU][r / NCU][c] = 0.0;
+                       
+                    }     
+                }    
              }
          
              
              // Fill matA
-             if(debug_mode != 2)
+             if(debug_mode != 3)
              {
                  Loop_read_1:
                  for(int r = 0; r < num_nonzeros; r++)
@@ -213,21 +213,23 @@ void gelinearsolver(int debug_mode, int num_nonzeros, int new_matrix, int n, int
                          // Only fill diagonal
                          matA[ia[r] % NCU][ia[r] / NCU][ja[r]] += A[r];
                      }
-                 }
+                 }    
              }
          
          }
-             if(debug_mode != 3)
+         
+         
+         if(debug_mode != 4)
+         {
+             // Fill matB
+             Loop_read_2:
+             for (int r = 0; r < n; r++) 
              {
-                 // Fill matB
-                 Loop_read_2:
-                 for (int r = 0; r < n; r++) 
-                 {
-                        #pragma HLS pipeline
-                        #pragma HLS dependence variable = B inter false
-                        matB[r % NCU][r / NCU] = B[r * num_rhs + j];
-                 }
+                    #pragma HLS pipeline
+                    #pragma HLS dependence variable = B inter false
+                    matB[r % NCU][r / NCU] = B[r * num_rhs + j];
              }
+         }
          
          
 

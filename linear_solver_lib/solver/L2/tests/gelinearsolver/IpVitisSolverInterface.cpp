@@ -286,7 +286,13 @@ namespace Ipopt
          // Setup kernel variables
          int new_matrix_int = new_matrix;
          
-         int debug_mode = 1;
+         int debug_mode = 0;
+         
+         if(multisolve_iteration != 1)
+         {
+            debug_mode = 1;
+         }
+         
          
          kernel_gelinearsolver_0.setArg(0, debug_mode);
          kernel_gelinearsolver_0.setArg(1, matrix_nonzeros);
@@ -370,13 +376,13 @@ namespace Ipopt
           Storing timing data to txt file
           *************/
           
-          /*int array_setup = diff(&tinit_array,&tstart);
+          int array_setup = diff(&tinit_array,&tstart);
           int trans1 = diff(&ttrans1,&tinit_array);
           int launch = diff(&tlaunch,&ttrans1);
           int trans2 = diff(&ttrans2,&tlaunch);
           int post =  diff(&tpost,&ttrans2);
           
-          FILE* fp = fopen("multisolve_timings_interface_iters.txt","a");
+          FILE* fp = fopen("multisolve_timings_interface_zeroing.txt","a");
           
           if(multisolve_iteration == 1)
           {
@@ -411,7 +417,7 @@ namespace Ipopt
           fprintf(fp,"Second transfer : %d \n", trans2);
           fprintf(fp,"Post : %d \n", post);
           
-          fclose(fp);*/
+          fclose(fp);
           
           if(solver_singular)
           {
