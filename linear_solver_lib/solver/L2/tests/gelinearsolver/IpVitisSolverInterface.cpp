@@ -123,6 +123,7 @@ namespace Ipopt
        // Store variables and pointers for later use
        matrix_dimension = dim;
        matrix_nonzeros = nonzeros;
+     
        
        if(matrix_dimension > MAXN)
        {
@@ -159,13 +160,16 @@ namespace Ipopt
       bool         check_NegEVals,
       Index        numberOfNegEVals
    ){
-
-       Jnlst().Printf(J_DETAILED, J_LINEAR_ALGEBRA,
+                                               
+       //printf("Vitis Multisolve \n");
+       
+          Jnlst().Printf(J_DETAILED, J_LINEAR_ALGEBRA,
                            "Vitis : Multisolve \n");
                            
        // Keep track of number of function calls
        static int multisolve_iteration = 0;
        multisolve_iteration++;
+                           
        
        
        // Timing variables
@@ -190,6 +194,8 @@ namespace Ipopt
          /**********
          Data allocation
          **********/
+         
+         new_matrix = true;
          
        
        // Allocate memory for ia, ja and the values
@@ -301,8 +307,6 @@ namespace Ipopt
          q.finish();
          
          gettimeofday(&ttrans1,0);
-
-         
           
           
           // Launch kernel
@@ -367,20 +371,20 @@ namespace Ipopt
           Storing timing data to txt file
           *************/
           
-          /*int array_setup = diff(&tinit_array,&tstart);
+          int array_setup = diff(&tinit_array,&tstart);
           int trans1 = diff(&ttrans1,&tinit_array);
           int launch = diff(&tlaunch,&ttrans1);
           int trans2 = diff(&ttrans2,&tlaunch);
           int post =  diff(&tpost,&ttrans2);
           
-          FILE* fp = fopen("multisolve_timings_interface_iters.txt","a");
+          /*FILE* fp = fopen("new_matrix_flag.txt","a");
           
           if(multisolve_iteration == 1)
           {
               fprintf(fp,"\n \n ***** New Run ******* \n \n");
           }
           
-          fprintf(fp,"\n*** Multisolve Timings : %d ***\n",multisolve_iteration);
+          //fprintf(fp,"*** Multisolve Timings : %d ***\n",multisolve_iteration);
           
           if(solver_singular)
           {
@@ -393,16 +397,22 @@ namespace Ipopt
           
           fprintf(fp,"Num RHS : %d \n", nrhs);
           
-          if(new_matrix)
+          static int num_true = 0;
+          static int num_false = 0;*/
+          
+          
+          /*if(new_matrix)
           {
-              fprintf(fp,"New Matrix TRUE \n");
+               Jnlst().Printf(J_SUMMARY, J_LINEAR_ALGEBRA,
+                           "%d \n", 12345);
           }
           else 
           {
-              fprintf(fp,"New Matrix FALSE \n");
-          }
+               Jnlst().Printf(J_SUMMARY, J_LINEAR_ALGEBRA,
+                           "%d \n", 54321);
+          }*/
           
-          fprintf(fp,"Array initialise : %d \n",array_setup);
+          /*fprintf(fp,"Array initialise : %d \n",array_setup);
           fprintf(fp,"First transfer : %d \n", trans1);
           fprintf(fp,"Launch : %d \n", launch);
           fprintf(fp,"Second transfer : %d \n", trans2);
