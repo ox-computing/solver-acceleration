@@ -195,8 +195,6 @@ namespace Ipopt
          Data allocation
          **********/
          
-         new_matrix = true;
-         
        
        // Allocate memory for ia, ja and the values
        int vals_size;
@@ -371,20 +369,20 @@ namespace Ipopt
           Storing timing data to txt file
           *************/
           
-          int array_setup = diff(&tinit_array,&tstart);
+          /*int array_setup = diff(&tinit_array,&tstart);
           int trans1 = diff(&ttrans1,&tinit_array);
           int launch = diff(&tlaunch,&ttrans1);
           int trans2 = diff(&ttrans2,&tlaunch);
           int post =  diff(&tpost,&ttrans2);
           
-          /*FILE* fp = fopen("new_matrix_flag.txt","a");
+          FILE* fp = fopen("multisolve_test_new.txt","a");
           
           if(multisolve_iteration == 1)
           {
               fprintf(fp,"\n \n ***** New Run ******* \n \n");
           }
           
-          //fprintf(fp,"*** Multisolve Timings : %d ***\n",multisolve_iteration);
+          fprintf(fp,"*** Multisolve Timings : %d ***\n",multisolve_iteration);
           
           if(solver_singular)
           {
@@ -396,23 +394,17 @@ namespace Ipopt
           fprintf(fp,"Matrix Nonzeros : %d \n",matrix_nonzeros);
           
           fprintf(fp,"Num RHS : %d \n", nrhs);
-          
-          static int num_true = 0;
-          static int num_false = 0;*/
-          
-          
-          /*if(new_matrix)
+         
+          if(new_matrix)
           {
-               Jnlst().Printf(J_SUMMARY, J_LINEAR_ALGEBRA,
-                           "%d \n", 12345);
+               fprintf(fp,"New Matrix TRUE \n");
           }
           else 
           {
-               Jnlst().Printf(J_SUMMARY, J_LINEAR_ALGEBRA,
-                           "%d \n", 54321);
-          }*/
+               fprintf(fp,"New Matrix FALSE \n");
+          }
           
-          /*fprintf(fp,"Array initialise : %d \n",array_setup);
+          fprintf(fp,"Array initialise : %d \n",array_setup);
           fprintf(fp,"First transfer : %d \n", trans1);
           fprintf(fp,"Launch : %d \n", launch);
           fprintf(fp,"Second transfer : %d \n", trans2);
