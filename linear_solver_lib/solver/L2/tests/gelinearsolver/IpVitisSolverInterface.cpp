@@ -195,8 +195,6 @@ namespace Ipopt
          Data allocation
          **********/
          
-         new_matrix = true;
-         
        
        // Allocate memory for ia, ja and the values
        int vals_size;

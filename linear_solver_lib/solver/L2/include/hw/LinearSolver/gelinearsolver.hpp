@@ -150,7 +150,7 @@ void solver_core(int new_matrix, int debug_mode, int n, int j, T dataA[NCU][(N +
  */
 
 template <typename T, int NMAX, int NCU>
-void gelinearsolver(int num_nonzeros, int new_matrix, int n, int num_rhs, int* ia, int* ja, T* A, T* B) {
+void gelinearsolver(int num_nonzeros, int new_matrix, int n, int num_rhs, int* ia, int* ja, double* A, double* B) {
       
       static T matA[NCU][(NMAX + NCU - 1) / NCU][NMAX] = {};
       static T matB[NCU][(NMAX + NCU - 1) / NCU] = {};
@@ -206,13 +206,13 @@ void gelinearsolver(int num_nonzeros, int new_matrix, int n, int num_rhs, int* i
                  if(ia[r] != ja[r])
                  {  
                    // Fill both sides
-                   matA[ia[r] % NCU][ia[r] / NCU][ja[r]] += A[r];
-                   matA[ja[r] % NCU][ja[r] / NCU][ia[r]] += A[r];
+                   matA[ia[r] % NCU][ia[r] / NCU][ja[r]] += (T) A[r];
+                   matA[ja[r] % NCU][ja[r] / NCU][ia[r]] += (T) A[r];
                  }
                  else
                  {
                      // Only fill diagonal
-                     matA[ia[r] % NCU][ia[r] / NCU][ja[r]] += A[r];
+                     matA[ia[r] % NCU][ia[r] / NCU][ja[r]] += (T) A[r];
                  }
              }
          
@@ -226,7 +226,7 @@ void gelinearsolver(int num_nonzeros, int new_matrix, int n, int num_rhs, int* i
              {
                     #pragma HLS pipeline
                     #pragma HLS dependence variable = B inter false
-                    matB[r % NCU][r / NCU] = B[r * num_rhs + j];
+                    matB[r % NCU][r / NCU] = (T) B[r * num_rhs + j];
              }
          }
          
@@ -241,7 +241,7 @@ void gelinearsolver(int num_nonzeros, int new_matrix, int n, int num_rhs, int* i
            // Return the result to B
           for (int r = 0; r < n; r++) {
               #pragma HLS pipeline
-              B[r * num_rhs + j] = dataX[r];
+              B[r * num_rhs + j] = (double) dataX[r];
           }
     } // j for loop
 }
