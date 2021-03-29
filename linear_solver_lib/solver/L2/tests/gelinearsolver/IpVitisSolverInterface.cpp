@@ -195,8 +195,6 @@ namespace Ipopt
          Data allocation
          **********/
          
-         new_matrix = true;
-         
        
        // Allocate memory for ia, ja and the values
        int vals_size;
@@ -371,13 +369,13 @@ namespace Ipopt
           Storing timing data to txt file
           *************/
           
-          int array_setup = diff(&tinit_array,&tstart);
+          /*int array_setup = diff(&tinit_array,&tstart);
           int trans1 = diff(&ttrans1,&tinit_array);
           int launch = diff(&tlaunch,&ttrans1);
           int trans2 = diff(&ttrans2,&tlaunch);
           int post =  diff(&tpost,&ttrans2);
           
-          /*FILE* fp = fopen("new_matrix_flag.txt","a");
+          FILE* fp = fopen("new_matrix_flag.txt","a");
           
           if(multisolve_iteration == 1)
           {
