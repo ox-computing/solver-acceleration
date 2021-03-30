@@ -226,7 +226,7 @@ void gelinearsolver(int num_nonzeros, int new_matrix, int n, int num_rhs, int* i
              {
                     #pragma HLS pipeline
                     #pragma HLS dependence variable = B inter false
-                    matB[r % NCU][r / NCU] = (T) B[r * num_rhs + j];
+                    matB[r % NCU][r / NCU] = B[r * num_rhs + j];
              }
          }
          
@@ -241,7 +241,7 @@ void gelinearsolver(int num_nonzeros, int new_matrix, int n, int num_rhs, int* i
            // Return the result to B
           for (int r = 0; r < n; r++) {
               #pragma HLS pipeline
-              B[r * num_rhs + j] = (double) dataX[r];
+              B[r * num_rhs + j] = dataX[r];
           }
     } // j for loop
 }
