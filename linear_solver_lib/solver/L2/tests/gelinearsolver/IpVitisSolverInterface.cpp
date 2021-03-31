@@ -207,16 +207,8 @@ namespace Ipopt
          
          for(int i = 0; i < matrix_nonzeros; i++)
          {
-             if((ia[i]-1) != (ja[i]-1))
-             {
-                 dataA[(ia[i]-1)*matrix_dimension + (ja[i]-1)] += val_[i];
-                 dataA[(ja[i]-1)*matrix_dimension + (ia[i]-1)] += val_[i];
-             }
-             else
-             {
-                 dataA[(ia[i]-1)*matrix_dimension + (ja[i]-1)] += val_[i];
-             }
-         
+                 dataA[(ia[i]-1)*matrix_dimension + (ja[i]-1)] = val_[i];
+                 dataA[(ja[i]-1)*matrix_dimension + (ia[i]-1)] = val_[i];
          }
         
         
@@ -236,9 +228,6 @@ namespace Ipopt
             }
         
         }
-        
-        printf("B allocated \n");                
-        
        
         
         gettimeofday(&tinit_array,0);
