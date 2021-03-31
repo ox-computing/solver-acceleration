@@ -17,7 +17,7 @@
 #include "xf_solver_L2.hpp"
 #include <ap_fixed.h>
 
-#define NCU_IN 10
+#define NCU_IN 5
 #define MAXN 886
 
 
@@ -37,7 +37,7 @@ extern "C" void kernel_gelinearsolver_0(int num_nonzeros, int new_matrix, int n,
 #pragma HLS INTERFACE s_axilite port = dataB bundle = control
 #pragma HLS INTERFACE s_axilite port = return bundle = control
 
-    typedef ap_fixed<63,15> fixed_val
+    typedef ap_fixed<75,15> fixed_val
 
   
     // General linear solver

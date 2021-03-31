@@ -160,6 +160,7 @@ namespace Ipopt
       bool         check_NegEVals,
       Index        numberOfNegEVals
    ){
+       
                                                
        //printf("Vitis Multisolve \n");
        
@@ -169,8 +170,38 @@ namespace Ipopt
        // Keep track of number of function calls
        static int multisolve_iteration = 0;
        multisolve_iteration++;
-                           
        
+        /******
+       Values debug
+       ********/
+
+      /* if(multisolve_iteration == 1){
+       
+            
+            double minimum = 100;
+            double maximum = 0;
+            
+            for(int i = 1; i < matrix_nonzeros; i++)
+            {
+                 if((val_[i] < minimum) && (val_[i] > 0))
+                 {
+                     minimum = val_[i];                 
+                 }
+                 
+                 if(val_[i] > maximum)
+                 {
+                     maximum = val_[i];
+                 }
+            }
+            
+            FILE* fstore = fopen("multisolve_values.txt","w");
+            
+            fprintf(fstore,"%e %e \n",minimum,maximum);
+            
+            fclose(fstore);
+       }
+                           
+       */
        
        // Timing variables
        struct timeval tstart, tinit_array, ttrans1, tlaunch, ttrans2, tpost;
@@ -375,14 +406,14 @@ namespace Ipopt
           int trans2 = diff(&ttrans2,&tlaunch);
           int post =  diff(&tpost,&ttrans2);
           
-          /*FILE* fp = fopen("new_matrix_flag.txt","a");
+          FILE* fp = fopen("testing_fixed_point_multisolve.txt","a");
           
           if(multisolve_iteration == 1)
           {
               fprintf(fp,"\n \n ***** New Run ******* \n \n");
           }
           
-          //fprintf(fp,"*** Multisolve Timings : %d ***\n",multisolve_iteration);
+          fprintf(fp,"\n*** Multisolve Timings : %d ***\n",multisolve_iteration);
           
           if(solver_singular)
           {
@@ -395,28 +426,23 @@ namespace Ipopt
           
           fprintf(fp,"Num RHS : %d \n", nrhs);
           
-          static int num_true = 0;
-          static int num_false = 0;*/
           
-          
-          /*if(new_matrix)
+          if(new_matrix)
           {
-               Jnlst().Printf(J_SUMMARY, J_LINEAR_ALGEBRA,
-                           "%d \n", 12345);
+               fprintf(fp,"New Matrix : TRUE \n");
           }
           else 
           {
-               Jnlst().Printf(J_SUMMARY, J_LINEAR_ALGEBRA,
-                           "%d \n", 54321);
-          }*/
+               fprintf(fp,"New Matrix : FALSE \n");
+          }
           
-          /*fprintf(fp,"Array initialise : %d \n",array_setup);
+          fprintf(fp,"Array initialise : %d \n",array_setup);
           fprintf(fp,"First transfer : %d \n", trans1);
           fprintf(fp,"Launch : %d \n", launch);
           fprintf(fp,"Second transfer : %d \n", trans2);
           fprintf(fp,"Post : %d \n", post);
           
-          fclose(fp);*/
+          fclose(fp);
           
           if(solver_singular)
           {
