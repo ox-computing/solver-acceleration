@@ -174,34 +174,31 @@ namespace Ipopt
         /******
        Values debug
        ********/
-
-      /* if(multisolve_iteration == 1){
+            
+       double minimum = 100;
+       double maximum = 0;
        
-            
-            double minimum = 100;
-            double maximum = 0;
-            
-            for(int i = 1; i < matrix_nonzeros; i++)
+       for(int i = 1; i < matrix_nonzeros; i++)
+       {
+            if((val_[i] < minimum) && (val_[i] > 0))
             {
-                 if((val_[i] < minimum) && (val_[i] > 0))
-                 {
-                     minimum = val_[i];                 
-                 }
-                 
-                 if(val_[i] > maximum)
-                 {
-                     maximum = val_[i];
-                 }
+                minimum = val_[i];                 
             }
             
-            FILE* fstore = fopen("multisolve_values.txt","w");
-            
-            fprintf(fstore,"%e %e \n",minimum,maximum);
-            
-            fclose(fstore);
+            if(val_[i] > maximum)
+            {
+                maximum = val_[i];
+            }
        }
-                           
-       */
+       
+       FILE* fstore = fopen("multisolve_values.txt","a");
+       
+       fprintf(fstore,"%d %e %e \n",multisolve_iteration,minimum,maximum);
+       
+       fclose(fstore);
+
+                     
+
        
        // Timing variables
        struct timeval tstart, tinit_array, ttrans1, tlaunch, ttrans2, tpost;
