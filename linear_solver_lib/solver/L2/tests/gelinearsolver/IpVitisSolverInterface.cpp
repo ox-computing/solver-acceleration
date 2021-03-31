@@ -191,7 +191,7 @@ namespace Ipopt
             }
        }
        
-       FILE* fstore = fopen("multisolve_values.txt","a");
+       FILE* fstore = fopen("multisolve_values_fixed.txt","a");
        
        fprintf(fstore,"%d %e %e \n",multisolve_iteration,minimum,maximum);
        
