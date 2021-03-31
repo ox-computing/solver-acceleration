@@ -169,6 +169,32 @@ namespace Ipopt
        // Keep track of number of function calls
        static int multisolve_iteration = 0;
        multisolve_iteration++;
+       
+         /******
+       Values debug
+       ********/
+            
+       double minimum = 100;
+       double maximum = 0;
+       
+       for(int i = 1; i < matrix_nonzeros; i++)
+       {
+            if((val_[i] < minimum) && (val_[i] > 0))
+            {
+                minimum = val_[i];                 
+            }
+            
+            if(val_[i] > maximum)
+            {
+                maximum = val_[i];
+            }
+       }
+       
+       FILE* fstore = fopen("multisolve_values_float.txt","a");
+       
+       fprintf(fstore,"%d %e %e \n",multisolve_iteration,minimum,maximum);
+       
+       fclose(fstore);
                            
        
        
