@@ -159,7 +159,7 @@ namespace Ipopt
       bool         check_NegEVals,
       Index        numberOfNegEVals
    ){
-
+        printf("Vitis Multisolve \n");
        Jnlst().Printf(J_DETAILED, J_LINEAR_ALGEBRA,
                            "Vitis : Multisolve \n");
                            
@@ -351,7 +351,7 @@ namespace Ipopt
           {
             if(std::isnan(rhs_vals[i]))
             {
-                //printf("Vitis : Matrix Singular");
+                printf("Vitis : Matrix Singular \n");
                 Jnlst().Printf(J_DETAILED, J_LINEAR_ALGEBRA,
                            "Vitis : Matrix Singular \n");
                 solver_singular = true;
