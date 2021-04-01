@@ -38,9 +38,12 @@ void subUpdate(int debug_mode, T A[NRCU][NCMAX], T rows[NCMAX], T cols[NCMAX], i
 
     int nrows = re - rs + 1;
     int ncols = ce - cs;
+    
+    unsigned int i = 0;
 
 LoopMulSub:
-    for (unsigned int i = 0; i < nrows * ncols; i++) {
+    while(i < nrows * ncols)
+    {
           
          #pragma HLS pipeline
          #pragma HLS dependence variable = A inter false
@@ -51,8 +54,16 @@ LoopMulSub:
         
         int r = i / ncols + rs;
         int c = i % ncols + cs + 1;
-
-        A[r][c] = A[r][c] - cols[r] * rows[c];    
+        
+        if(cols[r] == 0)
+        {
+            i += ncols;
+        }
+        else
+        {
+            A[r][c] = A[r][c] - cols[r] * rows[c];
+            i++;
+        }    
         
         
         
