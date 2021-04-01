@@ -17,7 +17,7 @@
 #include "xf_solver_L2.hpp"
 #include <ap_fixed.h>
 
-#define NCU_IN 5
+#define NCU_IN 2
 #define MAXN 886
 
 
