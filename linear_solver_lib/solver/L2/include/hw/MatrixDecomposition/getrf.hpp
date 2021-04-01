@@ -30,16 +30,30 @@ namespace solver {
 namespace internalgetrf {
 
 // update submatrix
-template <typename T, int NRCU, int NCMAX>
-void subUpdate(int debug_mode, T A[NRCU][NCMAX], T rows[NCMAX], T cols[NCMAX], int rs, int re, int cs, int ce) {
+template <typename T, int NRCU, int NCMAX, int NCU>
+void subUpdate(int debug_mode, T A[NCU][NRCU][NCMAX], int rows_loc[NCMAX][2], int cols_loc[NCMAX][2], T rows_val[NCMAX], T cols_val[NCMAX], int re, int cs, int ce, int rows_fill_counter, int cols_fill_counter, int s) {
     //T a00 = rows[cs];
 
     //T Acs[NRCU];
+    
+    //static int iteration = 0;
+    //iteration++;
+    
+    // Calulate the value of rs
+    
 
-    int nrows = re - rs + 1;
-    int ncols = ce - cs;
+    //int nrows = re - rs + 1;
+    //int ncols = ce - cs;
+    
+    /*#ifndef __SYNTHESIS__
+        if((iteration == 10000))
+        {
+            printf("nrows ncols : %d %d \n",nrows,ncols);
+            printf("cs rs : %d %d \n",cs,rs);
+        }
+    #endif*/
 
-LoopMulSub:
+/*LoopMulSub:
     for (unsigned int i = 0; i < nrows * ncols; i++) {
           
          #pragma HLS pipeline
@@ -47,10 +61,19 @@ LoopMulSub:
          // clang-format off
          #pragma HLS loop_tripcount min = 1 max = NCMAX*NRCU
                  // clang-format on
+        
                  
         
         int r = i / ncols + rs;
         int c = i % ncols + cs + 1;
+        
+         #ifndef __SYNTHESIS__
+        if((iteration == 10000))
+        {
+            printf("r c : %d %d \n",r,c);
+        }
+        #endif
+        
 
         A[r][c] = A[r][c] - cols[r] * rows[c];    
         
@@ -61,20 +84,55 @@ LoopMulSub:
         // Make use of sparsity
         
         
-    };
+    };*/
+    
+    int rs;
+    
+    for(int i = 0; i < rows_fill_counter; i++)
+    {
+        if((rows_loc[i][1] <= ce) && (rows_loc[i][1] > cs))
+        {
+            for(int j = 0; j < cols_fill_counter; j++)
+            {
+                // Calculte rs
+               rs  =  (cols_loc[j][0] <= (s % NCU)) ? (s / NCU + 1) : (s / NCU);
+               
+               
+               if((cols_loc[j][1] <= re) && (cols_loc[j][1] >= rs) && (cols_loc[j][0] == rows_loc[i][0])) 
+               {
+                   A[rows_loc[i][0]][cols_loc[j][1]][rows_loc[i][1]] = A[rows_loc[i][0]][cols_loc[j][1]][rows_loc[i][1]] - cols_val[j] * rows_val[i];
+               }
+            }
+        }
+    }
 }
 
 // core part of getrf (no pivoting)
 template <typename T, int NRCU, int NCMAX, int NCU>
 void getrf_core(int debug_mode, int m, int n, T A[NCU][NRCU][NCMAX], int pivot[NCMAX], int lda) {
+
+//static int iteration = 0;
+
 LoopSweeps:
     for (int s = 0; s < (m - 1); s++) {
-        T rows[NCU][NCMAX];
-        T cols[NCU][NCMAX];
-#pragma HLS array_partition variable = rows dim = 1
-#pragma HLS array_partition variable = cols dim = 1
-#pragma HLS resource variable = rows core = RAM_2P_BRAM
-#pragma HLS resource variable = cols core = RAM_2P_BRAM
+    
+    //iteration++;
+    
+        //T rows[NCU][NCMAX];
+        //T cols[NCU][NCMAX];
+        
+        int rows_loc[NCMAX][2];
+        int cols_loc[NCMAX][2];
+        
+        T rows_val[NCMAX];
+        T cols_val[NCMAX];
+        
+//#pragma HLS array_partition variable = rows dim = 1
+//#pragma HLS array_partition variable = cols dim = 1
+#pragma HLS resource variable = rows_loc core = RAM_2P_BRAM
+#pragma HLS resource variable = cols_loc core = RAM_2P_BRAM
+#pragma HLS resource variable = cols_val core = RAM_2P_BRAM
+#pragma HLS resource variable = cols_val core = RAM_2P_BRAM
 //#pragma HLS bind_storage variable = rows type = ram_2p impl = uram
 //#pragma HLS bind_storage variable = cols type = ram_2p impl = uram
 
@@ -103,21 +161,57 @@ LoopSweeps:
         int ptmp = pivot[s];
         pivot[s] = pivot[prow];
         pivot[prow] = ptmp;
+        
+        int rows_fill_counter = 0;
+        
+        T a00 = 0;
 
     LoopRows:
         for (int k = 0; k < n; k++) {
 #pragma HLS pipeline
 #pragma HLS loop_tripcount min = 1 max = NCMAX
 
-            for (int r = 0; r < NCU; r++) {
+            if(A[pidcu][pidrow][k] != 0)
+            {
+                 for (int r = 0; r < NCU; r++) {
+#pragma HLS pipeline
+                    rows_loc[row_fill_counter][0] = r;
+                    rows_loc[row_fill_counter][1] = k;
+                    rows_val[row_fill_counter] = A[pidcu][pidrow][k];
+                    
+                    rows_fill_counter++; 
+                }
+            }
+            
+            
+            if(k == s)
+            {
+                a00 = A[pidcu][pidrow][k];
+            }
+
+            /*for (int r = 0; r < NCU; r++) {
 #pragma HLS unroll
                 rows[r][k] = A[pidcu][pidrow][k];
-            };
+                
+                if(rows[r][k] != 0)
+                {
+                    rows_nonzero[row_fill_counter][0] = r;
+                    rows_nonzero[row_fill_counter][1] = k;
+                    rows_nonzero[row_fill_counter][2] = rows[r][k];
+                    
+                    row_fill_counter++;
+                }
+                
+            };*/
+            
+            T temp_var = A[pidcu][pidrow][k];
             A[pidcu][pidrow][k] = A[idscu][idsrow][k];
-            A[idscu][idsrow][k] = rows[0][k];
+            A[idscu][idsrow][k] = temp_var;
         };
         
-        T a00 = rows[0][s];
+        //T a00 = rows[0][s];
+        
+        int cols_fill_counter = 0;
 
     LoopDiv:
         for (int j = s + 1; j < m; j++) {
@@ -127,22 +221,42 @@ LoopSweeps:
             int i = j % NCU;
             int r = j / NCU;
             A[i][r][s] = A[i][r][s] / a00;
-            cols[i][r] = A[i][r][s];
+            
+            if(A[i][r][s] != 0)
+            {
+                cols_loc[cols_fill_counter][0] = i;
+                cols_loc[cols_fill_counter][1] = r;
+                cols_val[cols_fill_counter] = A[i][r][s];
+                
+                cols_fill_counter++;
+            }
+            
+            
+            /*cols[i][r] = A[i][r][s];
+            
+            if(cols[i][r] != 0)
+            {
+                cols_nonzero[cols_fill_counter][0] = i;
+                cols_nonzero[cols_fill_counter][1] = r;
+                cols_nonzero[cols_fill_counter][2] = cols[i][r];
+                
+                cols_fill_counter++;
+            }*/
         };
 
-    LoopMat:
-        for (int i = 0; i < NCU; i++) {
-            #pragma HLS unroll
+    //LoopMat:
+        //for (int i = 0; i < NCU; i++) {
+          //  #pragma HLS unroll
         
-            int rs, re, cs, ce;
-            rs = (i <= (s % NCU)) ? (s / NCU + 1) : (s / NCU);
+            int re, cs, ce;
+            //rs = (i <= (s % NCU)) ? (s / NCU + 1) : (s / NCU);
             re = NRCU - 1;
             cs = s;
             ce = NCMAX - 1;
             
-            subUpdate<T, NRCU, NCMAX>(debug_mode, A[i], rows[i], cols[i], rs, re, cs, ce);
+            subUpdate<T, NRCU, NCMAX, NCU>(debug_mode, A, rows_loc, cols_loc, rows_val, cols_val, re, cs, ce, rows_fill_counter, cols_fill_counter,s);
 
-        };
+        //};
     };
 };
 
