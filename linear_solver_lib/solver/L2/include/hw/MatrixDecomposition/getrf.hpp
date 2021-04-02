@@ -45,24 +45,43 @@ LoopMulSub:
     while(i < nrows * ncols)
     {
           
-         #pragma HLS pipeline
-         #pragma HLS dependence variable = A inter false
+         //#pragma HLS pipeline
+         //#pragma HLS dependence variable = A inter false
          // clang-format off
          #pragma HLS loop_tripcount min = 1 max = NCMAX*NRCU
                  // clang-format on
                  
         
-        int r = i / ncols + rs;
-        int c = i % ncols + cs + 1;
+        int r_init = i / ncols + rs;
+        int c_init = i % ncols + cs + 1;
         
-        if(cols[r] == 0)
+        if(cols[r_init] == 0)
         {
             i += ncols;
         }
         else
         {
-            A[r][c] = A[r][c] - cols[r] * rows[c];
-            i++;
+            
+            int c_sub = c_init;
+            int r_sub = r_init;
+            
+            
+            while(r_sub == r_init)
+            {
+               #pragma HLS pipeline
+               #pragma HLS dependence variable = A inter false
+               // clang-format off
+               
+               A[r_sub][c_sub] = A[r_sub][c_sub] - cols[r_sub] * rows[c_sub];
+               
+               i++;
+               
+               r_sub = i / ncols + rs;
+               c_sub = i % ncols + cs + 1;
+               
+            }
+                 
+               
         }    
         
         
