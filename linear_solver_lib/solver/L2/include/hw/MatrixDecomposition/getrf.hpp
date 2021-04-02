@@ -39,50 +39,41 @@ void subUpdate(int debug_mode, T A[NRCU][NCMAX], T rows[NCMAX], T cols[NCMAX], i
     int nrows = re - rs + 1;
     int ncols = ce - cs;
     
-    unsigned int i = 0;
 
 LoopMulSub:
-    while(i < nrows * ncols)
+    for(int i = 0; i < nrows * ncols; i += ncols)
     {
           
          //#pragma HLS pipeline
          //#pragma HLS dependence variable = A inter false
          // clang-format off
-         #pragma HLS loop_tripcount min = 1 max = NCMAX*NRCU
+         //#pragma HLS loop_tripcount min = 1 max = NCMAX*NRCU
                  // clang-format on
                  
         
         int r_init = i / ncols + rs;
-        int c_init = i % ncols + cs + 1;
+        //int c_init = i % ncols + cs + 1;
         
-        if(cols[r_init] == 0)
+        if(cols[r_init] != 0)
         {
-            i += ncols;
-        }
-        else
-        {
+        
+            int c_init = i % ncols + cs + 1;
             
-            int c_sub = c_init;
-            int r_sub = r_init;
-            
-            
-            while(r_sub == r_init)
+            for(int j = c_init; j < c_init + ncols; j++)
             {
                #pragma HLS pipeline
                #pragma HLS dependence variable = A inter false
                // clang-format off
                
-               A[r_sub][c_sub] = A[r_sub][c_sub] - cols[r_sub] * rows[c_sub];
                
-               i++;
-               
-               r_sub = i / ncols + rs;
-               c_sub = i % ncols + cs + 1;
+               A[r_init][j] = A[r_init][j] - cols[r_init] * rows[j];
                
             }
+            
+        }   
                  
-               
-        }    
+              
+
         
         
         
