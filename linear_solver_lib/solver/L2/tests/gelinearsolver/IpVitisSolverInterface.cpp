@@ -177,16 +177,16 @@ namespace Ipopt
        double minimum = 100;
        double maximum = 0;
        
-       for(int i = 1; i < matrix_nonzeros; i++)
+       for(int i = 0; i < matrix_dimension; i++)
        {
-            if((val_[i] < minimum) && (val_[i] > 0))
+            if((rhs_vals[i] < minimum) && (rhs_vals[i] > 0))
             {
-                minimum = val_[i];                 
+                minimum = rhs_vals[i];                 
             }
             
-            if(val_[i] > maximum)
+            if(rhs_vals[i] > maximum)
             {
-                maximum = val_[i];
+                maximum = rhs_vals[i];
             }
        }
        
