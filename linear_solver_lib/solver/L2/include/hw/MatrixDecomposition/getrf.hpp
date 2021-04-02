@@ -31,7 +31,7 @@ namespace internalgetrf {
 
 // update submatrix
 template <typename T, int NRCU, int NCMAX>
-void subUpdate(int debug_mode, T A[NRCU][NCMAX], T rows[NCMAX], T cols[NCMAX], int rs, int re, int cs, int ce) {
+void subUpdate(int debug_mode, T A[NRCU][NCMAX], T rows[NCMAX], int row_location[NCMAX], int row_counter, T cols[NCMAX], int rs, int re, int cs, int ce) {
     //T a00 = rows[cs];
 
     //T Acs[NRCU];
@@ -59,15 +59,16 @@ LoopMulSub:
         
             int c_init = i % ncols + cs + 1;
             
-            for(int j = c_init; j < c_init + ncols; j++)
+            for(int j = 0; j < row_counter; j++)
             {
                #pragma HLS pipeline
                #pragma HLS dependence variable = A inter false
                // clang-format off
                
-               
-               A[r_init][j] = A[r_init][j] - cols[r_init] * rows[j];
-               
+               if((c_init <= row_location[j]) && (row_location[j] < c_init + ncols))
+               {
+                   A[r_init][row_location[j]] = A[r_init][row_location[j]] - cols[r_init] * rows[row_location[j]];
+               }
             }
             
         }   
@@ -92,6 +93,9 @@ LoopSweeps:
     for (int s = 0; s < (m - 1); s++) {
         T rows[NCU][NCMAX];
         T cols[NCU][NCMAX];
+        
+        int rows_location[NCMAX]
+        
 #pragma HLS array_partition variable = rows dim = 1
 #pragma HLS array_partition variable = cols dim = 1
 #pragma HLS resource variable = rows core = RAM_2P_BRAM
@@ -124,6 +128,8 @@ LoopSweeps:
         int ptmp = pivot[s];
         pivot[s] = pivot[prow];
         pivot[prow] = ptmp;
+        
+        int row_counter = 0;
 
     LoopRows:
         for (int k = 0; k < n; k++) {
@@ -134,6 +140,13 @@ LoopSweeps:
 #pragma HLS unroll
                 rows[r][k] = A[pidcu][pidrow][k];
             };
+            
+            if(rows[0][k] != 0)
+            {
+                rows_location[counter] = k;
+                row_counter++;
+            }
+            
             A[pidcu][pidrow][k] = A[idscu][idsrow][k];
             A[idscu][idsrow][k] = rows[0][k];
         };
@@ -161,7 +174,7 @@ LoopSweeps:
             cs = s;
             ce = NCMAX - 1;
             
-            subUpdate<T, NRCU, NCMAX>(debug_mode, A[i], rows[i], cols[i], rs, re, cs, ce);
+            subUpdate<T, NRCU, NCMAX>(debug_mode, A[i], rows[i], row_location, row_counter, cols[i], rs, re, cs, ce);
 
         };
     };
