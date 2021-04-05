@@ -37,7 +37,7 @@ extern "C" void kernel_gelinearsolver_0(int num_nonzeros, int new_matrix, int n,
 #pragma HLS INTERFACE s_axilite port = dataB bundle = control
 #pragma HLS INTERFACE s_axilite port = return bundle = control
 
-    typedef ap_fixed<200,15> fixed_val
+    typedef ap_fixed<206,22> fixed_val
 
   
     // General linear solver
