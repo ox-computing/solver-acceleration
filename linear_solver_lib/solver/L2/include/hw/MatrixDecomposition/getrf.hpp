@@ -143,7 +143,7 @@ LoopSweeps:
             
             if(rows[0][k] != 0)
             {
-                rows_location[counter] = k;
+                rows_location[row_counter] = k;
                 row_counter++;
             }
             
