@@ -47,19 +47,19 @@ int main(
     **************/
     struct timeval tstart, tend;
     
-    FILE* file = fopen("tutorial_iterations_timings.txt","w");
+    FILE* file = fopen("tutorial_iterations_timings_vitis.txt","w");
     
 
-    int number_iterations = 1;
+    int number_iterations = 30;
 
     
     for(int iteration = 1; iteration <= number_iterations; iteration++)
     {   
 
    // Number of variables
-   Index N = 300;
+   Index N = 10*iteration;
    
-   fprintf(file," %d ",N);
+   fprintf(file,"%d ",N);
    
    gettimeofday(&tstart,0);
 
@@ -110,7 +110,7 @@ int main(
    
    int time_diff = diff(&tend,&tstart);
    
-   fprintf(file," %d \n",time_diff);
+   fprintf(file,"%d \n",time_diff);
    
    } //for loop
 

@@ -134,11 +134,14 @@ void reset_array(int n, T matA[NCU][(NMAX + NCU - 1) / NCU][NMAX])
         Loop_reset_1:
         for(int r = 0; r < n; r++)
         {
-            for(int c = 0; c < n; c++)
+            matA[r % NCU][r / NCU][r] = 0.0
+            
+            for(int c = 0; c < r; c++)
             {
                 #pragma HLS pipeline
                 #pragma HLS dependence variable = matA inter false
                 matA[r % NCU][r / NCU][c] = 0.0;
+                matA[c % NCU][c / NCU][r] = 0.0;
                
             }     
         }
@@ -246,7 +249,7 @@ void gelinearsolver(int num_nonzeros, int new_matrix, int n, int num_rhs, int* i
          
              if((iter % 2) != 0)
              {
-                   #pragma HLS dataflow
+                  // #pragma HLS dataflow
                   // Zero the other array
                   internal_gelinear::reset_array<T, NCU, NMAX>(n, matA2);
                   
@@ -261,7 +264,7 @@ void gelinearsolver(int num_nonzeros, int new_matrix, int n, int num_rhs, int* i
              }
              else
              {
-                     #pragma HLS dataflow
+                    // #pragma HLS dataflow
                    // Zero the other array
                   internal_gelinear::reset_array<T, NCU, NMAX>(n, matA1);
                   
