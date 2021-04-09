@@ -15,7 +15,7 @@
  */
 
 #include "xf_solver_L2.hpp"
-#define NCU 36
+//#define NCU 36
 #define MAXN 886
 
 
@@ -33,5 +33,5 @@ extern "C" void kernel_gelinearsolver_0(int num_rhs, int n, double* dataA, doubl
 
 
     // Calling for cholesky core function
-    xf::solver::gelinearsolver<double, MAXN, NCU>(n, num_rhs, dataA, dataB);
+    xf::solver::gelinearsolver<double, MAXN, NCU_IN>(n, num_rhs, dataA, dataB);
 }
