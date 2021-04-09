@@ -169,6 +169,9 @@ namespace Ipopt
        // Keep track of number of function calls
        static int multisolve_iteration = 0;
        multisolve_iteration++;
+       
+       // Set new_matrix to false for debug
+       new_matrix = false;
                            
        
        
