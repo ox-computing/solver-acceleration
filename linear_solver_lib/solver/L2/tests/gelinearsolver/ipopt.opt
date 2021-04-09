@@ -1,5 +1,5 @@
 
-linear_solver custom
+#linear_solver ma57
 #output_file vitisoutput.txt
 #output_file ma97output.txt
 

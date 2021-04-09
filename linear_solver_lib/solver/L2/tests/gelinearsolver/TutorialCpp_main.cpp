@@ -47,10 +47,10 @@ int main(
     **************/
     struct timeval tstart, tend;
     
-    FILE* file = fopen("tutorial_iterations_timings_vitis.txt","w");
+    FILE* file = fopen("tutorial_iterations_timings_vitis.txt","a");
     
 
-    int number_iterations = 30;
+    int number_iterations = 40;
 
     
     for(int iteration = 1; iteration <= number_iterations; iteration++)
@@ -83,6 +83,7 @@ int main(
    //       suitable for your optimization problem.
    app->Options()->SetNumericValue("tol", 1e-9);
    app->Options()->SetStringValue("mu_strategy", "adaptive");
+   app->Options()->SetStringValue("linear_solver", "custom");
 
    // Intialize the IpoptApplication and process the options
    app->Initialize();
