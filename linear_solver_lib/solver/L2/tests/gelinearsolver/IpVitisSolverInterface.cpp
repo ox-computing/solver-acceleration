@@ -378,7 +378,7 @@ namespace Ipopt
           int trans2 = diff(&ttrans2,&tlaunch);
           int post =  diff(&tpost,&ttrans2);
           
-          FILE* fp = fopen("main_multisolve.txt","a");
+          FILE* fp = fopen("new_matrix_false_multisolve.txt","a");
           
           if(multisolve_iteration == 1)
           {
