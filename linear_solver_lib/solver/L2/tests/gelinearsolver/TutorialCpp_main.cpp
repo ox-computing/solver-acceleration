@@ -47,19 +47,19 @@ int main(
     **************/
     struct timeval tstart, tend;
     
-    FILE* file = fopen("tutorial_iterations_timings.txt","w");
+    FILE* file = fopen("tutorial_iterations_timings_vitis.txt","a");
     
 
-    int number_iterations = 1;
+    int number_iterations = 40;
 
     
     for(int iteration = 1; iteration <= number_iterations; iteration++)
     {   
 
    // Number of variables
-   Index N = 300;
+   Index N = 10*iteration;
    
-   fprintf(file," %d ",N);
+   fprintf(file,"%d ",N);
    
    gettimeofday(&tstart,0);
 
@@ -83,6 +83,7 @@ int main(
    //       suitable for your optimization problem.
    app->Options()->SetNumericValue("tol", 1e-9);
    app->Options()->SetStringValue("mu_strategy", "adaptive");
+   app->Options()->SetStringValue("linear_solver", "custom");
 
    // Intialize the IpoptApplication and process the options
    app->Initialize();
@@ -110,7 +111,7 @@ int main(
    
    int time_diff = diff(&tend,&tstart);
    
-   fprintf(file," %d \n",time_diff);
+   fprintf(file,"%d \n",time_diff);
    
    } //for loop
 

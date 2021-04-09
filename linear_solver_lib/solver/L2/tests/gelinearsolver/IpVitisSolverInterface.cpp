@@ -329,9 +329,14 @@ namespace Ipopt
           int trans2 = diff(&ttrans2,&tlaunch);
           int post =  diff(&tpost,&ttrans2);
           
-          FILE* fp = fopen("multisolve_timings_interface.txt","a");
+          FILE* fp = fopen("old_build_multisolve.txt","a");
           
-          fprintf(fp,"\n*** Multisolve Timings : %d ***\n",multisolve_iteration);
+          if(multisolve_iteration == 1)
+          {
+              fprintf(fp,"\n \n ***** New Run ******* \n \n");
+          }
+          
+          fprintf(fp,"*** Multisolve Timings : %d ***\n",multisolve_iteration);
           
           if(solver_singular)
           {
@@ -340,13 +345,17 @@ namespace Ipopt
           
           fprintf(fp,"Matrix dimension : %d \n",matrix_dimension);
           
+          fprintf(fp,"Matrix Nonzeros : %d \n",matrix_nonzeros);
+          
+          fprintf(fp,"Num RHS : %d \n", nrhs);
+         
           if(new_matrix)
           {
-              fprintf(fp,"New Matrix TRUE \n");
+               fprintf(fp,"New Matrix TRUE \n");
           }
           else 
           {
-              fprintf(fp,"New Matrix FALSE \n");
+               fprintf(fp,"New Matrix FALSE \n");
           }
           
           fprintf(fp,"Array initialise : %d \n",array_setup);
