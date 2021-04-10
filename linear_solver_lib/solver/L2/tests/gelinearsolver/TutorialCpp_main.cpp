@@ -48,14 +48,13 @@ int main(
     **************/
     //struct timeval tstart, tend;
     
-    FILE* file = fopen("tutorial_iterations_timings_vitis_chrono.txt","a");
-    
-
     int number_iterations = 40;
 
     
     for(int iteration = 1; iteration <= number_iterations; iteration++)
     {   
+    
+    FILE* file = fopen("tutorial_iterations_timings_vitis_chrono.txt","a");
 
    // Number of variables
    Index N = 10*iteration;
@@ -82,9 +81,10 @@ int main(
    // Change some options
    // Note: The following choices are only examples, they might not be
    //       suitable for your optimization problem.
-   app->Options()->SetNumericValue("tol", 1e-9);
+   app->Options()->SetNumericValue("tol", 1e-7);
    app->Options()->SetStringValue("mu_strategy", "adaptive");
    app->Options()->SetStringValue("linear_solver", "custom");
+   app->Options()->SetNumericValue("max_iter", 500);
 
    // Intialize the IpoptApplication and process the options
    app->Initialize();
@@ -111,6 +111,8 @@ int main(
    auto end = std::chrono::steady_clock::now();
    
    fprintf(file, "%f \n", std::chrono::duration <double, std::milli> (end-start).count());
+   
+   fclose(file);
    
    } //for loop
 
