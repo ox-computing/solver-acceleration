@@ -84,6 +84,7 @@ int main(
    app->Options()->SetNumericValue("tol", 1e-7);
    app->Options()->SetStringValue("mu_strategy", "adaptive");
    app->Options()->SetStringValue("linear_solver", "custom");
+   app->Options()->SetNumericValue("max_iter", 500);
 
    // Intialize the IpoptApplication and process the options
    app->Initialize();
