@@ -26,6 +26,7 @@
 #include <cstdio>
 #include <fstream>
 #include <sys/time.h>
+#include <chrono>
 
 #include "IpIpoptApplication.hpp"
 #include "TutorialCpp_nlp.hpp"
@@ -45,12 +46,12 @@ int main(
     /***********
     Store timing values
     **************/
-    struct timeval tstart, tend;
+    //struct timeval tstart, tend;
     
-    FILE* file = fopen("tutorial_iterations_timings_vitis.txt","w");
+    FILE* file = fopen("tutorial_iterations_timings_vitis_chrono.txt","a");
     
 
-    int number_iterations = 30;
+    int number_iterations = 40;
 
     
     for(int iteration = 1; iteration <= number_iterations; iteration++)
@@ -61,7 +62,7 @@ int main(
    
    fprintf(file,"%d ",N);
    
-   gettimeofday(&tstart,0);
+   auto start = std::chrono::steady_clock::now();
 
    // constant terms in the constraints
    Number* a = new double[N - 2];
@@ -83,6 +84,7 @@ int main(
    //       suitable for your optimization problem.
    app->Options()->SetNumericValue("tol", 1e-9);
    app->Options()->SetStringValue("mu_strategy", "adaptive");
+   app->Options()->SetStringValue("linear_solver", "custom");
 
    // Intialize the IpoptApplication and process the options
    app->Initialize();
@@ -106,11 +108,9 @@ int main(
    // However, we created the Number array for a here and have to delete it
    delete[] a;
 
-   gettimeofday(&tend,0);
+   auto end = std::chrono::steady_clock::now();
    
-   int time_diff = diff(&tend,&tstart);
-   
-   fprintf(file,"%d \n",time_diff);
+   fprintf(file, "%f \n", std::chrono::duration <double, std::milli> (end-start).count());
    
    } //for loop
 
