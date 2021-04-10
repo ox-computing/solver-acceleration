@@ -215,8 +215,10 @@ void gelinearsolver(int num_nonzeros, int new_matrix, int n, int num_rhs, int* i
       static T matA2[NCU][(NMAX + NCU - 1) / NCU][NMAX] = {};
       static T matB[NCU][(NMAX + NCU - 1) / NCU] = {};
       
-      static int iter = 0;
+      //static int iter = 0;
       int debug_mode = 0;
+      
+      static bool first_filled = false;
       
       T dataX[NMAX];
       
@@ -244,10 +246,8 @@ void gelinearsolver(int num_nonzeros, int new_matrix, int n, int num_rhs, int* i
          
          // Only edit matA if new matrix flag set
          if((new_matrix == 1) && (j == 0))
-         {   
-             iter++;
-         
-             if((iter % 2) != 0)
+         {            
+             if(!first_filled)
              {
                   // #pragma HLS dataflow
                   // Zero the other array
@@ -261,6 +261,8 @@ void gelinearsolver(int num_nonzeros, int new_matrix, int n, int num_rhs, int* i
                   
                   // Carry out solve
                   internal_gelinear::solver_core<T, NMAX, NCU>(new_matrix, debug_mode, n, j, matA1, matB, dataX);
+                  
+                  first_filled = true;
              }
              else
              {
@@ -276,6 +278,8 @@ void gelinearsolver(int num_nonzeros, int new_matrix, int n, int num_rhs, int* i
                   
                   // Carry out solve
                   internal_gelinear::solver_core<T, NMAX, NCU>(new_matrix, debug_mode, n, j, matA2, matB, dataX);
+                  
+                  first_filled = false;
              }
          
          }
@@ -284,7 +288,7 @@ void gelinearsolver(int num_nonzeros, int new_matrix, int n, int num_rhs, int* i
               // Fill B
               internal_gelinear::fill_B<T, NCU, NMAX>(j, num_rhs, n, matB, B);
               
-              if((iter % 2) != 0)
+              if(first_filled)
               {
                    internal_gelinear::solver_core<T, NMAX, NCU>(new_matrix, debug_mode, n, j, matA1, matB, dataX);
               }
