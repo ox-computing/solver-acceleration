@@ -375,7 +375,7 @@ namespace Ipopt
           int trans2 = diff(&ttrans2,&tlaunch);
           int post =  diff(&tpost,&ttrans2);
           
-          FILE* fp = fopen("multisolve_test_new.txt","a");
+          FILE* fp = fopen("edit_getrf_while_with_functions_multisolve.txt","a");
           
           if(multisolve_iteration == 1)
           {
