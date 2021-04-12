@@ -115,7 +115,7 @@ void solver_core(int new_matrix, int debug_mode, int n, int j, T dataA[NCU][(N +
     T dataC[NCU][(N + NCU - 1) / NCU];
     int info;
     
-    if((new_matrix == 1) && (j == 0))
+    if((new_matrix == 1) && (j == 0) && (debug_mode != 10))
     {
     getrf_core<T, NRCU, N, NCU>(debug_mode, n, dataA, n, P);
     }
@@ -159,7 +159,7 @@ void gelinearsolver(int debug_mode, int num_nonzeros, int new_matrix, int n, int
       #pragma HLS resource variable = matA core = XPM_MEMORY uram
 
       
-      //#pragma HLS bind_storage variable = matA type = ram_t2p impl = uram
+      //#pragma HLS bind_storage variable = matA type = ram_2p impl = bram
       //#pragma HLS bind_storage variable = matB type = ram_t2p impl = uram
 
       
@@ -171,55 +171,54 @@ void gelinearsolver(int debug_mode, int num_nonzeros, int new_matrix, int n, int
         *********/
          
          // Only edit matA if new matrix flag set
-         if((new_matrix == 1) && (j == 0) && (debug_mode != 1))
+         if((new_matrix == 1) && (j == 0))
          {   
-             if(debug_mode != 2)
+             Loop_reset_1:
+             for(int r = 0; r < n; r++)
              {
-                Loop_reset_1:
-                for(int r = 0; r < n; r++)
-                {        
-                    for(int c = 0; c < n; c++)
-                    {
-                        #pragma HLS pipeline
-                        #pragma HLS dependence variable = matA inter false
-                        matA[r % NCU][r / NCU][c] = 0.0;
-                       
-                    }     
-                }    
+                 #pragma HLS dependence variable = B inter false
+                 matB[r % NCU][r / NCU] = B[r * num_rhs + j];
+                 
+                 matA[r % NCU][r / NCU][r] = 0.0;
+                 
+                 for(int c = 0; c < r; c++)
+                 {
+                     #pragma HLS pipeline
+                     #pragma HLS dependence variable = matA inter false
+                     matA[r % NCU][r / NCU][c] = 0.0;
+                     matA[c % NCU][c / NCU][r] = 0.0;
+                    
+                 }     
              }
          
              
              // Fill matA
-             if(debug_mode != 3)
+             Loop_read_1:
+             for(int r = 0; r < num_nonzeros; r++)
              {
-                 Loop_read_1:
-                 for(int r = 0; r < num_nonzeros; r++)
+                 #pragma HLS pipeline
+                 #pragma HLS dependence variable = A inter false
+                 #pragma HLS dependence variable = A intra false
+                 #pragma HLS dependence variable = matA intra false
+                 #pragma HLS dependence variable = matA inter false
+                 
+                 // If not on diagonal
+                 if(ia[r] != ja[r])
+                 {  
+                   // Fill both sides
+                   matA[ia[r] % NCU][ia[r] / NCU][ja[r]] += A[r];
+                   matA[ja[r] % NCU][ja[r] / NCU][ia[r]] += A[r];
+                 }
+                 else
                  {
-                     #pragma HLS pipeline
-                     #pragma HLS dependence variable = A inter false
-                     #pragma HLS dependence variable = A intra false
-                     #pragma HLS dependence variable = matA intra false
-                     #pragma HLS dependence variable = matA inter false
-                     
-                     // If not on diagonal
-                     if(ia[r] != ja[r])
-                     {  
-                       // Fill both sides
-                       matA[ia[r] % NCU][ia[r] / NCU][ja[r]] += A[r];
-                       matA[ja[r] % NCU][ja[r] / NCU][ia[r]] += A[r];
-                     }
-                     else
-                     {
-                         // Only fill diagonal
-                         matA[ia[r] % NCU][ia[r] / NCU][ja[r]] += A[r];
-                     }
-                 }    
+                     // Only fill diagonal
+                     matA[ia[r] % NCU][ia[r] / NCU][ja[r]] += A[r];
+                 }
              }
          
          }
          
-         
-         if(debug_mode != 4)
+         else
          {
              // Fill matB
              Loop_read_2:
@@ -235,7 +234,7 @@ void gelinearsolver(int debug_mode, int num_nonzeros, int new_matrix, int n, int
 
           T dataX[NMAX];
           
-          int debug_mode = 0;
+          //int debug_mode = 0;
           internal_gelinear::solver_core<T, NMAX, NCU>(new_matrix, debug_mode, n, j, matA, matB, dataX);
 
 

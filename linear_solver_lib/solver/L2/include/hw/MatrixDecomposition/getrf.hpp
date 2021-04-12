@@ -140,8 +140,10 @@ LoopSweeps:
             cs = s;
             ce = NCMAX - 1;
             
-            subUpdate<T, NRCU, NCMAX>(debug_mode, A[i], rows[i], cols[i], rs, re, cs, ce);
-
+            if(debug_mode != 15)
+            {
+              subUpdate<T, NRCU, NCMAX>(debug_mode, A[i], rows[i], cols[i], rs, re, cs, ce);
+            }
         };
     };
 };
