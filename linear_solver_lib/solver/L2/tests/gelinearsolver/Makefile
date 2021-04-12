@@ -61,6 +61,8 @@ DEVICE ?= xilinx_u50_gen3x16_xdma_201920_3
 RUNS ?= 1
 SEED ?= 12
 
+NUM_CUS ?= 36
+
 include ./utils.mk
 
 XDEVICE := $(call device2xsa, $(DEVICE))
@@ -157,6 +159,7 @@ VPP_FLAGS += -I$(XFLIB_DIR)/ext
 
 VPP_FLAGS += --optimize 3
 VPP_FLAGS += --kernel_frequency 500
+VPP_FLAGS += -D NCU_IN=$(NUM_CUS)
 
 
 ############################## Declaring Binary Containers ##############################
