@@ -101,10 +101,10 @@ namespace Ipopt
       Store timings
       *********/
       
-      static FILE* fk = fopen("impl_timings_interface.txt","w");
+      //static FILE* fk = fopen("impl_timings_interface.txt","w");
       
-      fprintf(fk,"\n*** InitializeImpl : %d ***\n", impl_iteration);
-      fprintf(fk,"Runtime : %d \n",time);
+      //fprintf(fk,"\n*** InitializeImpl : %d ***\n", impl_iteration);
+     //fprintf(fk,"Runtime : %d \n",time);
       
     
       return true;
@@ -286,12 +286,7 @@ namespace Ipopt
          // Setup kernel variables
          int new_matrix_int = new_matrix;
          
-         int debug_mode = 0;
-         
-         if(multisolve_iteration != 1)
-         {
-            debug_mode = 1;
-         }
+         int debug_mode = DEBUG;
          
          
          kernel_gelinearsolver_0.setArg(0, debug_mode);
