@@ -18,6 +18,8 @@ CXXFLAGS += -I$(IP_DIR)/Algorithm
 CXXFLAGS += -I$(IP_DIR)/Interfaces
 CXXFLAGS += -I$(IP_DIR)/LinAlg
 
+DEBUG_VAL ?= 0
+
 CXXFLAGS += -O2
 CXXLINKFLAGS += -O2
 
@@ -26,14 +28,14 @@ shared: $(LIBFILE)
 
 .PHONY: clean
 clean:
-	rm $(LIBFILE) xcl2.o IpVitisSolverInterface.o
+	rm xcl2.o IpVitisSolverInterface.o
 
 
 xcl2.o: xcl2.cpp
 	$(CXX) -c xcl2.cpp -fPIC -o xcl2.o $(CXXFLAGS)
 
 IpVitisSolverInterface.o: IpVitisSolverInterface.cpp
-	$(CXX) -c IpVitisSolverInterface.cpp -fPIC -o IpVitisSolverInterface.o $(CXXFLAGS)
+	$(CXX) -c IpVitisSolverInterface.cpp -DDEBUG=$(DEBUG_VAL) -fPIC -o IpVitisSolverInterface.o $(CXXFLAGS)
 
 $(LIBFILE): IpVitisSolverInterface.o xcl2.o
 	$(CXX) -shared -o $(LIBFILE) xcl2.o IpVitisSolverInterface.o $(CXXLINKFLAGS)

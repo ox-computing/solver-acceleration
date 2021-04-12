@@ -15,7 +15,7 @@
  */
 
 #include "xf_solver_L2.hpp"
-#define NCU 36
+//#define NCU 36
 #define MAXN 998
 
 
@@ -39,6 +39,6 @@ extern "C" void kernel_gelinearsolver_0(int debug_mode, int num_nonzeros, int ne
     //int debug_mode = 0;
   
        // General linear solver
-       xf::solver::gelinearsolver<double, MAXN, NCU>(debug_mode, num_nonzeros, new_matrix, n, num_rhs, A_rows, A_cols, A_vals, dataB);
+       xf::solver::gelinearsolver<double, MAXN, NCU_IN>(debug_mode, num_nonzeros, new_matrix, n, num_rhs, A_rows, A_cols, A_vals, dataB);
     
 }

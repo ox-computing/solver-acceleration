@@ -88,7 +88,7 @@ namespace Ipopt
       
       gettimeofday(&tend,0);
       
-      int time = diff(&tend, &tstart);
+      //int time = diff(&tend, &tstart);
       
       /*****
       Store timing values
