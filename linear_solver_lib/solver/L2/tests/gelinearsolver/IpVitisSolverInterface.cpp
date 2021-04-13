@@ -7,6 +7,7 @@ Source for Vitis solver interface
 #include "IpVitisSolverInterface.hpp"
 
 
+
 namespace Ipopt
 {
   
@@ -94,8 +95,8 @@ namespace Ipopt
       Store timing values
       *******/
       
-      static int impl_iteration = 0;
-      impl_iteration++;
+      //static int impl_iteration = 0;
+      //impl_iteration++;
       
       /*******
       Store timings
@@ -167,6 +168,16 @@ namespace Ipopt
        static int multisolve_iteration = 0;
        multisolve_iteration++;
        
+       if(multisolve_iteration == 2)
+       {
+           for(int i = 0; i < matrix_nonzeros; i++)
+            {
+            
+                printf("%d %d %f \n",ia[i],ja[i],val_[i]);
+                
+            }
+       }
+       
        
        // Timing variables
        struct timeval tstart, tinit_array, ttrans1, tlaunch, ttrans2, tpost;
@@ -186,76 +197,91 @@ namespace Ipopt
        {
          IpData().TimingStats().LinearSystemBackSolve().Start();
        }
-         
-         /**********
-         Data allocation
-         **********/
-         
-       
-       // Allocate memory for ia, ja and the values
-       int vals_size;
-       int ia_size;
-       int ja_size;
-       
-        // Set size as nonzeros if new matrix flag or one otherwise
-        if(new_matrix)
-        {   
-            vals_size = matrix_nonzeros;
-            ia_size = matrix_nonzeros;
-            ja_size = matrix_nonzeros;
-        }
-        else
+           
+        QDLDL_int An = matrix_dimension;
+        
+        QDLDL_int* Ap; 
+        QDLDL_int* Ai;
+        QDLDL_float* Ax;
+        QDLDL_float* b;
+        
+        Ap = aligned_alloc<QDLDL_int>(An + 1);
+        Ai = aligned_alloc<QDLDL_int>(matrix_nonzeros);
+        Ax = aligned_alloc<QDLDL_float>(matrix_nonzeros); 
+        b = aligned_alloc<QDLDL_float>(An*num_rhs);
+        
+        // Error handling from kernel
+        QDLDL_int* return_values;
+        return_values = aligned_alloc<QDLDL_int>(2);
+        return_values[0] = 0;
+        return_values[1] = 0;
+        
+        
+        // Initalise Ap to zero
+        for(int i = 0; i < An + 1; i++)
         {
-            vals_size = 1;
-            ia_size = 1;
-            ja_size = 1;
+            Ap[i] = 0;
+        
         }
         
-
-        // Initilialise and allocate pointers
-        double * A_vals;
-        A_vals = aligned_alloc<double>(vals_size);
-        
-        Index * ia_alloc;
-        ia_alloc = aligned_alloc<Index>(ia_size);
-        
-        Index * ja_alloc;
-        ja_alloc = aligned_alloc<Index>(ja_size);
+        int current_ia = 0;
+        int current_ja = 0;
+        int counter = 0;
         
         
-        // Assign values provided by IPOPT to allocated
-        if(new_matrix)
+        // Transpose values and fill
+        for(int i = 0; i < matrix_nonzeros; i++)
         {
-           for(int i = 0; i < matrix_nonzeros; i++)
-           {
-               A_vals[i] = val_[i];
-               ia_alloc[i] = ia[i] - 1;
-               ja_alloc[i] = ja[i] - 1;
+            bool already_visited = false;
+            
+            current_ia = ja[i] - 1;
+            current_ja = ia[i] - 1;
+            
+            // Determine if we have already stored a value at this location
+            for(int r = Ap[current_ja] + 1; r <= Ap[current_ja + 1]; r++)
+            {
+                if(Ai[r] == current_ia)
+                {
+                    // Add value
+                    Ax[r] += val_[i];
+                    
+                    // Do not implement new Ap increase
+                    already_visited = true;
+                } 
+            
+            } 
+            
+            if(!already_visited)
+            {
+         
+               for(int j = current_ja + 1; j < An + 1; j++)
+               {
+                   Ap[j]++;
+               }
+               
+               Ai[counter] = current_ia;
+               Ax[counter] = val_[i];
+               
+               counter++;
+               
            }
         }
         
-        else
+        //for(int i = 0; i < An + 1; i++)
+        //{
+        //    for(int j = Ap[i] + 1; j =< Ap[i+1]; j++)
+        //    {
+        //        int row = Ai[j];
+                
+        //    }
+        
+        
+       // }
+        
+        // Fill b
+        for(int i = 0; i < An*num_rhs; i++)
         {
-            A_vals[0] = 0;
-            ia_alloc[0] = 0;
-            ja_alloc[0] = 0;
-        }
-        
-        
-        // Allocate memory for B
-        dataB_size = matrix_dimension*num_rhs;
-        double * dataB;
-        dataB = aligned_alloc<double>(dataB_size);
-   
-
-        // Assign the values of B by transposing B and filling allocated array
-        int counter = 0;
-        for(int i = 0; i < matrix_dimension; i++){
-            for(int k = 0; k < num_rhs; k++)
-            {
-                dataB[counter] = rhs_vals[i + k*matrix_dimension];
-                counter++;
-            }
+            b[i] = rhs_vals[i];
         
         }
         
@@ -268,40 +294,35 @@ namespace Ipopt
          ************/
          
          // Setup buffers
-         cl::Buffer buffer_ia = cl::Buffer(context, CL_MEM_USE_HOST_PTR | CL_MEM_READ_WRITE,
-                            sizeof(Index) * ia_size, ia_alloc, NULL);
+         cl::Buffer buffer_Ap = cl::Buffer(context, CL_MEM_USE_HOST_PTR | CL_MEM_READ_WRITE,
+                            sizeof(QDLDL_int) * (An+1), Ap, NULL);
                             
          
-         cl::Buffer buffer_ja = cl::Buffer(context, CL_MEM_USE_HOST_PTR | CL_MEM_READ_WRITE,
-                            sizeof(Index) * ja_size, ja_alloc, NULL);
+         cl::Buffer buffer_Ai = cl::Buffer(context, CL_MEM_USE_HOST_PTR | CL_MEM_READ_WRITE,
+                            sizeof(QDLDL_int) * matrix_nonzeros, Ai, NULL);
                             
          
-         cl::Buffer buffer_A_vals = cl::Buffer(context, CL_MEM_USE_HOST_PTR | CL_MEM_READ_WRITE,
-                            sizeof(double) * vals_size, A_vals, NULL);
+         cl::Buffer buffer_Ax = cl::Buffer(context, CL_MEM_USE_HOST_PTR | CL_MEM_READ_WRITE,
+                            sizeof(QDLDL_float) * matrix_nonzeros, Ax, NULL);
                             
          
-         cl::Buffer buffer_dataB = cl::Buffer(context, CL_MEM_USE_HOST_PTR | CL_MEM_READ_WRITE,
-                            sizeof(double) * dataB_size, dataB, NULL);
+         cl::Buffer buffer_b = cl::Buffer(context, CL_MEM_USE_HOST_PTR | CL_MEM_READ_WRITE,
+                            sizeof(QDLDL_float) * An, b, NULL);
                             
-         // Setup kernel variables
-         int new_matrix_int = new_matrix;
+         cl::Buffer buffer_return = cl::Buffer(context, CL_MEM_USE_HOST_PTR | CL_MEM_READ_WRITE,
+                            sizeof(QDLDL_int) * 2, return_values, NULL);
          
-         int debug_mode = DEBUG;
-         
-         
-         kernel_gelinearsolver_0.setArg(0, debug_mode);
-         kernel_gelinearsolver_0.setArg(1, matrix_nonzeros);
-         kernel_gelinearsolver_0.setArg(2, new_matrix_int);
-         kernel_gelinearsolver_0.setArg(3, matrix_dimension);
-         kernel_gelinearsolver_0.setArg(4, num_rhs);
-         kernel_gelinearsolver_0.setArg(5, buffer_ia);
-         kernel_gelinearsolver_0.setArg(6, buffer_ja);
-         kernel_gelinearsolver_0.setArg(7, buffer_A_vals);
-         kernel_gelinearsolver_0.setArg(8, buffer_dataB);
+         kernel_gelinearsolver_0.setArg(0, num_rhs);
+         kernel_gelinearsolver_0.setArg(1, An);
+         kernel_gelinearsolver_0.setArg(2, buffer_Ap);
+         kernel_gelinearsolver_0.setArg(3, buffer_Ai);
+         kernel_gelinearsolver_0.setArg(4, buffer_Ax);
+         kernel_gelinearsolver_0.setArg(5, buffer_b);
+         kernel_gelinearsolver_0.setArg(6, buffer_return);
         
          
          // Data transfer from host to device
-         q.enqueueMigrateMemObjects({buffer_ia, buffer_ja, buffer_A_vals, buffer_dataB}, 0); // 0 : migrate from host to dev
+         q.enqueueMigrateMemObjects({buffer_Ap, buffer_Ai, buffer_Ax, buffer_b}, 0); // 0 : migrate from host to dev
          q.finish();
          
          gettimeofday(&ttrans1,0);
@@ -316,30 +337,29 @@ namespace Ipopt
           gettimeofday(&tlaunch,0);
           
           // Transfer data back to host
-          q.enqueueMigrateMemObjects({buffer_dataB}, 1); // 1 : migrate from dev to host
+          q.enqueueMigrateMemObjects({buffer_b, buffer_return}, 1); // 1 : migrate from dev to host
           q.finish();
           
           gettimeofday(&ttrans2,0);
           
         
 
-          // Return the value of the solution to rhs_values by transposing and setting to IPOPT array
-          counter = 0;
-          for(int i = 0; i < nrhs; i++){
-              for(int k = 0; k < matrix_dimension; k++)
-              {
-                  rhs_vals[counter] = dataB[i + k*nrhs];
-                  counter++;
-              }
+          // Return the value of the solution to rhs_values
+          for(int i = 0; i < An; i++)
+          {
+          
+              rhs_vals[i] = b[i];
+          
           }
           
+          printf("Etree, Decomp return : %d %d \n",return_values[0],return_values[1]);
           
 
           // Free allocated variables
-          free(A_vals);
-          free(ia_alloc);
-          free(ja_alloc);
-          free(dataB);
+          free(Ap);
+          free(Ai);
+          free(Ax);
+          free(b);
         
           // IPOPT timing
           if( HaveIpData() )
@@ -351,18 +371,13 @@ namespace Ipopt
           // Check if singular
           bool solver_singular = false;
           
-          for(int i = 0; i < dataB_size; i++)
+          
+          if(return_values[1] == -1)
           {
-            if(std::isnan(rhs_vals[i]))
-            {
-                //printf("Vitis : Matrix Singular");
-                Jnlst().Printf(J_DETAILED, J_LINEAR_ALGEBRA,
-                           "Vitis : Matrix Singular \n");
-                solver_singular = true;
-                break;
-            }
+              
+              solver_singular = true;
+          
           }
-             
           
           gettimeofday(&tpost,0);
           
@@ -381,7 +396,7 @@ namespace Ipopt
           
           if(multisolve_iteration == 1)
           {
-              fprintf(fp,"\n \n ***** Debug Mode : %d ******* \n \n",debug_mode);
+              fprintf(fp,"\n \n ***** New Run ******* \n \n");
           }
           
           fprintf(fp,"\n*** Multisolve Timings : %d ***\n",multisolve_iteration);

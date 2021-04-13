@@ -19,6 +19,8 @@ Base class is SparseSymLinearSolver
 
 #include "IpSparseSymLinearSolverInterface.hpp"
 
+#include "qdldl.hpp"
+
 #define MAXN 998
 
 namespace Ipopt
@@ -41,7 +43,7 @@ private:
   unsigned long diff(const struct timeval* newTime, const struct timeval* oldTime) {
     return (newTime->tv_sec - oldTime->tv_sec) * 1000000 + (newTime->tv_usec - oldTime->tv_usec);
   }
-  
+
   
   // Matrix variables
   int numneg_; // Number of negative eigenvalues

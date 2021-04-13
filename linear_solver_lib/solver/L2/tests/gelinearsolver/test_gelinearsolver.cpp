@@ -72,7 +72,7 @@ int main(int argc, const char* argv[]) {
      *******************/
      
     printf("INFO: Running on HW \n");
-      std::string xclbin_path = "/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/tests/gelinearsolver/build_dir.hw.xilinx_u50_gen3x16_xdma_201920_3/kernel_gelinearsolver.xclbin";
+      std::string xclbin_path = "/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/tests/gelinearsolver/build_dir.sw_emu.xilinx_u50_gen3x16_xdma_201920_3/kernel_gelinearsolver.xclbin";
       
     std::vector<cl::Device> devices = xcl::get_xil_devices();
     cl::Device device = devices[0];
@@ -362,7 +362,7 @@ int main(int argc, const char* argv[]) {
     q.enqueueTask(kernel_gelinearsolver_0, nullptr, nullptr);
     q.finish();
     
-    q.enqueueMigrateMemObjects({buffer_b}, 0); // 0 : migrate from host to dev
+    q.enqueueMigrateMemObjects({buffer_b}, 1); // 0 : migrate from host to dev
     q.finish();
     
     
