@@ -1,14 +1,20 @@
+#ifndef __QDLDL__
+#define __QDLDL__
+
+
 #define QDLDL_UNKNOWN (-1)
 #define QDLDL_USED (1)
 #define QDLDL_UNUSED (0)
+
+#define QDLDL_INT_MAX (2147483647)
 
 /* Compute the elimination tree for a quasidefinite matrix
    in compressed sparse column form.
 */
 
-typedef int QDLDL_int
-typedef double QDLDL_float
-typedef bool QDLDL_bool
+typedef int QDLDL_int;
+typedef double QDLDL_float;
+typedef bool QDLDL_bool;
 
 QDLDL_int QDLDL_etree(const QDLDL_int  n,
                       const QDLDL_int* Ap,
@@ -281,3 +287,5 @@ void QDLDL_solve(const QDLDL_int       n,
   for(i = 0; i < n; i++) x[i] *= Dinv[i];
   QDLDL_Ltsolve(n,Lp,Li,Lx,x);
 }
+
+#endif

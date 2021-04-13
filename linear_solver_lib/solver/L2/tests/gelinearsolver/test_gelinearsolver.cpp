@@ -22,6 +22,8 @@
 
 #include "xcl2.hpp"
 
+#include "qdldl.hpp"
+
 #define NUM_ROWS 500
 #define NUM_ZEROS 7000
 #define MAX_MATRIX_VALUE 500
@@ -86,19 +88,14 @@ int main(int argc, const char* argv[]) {
     cl::Program program(context, devices, xclBins);
     cl::Kernel kernel_gelinearsolver_0(program, "kernel_gelinearsolver_0");
     std::cout << "INFO: Kernel has been created" << std::endl;
-    
-    // Create vector variables
-    std::vector<std::vector<cl::Event>> kernel_evt(2);
-    kernel_evt[0].resize(1);
-    kernel_evt[1].resize(1);
-    std::vector<cl::Buffer> buffer(2);
+
 
 
     /*********************
     Continuous Iterations
     ********************/
     
-    // Timing variables
+    /* Timing variables
     struct timeval tstart, ttrans1, tlaunch, ttrans2;
     
     // Txt file open
@@ -109,14 +106,14 @@ int main(int argc, const char* argv[]) {
     {
     
     // Set debug mode and print to txt
-    //int debug_mode = iteration;
+    int debug_mode = iteration;*/
     
     /*********************
     Sparse symmetric matrix intialisation
     *********************/
     
     // Matrix sizes and max value
-    int num_rhs = 1;
+    /*int num_rhs = 1;
     double divisor = 5;
     
     int num_rows = NUM_ROWS;
@@ -284,7 +281,106 @@ int main(int argc, const char* argv[]) {
     
     
     // Txt file close
-    fclose(fp);
+    fclose(fp);*/
+    
+    /********
+     Use example problem
+     *********/
+     
+    int An = 10;
+    int nonzeros = 17;
+    
+    QDLDL_int* Ap; 
+    QDLDL_int* Ai;
+    QDLDL_float* Ax;
+    QDLDL_float* b;
+    
+    Ap = aligned_alloc<QDLDL_int>(An + 1);
+    Ai = aligned_alloc<QDLDL_int>(nonzeros);
+    Ax = aligned_alloc<QDLDL_float>(nonzeros); 
+    b = aligned_alloc<QDLDL_float>(An);
+    
+    // Initialise
+    QDLDL_int   Ap_init[] = {0, 1, 2, 4, 5, 6, 8, 10, 12, 14, 17};
+    QDLDL_int   Ai_init[] = {0, 1, 1, 2, 3, 4, 1, 5, 0, 6, 3, 7, 6, 8, 1, 2, 9};
+    QDLDL_float Ax_init[] = {1.0, 0.460641, -0.121189, 0.417928, 0.177828, 0.1,
+                       -0.0290058, -1.0, 0.350321, -0.441092, -0.0845395,
+                       -0.316228, 0.178663, -0.299077, 0.182452, -1.56506, -0.1};
+    QDLDL_float  b_init[] = {1,2,3,4,5,6,7,8,9,10};
+    
+    for(int i = 0; i < An + 1; i++)
+    {
+    
+        Ap[i] = Ap_init[i];
+
+    
+    }
+    
+    for(int i = 0; i < An; i++)
+    {
+    
+        b[i] = b_init[i];
+
+    
+    }
+    
+    for(int i = 0; i < nonzeros; i++)
+    {
+    
+        Ai[i] = Ai_init[i];
+        Ax[i] = Ax_init[i];
+
+    
+    }
+    
+    cl::Buffer buffer_Ap = cl::Buffer(context, CL_MEM_USE_HOST_PTR | CL_MEM_READ_WRITE,
+                            sizeof(QDLDL_int) * (An+1), Ap, NULL);
+                            
+         
+    cl::Buffer buffer_Ai = cl::Buffer(context, CL_MEM_USE_HOST_PTR | CL_MEM_READ_WRITE,
+                       sizeof(QDLDL_int) * nonzeros, Ai, NULL);
+                       
+    
+    cl::Buffer buffer_Ax = cl::Buffer(context, CL_MEM_USE_HOST_PTR | CL_MEM_READ_WRITE,
+                       sizeof(QDLDL_float) * nonzeros, Ax, NULL);
+                       
+    
+    cl::Buffer buffer_b = cl::Buffer(context, CL_MEM_USE_HOST_PTR | CL_MEM_READ_WRITE,
+                       sizeof(QDLDL_float) * An, b, NULL);
+                       
+    kernel_gelinearsolver_0.setArg(0, An);
+    kernel_gelinearsolver_0.setArg(1, buffer_Ap);
+    kernel_gelinearsolver_0.setArg(2, buffer_Ai);
+    kernel_gelinearsolver_0.setArg(3, buffer_Ax);
+    kernel_gelinearsolver_0.setArg(4, buffer_b);
+
+        
+    
+    q.enqueueMigrateMemObjects({buffer_Ap,buffer_Ai,buffer_Ax,buffer_b}, 0); // 0 : migrate from host to dev
+    q.finish();
+    
+    q.enqueueTask(kernel_gelinearsolver_0, nullptr, nullptr);
+    q.finish();
+    
+    q.enqueueMigrateMemObjects({buffer_b}, 0); // 0 : migrate from host to dev
+    q.finish();
+    
+    
+     for(int i = 0; i < An; i++)
+    {
+    
+        printf("%f \n",b[i]);
+
+    
+    }
+    
+    free(Ap);
+    free(Ai);
+    free(Ax);
+    free(b);
+    
+    
+    
     
     return 0;
 }

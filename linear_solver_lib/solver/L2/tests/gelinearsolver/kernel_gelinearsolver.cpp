@@ -39,40 +39,48 @@
 #pragma HLS INTERFACE s_axilite port = return bundle = control*/
 
 extern "C" void kernel_gelinearsolver_0(QDLDL_int An, QDLDL_int* Ap, QDLDL_int* Ai, QDLDL_float* Ax, QDLDL_float* b) {
-#pragma HLS INTERFACE m_axi port = Ap bundle = gmem0 offset = slave max max_read_burst_length = 128
-#pragma HLS INTERFACE m_axi port = Ai bundle = gmem0 offset = slave max_read_burst_length = 128
-#pragma HLS INTERFACE m_axi port = Ax bundle = gmem0 offset = slave max_read_burst_length = 128
-#pragma HLS INTERFACE m_axi port = b bundle = gmem1 offset = slave max_read_burst_length = 128 max_write_burst_length = 128
-
-#pragma HLS INTERFACE s_axilite port = An bundle = control
-#pragma HLS INTERFACE s_axilite port = Ap bundle = control
-#pragma HLS INTERFACE s_axilite port = Ai bundle = control
-#pragma HLS INTERFACE s_axilite port = Ax bundle = control
-#pragma HLS INTERFACE s_axilite port = b bundle = control
-#pragma HLS INTERFACE s_axilite port = return bundle = control
-
-// Allocate storage values
-QDLDL_int Ln = An;
-
-QDLDL_int Lp[MAXN + 1];
-QDLDL_int etree[MAXN];
-QDLDL_int Lnz[MAXN];
-
-QDLDL_float D[MAXN];
-QDLDL_float Dinv[MAXN];
-
-QDLDL_int iwork[3*MAXN];
-QDLDL_bool bwork[MAXN];
-QDLDL_float fwork[MAXN];
-
-// Elimination tree calculation
-
-QDLDL_int sumLnz = QDLDL_etree(An,Ap,Ai,iwork,Lnz,etree);
-
-
-
-// LDL Factorisation
-
+     #pragma HLS INTERFACE m_axi port = Ap bundle = gmem0 offset = slave max max_read_burst_length = 128
+     #pragma HLS INTERFACE m_axi port = Ai bundle = gmem0 offset = slave max_read_burst_length = 128
+     #pragma HLS INTERFACE m_axi port = Ax bundle = gmem0 offset = slave max_read_burst_length = 128
+     #pragma HLS INTERFACE m_axi port = b bundle = gmem1 offset = slave max_read_burst_length = 128 max_write_burst_length = 128
+     
+     #pragma HLS INTERFACE s_axilite port = An bundle = control
+     #pragma HLS INTERFACE s_axilite port = Ap bundle = control
+     #pragma HLS INTERFACE s_axilite port = Ai bundle = control
+     #pragma HLS INTERFACE s_axilite port = Ax bundle = control
+     #pragma HLS INTERFACE s_axilite port = b bundle = control
+     #pragma HLS INTERFACE s_axilite port = return bundle = control
+     
+     // Allocate storage values
+     QDLDL_int Ln = An;
+     
+     QDLDL_int Lp[MAXN + 1];
+     QDLDL_int etree[MAXN];
+     QDLDL_int Lnz[MAXN];
+     
+     QDLDL_float D[MAXN];
+     QDLDL_float Dinv[MAXN];
+     
+     QDLDL_int iwork[3*MAXN];
+     QDLDL_bool bwork[MAXN];
+     QDLDL_float fwork[MAXN];
+     
+     // Elimination tree calculation
+     
+     QDLDL_int sumLnz = QDLDL_etree(An,Ap,Ai,iwork,Lnz,etree);
+     
+     
+     
+     // LDL Factorisation
+     QDLDL_int Li[(MAXN*MAXN)/2];
+     QDLDL_float Lx[(MAXN*MAXN)/2];
+     
+     QDLDL_factor(An,Ap,Ai,Ax,Lp,Li,Lx,D,Dinv,Lnz,etree,bwork,iwork,fwork);
+     
+     // Solve
+     QDLDL_solve(Ln,Lp,Li,Lx,Dinv,x);
+     
+}
 
 
 
