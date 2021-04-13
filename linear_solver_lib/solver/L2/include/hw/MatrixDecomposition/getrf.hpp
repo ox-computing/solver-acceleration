@@ -38,21 +38,42 @@ void subUpdate(int debug_mode, T A[NRCU][NCMAX], T rows[NCMAX], T cols[NCMAX], i
 
     int nrows = re - rs + 1;
     int ncols = ce - cs;
+    
 
 LoopMulSub:
-    for (unsigned int i = 0; i < nrows * ncols; i++) {
+    for(int i = 0; i < nrows * ncols; i += ncols)
+    {
           
-         #pragma HLS pipeline
-         #pragma HLS dependence variable = A inter false
+         //#pragma HLS pipeline
+         //#pragma HLS dependence variable = A inter false
          // clang-format off
-         #pragma HLS loop_tripcount min = 1 max = NCMAX*NRCU
+         //#pragma HLS loop_tripcount min = 1 max = NCMAX*NRCU
                  // clang-format on
                  
         
-        int r = i / ncols + rs;
-        int c = i % ncols + cs + 1;
+        int r_init = i / ncols + rs;
+        //int c_init = i % ncols + cs + 1;
+        
+        if(cols[r_init] != 0)
+        {
+        
+            int c_init = i % ncols + cs + 1;
+            
+            for(int j = c_init; j < c_init + ncols; j++)
+            {
+               #pragma HLS pipeline
+               #pragma HLS dependence variable = A inter false
+               // clang-format off
+               
+               
+               A[r_init][j] = A[r_init][j] - cols[r_init] * rows[j];
+               
+            }
+            
+        }   
+                 
+              
 
-        A[r][c] = A[r][c] - cols[r] * rows[c];    
         
         
         
@@ -75,8 +96,8 @@ LoopSweeps:
 #pragma HLS array_partition variable = cols dim = 1
 #pragma HLS resource variable = rows core = RAM_2P_BRAM
 #pragma HLS resource variable = cols core = RAM_2P_BRAM
-//#pragma HLS bind_storage variable = rows type = ram_t2p impl = bram
-//#pragma HLS bind_storage variable = cols type = ram_t2p impl = bram
+//#pragma HLS bind_storage variable = rows type = ram_2p impl = uram
+//#pragma HLS bind_storage variable = cols type = ram_2p impl = uram
 
         int idscu = s % NCU;
         int idsrow = s / NCU;
@@ -142,7 +163,7 @@ LoopSweeps:
             
             if(debug_mode != 15)
             {
-              subUpdate<T, NRCU, NCMAX>(debug_mode, A[i], rows[i], cols[i], rs, re, cs, ce);
+            subUpdate<T, NRCU, NCMAX>(debug_mode, A[i], rows[i], cols[i], rs, re, cs, ce);
             }
         };
     };

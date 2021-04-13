@@ -381,7 +381,7 @@ namespace Ipopt
           
           if(multisolve_iteration == 1)
           {
-              fprintf(fp,"\n \n ***** New Run ******* \n \n");
+              fprintf(fp,"\n \n ***** Debug Mode : %d ******* \n \n",debug_mode);
           }
           
           fprintf(fp,"\n*** Multisolve Timings : %d ***\n",multisolve_iteration);
