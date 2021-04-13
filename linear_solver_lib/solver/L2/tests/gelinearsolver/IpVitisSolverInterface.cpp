@@ -168,7 +168,7 @@ namespace Ipopt
        static int multisolve_iteration = 0;
        multisolve_iteration++;
        
-       if(multisolve_iteration == 2)
+       if(multisolve_iteration == 1)
        {
            for(int i = 0; i < matrix_nonzeros; i++)
             {
@@ -206,8 +206,6 @@ namespace Ipopt
         QDLDL_float* b;
         
         Ap = aligned_alloc<QDLDL_int>(An + 1);
-        Ai = aligned_alloc<QDLDL_int>(matrix_nonzeros);
-        Ax = aligned_alloc<QDLDL_float>(matrix_nonzeros); 
         b = aligned_alloc<QDLDL_float>(An*num_rhs);
         
         // Error handling from kernel
@@ -221,67 +219,62 @@ namespace Ipopt
         for(int i = 0; i < An + 1; i++)
         {
             Ap[i] = 0;
-        
         }
-        
-        int current_ia = 0;
-        int current_ja = 0;
-        int counter = 0;
-        
-        
-        // Transpose values and fill
-        for(int i = 0; i < matrix_nonzeros; i++)
-        {
-            bool already_visited = false;
-            
-            current_ia = ja[i] - 1;
-            current_ja = ia[i] - 1;
-            
-            // Determine if we have already stored a value at this location
-            for(int r = Ap[current_ja] + 1; r <= Ap[current_ja + 1]; r++)
-            {
-                if(Ai[r] == current_ia)
-                {
-                    // Add value
-                    Ax[r] += val_[i];
-                    
-                    // Do not implement new Ap increase
-                    already_visited = true;
-                } 
-            
-            } 
-            
-            if(!already_visited)
-            {
-         
-               for(int j = current_ja + 1; j < An + 1; j++)
+       
+       // Form up matrix with upper half and diagonal filled
+       QDLDL_float A_matrix[An][An] = {0};
+       
+       for(int r = 0; r < matrix_nonzeros; r++)
+       {   
+             // Fill upper half
+             A_matrix[ja[r] - 1][ia[r] - 1] += val_[r];
+       }
+       
+       int nonzero_counter = 0;
+       int fill_counter = 0;
+       
+       QDLDL_int Ai_init[matrix_nonzeros] = {0};
+       QDLDL_float Ax_init[matrix_nonzeros] = {0};
+       
+       // Read off values into CSC format
+       for(int c = 0; c < An; c++)
+       {
+           for(int r = 0; r <= c; r++)
+           {
+               if(A_matrix[r][c] != 0)
                {
-                   Ap[j]++;
+                   nonzero_counter++;
+                   
+                   Ai_init[fill_counter] = r;
+                   Ax_init[fill_counter] = A_matrix[r][c];
+                   
+                   fill_counter++; 
                }
-               
-               Ai[counter] = current_ia;
-               Ax[counter] = val_[i];
-               
-               counter++;
-               
            }
-        }
-        
-        //for(int i = 0; i < An + 1; i++)
-        //{
-        //    for(int j = Ap[i] + 1; j =< Ap[i+1]; j++)
-        //    {
-        //        int row = Ai[j];
-                
-        //    }
-        
-        
-       // }
+           
+           Ap[c + 1] = nonzero_counter;
+           
+           //printf("Ap : %d \n",Ap[c+1]);
+       
+       }
+       
+       Ai = aligned_alloc<QDLDL_int>(fill_counter);
+       Ax = aligned_alloc<QDLDL_float>(fill_counter);
+       
+       for(int i = 0; i < fill_counter; i++)
+       {
+           Ai[i] = Ai_init[i];
+           Ax[i] = Ax_init[i];
+       
+       }
+       
+       
         
         // Fill b
         for(int i = 0; i < An*num_rhs; i++)
         {
             b[i] = rhs_vals[i];
+            //printf("b : %f \n",rhs_vals[i]);
         
         }
         
@@ -349,10 +342,11 @@ namespace Ipopt
           {
           
               rhs_vals[i] = b[i];
+              //printf("x : %f \n",rhs_vals[i]);
           
           }
           
-          printf("Etree, Decomp return : %d %d \n",return_values[0],return_values[1]);
+          //printf("Etree, Decomp return : %d %d \n",return_values[0],return_values[1]);
           
 
           // Free allocated variables

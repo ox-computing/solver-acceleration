@@ -57,7 +57,7 @@ int main(
     FILE* file = fopen("500_timing_debug.txt","a");
 
    // Number of variables
-   Index N = 5;
+   Index N = 10;
    
    fprintf(file,"%d ",N);
    
@@ -84,7 +84,7 @@ int main(
    app->Options()->SetNumericValue("tol", 1e-7);
    app->Options()->SetStringValue("mu_strategy", "adaptive");
    app->Options()->SetStringValue("linear_solver", "custom");
-   app->Options()->SetIntegerValue("max_iter", 10);
+   //app->Options()->SetIntegerValue("max_iter", 10);
 
    // Intialize the IpoptApplication and process the options
    app->Initialize();

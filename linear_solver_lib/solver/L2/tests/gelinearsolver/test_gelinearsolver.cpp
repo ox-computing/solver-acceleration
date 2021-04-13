@@ -300,6 +300,12 @@ int main(int argc, const char* argv[]) {
     Ax = aligned_alloc<QDLDL_float>(nonzeros); 
     b = aligned_alloc<QDLDL_float>(An);
     
+    // Error handling from kernel
+    QDLDL_int* return_values;
+    return_values = aligned_alloc<QDLDL_int>(2);
+    return_values[0] = 0;
+    return_values[1] = 0;
+    
     // Initialise
     QDLDL_int   Ap_init[] = {0, 1, 2, 4, 5, 6, 8, 10, 12, 14, 17};
     QDLDL_int   Ai_init[] = {0, 1, 1, 2, 3, 4, 1, 5, 0, 6, 3, 7, 6, 8, 1, 2, 9};
