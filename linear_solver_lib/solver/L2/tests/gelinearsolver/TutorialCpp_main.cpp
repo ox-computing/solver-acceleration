@@ -49,7 +49,6 @@ int main(
     //struct timeval tstart, tend;
     
     int number_iterations = 1;
-
     
     for(int iteration = 1; iteration <= number_iterations; iteration++)
     {   
@@ -57,7 +56,7 @@ int main(
     FILE* file = fopen("500_timing_debug.txt","a");
 
    // Number of variables
-   Index N = 50;
+   Index N = 200;
    
    fprintf(file,"%d ",N);
    

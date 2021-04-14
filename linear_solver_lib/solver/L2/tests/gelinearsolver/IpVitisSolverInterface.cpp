@@ -18,12 +18,6 @@ namespace Ipopt
       delete[] val_;
   }
   
-  // Set Binary path
-  int VitisSolverInterface::SetBinaryPath(std::string binary_path){
-      xclbin_path = binary_path;
-      std::cout << "Xclbin Path : " << xclbin_path << std::endl;
-      return 0;
-  }
   
   // Retrive options from IPOPT
   void VitisSolverInterface::RegisterOptions(
@@ -66,7 +60,8 @@ namespace Ipopt
       
       // Read in xclbin path from options
       printf("INFO: Loading xclbin \n");
-      xclbin_path = "/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/tests/gelinearsolver/build_dir.hw.xilinx_u50_gen3x16_xdma_201920_3/kernel_gelinearsolver.xclbin";
+      std::string xclbin_path = "/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/tests/gelinearsolver/build_dir.hw.xilinx_u50_gen3x16_xdma_201920_3/kernel_gelinearsolver.xclbin";
+      
       
       // Find platform
       devices = xcl::get_xil_devices();
@@ -177,17 +172,15 @@ namespace Ipopt
        /*********************
         Data Allocation
         *******************/
-        
-
-       // Store number of RHS in class
-       num_rhs = nrhs;
        
        // IPOPT timing
        if( HaveIpData() )
        {
          IpData().TimingStats().LinearSystemBackSolve().Start();
        }
-           
+       
+       
+       // Initalise QDLDL variables
         QDLDL_int An = matrix_dimension;
         
         QDLDL_int* Ap; 
@@ -196,7 +189,7 @@ namespace Ipopt
         QDLDL_float* b;
         
         Ap = aligned_alloc<QDLDL_int>(An + 1);
-        b = aligned_alloc<QDLDL_float>(An * num_rhs);
+        b = aligned_alloc<QDLDL_float>(An * nrhs);
         
         // Error handling from kernel
         QDLDL_int* return_values;
@@ -211,7 +204,11 @@ namespace Ipopt
             Ap[i] = 0;
         }
        
-       // Form up matrix with upper half and diagonal filled
+       /******
+        Form up matrix
+        *********/
+        
+        // First initialise and zero
        QDLDL_float A_matrix[An][An];
        
        for(int i = 0; i < An; i++)
@@ -222,9 +219,9 @@ namespace Ipopt
            }
        }
        
+       // Fill upper half
        for(int r = 0; r < matrix_nonzeros; r++)
        {   
-             // Fill upper half
              if((ja[r] - 1) <= (ia[r] - 1))
              {
                  A_matrix[ja[r] - 1][ia[r] - 1] += val_[r];
@@ -234,6 +231,11 @@ namespace Ipopt
                  A_matrix[ia[r] - 1][ja[r] - 1] += val_[r];
              }
        }
+       
+       
+       /*******
+       Form up CSC arrays
+       *********/
        
        int fill_counter = 0;
        
@@ -260,6 +262,7 @@ namespace Ipopt
        
        }
        
+       // Pass to aligned values
        Ai = aligned_alloc<QDLDL_int>(fill_counter);
        Ax = aligned_alloc<QDLDL_float>(fill_counter);
        
@@ -272,11 +275,9 @@ namespace Ipopt
        
       
         // Fill b
-        for(int i = 0; i < An * num_rhs; i++)
+        for(int i = 0; i < An * nrhs; i++)
         {
             b[i] = rhs_vals[i];
-            //printf("b : %f \n",rhs_vals[i]);
-        
         }
         
         
@@ -302,13 +303,13 @@ namespace Ipopt
                             
          
          cl::Buffer buffer_b = cl::Buffer(context, CL_MEM_USE_HOST_PTR | CL_MEM_READ_WRITE,
-                            sizeof(QDLDL_float) * An * num_rhs, b, NULL);
+                            sizeof(QDLDL_float) * An * nrhs, b, NULL);
                             
          
          cl::Buffer buffer_return = cl::Buffer(context, CL_MEM_USE_HOST_PTR | CL_MEM_READ_WRITE,
                             sizeof(QDLDL_int) * 2, return_values, NULL);
          
-         kernel_gelinearsolver_0.setArg(0, num_rhs);
+         kernel_gelinearsolver_0.setArg(0, nrhs);
          kernel_gelinearsolver_0.setArg(1, An);
          kernel_gelinearsolver_0.setArg(2, buffer_Ap);
          kernel_gelinearsolver_0.setArg(3, buffer_Ai);
@@ -322,8 +323,6 @@ namespace Ipopt
          q.finish();
          
          gettimeofday(&ttrans1,0);
-
-         
           
           
           // Launch kernel
@@ -339,27 +338,6 @@ namespace Ipopt
           gettimeofday(&ttrans2,0);
           
         
-
-          // Return the value of the solution to rhs_values
-          for(int i = 0; i < An * num_rhs; i++)
-          {
-          
-              rhs_vals[i] = b[i];
-              //printf("x : %f \n",rhs_vals[i]);
-          
-          }
-          
-          
-          //printf("Etree, Decomp return : %d %d \n",return_values[0],return_values[1]);
-          
-
-          // Free allocated variables
-          free(Ap);
-          free(Ai);
-          free(Ax);
-          free(b);
-          free(return_values);
-        
           // IPOPT timing
           if( HaveIpData() )
           {
@@ -367,15 +345,20 @@ namespace Ipopt
           }
           
           
-          // Check if singular
+          /***********
+           Error checking
+           ***********/
+           
           bool solver_singular = false;
           
           
-          if(return_values[1] == -1)
-          {
-              
+          if(return_values[0] == -1)
+          {   
               solver_singular = true;
-          
+          }
+          else if(return_values[1] == -1)
+          {
+              solver_singular = true;
           }
           
           gettimeofday(&tpost,0);
@@ -427,6 +410,31 @@ namespace Ipopt
           fprintf(fp,"Post : %d \n", post);
           
           fclose(fp);
+          
+          
+          /*********
+          Return Values
+          **********/
+          
+          if(!solver_singular)
+          {
+             for(int i = 0; i < An * nrhs; i++)
+             {
+                 rhs_vals[i] = b[i];
+             }
+          }
+          
+          
+          /*********
+          Clean Up
+          ***********/
+          
+          free(Ap);
+          free(Ai);
+          free(Ax);
+          free(b);
+          free(return_values);
+          
           
           if(solver_singular)
           {

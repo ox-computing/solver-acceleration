@@ -21,7 +21,7 @@ Base class is SparseSymLinearSolver
 
 #include "qdldl.hpp"
 
-#define MAXN 100
+#define MAXN 900
 
 namespace Ipopt
 {
@@ -51,12 +51,12 @@ private:
   
   Index matrix_nonzeros; // Number of non zeros values in A
   Index matrix_dimension; // Dimension of A
-  Index num_rhs;     // The number of different RHS we are solving
-  int dataA_size;    // Size of array A
-  int dataB_size;    // Size of array B
+  //Index num_rhs;     // The number of different RHS we are solving
+  //int dataA_size;    // Size of array A
+  //int dataB_size;    // Size of array B
   
   // OpenCL variables
-  std::string xclbin_path; // Path for FPGA binary file
+  //std::string xclbin_path; // Path for FPGA binary file
   cl::Device device; // Chosen device
   
   cl::Context context; // OpenCL context
@@ -89,10 +89,7 @@ public:
    );
   
   ~VitisSolverInterface();
-  
-  int SetBinaryPath(std::string binary_path);
-  
-  
+
   
   bool InitializeImpl(
       const OptionsList& options,

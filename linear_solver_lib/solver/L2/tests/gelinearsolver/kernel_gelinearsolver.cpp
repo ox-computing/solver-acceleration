@@ -23,11 +23,12 @@
 #define MAXN 900
 
 
-extern "C" void kernel_gelinearsolver_0(QDLDL_bool new_matrix, QDLDL_int num_rhs, QDLDL_int An, QDLDL_int* Ap, QDLDL_int* Ai, QDLDL_float* Ax, QDLDL_float* b, QDLDL_int* retun_values) {
+extern "C" void kernel_gelinearsolver_0(QDLDL_bool new_matrix, QDLDL_int num_rhs, QDLDL_int An, QDLDL_int* Ap, QDLDL_int* Ai, QDLDL_float* Ax, QDLDL_float* b, QDLDL_int* return_values) {
      #pragma HLS INTERFACE m_axi port = Ap bundle = gmem0 offset = slave max max_read_burst_length = 128
      #pragma HLS INTERFACE m_axi port = Ai bundle = gmem0 offset = slave max_read_burst_length = 128
      #pragma HLS INTERFACE m_axi port = Ax bundle = gmem0 offset = slave max_read_burst_length = 128
      #pragma HLS INTERFACE m_axi port = b bundle = gmem1 offset = slave max_read_burst_length = 128 max_write_burst_length = 128
+     #pragma HLS INTERFACE m_axi port = return_values bundle = gmem2 offset = slave
      
      #pragma HLS INTERFACE s_axilite port = new_matrix bundle = control
      #pragma HLS INTERFACE s_axilite port = num_rhs bundle = control
@@ -36,6 +37,7 @@ extern "C" void kernel_gelinearsolver_0(QDLDL_bool new_matrix, QDLDL_int num_rhs
      #pragma HLS INTERFACE s_axilite port = Ai bundle = control
      #pragma HLS INTERFACE s_axilite port = Ax bundle = control
      #pragma HLS INTERFACE s_axilite port = b bundle = control
+     #pragma HLS INTERFACE s_axilite port = return_values bundle = control
      #pragma HLS INTERFACE s_axilite port = return bundle = control
      
      // Allocate storage values on device
@@ -59,10 +61,12 @@ extern "C" void kernel_gelinearsolver_0(QDLDL_bool new_matrix, QDLDL_int num_rhs
      
 
      
-     // Elimination tree calculation
+     // If new matrix flag set
      
      if(new_matrix)
      {
+         
+          // Elimination tree calculation
      
          return_values[0] = QDLDL_etree(An,Ap,Ai,iwork,Lnz,etree);
          
