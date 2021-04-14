@@ -212,14 +212,14 @@ void fill_B(int j, int num_rhs, int n, T matB[NCU][(NMAX + NCU - 1) / NCU], T* B
  */
 
 template <typename T, int NMAX, int NCU>
-void gelinearsolver(int num_nonzeros, int new_matrix, int n, int num_rhs, int* ia, int* ja, T* A, T* B) {
+void gelinearsolver(int debug_mode, int num_nonzeros, int new_matrix, int n, int num_rhs, int* ia, int* ja, T* A, T* B) {
       
       static T matA1[NCU][(NMAX + NCU - 1) / NCU][NMAX] = {};
       static T matA2[NCU][(NMAX + NCU - 1) / NCU][NMAX] = {};
       static T matB[NCU][(NMAX + NCU - 1) / NCU] = {};
       
       //static int iter = 0;
-      int debug_mode = 0;
+      //int debug_mode = 0;
       
       static bool first_filled = false;
       
