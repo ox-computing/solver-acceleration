@@ -168,16 +168,6 @@ namespace Ipopt
        static int multisolve_iteration = 0;
        multisolve_iteration++;
        
-       if(multisolve_iteration == 1)
-       {
-           for(int i = 0; i < matrix_nonzeros; i++)
-            {
-            
-                printf("%d %d %f \n",ia[i],ja[i],val_[i]);
-                
-            }
-       }
-       
        
        // Timing variables
        struct timeval tstart, tinit_array, ttrans1, tlaunch, ttrans2, tpost;
@@ -206,7 +196,7 @@ namespace Ipopt
         QDLDL_float* b;
         
         Ap = aligned_alloc<QDLDL_int>(An + 1);
-        b = aligned_alloc<QDLDL_float>(An*num_rhs);
+        b = aligned_alloc<QDLDL_float>(An * num_rhs);
         
         // Error handling from kernel
         QDLDL_int* return_values;
@@ -222,19 +212,33 @@ namespace Ipopt
         }
        
        // Form up matrix with upper half and diagonal filled
-       QDLDL_float A_matrix[An][An] = {0};
+       QDLDL_float A_matrix[An][An];
+       
+       for(int i = 0; i < An; i++)
+       {
+           for(int j = 0; j < An; j++)
+           {
+               A_matrix[i][j] = 0.0;
+           }
+       }
        
        for(int r = 0; r < matrix_nonzeros; r++)
        {   
              // Fill upper half
-             A_matrix[ja[r] - 1][ia[r] - 1] += val_[r];
+             if((ja[r] - 1) <= (ia[r] - 1))
+             {
+                 A_matrix[ja[r] - 1][ia[r] - 1] += val_[r];
+             }
+             else
+             {
+                 A_matrix[ia[r] - 1][ja[r] - 1] += val_[r];
+             }
        }
        
-       int nonzero_counter = 0;
        int fill_counter = 0;
        
-       QDLDL_int Ai_init[matrix_nonzeros] = {0};
-       QDLDL_float Ax_init[matrix_nonzeros] = {0};
+       QDLDL_int Ai_init[matrix_nonzeros];
+       QDLDL_float Ax_init[matrix_nonzeros];
        
        // Read off values into CSC format
        for(int c = 0; c < An; c++)
@@ -242,9 +246,7 @@ namespace Ipopt
            for(int r = 0; r <= c; r++)
            {
                if(A_matrix[r][c] != 0)
-               {
-                   nonzero_counter++;
-                   
+               {   
                    Ai_init[fill_counter] = r;
                    Ax_init[fill_counter] = A_matrix[r][c];
                    
@@ -252,7 +254,7 @@ namespace Ipopt
                }
            }
            
-           Ap[c + 1] = nonzero_counter;
+           Ap[c + 1] = fill_counter;
            
            //printf("Ap : %d \n",Ap[c+1]);
        
@@ -268,15 +270,15 @@ namespace Ipopt
        
        }
        
-       
-        
+      
         // Fill b
-        for(int i = 0; i < An*num_rhs; i++)
+        for(int i = 0; i < An * num_rhs; i++)
         {
             b[i] = rhs_vals[i];
             //printf("b : %f \n",rhs_vals[i]);
         
         }
+        
         
        
         
@@ -292,16 +294,17 @@ namespace Ipopt
                             
          
          cl::Buffer buffer_Ai = cl::Buffer(context, CL_MEM_USE_HOST_PTR | CL_MEM_READ_WRITE,
-                            sizeof(QDLDL_int) * matrix_nonzeros, Ai, NULL);
+                            sizeof(QDLDL_int) * fill_counter, Ai, NULL);
                             
          
          cl::Buffer buffer_Ax = cl::Buffer(context, CL_MEM_USE_HOST_PTR | CL_MEM_READ_WRITE,
-                            sizeof(QDLDL_float) * matrix_nonzeros, Ax, NULL);
+                            sizeof(QDLDL_float) * fill_counter, Ax, NULL);
                             
          
          cl::Buffer buffer_b = cl::Buffer(context, CL_MEM_USE_HOST_PTR | CL_MEM_READ_WRITE,
-                            sizeof(QDLDL_float) * An, b, NULL);
+                            sizeof(QDLDL_float) * An * num_rhs, b, NULL);
                             
+         
          cl::Buffer buffer_return = cl::Buffer(context, CL_MEM_USE_HOST_PTR | CL_MEM_READ_WRITE,
                             sizeof(QDLDL_int) * 2, return_values, NULL);
          
@@ -338,13 +341,14 @@ namespace Ipopt
         
 
           // Return the value of the solution to rhs_values
-          for(int i = 0; i < An; i++)
+          for(int i = 0; i < An * num_rhs; i++)
           {
           
               rhs_vals[i] = b[i];
               //printf("x : %f \n",rhs_vals[i]);
           
           }
+          
           
           //printf("Etree, Decomp return : %d %d \n",return_values[0],return_values[1]);
           
@@ -354,6 +358,7 @@ namespace Ipopt
           free(Ai);
           free(Ax);
           free(b);
+          free(return_values);
         
           // IPOPT timing
           if( HaveIpData() )

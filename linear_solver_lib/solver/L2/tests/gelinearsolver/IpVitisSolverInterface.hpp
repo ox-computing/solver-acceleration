@@ -21,7 +21,7 @@ Base class is SparseSymLinearSolver
 
 #include "qdldl.hpp"
 
-#define MAXN 998
+#define MAXN 100
 
 namespace Ipopt
 {
