@@ -56,7 +56,7 @@ int main(
     FILE* file = fopen("500_timing_debug.txt","a");
 
    // Number of variables
-   Index N = 200;
+   Index N = 100;
    
    fprintf(file,"%d ",N);
    

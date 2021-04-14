@@ -51,12 +51,12 @@ private:
   
   Index matrix_nonzeros; // Number of non zeros values in A
   Index matrix_dimension; // Dimension of A
-  //Index num_rhs;     // The number of different RHS we are solving
-  //int dataA_size;    // Size of array A
-  //int dataB_size;    // Size of array B
+  Index num_rhs;     // The number of different RHS we are solving
+  int dataA_size;    // Size of array A
+  int dataB_size;    // Size of array B
   
   // OpenCL variables
-  //std::string xclbin_path; // Path for FPGA binary file
+  std::string xclbin_path; // Path for FPGA binary file
   cl::Device device; // Chosen device
   
   cl::Context context; // OpenCL context
@@ -67,7 +67,7 @@ private:
   cl::Program program; // OpenCL program
   cl::Kernel kernel_gelinearsolver_0; // Device kernel
   
-  std::vector<cl::Device> devices; // Vector of devices
+  //std::vector<cl::Device> devices; // Vector of devices
   
 
   
@@ -80,7 +80,7 @@ public:
 
 
   // Constructor
-  VitisSolverInterface():val_(nullptr),devices(1)
+  VitisSolverInterface():val_(nullptr)
   {
   };
   

@@ -60,10 +60,11 @@ namespace Ipopt
       
       // Read in xclbin path from options
       printf("INFO: Loading xclbin \n");
-      std::string xclbin_path = "/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/tests/gelinearsolver/build_dir.hw.xilinx_u50_gen3x16_xdma_201920_3/kernel_gelinearsolver.xclbin";
+      xclbin_path = "/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/tests/gelinearsolver/build_dir.hw.xilinx_u50_gen3x16_xdma_201920_3/kernel_gelinearsolver.xclbin";
       
       
       // Find platform
+      std::vector<cl::Device> devices(1); 
       devices = xcl::get_xil_devices();
       device = devices[0];
       
@@ -309,13 +310,14 @@ namespace Ipopt
          cl::Buffer buffer_return = cl::Buffer(context, CL_MEM_USE_HOST_PTR | CL_MEM_READ_WRITE,
                             sizeof(QDLDL_int) * 2, return_values, NULL);
          
-         kernel_gelinearsolver_0.setArg(0, nrhs);
-         kernel_gelinearsolver_0.setArg(1, An);
-         kernel_gelinearsolver_0.setArg(2, buffer_Ap);
-         kernel_gelinearsolver_0.setArg(3, buffer_Ai);
-         kernel_gelinearsolver_0.setArg(4, buffer_Ax);
-         kernel_gelinearsolver_0.setArg(5, buffer_b);
-         kernel_gelinearsolver_0.setArg(6, buffer_return);
+         kernel_gelinearsolver_0.setArg(0, new_matrix);
+         kernel_gelinearsolver_0.setArg(1, nrhs);
+         kernel_gelinearsolver_0.setArg(2, An);
+         kernel_gelinearsolver_0.setArg(3, buffer_Ap);
+         kernel_gelinearsolver_0.setArg(4, buffer_Ai);
+         kernel_gelinearsolver_0.setArg(5, buffer_Ax);
+         kernel_gelinearsolver_0.setArg(6, buffer_b);
+         kernel_gelinearsolver_0.setArg(7, buffer_return);
         
          
          // Data transfer from host to device
