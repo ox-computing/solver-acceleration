@@ -377,7 +377,7 @@ namespace Ipopt
           int trans2 = diff(&ttrans2,&tlaunch);
           int post =  diff(&tpost,&ttrans2);
           
-          FILE* fp = fopen("edit_getrf_while_debug_timings.txt","a");
+          FILE* fp = fopen("edit_getrf_while_with_functions_debug_timings.txt","a");
           
           if(multisolve_iteration == 1)
           {
