@@ -288,4 +288,33 @@ void QDLDL_solve(const QDLDL_int       n,
   QDLDL_Ltsolve(n,Lp,Li,Lx,x);
 }
 
+void QDLDL_determine_CSC (QDLDL_int An,
+                          QDLDL_int num_nonzeros,
+                          QDLDL_int* ia,
+                          QDLDL_int* ja,
+                          QDLDL_float* A_vals,
+                          QDLDL_int* Ap,
+                          QDLDL_int* Ai,
+                          QDLDL_float* Ax){
+                          
+                          
+                          
+                          
+}
+                          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #endif

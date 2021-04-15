@@ -179,9 +179,78 @@ namespace Ipopt
          IpData().TimingStats().LinearSystemBackSolve().Start();
        }
        
+           /**********
+         Data allocation
+         **********/
+         
        
+       // Allocate memory for ia, ja and the values
+       int vals_size;
+       int ia_size;
+       int ja_size;
+       
+        // Set size as nonzeros if new matrix flag or one otherwise
+        if(new_matrix)
+        {   
+            vals_size = matrix_nonzeros;
+            ia_size = matrix_nonzeros;
+            ja_size = matrix_nonzeros;
+        }
+        else
+        {
+            vals_size = 1;
+            ia_size = 1;
+            ja_size = 1;
+        }
+        
+
+        // Initilialise and allocate pointers
+        double * A_vals;
+        A_vals = aligned_alloc<double>(vals_size);
+        
+        Index * ia_alloc;
+        ia_alloc = aligned_alloc<Index>(ia_size);
+        
+        Index * ja_alloc;
+        ja_alloc = aligned_alloc<Index>(ja_size);
+        
+        
+        // Assign values provided by IPOPT to allocated
+        if(new_matrix)
+        {
+           for(int i = 0; i < matrix_nonzeros; i++)
+           {
+               A_vals[i] = val_[i];
+               ia_alloc[i] = ia[i] - 1;
+               ja_alloc[i] = ja[i] - 1;
+           }
+        }
+        
+        else
+        {
+            A_vals[0] = 0;
+            ia_alloc[0] = 0;
+            ja_alloc[0] = 0;
+        }
+       
+        // Error handling from kernel
+        int* return_values;
+        return_values = aligned_alloc<int>(2);
+        return_values[0] = 0;
+        return_values[1] = 0;
+        
+         // Fill b
+        double* b;
+        b = aligned_alloc<double>(matrix_dimension * nrhs);
+        
+        for(int i = 0; i < An * nrhs; i++)
+        {
+            b[i] = rhs_vals[i];
+        }
+        
+        
        // Initalise QDLDL variables
-        QDLDL_int An = matrix_dimension;
+       /* QDLDL_int An = matrix_dimension;
         
         QDLDL_int* Ap; 
         QDLDL_int* Ai;
@@ -202,14 +271,14 @@ namespace Ipopt
         for(int i = 0; i < An + 1; i++)
         {
             Ap[i] = 0;
-        }
+        }*/
        
        /******
         Form up matrix
         *********/
         
         // First initialise and zero
-       QDLDL_float A_matrix[An][An];
+       /*QDLDL_float A_matrix[An][An];
        
        for(int i = 0; i < An; i++)
        {
@@ -230,14 +299,14 @@ namespace Ipopt
              {
                  A_matrix[ia[r] - 1][ja[r] - 1] += val_[r];
              }
-       }
+       }*/
        
        
        /*******
        Form up CSC arrays
        *********/
        
-       int fill_counter = 0;
+       /*int fill_counter = 0;
        
        QDLDL_int Ai_init[matrix_nonzeros];
        QDLDL_float Ax_init[matrix_nonzeros];
@@ -271,15 +340,7 @@ namespace Ipopt
            Ai[i] = Ai_init[i];
            Ax[i] = Ax_init[i];
        
-       }
-       
-      
-        // Fill b
-        for(int i = 0; i < An * nrhs; i++)
-        {
-            b[i] = rhs_vals[i];
-        }
-        
+       }*/
         
        
         
@@ -290,36 +351,38 @@ namespace Ipopt
          ************/
          
          // Setup buffers
-         cl::Buffer buffer_Ap = cl::Buffer(context, CL_MEM_USE_HOST_PTR | CL_MEM_READ_WRITE,
-                            sizeof(QDLDL_int) * (An+1), Ap, NULL);
+         cl::Buffer buffer_ia = cl::Buffer(context, CL_MEM_USE_HOST_PTR | CL_MEM_READ_WRITE,
+                            sizeof(Index) * ia_size, ia_alloc, NULL);
                             
          
-         cl::Buffer buffer_Ai = cl::Buffer(context, CL_MEM_USE_HOST_PTR | CL_MEM_READ_WRITE,
-                            sizeof(QDLDL_int) * fill_counter, Ai, NULL);
+         cl::Buffer buffer_ja = cl::Buffer(context, CL_MEM_USE_HOST_PTR | CL_MEM_READ_WRITE,
+                            sizeof(Index) * ja_size, ja_alloc, NULL);
                             
          
-         cl::Buffer buffer_Ax = cl::Buffer(context, CL_MEM_USE_HOST_PTR | CL_MEM_READ_WRITE,
-                            sizeof(QDLDL_float) * fill_counter, Ax, NULL);
+         cl::Buffer buffer_A_vals = cl::Buffer(context, CL_MEM_USE_HOST_PTR | CL_MEM_READ_WRITE,
+                            sizeof(double) * vals_size, A_vals, NULL);
                             
          
          cl::Buffer buffer_b = cl::Buffer(context, CL_MEM_USE_HOST_PTR | CL_MEM_READ_WRITE,
-                            sizeof(QDLDL_float) * An * nrhs, b, NULL);
+                            sizeof(double) * matrix_dimension * nrhs, b, NULL);
                             
          
          cl::Buffer buffer_return = cl::Buffer(context, CL_MEM_USE_HOST_PTR | CL_MEM_READ_WRITE,
-                            sizeof(QDLDL_int) * 2, return_values, NULL);
+                            sizeof(int) * 2, return_values, NULL);
          
-         kernel_gelinearsolver_0.setArg(0, nrhs);
-         kernel_gelinearsolver_0.setArg(1, An);
-         kernel_gelinearsolver_0.setArg(2, buffer_Ap);
-         kernel_gelinearsolver_0.setArg(3, buffer_Ai);
-         kernel_gelinearsolver_0.setArg(4, buffer_Ax);
-         kernel_gelinearsolver_0.setArg(5, buffer_b);
-         kernel_gelinearsolver_0.setArg(6, buffer_return);
+         kernel_gelinearsolver_0.setArg(0, new_matrix);
+         kernel_gelinearsolver_0.setArg(1, nrhs);
+         kernel_gelinearsolver_0.setArg(2, matrix_nonzeros);
+         kernel_gelinearsolver_0.setArg(3, matrix_dimension);
+         kernel_gelinearsolver_0.setArg(4, buffer_ia);
+         kernel_gelinearsolver_0.setArg(5, buffer_ja);
+         kernel_gelinearsolver_0.setArg(6, buffer_A_vals);
+         kernel_gelinearsolver_0.setArg(7, buffer_b);
+         kernel_gelinearsolver_0.setArg(8, buffer_return);
         
          
          // Data transfer from host to device
-         q.enqueueMigrateMemObjects({buffer_Ap, buffer_Ai, buffer_Ax, buffer_b}, 0); // 0 : migrate from host to dev
+         q.enqueueMigrateMemObjects({buffer_ia, buffer_ja, buffer_A_vals, buffer_b}, 0); // 0 : migrate from host to dev
          q.finish();
          
          gettimeofday(&ttrans1,0);

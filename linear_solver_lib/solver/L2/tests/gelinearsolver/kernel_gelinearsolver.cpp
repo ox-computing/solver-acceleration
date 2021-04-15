@@ -23,22 +23,26 @@
 #define MAXN 900
 
 
-extern "C" void kernel_gelinearsolver_0(QDLDL_bool new_matrix, QDLDL_int num_rhs, QDLDL_int An, QDLDL_int* Ap, QDLDL_int* Ai, QDLDL_float* Ax, QDLDL_float* b, QDLDL_int* return_values) {
-     #pragma HLS INTERFACE m_axi port = Ap bundle = gmem0 offset = slave max max_read_burst_length = 128
-     #pragma HLS INTERFACE m_axi port = Ai bundle = gmem0 offset = slave max_read_burst_length = 128
-     #pragma HLS INTERFACE m_axi port = Ax bundle = gmem0 offset = slave max_read_burst_length = 128
+extern "C" void kernel_gelinearsolver_0(QDLDL_bool new_matrix, QDLDL_int num_rhs, QDLDL_int num_nonzeros, QDLDL_int An, QDLDL_int* ia, QDLDL_int* ja, QDLDL_float* A_vals, QDLDL_float* b, QDLDL_int* return_values) {
+     #pragma HLS INTERFACE m_axi port = ia bundle = gmem0 offset = slave max max_read_burst_length = 128
+     #pragma HLS INTERFACE m_axi port = ja bundle = gmem0 offset = slave max_read_burst_length = 128
+     #pragma HLS INTERFACE m_axi port = A_vals bundle = gmem0 offset = slave max_read_burst_length = 128
      #pragma HLS INTERFACE m_axi port = b bundle = gmem1 offset = slave max_read_burst_length = 128 max_write_burst_length = 128
      #pragma HLS INTERFACE m_axi port = return_values bundle = gmem2 offset = slave
      
      #pragma HLS INTERFACE s_axilite port = new_matrix bundle = control
      #pragma HLS INTERFACE s_axilite port = num_rhs bundle = control
+     #pragma HLS INTERFACE s_axilite port = num_nonzeros bundle = control
      #pragma HLS INTERFACE s_axilite port = An bundle = control
-     #pragma HLS INTERFACE s_axilite port = Ap bundle = control
-     #pragma HLS INTERFACE s_axilite port = Ai bundle = control
-     #pragma HLS INTERFACE s_axilite port = Ax bundle = control
+     #pragma HLS INTERFACE s_axilite port = ia bundle = control
+     #pragma HLS INTERFACE s_axilite port = ja bundle = control
+     #pragma HLS INTERFACE s_axilite port = A_vals bundle = control
      #pragma HLS INTERFACE s_axilite port = b bundle = control
      #pragma HLS INTERFACE s_axilite port = return_values bundle = control
      #pragma HLS INTERFACE s_axilite port = return bundle = control
+     
+     
+     // Initial allocation to form CSC
      
      // Allocate storage values on device
      
