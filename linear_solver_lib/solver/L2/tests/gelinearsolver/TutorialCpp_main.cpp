@@ -48,16 +48,16 @@ int main(
     **************/
     //struct timeval tstart, tend;
     
-    int number_iterations = 40;
+    int number_iterations = 5;
 
     
     for(int iteration = 1; iteration <= number_iterations; iteration++)
     {   
     
-    FILE* file = fopen("tutorial_iterations_timings_vitis_chrono.txt","a");
+    FILE* file = fopen("500_CUs_test.txt","a");
 
    // Number of variables
-   Index N = 10*iteration;
+   Index N = 500;
    
    fprintf(file,"%d ",N);
    
