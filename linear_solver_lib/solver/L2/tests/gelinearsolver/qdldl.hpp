@@ -296,10 +296,84 @@ void QDLDL_determine_CSC (QDLDL_int An,
                           QDLDL_int* Ap,
                           QDLDL_int* Ai,
                           QDLDL_float* Ax){
-                          
-                          
-                          
-                          
+ 
+  QDLDL_int i,j, counter; 
+  QDLDL_int ia_temp[MAXN/2], ja_temp[MAXN/2];
+  QDLDL_float A_vals_temp[MAXN/2];
+  QDLDL_bool already_visited = false;
+   
+  /**********
+   Store in temp array to remove duplicates
+   *********/
+   
+   // For each nonzero value
+  for(i = 0; i < num_nonzeros; i++)
+  {
+  
+      already_visited = false;
+      
+      // Determine if location already visited
+      for(j = 0; j < counter; j++)
+      {
+          if((ia_temp[j] == ja_temp[i]) && (ja_temp[j] == ia_temp[i])
+          {
+              // Add value to previous
+              A_vals_temp[j] += A_vals[i];
+              
+              already_visited = true;
+          }
+      
+      }
+      
+      if(!already_visited)
+      {
+          // Store in temp
+          ia_temp[counter] = ia[i];
+          ja_temp[counter] = ja[i];
+          A_vals_temp[counter] = A_vals[i];
+          
+          counter++;
+      }
+ 
+  }
+  
+  
+  /*******
+  Read into CSC arrays
+  **********/
+  
+  for(i = 0; i < counter; i++)
+  {
+      // If on lower triangle
+      if(ia_temp[i] > ja_temp[i])
+      {
+          Ai[i] = ja_temp[i];
+          
+          for(j = ia_temp[i] + 1; j < An + 1; j++)
+          {
+              
+              Ap[j]++;
+          
+          }
+          
+      }
+      else
+      {
+          Ai[i] = ia_temp[i];
+          
+          for(j = ja_temp[i] + 1; j < An + 1; j++)
+          {
+              
+              Ap[j]++;
+          
+          }
+      
+      }
+      
+      Ax[i] = A_vals_temp[i];
+  } 
+  
+                                             
 }
                           
 

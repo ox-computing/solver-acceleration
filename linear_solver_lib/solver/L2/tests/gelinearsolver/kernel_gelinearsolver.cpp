@@ -43,6 +43,16 @@ extern "C" void kernel_gelinearsolver_0(QDLDL_bool new_matrix, QDLDL_int num_rhs
      
      
      // Initial allocation to form CSC
+     if(new_matrix)
+     {
+
+         QDLDL_int* Ap[MAXN/2];
+         QDLDL_int* Ai[MAXN/2];
+         QDLDL_float* Ax[MAXN/2];
+     
+         QDLDL_determine_CSC (QDLDL_int An, num_nonzeros, ia, ja, A_vals, Ap, Ai, Ax);
+         
+     }
      
      // Allocate storage values on device
      
