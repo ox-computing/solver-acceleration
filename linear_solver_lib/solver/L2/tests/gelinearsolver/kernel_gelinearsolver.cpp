@@ -16,7 +16,7 @@
 
 #include "xf_solver_L2.hpp"
 //#define NCU 36
-#define MAXN 886
+#define MAXN 998
 
 
 extern "C" void kernel_gelinearsolver_0(int num_nonzeros, int new_matrix, int n, int num_rhs, int* A_rows, int* A_cols, double* A_vals, double* dataB) {
