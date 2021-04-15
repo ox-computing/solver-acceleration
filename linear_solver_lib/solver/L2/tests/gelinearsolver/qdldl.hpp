@@ -298,8 +298,8 @@ void QDLDL_determine_CSC (QDLDL_int An,
                           QDLDL_float* Ax){
  
   QDLDL_int i,j, counter; 
-  QDLDL_int ia_temp[MAXN/2], ja_temp[MAXN/2];
-  QDLDL_float A_vals_temp[MAXN/2];
+  QDLDL_int ia_temp[(MAXN*MAXN)/2], ja_temp[(MAXN*MAXN)/2];
+  QDLDL_float A_vals_temp[(MAXN*MAXN)/2];
   QDLDL_bool already_visited = false;
    
   /**********

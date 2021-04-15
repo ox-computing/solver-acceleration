@@ -46,39 +46,38 @@ extern "C" void kernel_gelinearsolver_0(QDLDL_bool new_matrix, QDLDL_int num_rhs
      if(new_matrix)
      {
 
-         QDLDL_int* Ap[MAXN/2];
-         QDLDL_int* Ai[MAXN/2];
-         QDLDL_float* Ax[MAXN/2];
-     
-         QDLDL_determine_CSC (QDLDL_int An, num_nonzeros, ia, ja, A_vals, Ap, Ai, Ax);
+           QDLDL_int Ap[MAXN + 1];
+           Ap[0] = 0.0;
+           
+           QDLDL_int Ai[(MAXN*MAXN)/2];
+           QDLDL_float Ax[(MAXN*MAXN)/2];
+       
+           QDLDL_determine_CSC (QDLDL_int An, num_nonzeros, ia, ja, A_vals, Ap, Ai, Ax);
          
      }
      
      // Allocate storage values on device
      
-     QDLDL_int Ln = An;
+     static QDLDL_int Ln = An;
      
      static QDLDL_int Lp[MAXN + 1]; 
      static QDLDL_int Li[(MAXN*MAXN)/2];
      static QDLDL_float Lx[(MAXN*MAXN)/2];
      
-     
-     QDLDL_int etree[MAXN];
-     QDLDL_int Lnz[MAXN];
-     
-     QDLDL_float D[MAXN];
      static QDLDL_float Dinv[MAXN];
-     
-     QDLDL_int iwork[3*MAXN];
-     QDLDL_bool bwork[MAXN];
-     QDLDL_float fwork[MAXN];
-     
-
-     
-     // If new matrix flag set
      
      if(new_matrix)
      {
+          QDLDL_int etree[MAXN];
+          QDLDL_int Lnz[MAXN];
+          
+          QDLDL_float D[MAXN];
+          
+          QDLDL_int iwork[3*MAXN];
+          QDLDL_bool bwork[MAXN];
+          QDLDL_float fwork[MAXN];
+       
+     
          
           // Elimination tree calculation
      
