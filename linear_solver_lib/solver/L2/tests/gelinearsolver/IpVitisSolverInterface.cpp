@@ -243,7 +243,7 @@ namespace Ipopt
         double* b;
         b = aligned_alloc<double>(matrix_dimension * nrhs);
         
-        for(int i = 0; i < An * nrhs; i++)
+        for(int i = 0; i < matrix_dimension * nrhs; i++)
         {
             b[i] = rhs_vals[i];
         }
@@ -481,7 +481,7 @@ namespace Ipopt
           
           if(!solver_singular)
           {
-             for(int i = 0; i < An * nrhs; i++)
+             for(int i = 0; i < matrix_dimension * nrhs; i++)
              {
                  rhs_vals[i] = b[i];
              }
@@ -492,9 +492,9 @@ namespace Ipopt
           Clean Up
           ***********/
           
-          free(Ap);
-          free(Ai);
-          free(Ax);
+          free(ia_alloc);
+          free(ja_alloc);
+          free(A_vals);
           free(b);
           free(return_values);
           

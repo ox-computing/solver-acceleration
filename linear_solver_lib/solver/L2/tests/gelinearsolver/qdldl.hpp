@@ -288,6 +288,7 @@ void QDLDL_solve(const QDLDL_int       n,
   QDLDL_Ltsolve(n,Lp,Li,Lx,x);
 }
 
+template<int MAXN>
 void QDLDL_determine_CSC (QDLDL_int An,
                           QDLDL_int num_nonzeros,
                           QDLDL_int* ia,
@@ -315,7 +316,7 @@ void QDLDL_determine_CSC (QDLDL_int An,
       // Determine if location already visited
       for(j = 0; j < counter; j++)
       {
-          if((ia_temp[j] == ja_temp[i]) && (ja_temp[j] == ia_temp[i])
+          if((ia_temp[j] == ja_temp[i]) && (ja_temp[j] == ia_temp[i]))
           {
               // Add value to previous
               A_vals_temp[j] += A_vals[i];

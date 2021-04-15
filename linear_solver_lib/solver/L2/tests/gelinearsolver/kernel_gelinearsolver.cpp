@@ -52,7 +52,7 @@ extern "C" void kernel_gelinearsolver_0(QDLDL_bool new_matrix, QDLDL_int num_rhs
            QDLDL_int Ai[(MAXN*MAXN)/2];
            QDLDL_float Ax[(MAXN*MAXN)/2];
        
-           QDLDL_determine_CSC (QDLDL_int An, num_nonzeros, ia, ja, A_vals, Ap, Ai, Ax);
+           QDLDL_determine_CSC<MAXN>(QDLDL_int An, num_nonzeros, ia, ja, A_vals, Ap, Ai, Ax);
          
      }
      
