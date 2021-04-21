@@ -21,6 +21,10 @@ CXXFLAGS += -I$(IP_DIR)/LinAlg
 CXXFLAGS += -O2
 CXXLINKFLAGS += -O2
 
+MAXN_IN ?= 100
+
+CXXFLAGS += -DMAXN=$(MAXN_IN)
+
 .PHONY: shared
 shared: $(LIBFILE)
 

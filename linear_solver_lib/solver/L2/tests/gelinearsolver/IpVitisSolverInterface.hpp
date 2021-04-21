@@ -19,7 +19,7 @@ Base class is SparseSymLinearSolver
 
 #include "IpSparseSymLinearSolverInterface.hpp"
 
-#define MAXN 998
+//#define MAXN 998
 
 namespace Ipopt
 {

@@ -54,10 +54,10 @@ int main(
     for(int iteration = 1; iteration <= number_iterations; iteration++)
     {   
     
-    FILE* file = fopen("500_CUs_test.txt","a");
+    FILE* file = fopen("bram_test.txt","a");
 
    // Number of variables
-   Index N = 500;
+   Index N = 265;
    
    fprintf(file,"%d ",N);
    

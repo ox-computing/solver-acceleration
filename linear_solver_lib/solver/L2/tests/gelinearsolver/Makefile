@@ -62,8 +62,8 @@ RUNS ?= 1
 SEED ?= 12
 
 NUM_CUS ?= 36
-MAXN ?= 100
-LOC ?= bram
+MAX_SIZE ?= 100
+#LOC ?= bram
 
 include ./utils.mk
 
@@ -163,7 +163,7 @@ VPP_FLAGS += --optimize 3
 VPP_FLAGS += --kernel_frequency 500
 VPP_FLAGS += -D NCU_IN=$(NUM_CUS)
 VPP_FLAGS += -D MAXN_IN=$(MAXN)
-VPP_FLAGS += -D LOC_IN=$(LOC)
+#VPP_FLAGS += -D LOC_IN=$(LOC)
 
 
 ############################## Declaring Binary Containers ##############################
