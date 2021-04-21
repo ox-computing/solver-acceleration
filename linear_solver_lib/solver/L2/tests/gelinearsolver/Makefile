@@ -162,7 +162,7 @@ VPP_FLAGS += -I$(XFLIB_DIR)/ext
 VPP_FLAGS += --optimize 3
 VPP_FLAGS += --kernel_frequency 500
 VPP_FLAGS += -D NCU_IN=$(NUM_CUS)
-VPP_FLAGS += -D MAX_IN=$(MAXN)
+VPP_FLAGS += -D MAXN_IN=$(MAXN)
 VPP_FLAGS += -D LOC_IN=$(LOC)
 
 
