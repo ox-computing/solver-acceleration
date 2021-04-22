@@ -57,7 +57,7 @@ int main(
     FILE* file = fopen("bram_test.txt","a");
 
    // Number of variables
-   Index N = 265;
+   Index N = 260;
    
    fprintf(file,"%d ",N);
    
