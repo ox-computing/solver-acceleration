@@ -156,7 +156,7 @@ void gelinearsolver(int num_nonzeros, int new_matrix, int n, int num_rhs, int* i
       static T matB[NCU][(NMAX + NCU - 1) / NCU] = {};
       #pragma HLS array_partition variable = matA cyclic factor = NCU dim = 1
       #pragma HLS array_partition variable = matB cyclic factor = NCU dim = 1
-      #pragma HLS resource variable = matA core = XPM_MEMORY bram
+      #pragma HLS resource variable = matA core = STORAGE_IN LOCATION_IN
 
       
       //#pragma HLS bind_storage variable = matA type = fifo impl = LOC_IN

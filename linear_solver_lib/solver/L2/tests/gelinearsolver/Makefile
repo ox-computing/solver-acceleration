@@ -63,7 +63,8 @@ SEED ?= 12
 
 NUM_CUS ?= 36
 MAX_SIZE ?= 100
-#LOC ?= bram
+LOCATION ?= uram
+STORAGE ?= XPM_MEMORY
 
 include ./utils.mk
 
@@ -163,7 +164,8 @@ VPP_FLAGS += --optimize 3
 VPP_FLAGS += --kernel_frequency 500
 VPP_FLAGS += -D NCU_IN=$(NUM_CUS)
 VPP_FLAGS += -D MAXN_IN=$(MAX_SIZE)
-#VPP_FLAGS += -D LOC_IN=$(LOC)
+VPP_FLAGS += -D LOCATION_IN=$(LOCATION)
+VPP_FLAGS += -D STORAGE_IN=$(STORAGE)
 
 
 ############################## Declaring Binary Containers ##############################
