@@ -22,6 +22,9 @@
 #ifndef _XF_SOLVER_GELINEAR_HPP_
 #define _XF_SOLVER_GELINEAR_HPP_
 
+#include <stdio.h>
+#include <string.h>
+
 namespace xf {
 namespace solver {
 namespace internal_gelinear {
@@ -173,7 +176,7 @@ void gelinearsolver(int num_nonzeros, int new_matrix, int n, int num_rhs, int* i
          // Only edit matA if new matrix flag set
          if((new_matrix == 1) && (j == 0))
          {   
-             Loop_reset_1:
+             /*Loop_reset_1:
              for(int r = 0; r < n; r++)
              {
                  #pragma HLS dependence variable = B inter false
@@ -189,7 +192,10 @@ void gelinearsolver(int num_nonzeros, int new_matrix, int n, int num_rhs, int* i
                      matA[c % NCU][c / NCU][r] = 0.0;
                     
                  }     
-             }
+             }*/
+             
+             // Reset array using memset
+             memset(matA, 0.0, sizeof(matA));
          
              
              // Fill matA
@@ -217,18 +223,15 @@ void gelinearsolver(int num_nonzeros, int new_matrix, int n, int num_rhs, int* i
              }
          
          }
-         
-         else
+         // Fill matB
+         Loop_read_2:
+         for (int r = 0; r < n; r++) 
          {
-             // Fill matB
-             Loop_read_2:
-             for (int r = 0; r < n; r++) 
-             {
-                    #pragma HLS pipeline
-                    #pragma HLS dependence variable = B inter false
-                    matB[r % NCU][r / NCU] = B[r * num_rhs + j];
-             }
+                #pragma HLS pipeline
+                #pragma HLS dependence variable = B inter false
+                matB[r % NCU][r / NCU] = B[r * num_rhs + j];
          }
+  
          
          
 
