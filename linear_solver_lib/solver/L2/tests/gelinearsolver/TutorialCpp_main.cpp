@@ -92,15 +92,6 @@ int main(
    // Ask Ipopt to solve the problem
    ApplicationReturnStatus status = app->OptimizeTNLP(mynlp);
       
-   if( status == Solve_Succeeded )
-   {
-      printf("\n\n*** The problem solved!\n");
-   }
-   else
-   {
-      printf("\n\n*** The problem FAILED!\n");
-   }
-
    // As the SmartPtrs go out of scope, the reference count
    // will be decremented and the objects will automatically
    // be deleted.
@@ -113,6 +104,16 @@ int main(
    fprintf(file, "%f \n", std::chrono::duration <double, std::milli> (end-start).count());
    
    fclose(file);
+   
+   if( status == Solve_Succeeded )
+   {
+      printf("\n\n*** The problem solved!\n");
+   }
+   else
+   {
+      printf("\n\n*** The problem FAILED!\n");
+      return 1;
+   }
    
    } //for loop
 
