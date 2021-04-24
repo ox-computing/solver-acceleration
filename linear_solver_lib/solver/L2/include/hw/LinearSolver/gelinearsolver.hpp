@@ -195,7 +195,7 @@ void gelinearsolver(int num_nonzeros, int new_matrix, int n, int num_rhs, int* i
              }*/
              
              // Reset array using memset
-             memset(matA, 0.0, sizeof(matA));
+             memset(matA, 0, sizeof(matA[0][0][0]) * NCU * ((NMAX+ NCU - 1) / NCU) * NMAX);
          
              
              // Fill matA
