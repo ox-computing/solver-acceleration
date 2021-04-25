@@ -20,7 +20,7 @@
 #include <iostream>
 
 //#define NCU 36
-#define MAXN 900
+//#define MAXN 900
 
 
 extern "C" void kernel_gelinearsolver_0(QDLDL_bool new_matrix, QDLDL_int num_rhs, QDLDL_int An, QDLDL_int* Ap, QDLDL_int* Ai, QDLDL_float* Ax, QDLDL_float* b, QDLDL_int* return_values) {
