@@ -306,6 +306,7 @@ void QDLDL_determine_CSC (QDLDL_int An,
   /**********
    Store in temp array to remove duplicates
    *********/
+   counter = 0;
    
    // For each nonzero value
   for(i = 0; i < num_nonzeros; i++)
@@ -316,7 +317,7 @@ void QDLDL_determine_CSC (QDLDL_int An,
       // Determine if location already visited
       for(j = 0; j < counter; j++)
       {
-          if((ia_temp[j] == ja_temp[i]) && (ja_temp[j] == ia_temp[i]))
+          if((ia_temp[j] == ia[i]) && (ja_temp[j] == ja[i]))
           {
               // Add value to previous
               A_vals_temp[j] += A_vals[i];

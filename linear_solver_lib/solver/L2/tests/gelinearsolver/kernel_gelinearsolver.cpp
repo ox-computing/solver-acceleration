@@ -42,17 +42,16 @@ extern "C" void kernel_gelinearsolver_0(QDLDL_bool new_matrix, QDLDL_int num_rhs
      #pragma HLS INTERFACE s_axilite port = return bundle = control
      
      
+     QDLDL_int Ap[MAXN + 1];
+     Ap[0] = 0;
+     QDLDL_int Ai[(MAXN*MAXN)/2];
+     QDLDL_float Ax[(MAXN*MAXN)/2];
+           
      // Initial allocation to form CSC
      if(new_matrix)
      {
-
-           QDLDL_int Ap[MAXN + 1];
-           Ap[0] = 0.0;
-           
-           QDLDL_int Ai[(MAXN*MAXN)/2];
-           QDLDL_float Ax[(MAXN*MAXN)/2];
        
-           QDLDL_determine_CSC<MAXN>(QDLDL_int An, num_nonzeros, ia, ja, A_vals, Ap, Ai, Ax);
+           QDLDL_determine_CSC<MAXN>(An, num_nonzeros, ia, ja, A_vals, Ap, Ai, Ax);
          
      }
      
@@ -66,18 +65,17 @@ extern "C" void kernel_gelinearsolver_0(QDLDL_bool new_matrix, QDLDL_int num_rhs
      
      static QDLDL_float Dinv[MAXN];
      
-     if(new_matrix)
-     {
-          QDLDL_int etree[MAXN];
-          QDLDL_int Lnz[MAXN];
-          
-          QDLDL_float D[MAXN];
-          
-          QDLDL_int iwork[3*MAXN];
-          QDLDL_bool bwork[MAXN];
-          QDLDL_float fwork[MAXN];
-       
+     QDLDL_int etree[MAXN];
+     QDLDL_int Lnz[MAXN];
      
+     QDLDL_float D[MAXN];
+     
+     QDLDL_int iwork[3*MAXN];
+     QDLDL_bool bwork[MAXN];
+     QDLDL_float fwork[MAXN];
+     
+     if(new_matrix)
+     {     
          
           // Elimination tree calculation
      
