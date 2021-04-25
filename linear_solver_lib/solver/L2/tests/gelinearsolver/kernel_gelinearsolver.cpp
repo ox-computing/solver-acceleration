@@ -16,11 +16,11 @@
 
 #include "xf_solver_L2.hpp"
 //#define NCU 36
-#define MAXN 998
+//#define MAXN 998
 
 
 extern "C" void kernel_gelinearsolver_0(int num_nonzeros, int new_matrix, int n, int num_rhs, int* A_rows, int* A_cols, double* A_vals, double* dataB) {
-#pragma HLS INTERFACE m_axi port = A_rows bundle = gmem0 offset = slave max max_read_burst_length = 128
+#pragma HLS INTERFACE m_axi port = A_rows bundle = gmem0 offset = slave max_read_burst_length = 128
 #pragma HLS INTERFACE m_axi port = A_cols bundle = gmem0 offset = slave max_read_burst_length = 128
 #pragma HLS INTERFACE m_axi port = A_vals bundle = gmem0 offset = slave max_read_burst_length = 128
 #pragma HLS INTERFACE m_axi port = dataB bundle = gmem1 offset = slave max_read_burst_length = 128 max_write_burst_length = 128
@@ -39,6 +39,6 @@ extern "C" void kernel_gelinearsolver_0(int num_nonzeros, int new_matrix, int n,
     //int debug_mode = 0;
   
        // General linear solver
-       xf::solver::gelinearsolver<double, MAXN, NCU_IN>(num_nonzeros, new_matrix, n, num_rhs, A_rows, A_cols, A_vals, dataB);
+       xf::solver::gelinearsolver<double, MAXN_IN, NCU_IN>(num_nonzeros, new_matrix, n, num_rhs, A_rows, A_cols, A_vals, dataB);
     
 }
