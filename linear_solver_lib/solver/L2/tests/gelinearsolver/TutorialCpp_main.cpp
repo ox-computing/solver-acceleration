@@ -27,6 +27,7 @@
 #include <fstream>
 #include <sys/time.h>
 #include <chrono>
+#include <string>
 
 #include "IpIpoptApplication.hpp"
 #include "TutorialCpp_nlp.hpp"
@@ -48,16 +49,15 @@ int main(
     **************/
     //struct timeval tstart, tend;
     
-    int number_iterations = 5;
-
+    int number_iterations = std::atoi(argv[3]);
     
     for(int iteration = 1; iteration <= number_iterations; iteration++)
     {   
     
-    FILE* file = fopen("500_CUs_test.txt","a");
+    FILE* file = fopen(argv[1],"a");
 
    // Number of variables
-   Index N = 500;
+   Index N = i*std::atoi(argv[4]);
    
    fprintf(file,"%d ",N);
    
@@ -83,8 +83,8 @@ int main(
    //       suitable for your optimization problem.
    app->Options()->SetNumericValue("tol", 1e-7);
    app->Options()->SetStringValue("mu_strategy", "adaptive");
-   app->Options()->SetStringValue("linear_solver", "custom");
-   //app->Options()->SetNumericValue("max_iter", 500);
+   app->Options()->SetStringValue("linear_solver", argv[2]);
+   //app->Options()->SetIntegerValue("max_iter", 10);
 
    // Intialize the IpoptApplication and process the options
    app->Initialize();
