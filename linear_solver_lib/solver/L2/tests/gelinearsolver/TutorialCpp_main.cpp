@@ -49,15 +49,15 @@ int main(
     **************/
     //struct timeval tstart, tend;
     
-    int number_iterations = std::atoi(argv[3]);
+    int number_iterations = std::atoi(argc[3]);
     
     for(int iteration = 1; iteration <= number_iterations; iteration++)
     {   
     
-    FILE* file = fopen(argv[1],"a");
+    FILE* file = fopen(argc[1],"a");
 
    // Number of variables
-   Index N = i*std::atoi(argv[4]);
+   Index N = iteration*std::atoi(argc[4]);
    
    fprintf(file,"%d ",N);
    
@@ -83,7 +83,7 @@ int main(
    //       suitable for your optimization problem.
    app->Options()->SetNumericValue("tol", 1e-7);
    app->Options()->SetStringValue("mu_strategy", "adaptive");
-   app->Options()->SetStringValue("linear_solver", argv[2]);
+   app->Options()->SetStringValue("linear_solver", argc[2]);
    //app->Options()->SetIntegerValue("max_iter", 10);
 
    // Intialize the IpoptApplication and process the options
