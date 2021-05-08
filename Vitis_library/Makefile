@@ -18,6 +18,10 @@ CXXFLAGS += -I$(IP_DIR)/Algorithm
 CXXFLAGS += -I$(IP_DIR)/Interfaces
 CXXFLAGS += -I$(IP_DIR)/LinAlg
 
+MAX_SIZE ?= 100
+
+CXXFLAGS += -DMAXN=$(MAX_SIZE)
+
 CXXFLAGS += -O2
 CXXLINKFLAGS += -O2
 
