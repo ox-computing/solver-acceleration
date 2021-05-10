@@ -376,7 +376,7 @@ namespace Ipopt
           int trans2 = diff(&ttrans2,&tlaunch);
           int post =  diff(&tpost,&ttrans2);
           
-          FILE* fp = fopen("multisolve_timings_interface_zeroing.txt","a");
+          FILE* fp = fopen("qdldl_timings_400.txt","a");
           
           if(multisolve_iteration == 1)
           {
