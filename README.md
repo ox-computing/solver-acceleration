@@ -11,7 +11,7 @@ The basic vector multiply code was later modified to create a 2x2 linear solver.
 
 
 ## Main Project
-### main_source
+[### main_source](main_source)
 The main source code for the project; this contains the interface with IPOPT which has contains the source code as well as the kernel source code.
 
 ### library_file_for_IPOPT
