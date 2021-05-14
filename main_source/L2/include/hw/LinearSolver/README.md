@@ -1,0 +1,2 @@
+# Solver Source
+The source code for the solving parts of the linear solver. Also calls the decomposition function and contains the top level function called by the [kernel](../../../tests/gelinearsolver/kernel_gelinearsolver.cpp)
