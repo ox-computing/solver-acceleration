@@ -15,4 +15,4 @@ The basic vector multiply code was later modified to create a 2x2 linear solver.
 The main source code for the project; this contains the interface with IPOPT which has contains the source code as well as the kernel source code.
 
 ### [IPOPT Vitis Interface Library File](library_file_for_IPOPT)
-The compile folder for the library file which IPOPT as the interface with the Vitis Library Solver.
+The compile folder which creates a library file from the interface source code. This is used by IPOPT when running with the Vitis Library Solver.
