@@ -4,7 +4,7 @@
 Interface source and header files
 
 ## kernelgelinearsolver.cpp 
-Kernel top level function
+Kernel top level function. This calls the [solver](../../include/hw/LinearSolver/gelinearsolver.hpp)
 
 ## TutorialCpp_main.cpp/TutorialCpp_main.hpp 
 Microbenchmark source and header files

@@ -1,0 +1,2 @@
+# Vitis Interface Library File Compile
+This creates a library file (.so) which is symbolically linked to /usr/local/lib. IPOPT has an env variable which allows the user to specify additional libraries; this is set to this library file allowing IPOPT to call the interface. 
