@@ -65,6 +65,11 @@ namespace Ipopt
       
       // Read in xclbin path from options
       printf("INFO: Loading xclbin \n");
+      
+      /****** 
+      Edit for path of xclbin file
+      ********/
+      
       xclbin_path = "/home/jacksoncd/solver-acceleration/linear_solver_lib/solver/L2/tests/gelinearsolver/build_dir.hw.xilinx_u50_gen3x16_xdma_201920_3/kernel_gelinearsolver.xclbin";
       
       // Find platform
