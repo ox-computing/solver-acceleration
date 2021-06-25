@@ -1,4 +1,4 @@
-# Accelerating a linear solver for use with IPOPT using an FPGA
+# Accelerating IPOPT linear solver using an FPGA
 IPOPT is an open source nonlinear optimiser which requires a linear solver as part of its solving process. This repo contains the source code for a framework running this linear solver on an FPGA platform - specifically a Xilinx Alveo U50 card. The linear solver source code is modified from the Xilinx open source Vitis Solver Library (https://github.com/Xilinx/Vitis_Libraries/tree/master/solver) to be optimised for use with IPOPT.
 
 
