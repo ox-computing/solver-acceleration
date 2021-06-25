@@ -1,13 +1,5 @@
-# 4YP Submission Code
-This repo contains the source code for the Accelerating linear solvers on FPGA project. Below is a summary of the code and how it can be used with IPOPT.
-
-## Prepatory Work
-### [Basic Vector Multiply](vector_multiply)
-A straightforward vector multiply kernel initially deployed onto the device to test functionality.
-
-
-### [Basic 2x2 Linear Solver](basic_2x2_solver)
-The basic vector multiply code was later modified to create a 2x2 linear solver. This was again to test functionality.
+# Accelerating a linear solver for use with IPOPT using an FPGA
+IPOPT is an open source nonlinear optimiser which requires a linear solver as part of its solving process. This repo contains the source code for a framework running this linear solver on an FPGA platform - specifically a Xilinx Alveo U50 card. The linear solver source code is modified from the Xilinx open source Vitis Solver Library (https://github.com/Xilinx/Vitis_Libraries/tree/master/solver) to be optimised for use with IPOPT.
 
 
 ## Main Project
